@@ -1,2 +1,2 @@
-# BaseDatos AMD_Gerzan_Cabo_Alejandro_Pérez_Oliva
+# BaseDatos Pocesadores_Gerzan_Cabo_Alejandro_Pérez_Oliva
 
