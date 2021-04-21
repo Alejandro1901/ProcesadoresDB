@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Base de Datos Procesadores (Java)</name>
+	<name>DB_Procesadores_Java</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1619014528543</id>
+			<id>1619017916770</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
