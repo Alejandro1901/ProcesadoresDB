@@ -1,10 +1,10 @@
-package es.iespuertodelacruz.procesadores;
+package es.iespuertodelacruz.procesadores.vista;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class AppVista 
 {
     public static void main( String[] args )
     {
