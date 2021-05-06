@@ -20,8 +20,21 @@ CREATE TABLE procesador (
   FOREIGN KEY (id_arquitectura) REFERENCES arquitectura(id),
   FOREIGN KEY (modelo) REFERENCES nombre_procesador(modelo_procesador)
 );
+CREATE TABLE nombre_procesador (
+  modelo_procesador INT UNSIGNED PRIMARY KEY,
+  familia varchar(30),
+  generacion int(5) UNSIGNED
+);
 
-CREATE TABLE Fabricante (
+CREATE TABLE arquitectura (
+  id INT UNSIGNED PRIMARY KEY,
+  version_arquitectura varchar(30),
+  diseño varchar(20) UNSIGNED,
+  tecnologia varchar(30),
+  estandar VARCHAR(20)
+);
+
+CREATE TABLE fabricante (
   codigo varchar UNSIGNED PRIMARY KEY,
   codigo_postal varchar(50), 
   nombre VARCHAR(20),
@@ -54,7 +67,6 @@ CREATE TABLE grafica_integrada (
   frec_max float,
   memoria_max int,
   resolucion varchar(5)
-FOREIGN KEY (id) REFERENCES procesador-grafica_integrada(id_grafica_integrada)
 );
 
 CREATE TABLE procesador-grafica_integrada (
