@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS ventas;
+DROP DATABASE IF EXISTS ProcesadoresDB;
 CREATE DATABASE ProcesadoresDB CHARACTER SET utf8mb4;
 USE ProcesadoresDB;
 
