@@ -3,7 +3,7 @@ CREATE DATABASE ProcesadoresDB CHARACTER SET utf8mb4;
 USE ProcesadoresDB;
 
 CREATE TABLE nombre_procesador (
-  modelo_procesador INT PRIMARY KEY,
+  modelo_procesador varchar(20) PRIMARY KEY,
   familia varchar(30),
   generacion int(5)
 );
@@ -56,7 +56,7 @@ CREATE TABLE procesador (
   codigo_fabricante VARCHAR(50),
   id_socket INT,
   id_arquitectura INT,
-  modelo INT, 
+  modelo varchar(20), 
   fecha_lanzamiento DATE,
   nucleos int,
   hilos float,
@@ -77,4 +77,4 @@ CREATE TABLE procesador_grafica_integrada (
 FOREIGN KEY (id_procesador) REFERENCES procesador(id),
 FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id)
 );
-INSERT INTO nombre_procesador VALUES(1, '3600X', 'Ryzen', '5', );
+INSERT INTO nombre_procesador VALUES ("3600X","Ryzen",5);
