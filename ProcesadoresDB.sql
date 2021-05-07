@@ -77,9 +77,4 @@ CREATE TABLE procesador_grafica_integrada (
 FOREIGN KEY (id_procesador) REFERENCES procesador(id),
 FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id)
 );
-nombre_procesador (
-  modelo_procesador INT PRIMARY KEY,
-  familia varchar(30),
-  generacion int(5)
-);
 INSERT INTO nombre_procesador VALUES(1, '3600X', 'Ryzen', '5', );
