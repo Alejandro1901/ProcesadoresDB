@@ -125,6 +125,7 @@ INSERT INTO nombre_procesador VALUES ("10105F","Core i3",10);
 INSERT INTO nombre_procesador VALUES ("2700X ","Ryzen 7",2);
 INSERT INTO nombre_procesador VALUES ("3960X","Ryzen Threadripper",3);
 
+
  
 
 
