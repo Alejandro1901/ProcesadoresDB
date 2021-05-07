@@ -77,4 +77,56 @@ CREATE TABLE procesador_grafica_integrada (
 FOREIGN KEY (id_procesador) REFERENCES procesador(id),
 FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id)
 );
-INSERT INTO nombre_procesador VALUES ("3600X","Ryzen",5);
+
+INSERT INTO nombre_procesador VALUES ("3600X","Ryzen 5",3);
+INSERT INTO nombre_procesador VALUES ("2600","Ryzen 5",2);
+
+-- Familia Core i9
+  -- 11 gen
+INSERT INTO nombre_procesador VALUES ("11900K","Core i9",11);
+INSERT INTO nombre_procesador VALUES ("11900F","Core i9",11);
+INSERT INTO nombre_procesador VALUES ("11900","Core i9",11);
+  -- 10 gen
+INSERT INTO nombre_procesador VALUES ("10910","Core i9",10);
+INSERT INTO nombre_procesador VALUES ("10900K","Core i9",10);
+INSERT INTO nombre_procesador VALUES ("10900F","Core i9",10);
+
+-- Familia Core i7
+  -- 11 gen
+INSERT INTO nombre_procesador VALUES ("11700F","Core i7",11);
+INSERT INTO nombre_procesador VALUES ("11700","Core i7",11);
+INSERT INTO nombre_procesador VALUES ("11700K","Core i7",11);
+  -- 10 gen
+INSERT INTO nombre_procesador VALUES ("10700","Core i7",10);
+INSERT INTO nombre_procesador VALUES ("10700K","Core i7",10);
+INSERT INTO nombre_procesador VALUES ("10700F","Core i7",10);
+  -- 9 gen
+INSERT INTO nombre_procesador VALUES ("9700k ","Core i7",9);
+
+-- Familia Core i5
+  -- 11 gen
+INSERT INTO nombre_procesador VALUES ("11600","Core i5",11);
+INSERT INTO nombre_procesador VALUES ("11600K","Core i5",11);
+INSERT INTO nombre_procesador VALUES ("11600KF","Core i5",11);
+  -- 10 gen
+INSERT INTO nombre_procesador VALUES ("10505","Core i5",10);
+INSERT INTO nombre_procesador VALUES ("10400F","Core i5",10);
+INSERT INTO nombre_procesador VALUES ("10600K","Core i5",10);
+
+-- Familia Core i3
+  -- 11 gen
+INSERT INTO nombre_procesador VALUES ("1115G4E","Core i3",11);
+INSERT INTO nombre_procesador VALUES ("1125G4","Core i3",11);
+  -- 10 gen
+INSERT INTO nombre_procesador VALUES ("10325","Core i3",10);
+INSERT INTO nombre_procesador VALUES ("10105F","Core i3",10);
+
+-- Ryzen
+INSERT INTO nombre_procesador VALUES ("2700X ","Ryzen 7",2);
+INSERT INTO nombre_procesador VALUES ("3960X","Ryzen Threadripper",3);
+
+ 
+
+
+
+
