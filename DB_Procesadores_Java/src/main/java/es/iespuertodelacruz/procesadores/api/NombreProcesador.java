@@ -6,10 +6,11 @@ public class NombreProcesador {
     byte generacion;
 
     /**
+     * Constructor con todos los parametros
      * 
-     * @param modeloProcesador
-     * @param familia
-     * @param generacion
+     * @param modeloProcesador del procesador
+     * @param familia a la que pertenece
+     * @param generacion a la que pertenece
      */
     public NombreProcesador(String modeloProcesador, String familia, byte generacion) {
         this.modeloProcesador = modeloProcesador;
@@ -23,4 +24,27 @@ public class NombreProcesador {
     public NombreProcesador() {
     }
 
+    public String getModeloProcesador() {
+        return this.modeloProcesador;
+    }
+
+    public void setModeloProcesador(String modeloProcesador) {
+        this.modeloProcesador = modeloProcesador;
+    }
+
+    public String getFamilia() {
+        return this.familia;
+    }
+
+    public void setFamilia(String familia) {
+        this.familia = familia;
+    }
+
+    public byte getGeneracion() {
+        return this.generacion;
+    }
+
+    public void setGeneracion(byte generacion) {
+        this.generacion = generacion;
+    }
 }
