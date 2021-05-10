@@ -4,6 +4,8 @@ public class Arquitectura {
     int id;
     String version;
     String disenio;
+    String tecnologia;
+    String estandar;
 
     /**
      * 
@@ -11,10 +13,13 @@ public class Arquitectura {
      * @param version
      * @param disenio
      */
-    public Arquitectura(int id, String version, String disenio) {
+    public Arquitectura(int id, String version, String disenio, 
+        String tecnologia, String estandar) {
         this.id = id;
         this.version = version;
         this.disenio = disenio;
+        this.tecnologia = tecnologia;
+        this.estandar = estandar;
     }
 
     /**
