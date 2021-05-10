@@ -9,13 +9,18 @@ public class Arquitectura {
 
     /**
      * Constructor con todos los parametros
-     * @param id de la arquitectura
-     * @param version de la arquitectura
-     * @param disenio de la arquitectura
+     * @param id de la arquitectura 
+     * @param version de la arquitectura 
+     * @param disenio es el nombre del tipo de arquitectura 
      * @param tecnologia de la arquitectura (Solo ARM)
      * @param estandar de la arquietctura (Solo x86-64)
      */
-    public Arquitectura(int id, String version, String disenio, 
+   
+    /**
+     * Creación de un constructor con todos los atributos de las tablas
+     */
+   
+     public Arquitectura(int id, String version, String disenio, 
         String tecnologia, String estandar) {
         this.id = id;
         this.version = version;
@@ -27,9 +32,13 @@ public class Arquitectura {
     /**
      * Constructor vacio
      */
-    public Arquitectura() {
+    
+     public Arquitectura() {
     }
 
+    /**
+     * Creacion de getter and setters
+     */
 
     public int getId() {
         return this.id;

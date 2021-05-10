@@ -3,11 +3,11 @@ package es.iespuertodelacruz.procesadores.api;
 import java.sql.Date;
 
 public class Procesador {
-    int id;
+    int id; //PK
     String codigoFabricante; //FK
     int idSocket; //FK
     int idArquitectura; //FK
-    String modelo; 
+    String modelo; //FK
     Date fechaLanzamiento;
     int nucleos;
     int hilos;
@@ -18,18 +18,18 @@ public class Procesador {
 
     /**
      * 
-     * @param id
-     * @param codigoFabricante
-     * @param idSocket
-     * @param idArquitectura
-     * @param modelo
-     * @param fechaLanzamiento
-     * @param nucleos
-     * @param hilos
-     * @param frecuencia
-     * @param overclock
-     * @param tdp
-     * @param precioMedio
+     * @param id del procesador
+     * @param codigoFabricante Foreignkey de la tabla fabricante
+     * @param idSocket Foreignkey de la tabla socket
+     * @param idArquitectura Foreiginkey de la tabla arquitectura
+     * @param modelo foreignkey de la tabla nombre_procesador
+     * @param fechaLanzamiento Cuando salio a la venta el procesador 
+     * @param nucleos el tamaño de nucleos del procesador 
+     * @param hilos a los que va el procesador
+     * @param frecuencia a la que va el procesador
+     * @param overclock si es posible overclock o no 
+     * @param tdp del procesador
+     * @param precioMedio del procesador
      */
     public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, int tdp, float precioMedio) {
         this.id = id;
@@ -51,6 +51,10 @@ public class Procesador {
      */
     public Procesador() {
     }
+
+    /**
+     * Creacion de getter and setters
+     */
 
     public int getId() {
         return this.id;

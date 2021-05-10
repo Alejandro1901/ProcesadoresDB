@@ -12,9 +12,9 @@ public class GraficaIntegrada {
      * Constructor con todos los parametros
      * 
      * @param id de al grafica
-     * @param nombreGrafica de la grafica
-     * @param frecuenciaBasica a la que va la grafica
-     * @param frecuenciaMaxima a la que va la grafica
+     * @param nombreGrafica de la grafica 
+     * @param frecuenciaBasica a la que va la grafica 
+     * @param frecuenciaMaxima a la que va la grafica 
      * @param memoriaMaxima de la grafica
      * @param resolucion maxima permitida por la grafica
      */
@@ -32,6 +32,10 @@ public class GraficaIntegrada {
      */
     public GraficaIntegrada() {
     }
+
+    /**
+     * Creacion de getter and setters
+     */
 
     public int getId() {
         return this.id;

@@ -14,17 +14,18 @@ public class Fabricante {
     /**
      * Constructor con todos los parametros
      * 
-     * @param codigo
-     * @param codigoPostal
-     * @param nombre
-     * @param calle
-     * @param numero
-     * @param pais
-     * @param telefono
-     * @param correo
-     * @param web
+     * @param codigo del fabricante 
+     * @param codigoPostal del fabricante 
+     * @param nombre del fabricante
+     * @param calle del fabricante, donde esta situado la fabrica 
+     * @param numero de la fabrica 
+     * @param pais donde se fabrican los procesadores 
+     * @param telefono del fabricante 
+     * @param correo del fabricante 
+     * @param web del fabricante
      */
-    public Fabricante(String codigo, int codigoPostal, String nombre, String calle, int numero, String pais, int telefono, String correo, String web) {
+    
+     public Fabricante(String codigo, int codigoPostal, String nombre, String calle, int numero, String pais, int telefono, String correo, String web) {
         this.codigo = codigo;
         this.codigoPostal = codigoPostal;
         this.nombre = nombre;
@@ -41,6 +42,10 @@ public class Fabricante {
      */
     public Fabricante() {
     }
+
+    /**
+     * Creacion de getter and setters
+     */
 
     public String getCodigo() {
         return this.codigo;

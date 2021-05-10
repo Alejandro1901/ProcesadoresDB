@@ -21,6 +21,10 @@ public class ProcesadorGraficaIntegrada {
     public ProcesadorGraficaIntegrada() {
     }
 
+     /**
+     * Creacion de getter and setters
+     */
+
     public int getIdProcesador() {
         return this.idProcesador;
     }

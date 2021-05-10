@@ -29,6 +29,10 @@ public class Socket {
     public Socket() {
     }
 
+    /**
+     * Creacion de getter and setters
+     */
+
     public int getId() {
         return this.id;
     }

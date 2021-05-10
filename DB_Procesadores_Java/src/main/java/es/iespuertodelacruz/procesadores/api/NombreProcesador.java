@@ -24,6 +24,10 @@ public class NombreProcesador {
     public NombreProcesador() {
     }
 
+    /**
+     * Creacion de getter and setters
+     */
+
     public String getModeloProcesador() {
         return this.modeloProcesador;
     }

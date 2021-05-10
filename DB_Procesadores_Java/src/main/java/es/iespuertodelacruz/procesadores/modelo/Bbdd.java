@@ -2,15 +2,8 @@ package es.iespuertodelacruz.procesadores.modelo;
 
 import java.sql.*;
 
-import es.iespuertodelacruz.procesadores.api.Arquitectura;
-import es.iespuertodelacruz.procesadores.api.Fabricante;
-import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
-import es.iespuertodelacruz.procesadores.api.NombreProcesador;
-import es.iespuertodelacruz.procesadores.api.PlacaBase;
-import es.iespuertodelacruz.procesadores.api.Procesador;
-import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
-import es.iespuertodelacruz.procesadores.api.Socket;
-import es.iespuertodelacruz.procesadores.excepcion.BbddException;
+import es.iespuertodelacruz.procesadores.api.*;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class Bbdd {
 
@@ -41,9 +34,9 @@ public class Bbdd {
      * Funcion encargada de realizar la conexion con la BBDD
      * 
      * @return la coneccion
-     * @throws BbddException controlado
+     * @throws PersistenciaException controlado
      */
-    private Connection getConnection() throws BbddException {
+    private Connection getConnection() throws PersistenciaException {
         Connection connection = null;
 
         try {
@@ -54,7 +47,7 @@ public class Bbdd {
                 DriverManager.getConnection(url, usuario, password);
             }
         } catch (Exception exception) {
-            throw new BbddException("No se ha podido establecer la coneccion con la BBDD", exception);
+            throw new PersistenciaException("No se ha podido establecer la coneccion con la BBDD", exception);
         }
 
         return connection;
@@ -64,9 +57,9 @@ public class Bbdd {
      * Metodo encargado de realizar la actualizacion de la BBDD
      * 
      * @param sql a ejecutar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    private void actualizar(String sql) throws BbddException {
+    private void actualizar(String sql) throws PersistenciaException {
         Statement statement = null;
         Connection connection = null;
         try {
@@ -74,7 +67,7 @@ public class Bbdd {
             statement = connection.createStatement();
             statement.executeUpdate(sql);
         } catch (Exception exception) {
-            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+            throw new PersistenciaException("Se ha producido un error realizando la consulta", exception);
         } finally {
             closeConecction(connection, statement, null);
         }
@@ -85,9 +78,9 @@ public class Bbdd {
      * Metodo encargado de realizar la insercion de una arquitectura
      * 
      * @param arquitectura a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(Arquitectura arquitectura) throws BbddException {
+    public void insertar(Arquitectura arquitectura) throws PersistenciaException {
         String sql = "INSERT INTO arquitectura (id, version, disenio, tecnologia, estandar) " + SQL_VALUES
                 + arquitectura.getId() + SQL_COMA + arquitectura.getVersion() + SQL_COMA + arquitectura.getDisenio()
                 + SQL_COMA + arquitectura.getTecnologia() + SQL_COMA + arquitectura.getEstandar() + SQL_FIN;
@@ -95,12 +88,25 @@ public class Bbdd {
     }
 
     /**
+     * Metodo encargado de eliminar una arquitectura de la BBDD
+     * 
+     * @param arquitectura a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Arquitectura arquitectura) throws PersistenciaException {
+        String sql = "UPDATE arquitectura SET id = '" + arquitectura.getId() + "', version = '"
+                + arquitectura.getVersion() + "', disenio = '" + arquitectura.getDisenio() + "', tecnologia = '"
+                + arquitectura.getTecnologia() + "', estandar = '" + arquitectura.getEstandar() + "'";
+        actualizar(sql);
+    }
+
+    /**
      * Metodo encargado de realizar la insercion de un fabricante
      * 
      * @param fabricante a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(Fabricante fabricante) throws BbddException {
+    public void insertar(Fabricante fabricante) throws PersistenciaException {
         String sql = "INSERT INTO fabricante (codigo, codigo_postal, nombre, numero, pais, calle, telefono, "
                 + "correo, web) " + SQL_VALUES + fabricante.getCodigo() + SQL_COMA + fabricante.getCodigoPostal()
                 + SQL_COMA + fabricante.getNombre() + SQL_COMA + fabricante.getNumero() + SQL_COMA
@@ -110,12 +116,25 @@ public class Bbdd {
     }
 
     /**
+     * Metodo encargado de eliminar una arquitectura de la BBDD
+     * 
+     * @param arquitectura a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Fabricante fabricante) throws PersistenciaException {
+        String sql = "UPDATE arquitectura SET codigo = '" + fabricante.getCodigo() + "', codigo_postal = '"
+                + fabricante.getCodigoPostal() + "', nombre = '" + fabricante.getNombre() + "', numero = '"
+                + fabricante.getNumero() + "'"; //Aun no esta terminado
+        actualizar(sql);
+    }
+
+    /**
      * Metodo encargado de realizar la insercion de una grafica integrada
      * 
      * @param graficaIntegrada a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(GraficaIntegrada graficaIntegrada) throws BbddException {
+    public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
         String sql = "INSERT INTO grafica_integrada (id, nombre_grafica, frec_basica, frec_max, memoria_max, resolucion) "
                 + SQL_VALUES + graficaIntegrada.getId() + SQL_COMA + graficaIntegrada.getNombreGrafica() + SQL_COMA
                 + graficaIntegrada.getFrecuenciaBasica() + SQL_COMA + graficaIntegrada.getFrecuenciaMaxima() + SQL_COMA
@@ -127,9 +146,9 @@ public class Bbdd {
      * Metodo encargado de realizar la insercion de un registro en nombre_procesador
      * 
      * @param nombreProcesador a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(NombreProcesador nombreProcesador) throws BbddException {
+    public void insertar(NombreProcesador nombreProcesador) throws PersistenciaException {
         String sql = "INSERT INTO nombre_procesador (modelo_procesador, familia, generacion) " + SQL_VALUES
                 + nombreProcesador.getModeloProcesador() + SQL_COMA + nombreProcesador.getFamilia() + SQL_COMA
                 + nombreProcesador.getGeneracion() + SQL_FIN;
@@ -140,9 +159,9 @@ public class Bbdd {
      * Metodo encargado de realizar la insercion de una placa base
      * 
      * @param placaBase a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(PlacaBase placaBase) throws BbddException {
+    public void insertar(PlacaBase placaBase) throws PersistenciaException {
         String sql = "INSERT INTO placa_base (id, id_socket, nombre) " + SQL_VALUES + placaBase.getId() + SQL_COMA
                 + placaBase.getIdSocket() + SQL_COMA + placaBase.getNombre() + SQL_FIN;
         actualizar(sql);
@@ -152,9 +171,9 @@ public class Bbdd {
      * Metodo encargado de realizar la insercion de un procesador
      * 
      * @param procesador a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(Procesador procesador) throws BbddException {
+    public void insertar(Procesador procesador) throws PersistenciaException {
         String sql = "INSERT INTO procesador (id, codigo_fabricante, id_socket, id_arquitectura, modelo, "
                 + "fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio) " + SQL_VALUES
                 + procesador.getId() + SQL_COMA + procesador.getCodigoFabricante() + SQL_COMA + procesador.getIdSocket()
@@ -170,9 +189,9 @@ public class Bbdd {
      * procesador_grafica_integrada
      * 
      * @param procesadorGraficaIntegrada a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws BbddException {
+    public void insertar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
         String sql = "INSERT INTO procesador_grafica_integrada (id_procesador, id_grafica_integrada) " + SQL_VALUES
                 + procesadorGraficaIntegrada.getIdProcesador() + SQL_COMA
                 + procesadorGraficaIntegrada.getIdGraficaIntegrada() + SQL_FIN;
@@ -183,12 +202,12 @@ public class Bbdd {
      * Metodo encargado de insertar un socket
      * 
      * @param socket a insertar
-     * @throws BbddException controlada
+     * @throws PersistenciaException controlada
      */
-    public void insertar(Socket socket) throws BbddException {
-        String sql = "INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) " + SQL_VALUES
-                + socket.getId() + SQL_COMA + socket.getTipo() + SQL_COMA + socket.getTecnologia() 
-                + SQL_COMA + socket.getFechaLanzamiento() + SQL_FIN;
+    public void insertar(Socket socket) throws PersistenciaException {
+        String sql = "INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) " + SQL_VALUES + socket.getId()
+                + SQL_COMA + socket.getTipo() + SQL_COMA + socket.getTecnologia() + SQL_COMA
+                + socket.getFechaLanzamiento() + SQL_FIN;
         actualizar(sql);
     }
 
@@ -198,9 +217,10 @@ public class Bbdd {
      * @param connection a cerra
      * @param statement  a cerrar
      * @param resultSet  a cerrar
-     * @throws BbddException con mensaje descriptivo
+     * @throws PersistenciaException con mensaje descriptivo
      */
-    private void closeConecction(Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
+    private void closeConecction(Connection connection, Statement statement, ResultSet resultSet)
+            throws PersistenciaException {
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -212,7 +232,7 @@ public class Bbdd {
                 connection.close();
             }
         } catch (Exception exception) {
-            throw new BbddException("Se ha producido un error cerrando la coneccion", exception);
+            throw new PersistenciaException("Se ha producido un error cerrando la coneccion", exception);
         }
 
     }
