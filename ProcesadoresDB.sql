@@ -10,7 +10,7 @@ CREATE TABLE nombre_procesador (
 
 CREATE TABLE arquitectura (
   id INT PRIMARY KEY,
-  version_arquitectura varchar(30),
+  version varchar(30),
   diseño varchar(20),
   tecnologia varchar(30),
   estandar VARCHAR(20)
