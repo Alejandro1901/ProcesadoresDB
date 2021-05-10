@@ -5,9 +5,10 @@ public class ProcesadorGraficaIntegrada {
     int idGraficaIntegrada;
 
     /**
+     * Cosntructor con todos los parametros
      * 
-     * @param idProcesador
-     * @param idGraficaIntegrada
+     * @param idProcesador del procesador
+     * @param idGraficaIntegrada de la grafica integrada
      */
     public ProcesadorGraficaIntegrada(int idProcesador, int idGraficaIntegrada) {
         this.idProcesador = idProcesador;
@@ -18,5 +19,21 @@ public class ProcesadorGraficaIntegrada {
      * Constructor vacio
      */
     public ProcesadorGraficaIntegrada() {
+    }
+
+    public int getIdProcesador() {
+        return this.idProcesador;
+    }
+
+    public void setIdProcesador(int idProcesador) {
+        this.idProcesador = idProcesador;
+    }
+
+    public int getIdGraficaIntegrada() {
+        return this.idGraficaIntegrada;
+    }
+
+    public void setIdGraficaIntegrada(int idGraficaIntegrada) {
+        this.idGraficaIntegrada = idGraficaIntegrada;
     }
 }

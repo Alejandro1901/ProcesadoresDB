@@ -8,6 +8,8 @@ import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
 import es.iespuertodelacruz.procesadores.api.NombreProcesador;
 import es.iespuertodelacruz.procesadores.api.PlacaBase;
 import es.iespuertodelacruz.procesadores.api.Procesador;
+import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
+import es.iespuertodelacruz.procesadores.api.Socket;
 import es.iespuertodelacruz.procesadores.excepcion.BbddException;
 
 public class Bbdd {
@@ -153,8 +155,40 @@ public class Bbdd {
      * @throws BbddException controlada
      */
     public void insertar(Procesador procesador) throws BbddException {
-        String sql = "INSERT INTO procesador (id, codigo_fabricante, id_socket) " + SQL_VALUES + placaBase.getId() + SQL_COMA
-                + placaBase.getIdSocket() + SQL_COMA + placaBase.getNombre() + SQL_FIN;
+        String sql = "INSERT INTO procesador (id, codigo_fabricante, id_socket, id_arquitectura, modelo, "
+                + "fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio) " + SQL_VALUES
+                + procesador.getId() + SQL_COMA + procesador.getCodigoFabricante() + SQL_COMA + procesador.getIdSocket()
+                + SQL_COMA + procesador.getIdArquitectura() + SQL_COMA + procesador.getModelo() + SQL_COMA
+                + procesador.getFechaLanzamiento() + SQL_COMA + procesador.getNucleos() + SQL_COMA
+                + procesador.getHilos() + SQL_COMA + procesador.getFrecuencia() + SQL_COMA + procesador.getOverclock()
+                + SQL_COMA + procesador.getTdp() + SQL_COMA + procesador.getPrecioMedio() + SQL_FIN;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de realizar la insercion de un registro en
+     * procesador_grafica_integrada
+     * 
+     * @param procesadorGraficaIntegrada a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws BbddException {
+        String sql = "INSERT INTO procesador_grafica_integrada (id_procesador, id_grafica_integrada) " + SQL_VALUES
+                + procesadorGraficaIntegrada.getIdProcesador() + SQL_COMA
+                + procesadorGraficaIntegrada.getIdGraficaIntegrada() + SQL_FIN;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de insertar un socket
+     * 
+     * @param socket a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(Socket socket) throws BbddException {
+        String sql = "INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) " + SQL_VALUES
+                + socket.getId() + SQL_COMA + socket.getTipo() + SQL_COMA + socket.getTecnologia() 
+                + SQL_COMA + socket.getFechaLanzamiento() + SQL_FIN;
         actualizar(sql);
     }
 
