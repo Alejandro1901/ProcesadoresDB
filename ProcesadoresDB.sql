@@ -5,12 +5,12 @@ USE ProcesadoresDB;
 CREATE TABLE nombre_procesador (
   modelo_procesador varchar(20) PRIMARY KEY,
   familia varchar(30),
-  generacion int(5)
+  generacion int(5) DEFAULT 1
 );
 
 CREATE TABLE arquitectura (
   id INT PRIMARY KEY,
-  version varchar(30),
+  version_arquitectura varchar(30),
   diseño varchar(20),
   tecnologia varchar(30),
   estandar VARCHAR(20)
@@ -23,8 +23,8 @@ CREATE TABLE fabricante (
   numero int(3),
   pais varchar(20),
   calle varchar(50),
-  telefono varchar(11),
-  correo varchar(30),
+  telefono varchar(50),
+  correo varchar(50),
   web varchar(50)
 );
 
@@ -123,7 +123,6 @@ INSERT INTO nombre_procesador VALUES ("10600K","Core i5",10);
 INSERT INTO nombre_procesador VALUES ("9600","Core i5",9);
 INSERT INTO nombre_procesador VALUES ("9600","Core i5",9);
 
-
 -- Familia Core i3
   -- 11 gen
 INSERT INTO nombre_procesador VALUES ("1115G4E","Core i3",11);
@@ -133,6 +132,23 @@ INSERT INTO nombre_procesador VALUES ("10325","Core i3",10);
 INSERT INTO nombre_procesador VALUES ("10105F","Core i3",10);
   -- 9 gen
 INSERT INTO nombre_procesador VALUES ("9100","Core i3",9);
+
+-- Familia Xeon Platinum
+  -- 3 gen
+INSERT INTO nombre_procesador VALUES ("8360Y","Xeon Platinum",3);
+INSERT INTO nombre_procesador VALUES ("8358","Xeon Platinum",3);
+  -- 2 gen
+INSERT INTO nombre_procesador VALUES ("9222","Xeon Platinum",2);
+INSERT INTO nombre_procesador VALUES ("8284","Xeon Platinum",2);
+
+-- Familia Xeon Gold
+  -- 3 gen
+INSERT INTO nombre_procesador VALUES ("5315Y","Xeon Gold",3);
+INSERT INTO nombre_procesador VALUES ("6338","Xeon Gold",3);
+  -- 2 gen
+INSERT INTO nombre_procesador VALUES ("6250","Xeon Gold",2);
+INSERT INTO nombre_procesador VALUES ("5218R","Xeon Gold",2);
+
 
 -- AMD
 
@@ -150,24 +166,61 @@ INSERT INTO nombre_procesador VALUES ("5800X","Ryzen 7",5);
 INSERT INTO nombre_procesador VALUES ("5800","Ryzen 7",5);
   -- Serie 3000
 INSERT INTO nombre_procesador VALUES ("3800X","Ryzen 7",3);
+  -- Serie 2000
+INSERT INTO nombre_procesador VALUES ("2700X ","Ryzen 7",2);
 
 -- Familia Ryzen 5
   --Serie 5000
 INSERT INTO nombre_procesador VALUES ("5600X","Ryzen 5",5);
   -- Serie 3000
 INSERT INTO nombre_procesador VALUES ("3400G","Ryzen 5",3); -- Grafica integrada
-INSERT INTO nombre_procesador VALUES ("3600","Ryzen 5",3);
+INSERT INTO nombre_procesador VALUES ("3600X","Ryzen 5",3);
+  -- Serie 2000
+INSERT INTO nombre_procesador VALUES ("2600","Ryzen 5",2);
 
 -- Familia Ryzen 3
   -- Serie 3000
+INSERT INTO nombre_procesador VALUES ("3100","Ryzen 3",3);
+INSERT INTO nombre_procesador VALUES ("3200G","Ryzen 3",3); -- Grafica integrada
 
-
-INSERT INTO nombre_procesador VALUES ("3600X","Ryzen 5",3);
-INSERT INTO nombre_procesador VALUES ("2600","Ryzen 5",2);
-INSERT INTO nombre_procesador VALUES ("2700X ","Ryzen 7",2);
+-- Familia Ryzen Threadripper
+  -- Serie 3000
+INSERT INTO nombre_procesador VALUES ("3990X","Ryzen Threadripper",3);
 INSERT INTO nombre_procesador VALUES ("3960X","Ryzen Threadripper",3);
+  -- Serie 2000
+INSERT INTO nombre_procesador VALUES ("2950X","Ryzen Threadripper",2);
+INSERT INTO nombre_procesador VALUES ("2920X","Ryzen Threadripper",2);
+  
+-- Familia Athlon
+  -- Serie 3000
+INSERT INTO nombre_procesador VALUES ("320GE","Athlon",3); -- Grafica integrada
+  -- Serie 2000
+INSERT INTO nombre_procesador VALUES ("240GE","Athlon",2); -- Grafica integrada
 
---Tabla Arquitectura
+
+-- Qualcomm
+-- Familia Kryo
+  -- Serie 600
+INSERT INTO nombre_procesador VALUES ("680","Kryo",6);
+INSERT INTO nombre_procesador VALUES ("670","Kryo",6);
+  -- Serie 500
+INSERT INTO nombre_procesador VALUES ("585","Kryo",5);
+INSERT INTO nombre_procesador VALUES ("560","Kryo",5);
+  -- Serie 400
+INSERT INTO nombre_procesador VALUES ("495","Kryo",4);
+INSERT INTO nombre_procesador VALUES ("470","Kryo",4);
+
+-- ARM Limited
+-- Familia Cortex
+INSERT INTO nombre_procesador VALUES ()
+
+
+
+-- Tabla Fabricante
+INSERT INTO fabricante VALUES ("US4581401001","95052","Intel",3186,"Estados Unidos","Mission College Blvd","408-765-8080","investor.relations@intel.com","https://www.intel.es");
+INSERT INTO fabricante VALUES ("US0079031078","95054","AMD",2485,"Estados Unidos","Augustine Drive","877-284-1566 ","support@amd.com","https://www.amd.com/es");
+INSERT INTO fabricante VALUES ("US7475251036","92121","Qualcomm",5775 ,"Estados Unidos","Morehouse Drive","858-587-1121 ","support@qualcomm.com","https://www.qualcomm.com/");
+INSERT INTO fabricante VALUES ("RE8957215654","CB1 9NJ","Arm Limited",110 ,"Reino Unido","Fulbourn Road","+44 (1223) 400 400"," info@armreinounido.com","https://www.arm.com/");
  
 
 
