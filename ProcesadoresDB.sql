@@ -78,8 +78,7 @@ FOREIGN KEY (id_procesador) REFERENCES procesador(id),
 FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id)
 );
 
-INSERT INTO nombre_procesador VALUES ("3600X","Ryzen 5",3);
-INSERT INTO nombre_procesador VALUES ("2600","Ryzen 5",2);
+--Tabla Procesadores
 
 -- INTEL
 
@@ -163,11 +162,12 @@ INSERT INTO nombre_procesador VALUES ("3600","Ryzen 5",3);
   -- Serie 3000
 
 
-
+INSERT INTO nombre_procesador VALUES ("3600X","Ryzen 5",3);
+INSERT INTO nombre_procesador VALUES ("2600","Ryzen 5",2);
 INSERT INTO nombre_procesador VALUES ("2700X ","Ryzen 7",2);
 INSERT INTO nombre_procesador VALUES ("3960X","Ryzen Threadripper",3);
 
-
+--Tabla Arquitectura
  
 
 
