@@ -141,8 +141,26 @@ INSERT INTO nombre_procesador VALUES ("9100","Core i3",9);
   -- Serie 5000
 INSERT INTO nombre_procesador VALUES ("5950X","Ryzen 9",5);
 INSERT INTO nombre_procesador VALUES ("5900X","Ryzen 9",5);
-INSERT INTO nombre_procesador VALUES ("5800","Ryzen 9",5);
-  -- Serie 
+  -- Serie 3000
+INSERT INTO nombre_procesador VALUES ("3900X","Ryzen 9",3);
+INSERT INTO nombre_procesador VALUES ("5950X","Ryzen 9",3);
+
+-- Familia Ryzen 7
+  -- Serie 5000
+INSERT INTO nombre_procesador VALUES ("5800X","Ryzen 7",5);
+INSERT INTO nombre_procesador VALUES ("5800","Ryzen 7",5);
+  -- Serie 3000
+INSERT INTO nombre_procesador VALUES ("3800X","Ryzen 7",3);
+
+-- Familia Ryzen 5
+  --Serie 5000
+INSERT INTO nombre_procesador VALUES ("5600X","Ryzen 5",5);
+  -- Serie 3000
+INSERT INTO nombre_procesador VALUES ("3400G","Ryzen 5",3); -- Grafica integrada
+INSERT INTO nombre_procesador VALUES ("3600","Ryzen 5",3);
+
+-- Familia Ryzen 3
+  -- Serie 3000
 
 
 
