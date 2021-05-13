@@ -227,7 +227,7 @@ INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,c
 
 
 -- Tabla Arquitectura -- Este es de prueba
-INSERT INTO arquitectura (id,version_arquitectura,disenio,tecnologia) VALUES (1,"ARM","probando","Thumb");
+INSERT INTO arquitectura (id,version_arquitectura,disenio,tecnologia) VALUES (1,"x86-64","probando","Thumb");
  
 
 

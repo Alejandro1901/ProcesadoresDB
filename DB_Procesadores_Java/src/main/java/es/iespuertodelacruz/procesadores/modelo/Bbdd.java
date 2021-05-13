@@ -7,7 +7,8 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class Bbdd {
 
-    private static final String SQL_FIN = "');";
+    private static final String SQL_FIN_COMILLA_SIMPLE = "';";
+    private static final String SQL_FIN_PARENTESIS = "');";
     private static final String SQL_VALUES = "VALUES ('";
     private static final String SQL_COMA = "', '";
     private String driver;
@@ -81,22 +82,12 @@ public class Bbdd {
      * @throws PersistenciaException controlada
      */
     public void insertar(Arquitectura arquitectura) throws PersistenciaException {
-        String sql = "INSERT INTO arquitectura (id, version, disenio, tecnologia, estandar) " + SQL_VALUES
-                + arquitectura.getId() + SQL_COMA + arquitectura.getVersion() + SQL_COMA + arquitectura.getDisenio()
-                + SQL_COMA + arquitectura.getTecnologia() + SQL_COMA + arquitectura.getEstandar() + SQL_FIN;
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de eliminar una arquitectura de la BBDD
-     * 
-     * @param arquitectura a eliminar
-     * @throws PersistenciaException controlada
-     */
-    public void eliminar(Arquitectura arquitectura) throws PersistenciaException {
-        String sql = "UPDATE arquitectura SET id = '" + arquitectura.getId() + "', version = '"
-                + arquitectura.getVersion() + "', disenio = '" + arquitectura.getDisenio() + "', tecnologia = '"
-                + arquitectura.getTecnologia() + "', estandar = '" + arquitectura.getEstandar() + "'";
+        String sql = "INSERT INTO arquitectura (id, version_arquitectura, disenio, tecnologia, estandar) " + SQL_VALUES
+                + arquitectura.getId() + SQL_COMA 
+                + arquitectura.getVersion() + SQL_COMA 
+                + arquitectura.getDisenio() + SQL_COMA 
+                + arquitectura.getTecnologia() + SQL_COMA 
+                + arquitectura.getEstandar() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -108,23 +99,16 @@ public class Bbdd {
      */
     public void insertar(Fabricante fabricante) throws PersistenciaException {
         String sql = "INSERT INTO fabricante (codigo, codigo_postal, nombre, numero, pais, calle, telefono, "
-                + "correo, web) " + SQL_VALUES + fabricante.getCodigo() + SQL_COMA + fabricante.getCodigoPostal()
-                + SQL_COMA + fabricante.getNombre() + SQL_COMA + fabricante.getNumero() + SQL_COMA
-                + fabricante.getPais() + SQL_COMA + fabricante.getCalle() + SQL_COMA + fabricante.getTelefono()
-                + SQL_COMA + fabricante.getCorreo() + SQL_COMA + fabricante.getWeb() + SQL_FIN;
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo encargado de eliminar una arquitectura de la BBDD
-     * 
-     * @param arquitectura a eliminar
-     * @throws PersistenciaException controlada
-     */
-    public void eliminar(Fabricante fabricante) throws PersistenciaException {
-        String sql = "UPDATE arquitectura SET codigo = '" + fabricante.getCodigo() + "', codigo_postal = '"
-                + fabricante.getCodigoPostal() + "', nombre = '" + fabricante.getNombre() + "', numero = '"
-                + fabricante.getNumero() + "'"; //Aun no esta terminado
+                + "correo, web) " + SQL_VALUES 
+                + fabricante.getCodigo() + SQL_COMA 
+                + fabricante.getCodigoPostal() + SQL_COMA 
+                + fabricante.getNombre() + SQL_COMA 
+                + fabricante.getNumero() + SQL_COMA
+                + fabricante.getPais() + SQL_COMA 
+                + fabricante.getCalle() + SQL_COMA 
+                + fabricante.getTelefono() + SQL_COMA 
+                + fabricante.getCorreo() + SQL_COMA 
+                + fabricante.getWeb() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -136,9 +120,13 @@ public class Bbdd {
      */
     public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
         String sql = "INSERT INTO grafica_integrada (id, nombre_grafica, frec_basica, frec_max, memoria_max, resolucion) "
-                + SQL_VALUES + graficaIntegrada.getId() + SQL_COMA + graficaIntegrada.getNombreGrafica() + SQL_COMA
-                + graficaIntegrada.getFrecuenciaBasica() + SQL_COMA + graficaIntegrada.getFrecuenciaMaxima() + SQL_COMA
-                + graficaIntegrada.getMemoriaMaxima() + SQL_COMA + graficaIntegrada.getResolucion() + SQL_FIN;
+                + SQL_VALUES 
+                + graficaIntegrada.getId() + SQL_COMA 
+                + graficaIntegrada.getNombreGrafica() + SQL_COMA
+                + graficaIntegrada.getFrecuenciaBasica() + SQL_COMA 
+                + graficaIntegrada.getFrecuenciaMaxima() + SQL_COMA
+                + graficaIntegrada.getMemoriaMaxima() + SQL_COMA 
+                + graficaIntegrada.getResolucion() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -150,8 +138,9 @@ public class Bbdd {
      */
     public void insertar(NombreProcesador nombreProcesador) throws PersistenciaException {
         String sql = "INSERT INTO nombre_procesador (modelo_procesador, familia, generacion) " + SQL_VALUES
-                + nombreProcesador.getModeloProcesador() + SQL_COMA + nombreProcesador.getFamilia() + SQL_COMA
-                + nombreProcesador.getGeneracion() + SQL_FIN;
+                + nombreProcesador.getModeloProcesador() + SQL_COMA 
+                + nombreProcesador.getFamilia() + SQL_COMA
+                + nombreProcesador.getGeneracion() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -162,8 +151,10 @@ public class Bbdd {
      * @throws PersistenciaException controlada
      */
     public void insertar(PlacaBase placaBase) throws PersistenciaException {
-        String sql = "INSERT INTO placa_base (id, id_socket, nombre) " + SQL_VALUES + placaBase.getId() + SQL_COMA
-                + placaBase.getIdSocket() + SQL_COMA + placaBase.getNombre() + SQL_FIN;
+        String sql = "INSERT INTO placa_base (id, id_socket, nombre) " + SQL_VALUES 
+                + placaBase.getId() + SQL_COMA
+                + placaBase.getIdSocket() + SQL_COMA 
+                + placaBase.getNombre() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -176,11 +167,18 @@ public class Bbdd {
     public void insertar(Procesador procesador) throws PersistenciaException {
         String sql = "INSERT INTO procesador (id, codigo_fabricante, id_socket, id_arquitectura, modelo, "
                 + "fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio) " + SQL_VALUES
-                + procesador.getId() + SQL_COMA + procesador.getCodigoFabricante() + SQL_COMA + procesador.getIdSocket()
-                + SQL_COMA + procesador.getIdArquitectura() + SQL_COMA + procesador.getModelo() + SQL_COMA
-                + procesador.getFechaLanzamiento() + SQL_COMA + procesador.getNucleos() + SQL_COMA
-                + procesador.getHilos() + SQL_COMA + procesador.getFrecuencia() + SQL_COMA + procesador.getOverclock()
-                + SQL_COMA + procesador.getTdp() + SQL_COMA + procesador.getPrecioMedio() + SQL_FIN;
+                + procesador.getId() + SQL_COMA 
+                + procesador.getCodigoFabricante() + SQL_COMA 
+                + procesador.getIdSocket() + SQL_COMA 
+                + procesador.getIdArquitectura() + SQL_COMA 
+                + procesador.getModelo() + SQL_COMA
+                + procesador.getFechaLanzamiento() + SQL_COMA 
+                + procesador.getNucleos() + SQL_COMA
+                + procesador.getHilos() + SQL_COMA 
+                + procesador.getFrecuencia() + SQL_COMA 
+                + procesador.getOverclock() + SQL_COMA 
+                + procesador.getTdp() + SQL_COMA 
+                + procesador.getPrecio() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -194,7 +192,7 @@ public class Bbdd {
     public void insertar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
         String sql = "INSERT INTO procesador_grafica_integrada (id_procesador, id_grafica_integrada) " + SQL_VALUES
                 + procesadorGraficaIntegrada.getIdProcesador() + SQL_COMA
-                + procesadorGraficaIntegrada.getIdGraficaIntegrada() + SQL_FIN;
+                + procesadorGraficaIntegrada.getIdGraficaIntegrada() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -205,9 +203,231 @@ public class Bbdd {
      * @throws PersistenciaException controlada
      */
     public void insertar(Socket socket) throws PersistenciaException {
-        String sql = "INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) " + SQL_VALUES + socket.getId()
-                + SQL_COMA + socket.getTipo() + SQL_COMA + socket.getTecnologia() + SQL_COMA
-                + socket.getFechaLanzamiento() + SQL_FIN;
+        String sql = "INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) " + SQL_VALUES 
+                + socket.getId() + SQL_COMA 
+                + socket.getTipo() + SQL_COMA 
+                + socket.getTecnologia() + SQL_COMA
+                + socket.getFechaLanzamiento() + SQL_FIN_PARENTESIS;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar una arquitectura de la BBDD
+     * 
+     * @param arquitectura a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Arquitectura arquitectura) throws PersistenciaException {
+        String sql = "UPDATE arquitectura SET id = '" + arquitectura.getId() 
+                + "', version_arquitectura = '" + arquitectura.getVersion() 
+                + "', disenio = '" + arquitectura.getDisenio() 
+                + "', tecnologia = '" + arquitectura.getTecnologia() 
+                + "', estandar = '" + arquitectura.getEstandar() 
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar un fabricante de la BBDD
+     * 
+     * @param fabricante a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Fabricante fabricante) throws PersistenciaException {
+        String sql = "UPDATE fabricante SET codigo = '" + fabricante.getCodigo() 
+                + "', codigo_postal = '" + fabricante.getCodigoPostal() 
+                + "', nombre = '" + fabricante.getNombre() 
+                + "', numero = '" + fabricante.getNumero() 
+                + "', pais = '" + fabricante.getPais() 
+                + "', calle = '" + fabricante.getCalle() 
+                + "', telefono = '" + fabricante.getTelefono() 
+                + "', correo = '" + fabricante.getCorreo() 
+                + "', web = '" + fabricante.getWeb() 
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar una grafica de la BBDD
+     * 
+     * @param graficaIntegrada a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+        String sql = "UPDATE grafica_integrada SET id = '" + graficaIntegrada.getId() 
+                + "', nombre_grafica = '" + graficaIntegrada.getNombreGrafica() 
+                + "', frec_basica = '" + graficaIntegrada.getFrecuenciaBasica() 
+                + "', frec_max = '" + graficaIntegrada.getFrecuenciaMaxima() 
+                + "', memoria_max = '" + graficaIntegrada.getMemoriaMaxima() 
+                + "', resolucion = '" + graficaIntegrada.getResolucion() 
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar un registro en nombre_procesador
+     * 
+     * @param nombreProcesador a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(NombreProcesador nombreProcesador) throws PersistenciaException {
+        String sql = "UPDATE nombre_procesador SET modelo_procesador = '" + nombreProcesador.getModeloProcesador() 
+                + "', familia = '" + nombreProcesador.getFamilia() 
+                + "', generacion = '" + nombreProcesador.getGeneracion() 
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar una placa base en la BBDD
+     * 
+     * @param placaBase a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(PlacaBase placaBase) throws PersistenciaException {
+        String sql = "UPDATE placa_base SET id = '" + placaBase.getId() 
+                + "', id_socket = '" + placaBase.getIdSocket()
+                + "', nombre = '" + placaBase.getNombre() 
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar un procesador en la BBDD
+     * 
+     * @param procesador a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Procesador procesador) throws PersistenciaException {
+        String sql = "UPDATE procesador SET id = '" + procesador.getId()
+                + "', codigo_fabricante = '" + procesador.getCodigoFabricante()
+                + "', id_socket = '" + procesador.getIdSocket()
+                + "', id_arquitectura = '" + procesador.getIdArquitectura()
+                + "', modelo = '" + procesador.getModelo()
+                + "', fecha_lanzamiento = '" + procesador.getFechaLanzamiento()
+                + "', nucleos = '" + procesador.getNucleos()
+                + "', hilos = '" + procesador.getHilos()
+                + "', frecuencia = '" + procesador.getFrecuencia()
+                + "', overclock = '" + procesador.getOverclock()
+                + "', tdp = '" + procesador.getTdp()
+                + "', precio = '" + procesador.getPrecio()
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar un registro en procesador_grafica_integrada
+     * 
+     * @param procesadorGraficaIntegrada a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
+        String sql = "UPDATE procesador_grafica_integrada SET id_procesador = '" + procesadorGraficaIntegrada.getIdProcesador()
+                + "', id_grafica_integrada = '" + procesadorGraficaIntegrada.getIdGraficaIntegrada()
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de modificar un socket en la BBDD
+     * 
+     * @param socket a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Socket socket) throws PersistenciaException {
+        String sql = "UPDATE socket SET id = '" + socket.getId()
+                + "', tipo = '" + socket.getTipo()
+                + "', tecnologia = '" + socket.getTecnologia()
+                + "', fecha_lanzamiento = '" + socket.getFechaLanzamiento()
+                + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar una arquitectura de la BBDD
+     * 
+     * @param arquitectura a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Arquitectura arquitectura) throws PersistenciaException {
+        String sql = "DELETE FROM arquitectura WHERE id = '" + arquitectura.getId() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar un fabricante de la BBDD
+     * 
+     * @param fabricante a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Fabricante fabricante) throws PersistenciaException {
+        String sql = "DELETE FROM fabricante WHERE codigo = '" + fabricante.getCodigo() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+     /**
+     * Metodo encargado de eliminar una grafica integrada de la BBDD
+     * 
+     * @param graficaIntegrada a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+        String sql = "DELETE FROM grafica_integrada WHERE id = '" + graficaIntegrada.getId() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar un registro de nombre_procesador
+     * 
+     * @param nombreProcesador a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(NombreProcesador nombreProcesador) throws PersistenciaException {
+        String sql = "DELETE FROM nombre_procesador WHERE modelo_procesador = '" + nombreProcesador.getModeloProcesador() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar una placa base de la BBDD
+     * 
+     * @param placaBase a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(PlacaBase placaBase) throws PersistenciaException {
+        String sql = "DELETE FROM placa_base WHERE id = '" + placaBase.getId() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar un procesador de la BBDD
+     * 
+     * @param procesador a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Procesador procesador) throws PersistenciaException {
+        String sql = "DELETE FROM procesador WHERE id = '" + procesador.getId() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar un registro de procesador_grafica_integrada
+     * 
+     * @param procesadorGraficaIntegrada a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
+        String sql = "DELETE FROM procesador_grafica_integrada WHERE id_procesador = '" + procesadorGraficaIntegrada.getIdProcesador() + SQL_FIN_COMILLA_SIMPLE;
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo encargado de eliminar un socket de la BBDD
+     * 
+     * @param socket a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Socket socket) throws PersistenciaException {
+        String sql = "DELETE FROM socket WHERE id = '" + socket.getId() + SQL_FIN_COMILLA_SIMPLE;
         actualizar(sql);
     }
 

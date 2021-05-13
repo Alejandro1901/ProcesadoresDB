@@ -14,7 +14,7 @@ public class Procesador {
     float frecuencia;
     boolean overclock;
     float tdp;
-    float precioMedio;
+    float precio;
 
     /**
      * 
@@ -29,9 +29,9 @@ public class Procesador {
      * @param frecuencia a la que va el procesador
      * @param overclock si es posible overclock o no 
      * @param tdp del procesador
-     * @param precioMedio del procesador
+     * @param precio del procesador
      */
-    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, int tdp, float precioMedio) {
+    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, int tdp, float precio) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
         this.idSocket = idSocket;
@@ -43,7 +43,7 @@ public class Procesador {
         this.frecuencia = frecuencia;
         this.overclock = overclock;
         this.tdp = tdp;
-        this.precioMedio = precioMedio;
+        this.precio = precio;
     }
 
     /**
@@ -148,11 +148,11 @@ public class Procesador {
         this.tdp = tdp;
     }
 
-    public float getPrecioMedio() {
-        return this.precioMedio;
+    public float getPrecio() {
+        return this.precio;
     }
 
-    public void setPrecioMedio(float precioMedio) {
-        this.precioMedio = precioMedio;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 }
