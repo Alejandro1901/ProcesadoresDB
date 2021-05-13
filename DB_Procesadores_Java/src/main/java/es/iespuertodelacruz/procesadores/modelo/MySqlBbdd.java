@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.procesadores.modelo;
 
 public class MySqlBbdd extends Bbdd {
+    static String driver = "com.mysql.jdbc.Driver";
+    static String url = "jdbc:mysql://localhost/text";
     
     /**
      * Constructor con los aprametros que extienden desde Bbdd
@@ -10,7 +12,7 @@ public class MySqlBbdd extends Bbdd {
      * @param usuario  para logear en la base de datos
      * @param password del usuario
      */
-    public MySqlBbdd (String driver, String url, String usuario, String password) {
+    public MySqlBbdd (String usuario, String password) {
         super(driver, url, usuario, password);
     }
 

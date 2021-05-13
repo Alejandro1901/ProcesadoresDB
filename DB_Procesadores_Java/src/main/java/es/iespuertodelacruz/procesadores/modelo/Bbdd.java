@@ -75,6 +75,8 @@ public class Bbdd {
 
     }
 
+    //METODOS DE INSERCION
+
     /**
      * Metodo encargado de realizar la insercion de una arquitectura
      * 
@@ -211,6 +213,8 @@ public class Bbdd {
         actualizar(sql);
     }
 
+    //METODOS DE MODIFICACION
+
     /**
      * Metodo encargado de modificar una arquitectura de la BBDD
      * 
@@ -342,6 +346,8 @@ public class Bbdd {
                 + SQL_FIN_COMILLA_SIMPLE;
         actualizar(sql);
     }
+
+    //METODOS DE ELIMINACION
 
     /**
      * Metodo encargado de eliminar una arquitectura de la BBDD
