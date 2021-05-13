@@ -451,7 +451,7 @@ public class Bbdd {
             connection = getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
-            decidirTabla(statement, resultSet, connection, sql, listado);
+            decidirTabla(resultSet, sql, listado);
         } catch (Exception exception) {
             throw new PersistenciaException("Se ha producido un error realizando el listado");
         } finally {
@@ -460,10 +460,11 @@ public class Bbdd {
         return listado;
     }
 
-    private ArrayList<Object> decidirTabla(Statement statement, ResultSet resultSet, Connection connection, String sql, ArrayList<Object> listado) throws SQLException {
+    private ArrayList<Object> decidirTabla(ResultSet resultSet, String sql, ArrayList<Object> listado) throws SQLException {
         while (resultSet.next()) {
                 if (sql.contains(" nombre_procesador;")) {
-
+                    NombreProcesador nombreProcesador = crearNombreProcesador(resultSet);
+                    listado.add(nombreProcesador);
                 } else if (sql.contains(" arquitectura;")) {
                     
                 } else if (sql.contains(" fabricante;")) {
@@ -480,6 +481,28 @@ public class Bbdd {
 
                 }
         }
+    }
+
+    /**
+     * Funcion que crea un objeto NombreProcesador segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto NombreProcesador
+     * @throws SQLException 
+     */
+    private NombreProcesador crearNombreProcesador(ResultSet resultSet) {
+        String modeloProcesador = "";
+        String familia = "";
+        byte generacion = 0;
+        try {
+            modeloProcesador = resultSet.getString("modelo_procesador");
+            familia = resultSet.getString("familia");
+            generacion = resultSet.getByte("generacion");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+        }
+        NombreProcesador nombreProcesador = new NombreProcesador(modeloProcesador, familia, generacion);
+        return nombreProcesador;
     }
 
     /**
