@@ -499,7 +499,7 @@ public class Bbdd {
             familia = resultSet.getString("familia");
             generacion = resultSet.getByte("generacion");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
+            throw new SQLException();
         }
         NombreProcesador nombreProcesador = new NombreProcesador(modeloProcesador, familia, generacion);
         return nombreProcesador;
