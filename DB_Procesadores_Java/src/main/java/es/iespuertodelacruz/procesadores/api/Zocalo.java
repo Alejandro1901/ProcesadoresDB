@@ -2,21 +2,21 @@ package es.iespuertodelacruz.procesadores.api;
 
 import java.sql.Date;
 
-public class Socket {
+public class Zocalo {
     int id;
     String tipo;
     String tecnologia;
     Date fechaLanzamiento;
 
     /**
-     * Cosntructro con todos los parametros
+     * Constructor con todos los parametros
      * 
      * @param id del socket
      * @param tipo del socket
      * @param tecnologia usada por el socket
      * @param fechaLanzamiento del socket
      */
-    public Socket(int id, String tipo, String tecnologia, Date fechaLanzamiento) {
+    public Zocalo(int id, String tipo, String tecnologia, Date fechaLanzamiento) {
         this.id = id;
         this.tipo = tipo;
         this.tecnologia = tecnologia;
@@ -26,7 +26,7 @@ public class Socket {
     /**
      * Constructor vacio
      */
-    public Socket() {
+    public Zocalo() {
     }
 
     /**

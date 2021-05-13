@@ -204,7 +204,7 @@ public class Bbdd {
      * @param socket a insertar
      * @throws PersistenciaException controlada
      */
-    public void insertar(Socket socket) throws PersistenciaException {
+    public void insertar(Zocalo socket) throws PersistenciaException {
         String sql = "INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) " + SQL_VALUES 
                 + socket.getId() + SQL_COMA 
                 + socket.getTipo() + SQL_COMA 
@@ -338,7 +338,7 @@ public class Bbdd {
      * @param socket a modificar
      * @throws PersistenciaException controlada
      */
-    public void modificar(Socket socket) throws PersistenciaException {
+    public void modificar(Zocalo socket) throws PersistenciaException {
         String sql = "UPDATE socket SET id = '" + socket.getId()
                 + "', tipo = '" + socket.getTipo()
                 + "', tecnologia = '" + socket.getTecnologia()
@@ -432,7 +432,7 @@ public class Bbdd {
      * @param socket a eliminar
      * @throws PersistenciaException controlada
      */
-    public void eliminar(Socket socket) throws PersistenciaException {
+    public void eliminar(Zocalo socket) throws PersistenciaException {
         String sql = "DELETE FROM socket WHERE id = '" + socket.getId() + SQL_FIN_COMILLA_SIMPLE;
         actualizar(sql);
     }

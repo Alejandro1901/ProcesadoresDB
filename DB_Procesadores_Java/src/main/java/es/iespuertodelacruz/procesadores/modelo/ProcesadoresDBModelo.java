@@ -245,7 +245,7 @@ public class ProcesadoresDBModelo {
      * @param socket a insertar
      * @throws PersistenciaException controlada
      */
-    public void insertar(Socket socket) throws PersistenciaException {
+    public void insertar(Zocalo socket) throws PersistenciaException {
         persistencia.insertar(socket);
     }
 
@@ -255,7 +255,7 @@ public class ProcesadoresDBModelo {
      * @param socket a eliminar
      * @throws PersistenciaException controlada
      */
-    public void eliminar(Socket socket) throws PersistenciaException {
+    public void eliminar(Zocalo socket) throws PersistenciaException {
         persistencia.eliminar(socket);
     }
 
@@ -265,7 +265,7 @@ public class ProcesadoresDBModelo {
      * @param socket a modificar
      * @throws PersistenciaException controlada
      */
-    public void modificar(Socket socket) throws PersistenciaException {
+    public void modificar(Zocalo socket) throws PersistenciaException {
         persistencia.modificar(socket);
     }
 }
