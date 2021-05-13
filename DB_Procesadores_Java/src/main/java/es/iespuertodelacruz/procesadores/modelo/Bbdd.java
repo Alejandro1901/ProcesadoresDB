@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.modelo;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import es.iespuertodelacruz.procesadores.api.*;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
@@ -437,8 +438,52 @@ public class Bbdd {
         actualizar(sql);
     }
 
+    //obtenerListado
+
+
+    private ArrayList<Object> obtenerListado(String sql) throws PersistenciaException {
+        ArrayList<Object> listado = new ArrayList<>();
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            decidirTabla(statement, resultSet, connection, sql, listado);
+        } catch (Exception exception) {
+            throw new PersistenciaException("Se ha producido un error realizando el listado");
+        } finally {
+            closeConecction(connection, statement, resultSet);
+        }
+        return listado;
+    }
+
+    private ArrayList<Object> decidirTabla(Statement statement, ResultSet resultSet, Connection connection, String sql, ArrayList<Object> listado) throws SQLException {
+        while (resultSet.next()) {
+                if (sql.contains(" nombre_procesador;")) {
+
+                } else if (sql.contains(" arquitectura;")) {
+                    
+                } else if (sql.contains(" fabricante;")) {
+
+                } else if (sql.contains(" zocalo;")) {
+
+                } else if (sql.contains(" placa_base;")) {
+
+                } else if (sql.contains(" grafica_integrada;")) {
+
+                } else if (sql.contains(" procesador;")) {
+
+                } else if (sql.contains(" procesador_grafica_integrada;")) {
+
+                }
+        }
+    }
+
     /**
-     * Metodoe ncargado de cerrar la conexion con la base de datos
+     * Metodo encargado de cerrar la conexion con la base de datos
      * 
      * @param connection a cerra
      * @param statement  a cerrar

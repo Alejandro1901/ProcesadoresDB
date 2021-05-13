@@ -28,7 +28,7 @@ CREATE TABLE fabricante (
   web varchar(50)
 );
 
-CREATE TABLE socket (
+CREATE TABLE zocalo (
   id INT PRIMARY KEY,
   tipo VARCHAR(30),
   tecnologia VARCHAR(20) NOT NULL,
