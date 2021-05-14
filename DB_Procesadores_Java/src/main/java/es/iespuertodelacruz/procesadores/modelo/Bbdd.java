@@ -461,20 +461,33 @@ public class Bbdd {
     }
 
     private ArrayList<Object> decidirTabla(ResultSet resultSet, String sql, ArrayList<Object> listado) throws SQLException {
+        NombreProcesador nombreProcesador;
+        Arquitectura arquitectura;
+        Fabricante fabricante;
+        Zocalo zocalo;
+        PlacaBase placaBase;
+        GraficaIntegrada graficaIntegrada;
+        Procesador procesador;
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada;
         while (resultSet.next()) {
                 if (sql.contains(" nombre_procesador;")) {
-                    NombreProcesador nombreProcesador = crearNombreProcesador(resultSet);
+                    nombreProcesador = crearNombreProcesador(resultSet);
                     listado.add(nombreProcesador);
                 } else if (sql.contains(" arquitectura;")) {
-                    
+                    arquitectura = crearArquitectura(resultSet);
+                    listado.add(arquitectura);
                 } else if (sql.contains(" fabricante;")) {
-
+                    fabricante = crearFabricante(resultSet);
+                    listado.add(fabricante);
                 } else if (sql.contains(" zocalo;")) {
-
+                    zocalo = crearZocalo(resultSet);
+                    listado.add(zocalo);
                 } else if (sql.contains(" placa_base;")) {
-
+                    placaBase = crearPlacaBase(resultSet);
+                    listado.add(placaBase);
                 } else if (sql.contains(" grafica_integrada;")) {
-
+                    graficaIntegrada = crearGraficaIntegrada(resultSet);
+                    listado.add(graficaIntegrada);
                 } else if (sql.contains(" procesador;")) {
 
                 } else if (sql.contains(" procesador_grafica_integrada;")) {
@@ -490,19 +503,164 @@ public class Bbdd {
      * @return objeto NombreProcesador
      * @throws SQLException 
      */
-    private NombreProcesador crearNombreProcesador(ResultSet resultSet) {
+    private NombreProcesador crearNombreProcesador(ResultSet resultSet) throws SQLException {
         String modeloProcesador = "";
         String familia = "";
         byte generacion = 0;
-        try {
-            modeloProcesador = resultSet.getString("modelo_procesador");
-            familia = resultSet.getString("familia");
-            generacion = resultSet.getByte("generacion");
-        } catch (SQLException e) {
-            throw new SQLException();
-        }
+        modeloProcesador = resultSet.getString("modelo_procesador");
+        familia = resultSet.getString("familia");
+        generacion = resultSet.getByte("generacion");
         NombreProcesador nombreProcesador = new NombreProcesador(modeloProcesador, familia, generacion);
         return nombreProcesador;
+    }
+
+    /**
+     * Funcion que crea un objeto Arquitectura segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Arquitectura
+     * @throws SQLException  
+     */
+    private Arquitectura crearArquitectura(ResultSet resultSet) throws SQLException {
+        int id = 0;
+        String version = "";
+        String disenio = "";
+        String tecnologia = "";
+        String estandar = "";
+        id = resultSet.getInt("id");
+        version = resultSet.getString("version_arquitectura");
+        disenio = resultSet.getString("disenio");
+        tecnologia = resultSet.getString("tecnologia");
+        estandar = resultSet.getString("estandar");
+        Arquitectura arquitectura = new Arquitectura(id,version,disenio,tecnologia,estandar);
+        return arquitectura;
+    }
+
+    /**
+     * Funcion que crea un objeto Fabricante segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Fabricante
+     * @throws SQLException  
+     */
+    private Fabricante crearFabricante(ResultSet resultSet) throws SQLException {
+        String codigo = "";
+        String codigoPostal = "";
+        String nombre = "";
+        int numero = 0;
+        String pais = "";
+        String calle = "";
+        String telefono = "";
+        String correo = "";
+        String web = "";
+        codigo = resultSet.getString("codigo");
+        codigoPostal = resultSet.getString("codigo_postal");
+        nombre = resultSet.getString("nombre");
+        numero = resultSet.getInt("numero");
+        pais = resultSet.getString("pais");
+        calle = resultSet.getString("calle");
+        telefono = resultSet.getString("telefono");
+        correo = resultSet.getString("correo");
+        web = resultSet.getString("web");
+        Fabricante fabricante = new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);
+        return fabricante;
+    }
+
+    /**
+     * Funcion que crea un objeto Zocalo segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Zocalo
+     * @throws SQLException  
+     */
+    private Zocalo crearZocalo(ResultSet resultSet) throws SQLException {
+        int id = 0;
+        String tipo = "";
+        String tecnologia = "";
+        Date fechaLanzamiento; //Inicializar
+        id = resultSet.getInt("id");
+        tipo = resultSet.getString("tipo");
+        tecnologia = resultSet.getString("tecnologia");
+        fechaLanzamiento = resultSet.getDate("fecha_lanzamiento");
+        Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
+        return zocalo;
+    }
+
+    /**
+     * Funcion que crea un objeto PlacaBase segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto PlacaBase
+     * @throws SQLException  
+     */
+    private PlacaBase crearPlacaBase(ResultSet resultSet) throws SQLException {
+        int id = 0;
+        int idSocket = 0;
+        String nombre = "";
+        id = resultSet.getInt("id");
+        idSocket = resultSet.getInt("id_socket");
+        nombre = resultSet.getString("nombre");
+        PlacaBase placaBase = new PlacaBase(id, idSocket, nombre);
+        return placaBase;
+    }
+
+    /**
+     * Funcion que crea un objeto GraficaIntegrada segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto GraficaIntegrada
+     * @throws SQLException
+     */
+    private GraficaIntegrada crearGraficaIntegrada(ResultSet resultSet) throws SQLException {
+        int id = 0;
+        String nombreGrafica = "";
+        float frecuenciaBasica = 0;
+        float frecuenciaMaxima = 0;
+        int memoriaMaxima = 0;
+        String resolucion = "";
+        id = resultSet.getInt("id");
+        nombreGrafica = resultSet.getString("nombre_grafica");
+        frecuenciaBasica = resultSet.getFloat("frec_basica");
+        frecuenciaMaxima = resultSet.getFloat("frec_max");
+        memoriaMaxima = resultSet.getInt("memoria_max");
+        resolucion = resultSet.getString("resolucion");
+        GraficaIntegrada graficaIntegrada = new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);
+        return graficaIntegrada;
+    }
+
+    /**
+     * Funcion que crea un objeto Procesador segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Procesador
+     * @throws SQLException
+     */
+    private Procesador crearProcesador(ResultSet resultSet) throws SQLException {
+        int id = 0;
+        String codigoFabricante = "";
+        int idSocket = 0;
+        int idArquitectura = 0;
+        String modelo = "";
+        Date fechaLanzamiento; //inicializar
+        int nucleos = 0;
+        int hilos = 0;
+        float frecuencia = 0;
+        boolean overclock = false;
+        float tdp = 0;
+        float precio = 0;
+        id = resultSet.getInt("id");
+        codigoFabricante = resultSet.getString("codigo_fabricante");
+        idSocket = resultSet.getInt("id_socket");
+        idArquitectura = resultSet.getInt("id_arquitectura");
+        modelo = resultSet.getString("modelo");
+        fechaLanzamiento = resultSet.getDate("fecha_lanzamiento");
+        nucleos = resultSet.getInt("nucleos");
+        hilos = resultSet.getInt("hilos");
+        frecuencia = resultSet.getFloat("frecuencia");
+        overclock = resultSet.getBoolean("overclock");
+        tdp = resultSet.getFloat("tdp");
+        precio = resultSet.getFloat("precio");
+        Procesador procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
     }
 
     /**

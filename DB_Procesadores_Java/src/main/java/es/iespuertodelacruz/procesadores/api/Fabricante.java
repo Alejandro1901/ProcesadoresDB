@@ -2,7 +2,7 @@ package es.iespuertodelacruz.procesadores.api;
 
 public class Fabricante {
     String codigo;
-    int codigoPostal;
+    String codigoPostal;
     String nombre;
     String calle;
     int numero;
@@ -25,7 +25,7 @@ public class Fabricante {
      * @param web del fabricante
      */
     
-     public Fabricante(String codigo, int codigoPostal, String nombre, String calle, int numero, String pais, int telefono, String correo, String web) {
+     public Fabricante(String codigo, String codigoPostal, String nombre, String calle, int numero, String pais, int telefono, String correo, String web) {
         this.codigo = codigo;
         this.codigoPostal = codigoPostal;
         this.nombre = nombre;
@@ -55,11 +55,11 @@ public class Fabricante {
         this.codigo = codigo;
     }
 
-    public int getCodigoPostal() {
+    public String getCodigoPostal() {
         return this.codigoPostal;
     }
 
-    public void setCodigoPostal(int codigoPostal) {
+    public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 
