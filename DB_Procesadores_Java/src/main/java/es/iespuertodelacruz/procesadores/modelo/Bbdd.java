@@ -489,11 +489,14 @@ public class Bbdd {
                     graficaIntegrada = crearGraficaIntegrada(resultSet);
                     listado.add(graficaIntegrada);
                 } else if (sql.contains(" procesador;")) {
-
+                    procesador = crearProcesador(resultSet);
+                    listado.add(procesador);
                 } else if (sql.contains(" procesador_grafica_integrada;")) {
-
+                    procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada(resultSet);
+                    listado.add(procesadorGraficaIntegrada);
                 }
         }
+        return listado;
     }
 
     /**
@@ -661,6 +664,23 @@ public class Bbdd {
         tdp = resultSet.getFloat("tdp");
         precio = resultSet.getFloat("precio");
         Procesador procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
+        return procesador;
+    }
+
+    /**
+     * Funcion que crea un objeto ProcesadorGraficaIntegrada segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto ProcesadorGraficaIntegrada
+     * @throws SQLException
+     */
+    private ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada(ResultSet resultSet) throws SQLException {
+        int idProcesador = 0;
+        int idGraficaIntegrada = 0;
+        idProcesador = resultSet.getInt("id_procesador");
+        idGraficaIntegrada = resultSet.getInt("id_grafica_integrada");
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(idProcesador, idGraficaIntegrada);
+        return procesadorGraficaIntegrada;
     }
 
     /**

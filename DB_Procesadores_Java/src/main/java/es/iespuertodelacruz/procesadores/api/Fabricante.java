@@ -4,10 +4,10 @@ public class Fabricante {
     String codigo;
     String codigoPostal;
     String nombre;
-    String calle;
     int numero;
     String pais;
-    int telefono;
+    String calle;
+    String telefono;
     String correo;
     String web;
 
@@ -25,7 +25,7 @@ public class Fabricante {
      * @param web del fabricante
      */
     
-     public Fabricante(String codigo, String codigoPostal, String nombre, String calle, int numero, String pais, int telefono, String correo, String web) {
+     public Fabricante(String codigo, String codigoPostal, String nombre, String calle, int numero, String pais, String telefono, String correo, String web) {
         this.codigo = codigo;
         this.codigoPostal = codigoPostal;
         this.nombre = nombre;
@@ -95,11 +95,11 @@ public class Fabricante {
         this.pais = pais;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return this.telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

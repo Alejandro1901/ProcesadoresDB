@@ -31,7 +31,7 @@ public class Procesador {
      * @param tdp del procesador
      * @param precio del procesador
      */
-    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, int tdp, float precio) {
+    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
         this.idSocket = idSocket;

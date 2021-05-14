@@ -59,7 +59,7 @@ CREATE TABLE procesador (
   modelo varchar(20), 
   fecha_lanzamiento DATE,
   nucleos int,
-  hilos float,
+  hilos int,
   frecuencia float,
   overclock BOOLEAN,
   tdp FLOAT,
