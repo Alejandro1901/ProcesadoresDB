@@ -440,7 +440,15 @@ public class Bbdd {
 
     //obtenerListado
 
+    //HACER LISTADOS INDIVIDUALES PARA CADA CLASE DE LA API
 
+    /**
+     * Funcion que realiza la consulta sobre el listado en la BBDD
+     * 
+     * @param sql de la consulta
+     * @return lista de objetos
+     * @throws PersistenciaException controlada
+     */
     private ArrayList<Object> obtenerListado(String sql) throws PersistenciaException {
         ArrayList<Object> listado = new ArrayList<>();
 
@@ -460,6 +468,15 @@ public class Bbdd {
         return listado;
     }
 
+    /**
+     * Funcion que decide sobre que tabla es la consulta
+     * 
+     * @param resultSet fila
+     * @param sql de la consulta
+     * @param listado de los objetos a listar
+     * @return una lista de objetos
+     * @throws SQLException
+     */
     private ArrayList<Object> decidirTabla(ResultSet resultSet, String sql, ArrayList<Object> listado) throws SQLException {
         NombreProcesador nombreProcesador;
         Arquitectura arquitectura;
