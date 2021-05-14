@@ -1,0 +1,5 @@
+-- Tabla Fabricante
+INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,correo,web) VALUES ("US4581401001","95052","Intel",3186,"Estados Unidos","Mission College Blvd","408-765-8080","investor.relations@intel.com","https://www.intel.es");
+INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,correo,web) VALUES ("US0079031078","95054","AMD",2485,"Estados Unidos","Augustine Drive","877-284-1566 ","support@amd.com","https://www.amd.com/es");
+INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,correo,web) VALUES ("US7475251036","92121","Qualcomm",5775 ,"Estados Unidos","Morehouse Drive","858-587-1121 ","support@qualcomm.com","https://www.qualcomm.com/");
+INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,correo,web) VALUES ("RE8957215654","CB1 9NJ","Arm Limited",110 ,"Reino Unido","Fulbourn Road","+44 (1223) 400 400"," info@armreinounido.com","https://www.arm.com/");

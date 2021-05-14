@@ -226,8 +226,7 @@ INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,c
 INSERT INTO fabricante (codigo,codigo_postal,nombre,numero,pais,calle,telefono,correo,web) VALUES ("RE8957215654","CB1 9NJ","Arm Limited",110 ,"Reino Unido","Fulbourn Road","+44 (1223) 400 400"," info@armreinounido.com","https://www.arm.com/");
 
 
--- Tabla Arquitectura -- Este es de prueba
-INSERT INTO arquitectura (id,version_arquitectura,disenio,tecnologia) VALUES (1,"x86-64","probando","Thumb");
+
  
 
 
