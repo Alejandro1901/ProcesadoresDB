@@ -456,7 +456,7 @@ public class Bbdd {
         String sql = "SELECT * FROM arquitectura WHERE id = " + idArquitectura + PUNTO_Y_COMA;
         lista = (ArrayList<Arquitectura>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe esa id en la tabla arquitectura");
+            arquitectura = lista.get(0);
         }
         return arquitectura;
     }
@@ -474,7 +474,7 @@ public class Bbdd {
         String sql = "SELECT * FROM fabricante WHERE codigo = " + codigo + PUNTO_Y_COMA;
         lista = (ArrayList<Fabricante>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe ese codigo en la tabla fabricante");
+            fabricante = lista.get(0);
         }
         return fabricante;
     }
@@ -492,7 +492,7 @@ public class Bbdd {
         String sql = "SELECT * FROM grafica_integrada WHERE id = " + idGraficaIntegrada + PUNTO_Y_COMA;
         lista = (ArrayList<GraficaIntegrada>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe esa id en la tabla grafica_integrada");
+            graficaIntegrada = lista.get(0);
         }
         return graficaIntegrada;
     }
@@ -510,7 +510,7 @@ public class Bbdd {
         String sql = "SELECT * FROM nombre_procesador WHERE modelo_procesador = " + modeloProcesador + PUNTO_Y_COMA;
         lista = (ArrayList<NombreProcesador>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe ese modelo en la tabla nombre_procesador");
+            nombreProcesador = lista.get(0);
         }
         return nombreProcesador;
     }
@@ -528,7 +528,7 @@ public class Bbdd {
         String sql = "SELECT * FROM placa_base WHERE id = " + idPlacaBase + PUNTO_Y_COMA;
         lista = (ArrayList<PlacaBase>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe esa id en la tabla placa_base");
+            placaBase = lista.get(0);
         }
         return placaBase;
     }
@@ -546,7 +546,7 @@ public class Bbdd {
         String sql = "SELECT * FROM procesador WHERE id = " + idProcesador + PUNTO_Y_COMA;
         lista = (ArrayList<Procesador>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe esa id en la tabla procesador");
+            procesador = lista.get(0);
         }
         return procesador;
     }
@@ -564,7 +564,7 @@ public class Bbdd {
         String sql = "SELECT * FROM procesador_grafica_integrada WHERE id_procesador = " + idProcesador + PUNTO_Y_COMA;
         lista = (ArrayList<ProcesadorGraficaIntegrada>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe esa id de procesador en la tabla procesador_grafica_integrada");
+            procesadorGraficaIntegrada = lista.get(0);
         }
         return procesadorGraficaIntegrada;
     }
@@ -582,7 +582,7 @@ public class Bbdd {
         String sql = "SELECT * FROM zocalo WHERE id = " + idZocalo + PUNTO_Y_COMA;
         lista = (ArrayList<Zocalo>) (ArrayList<?>) obtenerListado(sql);
         if (!lista.isEmpty()) {
-            throw new PersistenciaException("No existe esa id en la tabla zocalo");
+            zocalo = lista.get(0);
         }
         return zocalo;
     }
