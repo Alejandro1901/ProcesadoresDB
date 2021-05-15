@@ -8,6 +8,9 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class Bbdd {
 
+    private static final String PUNTO_Y_COMA = ";";
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = "";
     private static final String SQL_FIN_COMILLA_SIMPLE = "';";
     private static final String SQL_FIN_PARENTESIS = "');";
     private static final String SQL_VALUES = "VALUES ('";
@@ -438,9 +441,241 @@ public class Bbdd {
         actualizar(sql);
     }
 
+    //obtenerFila
+
+    /**
+     * Funcion encargada de devolver una arquitectura segun su id
+     * 
+     * @param idArquitectura de la arquitectura a devolver
+     * @return la arquitectura si existe
+     * @throws PersistenciaException controlada
+     */
+    public Arquitectura obtenerArquitectura(int idArquitectura) throws PersistenciaException {
+        Arquitectura arquitectura = new Arquitectura();
+        ArrayList<Arquitectura> lista;
+        String sql = "SELECT * FROM arquitectura WHERE id = " + idArquitectura + PUNTO_Y_COMA;
+        lista = (ArrayList<Arquitectura>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe esa id en la tabla arquitectura");
+        }
+        return arquitectura;
+    }
+
+    /**
+     * Funcion encargada de devolver un fabricante segun su codigo
+     * 
+     * @param codigo del fabricante a devolver
+     * @return el fabricante si existe
+     * @throws PersistenciaException controlada
+     */
+    public Fabricante obtenerFabricante(String codigo) throws PersistenciaException {
+        Fabricante fabricante = new Fabricante();
+        ArrayList<Fabricante> lista;
+        String sql = "SELECT * FROM fabricante WHERE codigo = " + codigo + PUNTO_Y_COMA;
+        lista = (ArrayList<Fabricante>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe ese codigo en la tabla fabricante");
+        }
+        return fabricante;
+    }
+
+    /**
+     * Funcion encargada de devolver una grafica integrada segun su id
+     * 
+     * @param id de la grafica integrada a devolver
+     * @return la grafica integrada si existe
+     * @throws PersistenciaException controlada
+     */
+    public GraficaIntegrada obtenerGraficaIntegrada(int idGraficaIntegrada) throws PersistenciaException {
+        GraficaIntegrada graficaIntegrada = new GraficaIntegrada();
+        ArrayList<GraficaIntegrada> lista;
+        String sql = "SELECT * FROM grafica_integrada WHERE id = " + idGraficaIntegrada + PUNTO_Y_COMA;
+        lista = (ArrayList<GraficaIntegrada>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe esa id en la tabla grafica_integrada");
+        }
+        return graficaIntegrada;
+    }
+
+    /**
+     * Funcion encargada de devolver una fila de la tabla nombre_procesador segun su modelo
+     * 
+     * @param modeloProcesador de la fila a devolver
+     * @return la fila si existe
+     * @throws PersistenciaException controlada
+     */
+    public NombreProcesador obtenerNombreProcesador(String modeloProcesador) throws PersistenciaException {
+        NombreProcesador nombreProcesador = new NombreProcesador();
+        ArrayList<NombreProcesador> lista;
+        String sql = "SELECT * FROM nombre_procesador WHERE modelo_procesador = " + modeloProcesador + PUNTO_Y_COMA;
+        lista = (ArrayList<NombreProcesador>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe ese modelo en la tabla nombre_procesador");
+        }
+        return nombreProcesador;
+    }
+
+    /**
+     * Funcion encargada de devolver una placa base segun su id
+     * 
+     * @param idPlacaBase de la placa base a devolver
+     * @return la placa base si existe
+     * @throws PersistenciaException controlada
+     */
+    public PlacaBase obtenerPlacaBase(int idPlacaBase) throws PersistenciaException {
+        PlacaBase placaBase = new PlacaBase();
+        ArrayList<PlacaBase> lista;
+        String sql = "SELECT * FROM placa_base WHERE id = " + idPlacaBase + PUNTO_Y_COMA;
+        lista = (ArrayList<PlacaBase>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe esa id en la tabla placa_base");
+        }
+        return placaBase;
+    }
+
+    /**
+     * Funcion encargada de devolver un procesador segun su id
+     * 
+     * @param idProcesador del procesador a devolver
+     * @return el procesador si existe
+     * @throws PersistenciaException controlada
+     */
+    public Procesador obtenerProcesador(int idProcesador) throws PersistenciaException {
+        Procesador procesador = new Procesador();
+        ArrayList<Procesador> lista;
+        String sql = "SELECT * FROM procesador WHERE id = " + idProcesador + PUNTO_Y_COMA;
+        lista = (ArrayList<Procesador>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe esa id en la tabla procesador");
+        }
+        return procesador;
+    }
+
+    /**
+     * Funcion encargada de devolver una fila de procesador_grafica_integrada segun la id del procesador
+     * 
+     * @param idProcesador de la fila a devolver
+     * @return la fila si existe
+     * @throws PersistenciaException controlada
+     */
+    public ProcesadorGraficaIntegrada obtenerProcesadorGraficaIntegrada(int idProcesador) throws PersistenciaException {
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada();
+        ArrayList<ProcesadorGraficaIntegrada> lista;
+        String sql = "SELECT * FROM procesador_grafica_integrada WHERE id_procesador = " + idProcesador + PUNTO_Y_COMA;
+        lista = (ArrayList<ProcesadorGraficaIntegrada>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe esa id de procesador en la tabla procesador_grafica_integrada");
+        }
+        return procesadorGraficaIntegrada;
+    }
+
+    /**
+     * Funcion encargada de devolver un zocalo segun su id
+     * 
+     * @param idZocalo del zocalo a devolver
+     * @return el zocalo si existe
+     * @throws PersistenciaException controlada
+     */
+    public Zocalo obtenerZocalo(int idZocalo) throws PersistenciaException {
+        Zocalo zocalo = new Zocalo();
+        ArrayList<Zocalo> lista;
+        String sql = "SELECT * FROM zocalo WHERE id = " + idZocalo + PUNTO_Y_COMA;
+        lista = (ArrayList<Zocalo>) (ArrayList<?>) obtenerListado(sql);
+        if (!lista.isEmpty()) {
+            throw new PersistenciaException("No existe esa id en la tabla zocalo");
+        }
+        return zocalo;
+    }
+
     //obtenerListado
 
-    //HACER LISTADOS INDIVIDUALES PARA CADA CLASE DE LA API
+    /**
+     * Funcion que obtiene el listado de arquitecturas almacenadas en la BBDD
+     * 
+     * @return un arraylist con las arquitecturas
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<Arquitectura> obtenerListadoArquitectura() throws PersistenciaException {
+        String sql = "SELECT * FROM arquitectura;";
+        return (ArrayList<Arquitectura>) (ArrayList<?>) obtenerListado(sql);
+    }
+
+    /**
+     * Funcion que obtiene el listado de fabricantes almacenados en la BBDD
+     * 
+     * @return un arraylist con los fabricantes
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<Fabricante> obtenerListadoFabricante() throws PersistenciaException {
+        String sql = "SELECT * FROM fabricante;";
+        return (ArrayList<Fabricante>) (ArrayList<?>) obtenerListado(sql);
+    } 
+
+    /**
+     * Funcion que obtiene el listado de graficas integradas almacenadas en la BBDD
+     * 
+     * @return un arraylist con las graficas integradas
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<GraficaIntegrada> obtenerListadoGraficaIntegrada() throws PersistenciaException {
+        String sql = "SELECT * FROM grafica_integrada;";
+        return (ArrayList<GraficaIntegrada>) (ArrayList<?>) obtenerListado(sql);
+    } 
+
+    /**
+     * Funcion que obtiene el listado de registros en nombre_procesador almacenados en la BBDD
+     * 
+     * @return un arraylist con los registros en nombre_procesador
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<NombreProcesador> obtenerListadoNombreProcesador() throws PersistenciaException {
+        String sql = "SELECT * FROM nombre_procesador;";
+        return (ArrayList<NombreProcesador>) (ArrayList<?>) obtenerListado(sql);
+    }
+
+    /**
+     * Funcion que obtiene el listado de placas base almacenadas en la BBDD
+     * 
+     * @return un arraylist con las placas base
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<PlacaBase> obtenerListadoPlacaBase() throws PersistenciaException {
+        String sql = "SELECT * FROM placa_base;";
+        return (ArrayList<PlacaBase>) (ArrayList<?>) obtenerListado(sql);
+    }
+
+    /**
+     * Funcion que obtiene el listado de procesadores almacenados en la BBDD
+     * 
+     * @return un arraylist con los procesadores
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<Procesador> obtenerListadoProcesador() throws PersistenciaException {
+        String sql = "SELECT * FROM procesador;";
+        return (ArrayList<Procesador>) (ArrayList<?>) obtenerListado(sql);
+    }
+
+    /**
+     * Funcion que obtiene el listado de registros en procesador_grafica_integrada almacenados en la BBDD
+     * 
+     * @return un arraylist con los registros en procesador_grafica_integrada
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<ProcesadorGraficaIntegrada> obtenerListadoProcesadorGraficaIntegrada() throws PersistenciaException {
+        String sql = "SELECT * FROM procesador_grafica_integrada;";
+        return (ArrayList<ProcesadorGraficaIntegrada>) (ArrayList<?>) obtenerListado(sql);
+    }
+
+    /**
+     * Funcion que obtiene el listado de zocalos almacenados en la BBDD
+     * 
+     * @return un arraylist con los zocalos
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<Zocalo> obtenerListadoZocalo() throws PersistenciaException {
+        String sql = "SELECT * FROM zocalo;";
+        return (ArrayList<Zocalo>) (ArrayList<?>) obtenerListado(sql);
+    }
 
     /**
      * Funcion que realiza la consulta sobre el listado en la BBDD
@@ -524,9 +759,9 @@ public class Bbdd {
      * @throws SQLException 
      */
     private NombreProcesador crearNombreProcesador(ResultSet resultSet) throws SQLException {
-        String modeloProcesador = "";
-        String familia = "";
-        byte generacion = 0;
+        String modeloProcesador = STRING_VACIO;
+        String familia = STRING_VACIO;
+        byte generacion = CERO;
         modeloProcesador = resultSet.getString("modelo_procesador");
         familia = resultSet.getString("familia");
         generacion = resultSet.getByte("generacion");
@@ -542,11 +777,11 @@ public class Bbdd {
      * @throws SQLException  
      */
     private Arquitectura crearArquitectura(ResultSet resultSet) throws SQLException {
-        int id = 0;
-        String version = "";
-        String disenio = "";
-        String tecnologia = "";
-        String estandar = "";
+        int id = CERO;
+        String version = STRING_VACIO;
+        String disenio = STRING_VACIO;
+        String tecnologia = STRING_VACIO;
+        String estandar = STRING_VACIO;
         id = resultSet.getInt("id");
         version = resultSet.getString("version_arquitectura");
         disenio = resultSet.getString("disenio");
@@ -564,15 +799,15 @@ public class Bbdd {
      * @throws SQLException  
      */
     private Fabricante crearFabricante(ResultSet resultSet) throws SQLException {
-        String codigo = "";
-        String codigoPostal = "";
-        String nombre = "";
-        int numero = 0;
-        String pais = "";
-        String calle = "";
-        String telefono = "";
-        String correo = "";
-        String web = "";
+        String codigo = STRING_VACIO;
+        String codigoPostal = STRING_VACIO;
+        String nombre = STRING_VACIO;
+        int numero = CERO;
+        String pais = STRING_VACIO;
+        String calle = STRING_VACIO;
+        String telefono = STRING_VACIO;
+        String correo = STRING_VACIO;
+        String web = STRING_VACIO;
         codigo = resultSet.getString("codigo");
         codigoPostal = resultSet.getString("codigo_postal");
         nombre = resultSet.getString("nombre");
@@ -594,9 +829,9 @@ public class Bbdd {
      * @throws SQLException  
      */
     private Zocalo crearZocalo(ResultSet resultSet) throws SQLException {
-        int id = 0;
-        String tipo = "";
-        String tecnologia = "";
+        int id = CERO;
+        String tipo = STRING_VACIO;
+        String tecnologia = STRING_VACIO;
         Date fechaLanzamiento; //Inicializar
         id = resultSet.getInt("id");
         tipo = resultSet.getString("tipo");
@@ -614,9 +849,9 @@ public class Bbdd {
      * @throws SQLException  
      */
     private PlacaBase crearPlacaBase(ResultSet resultSet) throws SQLException {
-        int id = 0;
-        int idSocket = 0;
-        String nombre = "";
+        int id = CERO;
+        int idSocket = CERO;
+        String nombre = STRING_VACIO;
         id = resultSet.getInt("id");
         idSocket = resultSet.getInt("id_socket");
         nombre = resultSet.getString("nombre");
@@ -632,12 +867,12 @@ public class Bbdd {
      * @throws SQLException
      */
     private GraficaIntegrada crearGraficaIntegrada(ResultSet resultSet) throws SQLException {
-        int id = 0;
-        String nombreGrafica = "";
-        float frecuenciaBasica = 0;
-        float frecuenciaMaxima = 0;
-        int memoriaMaxima = 0;
-        String resolucion = "";
+        int id = CERO;
+        String nombreGrafica = STRING_VACIO;
+        float frecuenciaBasica = CERO;
+        float frecuenciaMaxima = CERO;
+        int memoriaMaxima = CERO;
+        String resolucion = STRING_VACIO;
         id = resultSet.getInt("id");
         nombreGrafica = resultSet.getString("nombre_grafica");
         frecuenciaBasica = resultSet.getFloat("frec_basica");
@@ -656,18 +891,18 @@ public class Bbdd {
      * @throws SQLException
      */
     private Procesador crearProcesador(ResultSet resultSet) throws SQLException {
-        int id = 0;
-        String codigoFabricante = "";
-        int idSocket = 0;
-        int idArquitectura = 0;
-        String modelo = "";
+        int id = CERO;
+        String codigoFabricante = STRING_VACIO;
+        int idSocket = CERO;
+        int idArquitectura = CERO;
+        String modelo = STRING_VACIO;
         Date fechaLanzamiento; //inicializar
-        int nucleos = 0;
-        int hilos = 0;
-        float frecuencia = 0;
+        int nucleos = CERO;
+        int hilos = CERO;
+        float frecuencia = CERO;
         boolean overclock = false;
-        float tdp = 0;
-        float precio = 0;
+        float tdp = CERO;
+        float precio = CERO;
         id = resultSet.getInt("id");
         codigoFabricante = resultSet.getString("codigo_fabricante");
         idSocket = resultSet.getInt("id_socket");
@@ -692,8 +927,8 @@ public class Bbdd {
      * @throws SQLException
      */
     private ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada(ResultSet resultSet) throws SQLException {
-        int idProcesador = 0;
-        int idGraficaIntegrada = 0;
+        int idProcesador = CERO;
+        int idGraficaIntegrada = CERO;
         idProcesador = resultSet.getInt("id_procesador");
         idGraficaIntegrada = resultSet.getInt("id_grafica_integrada");
         ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(idProcesador, idGraficaIntegrada);
