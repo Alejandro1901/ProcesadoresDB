@@ -129,11 +129,3 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("56
   -- Serie 400
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("495","Kryo",4);
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("470","Kryo",4);
-
--- ARM Limited
--- Familia Cortex
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("A78","Cortex",1);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("A76","Cortex",1);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("A78C","Cortex",1);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("A78AE","Cortex",1);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("A77","Cortex",1);
