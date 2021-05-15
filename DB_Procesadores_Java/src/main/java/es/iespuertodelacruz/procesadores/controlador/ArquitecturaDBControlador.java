@@ -3,7 +3,7 @@ package es.iespuertodelacruz.procesadores.controlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.Arquitectura;
-import es.iespuertodelacruz.procesadores.modelo.ProcesadoresDBModelo;
+import es.iespuertodelacruz.procesadores.modelo.ArquitecturaModelo;
 
 public class ArquitecturaDBControlador {
 
@@ -12,10 +12,10 @@ public class ArquitecturaDBControlador {
     */
    
    private static final String LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE = "La arquitectura que se indica NO existe en nuestra base de datos";
-   ArquitecturaDBModelo ArquitecturaDBModelo;
+   ArquitecturaModelo arquitecturaModelo;
    
    public ArquitecturaDBControlador() {
-      ArquitecturaControlador = new ArquitecturaDBControlador();
+      arquitecturaModelo = new ArquitecturaModelo();
       
    }
    /**

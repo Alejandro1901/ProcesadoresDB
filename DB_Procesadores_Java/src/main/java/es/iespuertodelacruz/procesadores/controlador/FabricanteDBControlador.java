@@ -3,7 +3,7 @@ package es.iespuertodelacruz.procesadores.controlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.Fabricante;
-import es.iespuertodelacruz.procesadores.modelo.ProcesadoresDBModelo;
+import es.iespuertodelacruz.procesadores.modelo.FabricanteModelo;
 
 public class FabricanteDBControlador {
 
@@ -12,18 +12,20 @@ public class FabricanteDBControlador {
  */
 
 private static final String EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE = "El fabricante que se indica NO existe en nuestra base de datos";
-ProcesadoresDBModelo ProcesadoresDBModelo;
+FabricanteModelo fabricanteModelo;
 
 public FabricanteDBControlador() {
-   FabricanteControlador = new FabricanteDBControlador();
+   fabricanteModelo = new FabricanteModelo();
    
 }
+
 /**
  * 
  * @param fabricante a validar
  * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
  */
-public void validarProcesadores(Fabricante fabricante) throws ControladoresDBException {
+
+public void validarFabricante(Fabricante fabricante) throws ControladoresDBException {
     String mensaje = "";
 
 if (fabricante == null) {
