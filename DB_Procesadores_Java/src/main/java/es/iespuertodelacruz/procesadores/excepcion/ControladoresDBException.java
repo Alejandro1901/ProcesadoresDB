@@ -1,13 +1,13 @@
 package es.iespuertodelacruz.procesadores.excepcion;
 
-public class ProcesadoresDBException extends Exception {
+public class ControladoresDBException extends Exception {
     private static final long serialVersionUID = 1L;
  
     /**
      * Un nuevo constructor con un mensaje persoonalizado
      * @param mensaje personalizado
      */
-     public ProcesadoresDBException (String mensaje) {
+     public ControladoresDBException (String mensaje) {
        super(mensaje);
     }
  
@@ -16,7 +16,7 @@ public class ProcesadoresDBException extends Exception {
      * @param mensaje de la excepcion
      * @param exception que produce el error
      */
-    public ProcesadoresDBException (String mensaje, Exception exception) {
+    public ControladoresDBException (String mensaje, Exception exception) {
        super(mensaje, exception);
     }
  }
