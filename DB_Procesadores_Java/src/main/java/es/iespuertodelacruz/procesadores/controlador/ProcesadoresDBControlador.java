@@ -2,7 +2,7 @@ package es.iespuertodelacruz.procesadores.controlador;
 
 import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
-import es.iespuertodelacruz.procesadores.api.*;
+import es.iespuertodelacruz.procesadores.api.Procesador;
 import es.iespuertodelacruz.procesadores.modelo.ProcesadorModelo;
 public class ProcesadoresDBControlador {
 
@@ -83,4 +83,5 @@ public class ProcesadoresDBControlador {
             throw new ControladoresDBException(mensaje);
          }
       }
+      
    }

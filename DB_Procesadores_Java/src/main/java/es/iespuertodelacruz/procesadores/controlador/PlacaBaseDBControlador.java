@@ -9,13 +9,13 @@ import es.iespuertodelacruz.procesadores.modelo.PlacaBaseModelo;
 public class PlacaBaseDBControlador {
 
  /**
- * Controlador de la clase GraficaIntegradaDBControlador
+ * Controlador de la clase PlacaBaseDBControlador
  */
 
 private static final String LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
 PlacaBaseModelo placaBaseModelo;
 
-public GraficaIntegradaDBControlador() {
+public PlacaBaseDBControlador() {
     placaBaseModelo= new PlacaBaseModelo();
    }
 

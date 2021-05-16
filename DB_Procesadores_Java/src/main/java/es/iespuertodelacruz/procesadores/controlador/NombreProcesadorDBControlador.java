@@ -8,7 +8,7 @@ import es.iespuertodelacruz.procesadores.modelo.NombreProcesadorModelo;
 public class NombreProcesadorDBControlador {
 
  /**
- * Controlador de la clase GraficaIntegradaDBControlador
+ * Controlador de la clase NombreProcesadorDBControlador
  */
 
 private static final String EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
