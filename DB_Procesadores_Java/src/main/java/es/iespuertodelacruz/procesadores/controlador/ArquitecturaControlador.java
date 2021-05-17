@@ -79,7 +79,7 @@ public class ArquitecturaControlador {
         if (!existe(arquitectura)) {
            throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);
         }
-        frutaModelo.eliminar(arquitectura); 
+        arquitecturaModelo.eliminar(arquitectura); 
     }
     
 /**
@@ -101,9 +101,9 @@ public class ArquitecturaControlador {
       * @throws PersistenciaException
       */
 
-    public Arquitectura buscar(int id) throws PersistenciaException {
+    public Arquitectura buscar(int idArquitectura) throws PersistenciaException {
         Arquitectura arquitectura = null;
-        arquitectura = arquitecturaModelo.buscar(id);
+        arquitectura = arquitecturaModelo.obtenerArquitectura(idArquitectura);
         return arquitectura;
      }
 
