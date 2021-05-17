@@ -2,8 +2,8 @@ package es.iespuertodelacruz.procesadores.controlador;
 
 import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
-import es.iespuertodelacruz.procesadores.api.*;
-import es.iespuertodelacruz.procesadores.modelo.ProcesadoresDBModelo;
+import es.iespuertodelacruz.procesadores.api.Procesador;
+import es.iespuertodelacruz.procesadores.modelo.ProcesadorModelo;
 public class ProcesadoresDBControlador {
 
 /**
@@ -12,10 +12,10 @@ public class ProcesadoresDBControlador {
 
 
     private static final String EL_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "El procesador que se indicada NO existe en nuestra base de datos";
-    ProcesadoresDBModelo ProcesadoresDBModelo;
+    ProcesadorModelo procesadorModelo;
  
     public ProcesadoresDBControlador() {
-       procesadorControlador = new ProcesadoresDBControlador();
+       procesadorModelo = new ProcesadorModelo();
        
     }
     /**
@@ -83,4 +83,5 @@ public class ProcesadoresDBControlador {
             throw new ControladoresDBException(mensaje);
          }
       }
+      
    }
