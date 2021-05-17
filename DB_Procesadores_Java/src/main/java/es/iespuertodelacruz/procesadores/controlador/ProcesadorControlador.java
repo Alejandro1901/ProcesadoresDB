@@ -4,7 +4,7 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.Procesador;
 import es.iespuertodelacruz.procesadores.modelo.ProcesadorModelo;
-public class ProcesadoresDBControlador {
+public class ProcesadorControlador {
 
 /**
  * Controlador de la clase ProcesadoresDBControlador
@@ -14,7 +14,7 @@ public class ProcesadoresDBControlador {
     private static final String EL_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "El procesador que se indicada NO existe en nuestra base de datos";
     ProcesadorModelo procesadorModelo;
  
-    public ProcesadoresDBControlador() {
+    public ProcesadorControlador() {
        procesadorModelo = new ProcesadorModelo();
        
     }

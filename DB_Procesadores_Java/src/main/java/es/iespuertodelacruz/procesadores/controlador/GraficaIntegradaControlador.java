@@ -5,7 +5,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
 import es.iespuertodelacruz.procesadores.modelo.GraficaIntegradaModelo;
 
-public class GraficaIntegradaDBControlador {
+public class GraficaIntegradaControlador {
 
  /**
  * Controlador de la clase GraficaIntegradaDBControlador

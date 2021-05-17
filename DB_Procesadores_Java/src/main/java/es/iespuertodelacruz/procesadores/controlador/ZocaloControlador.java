@@ -5,7 +5,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.Zocalo;
 import es.iespuertodelacruz.procesadores.modelo.ZocaloModelo;
 
-public class ZocaloDBControlador {
+public class ZocaloControlador {
 
  /**
  * Controlador de la clase ZocaloDBControlador
@@ -14,7 +14,7 @@ public class ZocaloDBControlador {
 private static final String EL_ZOCALO_QUE_SE_INDICA_NO_EXISTE = "El zocalo que se indica NO existe en nuestra base de datos";
 ZocaloModelo zocaloModelo;
 
-public ZocaloDBControlador() {
+public ZocaloControlador() {
    zocaloModelo = new ZocaloModelo();
    }
 

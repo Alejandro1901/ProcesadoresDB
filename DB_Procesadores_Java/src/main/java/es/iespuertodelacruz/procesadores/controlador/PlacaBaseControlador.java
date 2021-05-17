@@ -6,7 +6,7 @@ import es.iespuertodelacruz.procesadores.api.PlacaBase;
 import es.iespuertodelacruz.procesadores.modelo.PlacaBaseModelo;
 
 
-public class PlacaBaseDBControlador {
+public class PlacaBaseControlador {
 
  /**
  * Controlador de la clase PlacaBaseDBControlador
@@ -15,7 +15,7 @@ public class PlacaBaseDBControlador {
 private static final String LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
 PlacaBaseModelo placaBaseModelo;
 
-public PlacaBaseDBControlador() {
+public PlacaBaseControlador() {
     placaBaseModelo= new PlacaBaseModelo();
    }
 

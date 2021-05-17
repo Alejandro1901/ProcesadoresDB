@@ -5,7 +5,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
 import es.iespuertodelacruz.procesadores.modelo.ProcesadorGraficaIntegradaModelo;
 
-public class ProcesadorGraficaIntegradaDBControlador {
+public class ProcesadorGraficaIntegradaControlador {
 
  /**
  * Controlador de la clase ProcesadorGraficaIntegrada
@@ -14,7 +14,7 @@ public class ProcesadorGraficaIntegradaDBControlador {
 private static final String EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = "El ProcesadorGraficaIntegrada que se indica NO existe en nuestra base de datos";
 ProcesadorGraficaIntegradaModelo procesadorGraficaIntegradaModelo;
 
-public ProcesadorGraficaIntegradaDBControlador() {
+public ProcesadorGraficaIntegradaControlador() {
    procesadorGraficaIntegradaModelo = new ProcesadorGraficaIntegradaModelo();
    }
    

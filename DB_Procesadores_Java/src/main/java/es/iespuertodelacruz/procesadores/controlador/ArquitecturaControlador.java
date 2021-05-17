@@ -5,7 +5,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 import es.iespuertodelacruz.procesadores.api.Arquitectura;
 import es.iespuertodelacruz.procesadores.modelo.ArquitecturaModelo;
 
-public class ArquitecturaDBControlador {
+public class ArquitecturaControlador {
 
     /**
     * Controlador de la clase ArquitecturaDBControlador
@@ -14,7 +14,7 @@ public class ArquitecturaDBControlador {
    private static final String LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE = "La arquitectura que se indica NO existe en nuestra base de datos";
    ArquitecturaModelo arquitecturaModelo;
    
-   public ArquitecturaDBControlador() {
+   public ArquitecturaControlador() {
       arquitecturaModelo = new ArquitecturaModelo();
       
    }

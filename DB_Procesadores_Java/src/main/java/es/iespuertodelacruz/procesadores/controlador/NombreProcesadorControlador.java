@@ -5,7 +5,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.NombreProcesador;
 import es.iespuertodelacruz.procesadores.modelo.NombreProcesadorModelo;
 
-public class NombreProcesadorDBControlador {
+public class NombreProcesadorControlador {
 
  /**
  * Controlador de la clase NombreProcesadorDBControlador
