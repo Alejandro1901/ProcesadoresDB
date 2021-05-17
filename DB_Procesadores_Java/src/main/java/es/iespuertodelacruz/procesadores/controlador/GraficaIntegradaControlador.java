@@ -1,8 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
-import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
-import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.modelo.GraficaIntegradaModelo;
 
 public class GraficaIntegradaControlador {
@@ -30,7 +29,7 @@ public GraficaIntegradaControlador() {
         throw new ControladoresDBException(mensaje);
         }
 
-    if (graficaIntegrada.getID() < 0) {
+    if (graficaIntegrada.getId() < 0) {
         mensaje = "El ID del GraficaIntegrada no puede ser cero o menor que el, ";
         }
 
