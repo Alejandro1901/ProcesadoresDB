@@ -5,7 +5,7 @@ import es.iespuertodelacruz.procesadores.api.Arquitectura;
 public class UtilidadesTest {
    
     public static final String hola = "hola";
-    public static final int e = "1";
+    public static final int numero = 1;
     
  
     public Arquitectura generararquitectura(String id, String version_arquitectura, String disenio, String tecnologia, String estandar) {
