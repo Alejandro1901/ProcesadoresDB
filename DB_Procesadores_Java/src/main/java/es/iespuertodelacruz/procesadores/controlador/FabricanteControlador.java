@@ -1,8 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
-import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
-import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.Fabricante;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.modelo.FabricanteModelo;
 
 public class FabricanteControlador {
@@ -33,7 +32,7 @@ if (fabricante == null) {
     throw new ControladoresDBException(mensaje);
     }
     
-if (fabricante.getCodigo() == null || fabricante.getCodigoFabricante().isEmpty()) {
+if (fabricante.getCodigo() == null || fabricante.getCodigo().isEmpty()) {
     mensaje = "El Codigo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
      
@@ -49,7 +48,7 @@ if (fabricante.getNumero() < 0) {
     mensaje = "El numero del fabricante no puede ser cero o menor que el, ";
     }
 
-if (fabricante.getPais() == null || fabricante.getCodigoPais().isEmpty()) {
+if (fabricante.getPais() == null || fabricante.getPais().isEmpty()) {
     mensaje = "El pais del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }  
 
