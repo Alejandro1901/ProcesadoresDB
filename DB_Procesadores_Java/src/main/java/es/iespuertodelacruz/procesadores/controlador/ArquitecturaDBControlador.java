@@ -35,7 +35,7 @@ public class ArquitecturaDBControlador {
         mensaje = "El ID de arquitectura no puede ser cero o menor que el, ";
         }
 
-    if (arquitectura.getVersion_arquitectura() == null || arquitectura.getVersion_arquitectura().isEmpty()) {
+    if (arquitectura.getVersionArquitectura() == null || arquitectura.getVersionArquitectura().isEmpty()) {
         mensaje = "La version_arquitectura de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
         } 
 
@@ -88,7 +88,7 @@ public class ArquitecturaDBControlador {
  * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
  * @throws PersistenciaException 
  */   
-    public void eliminar(Int Id) throws ControladoresDBException, PersistenciaException {
+    public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
         Arquitectura arquitectura;
         arquitectura = buscar(id);
         eliminar(arquitectura);
@@ -101,7 +101,7 @@ public class ArquitecturaDBControlador {
       * @throws PersistenciaException
       */
 
-    public Arquitectura buscar(Int id) throws PersistenciaException {
+    public Arquitectura buscar(int id) throws PersistenciaException {
         Arquitectura arquitectura = null;
         arquitectura = arquitecturaModelo.buscar(id);
         return arquitectura;

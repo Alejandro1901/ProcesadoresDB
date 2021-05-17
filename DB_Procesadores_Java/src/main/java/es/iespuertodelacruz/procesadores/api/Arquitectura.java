@@ -2,7 +2,7 @@ package es.iespuertodelacruz.procesadores.api;
 
 public class Arquitectura {
     int id;
-    String version_arquitectura;
+    String versionArquitectura;
     String disenio;
     String tecnologia;
     String estandar;
@@ -10,7 +10,7 @@ public class Arquitectura {
     /**
      * Constructor con todos los parametros
      * @param id de la arquitectura 
-     * @param version_arquitectura de la arquitectura 
+     * @param versionArquitectura de la arquitectura 
      * @param disenio es el nombre del tipo de arquitectura 
      * @param tecnologia de la arquitectura (Solo ARM)
      * @param estandar de la arquietctura (Solo x86-64)
@@ -20,10 +20,10 @@ public class Arquitectura {
      * Creación de un constructor con todos los atributos de las tablas
      */
    
-     public Arquitectura(int id, String version_arquitectura, String disenio, 
+     public Arquitectura(int id, String versionArquitectura, String disenio, 
         String tecnologia, String estandar) {
         this.id = id;
-        this.version_arquitectura = version_arquitectura;
+        this.versionArquitectura = versionArquitectura;
         this.disenio = disenio;
         this.tecnologia = tecnologia;
         this.estandar = estandar;
@@ -48,12 +48,12 @@ public class Arquitectura {
         this.id = id;
     }
 
-    public String getVersion() {
-        return this.version_arquitectura;
+    public String getVersionArquitectura() {
+        return this.versionArquitectura;
     }
 
-    public void setVersion(String version_arquitectura) {
-        this.version_arquitectura = version_arquitectura;
+    public void setVersionArquitectura(String versionArquitectura) {
+        this.versionArquitectura = versionArquitectura;
     }
 
     public String getDisenio() {
