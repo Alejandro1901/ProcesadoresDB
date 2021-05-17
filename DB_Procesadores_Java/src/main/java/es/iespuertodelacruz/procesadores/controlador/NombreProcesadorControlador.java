@@ -1,8 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
-import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
-import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.NombreProcesador;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.modelo.NombreProcesadorModelo;
 
 public class NombreProcesadorControlador {
@@ -36,7 +35,7 @@ public NombreProcesadorControlador() {
         mensaje = "El ModeloProcesador del nombreProcesador no puede tener valores nulos y tiene que existir al menos un dato, ";
         } 
 
-   if (nombreProcesador.getFamilia() == null || nombreProcesador.getModeloFamilia().isEmpty()) {
+   if (nombreProcesador.getFamilia() == null || nombreProcesador.getFamilia().isEmpty()) {
       mensaje = "El ModeloProcesador del nombreProcesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       } 
       
