@@ -90,7 +90,7 @@ public class Bbdd {
     public void insertar(Arquitectura arquitectura) throws PersistenciaException {
         String sql = "INSERT INTO arquitectura (id, version_arquitectura, disenio, tecnologia, estandar) " + SQL_VALUES
                 + arquitectura.getId() + SQL_COMA 
-                + arquitectura.getVersion() + SQL_COMA 
+                + arquitectura.getVersionArquitectura() + SQL_COMA 
                 + arquitectura.getDisenio() + SQL_COMA 
                 + arquitectura.getTecnologia() + SQL_COMA 
                 + arquitectura.getEstandar() + SQL_FIN_PARENTESIS;
@@ -227,7 +227,7 @@ public class Bbdd {
      */
     public void modificar(Arquitectura arquitectura) throws PersistenciaException {
         String sql = "UPDATE arquitectura SET id = '" + arquitectura.getId() 
-                + "', version_arquitectura = '" + arquitectura.getVersion() 
+                + "', version_arquitectura = '" + arquitectura.getVersionArquitectura() 
                 + "', disenio = '" + arquitectura.getDisenio() 
                 + "', tecnologia = '" + arquitectura.getTecnologia() 
                 + "', estandar = '" + arquitectura.getEstandar() 

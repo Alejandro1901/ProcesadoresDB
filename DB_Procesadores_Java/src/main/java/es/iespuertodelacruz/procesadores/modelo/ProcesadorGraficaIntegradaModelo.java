@@ -14,8 +14,8 @@ public class ProcesadorGraficaIntegradaModelo {
      * 
      * @param persistencia elegida
      */
-    public ProcesadorGraficaIntegradaModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public ProcesadorGraficaIntegradaModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
 
     /**

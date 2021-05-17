@@ -14,8 +14,8 @@ public class NombreProcesadorModelo {
      * 
      * @param persistencia elegida
      */
-    public NombreProcesadorModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public NombreProcesadorModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
 
     /**

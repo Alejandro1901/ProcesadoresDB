@@ -14,8 +14,8 @@ public class PlacaBaseModelo {
      * 
      * @param persistencia elegida
      */
-    public PlacaBaseModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public PlacaBaseModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
 
     /**

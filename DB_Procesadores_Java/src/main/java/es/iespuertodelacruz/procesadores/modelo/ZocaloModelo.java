@@ -14,8 +14,8 @@ public class ZocaloModelo {
      * 
      * @param persistencia elegida
      */
-    public ZocaloModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public ZocaloModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
     
     /**

@@ -14,9 +14,11 @@ public class ArquitecturaModelo {
      * 
      * @param persistencia elegida
      */
-    public ArquitecturaModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public ArquitecturaModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
+
+
 
     /**
      * Metodo que inserta una arquitectura

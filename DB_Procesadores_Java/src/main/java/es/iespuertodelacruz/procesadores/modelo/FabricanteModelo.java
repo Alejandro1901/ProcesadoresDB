@@ -14,8 +14,8 @@ public class FabricanteModelo {
      * 
      * @param persistencia elegida
      */
-    public FabricanteModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public FabricanteModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
 
     /**

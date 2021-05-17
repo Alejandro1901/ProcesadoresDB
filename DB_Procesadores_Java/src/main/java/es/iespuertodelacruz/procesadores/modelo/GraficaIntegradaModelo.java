@@ -14,8 +14,8 @@ public class GraficaIntegradaModelo {
      * 
      * @param persistencia elegida
      */
-    public GraficaIntegradaModelo(MySqlBbdd persistencia) {
-        this.persistencia = persistencia;
+    public GraficaIntegradaModelo() {
+        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
     }
 
     /**
