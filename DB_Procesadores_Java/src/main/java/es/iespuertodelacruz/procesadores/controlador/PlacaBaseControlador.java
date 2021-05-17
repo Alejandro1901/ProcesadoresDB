@@ -1,8 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
-import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
-import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.PlacaBase;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.modelo.PlacaBaseModelo;
 
 
