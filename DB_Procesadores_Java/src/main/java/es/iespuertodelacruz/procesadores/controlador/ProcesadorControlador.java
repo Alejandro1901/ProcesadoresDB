@@ -1,8 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
-import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
-import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
 import es.iespuertodelacruz.procesadores.api.Procesador;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.modelo.ProcesadorModelo;
 public class ProcesadorControlador {
 
@@ -51,7 +50,7 @@ public class ProcesadorControlador {
             mensaje = "El modelo del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
          }  
       
-      if (procesador.getFechaLanzamiento() == null || procesador.getFechaLanzamiento().isEmpty()) {
+      if (procesador.getFechaLanzamiento() == null) {
             mensaje = "El CodigoFabricante del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
          }
       
