@@ -1,7 +1,6 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
-import es.iespuertodelacruz.procesadores.excepcion.ControladorDBException;
-import es.iespuertodelacruz.procesadores.excepcion.PercistenciaException;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.api.Zocalo;
 import es.iespuertodelacruz.procesadores.modelo.ZocaloModelo;
 
@@ -32,7 +31,7 @@ public void validarNombreProcesador(Zocalo zocalo) throws ControladoresDBExcepti
       throw new ControladoresDBException(mensaje);
    } 
   
-   if (zocalo.getID() < 0) {
+   if (zocalo.getId() < 0) {
       mensaje = "La ID del zocalo no puede ser cero o menor que el, ";
       }
   
@@ -44,7 +43,7 @@ public void validarNombreProcesador(Zocalo zocalo) throws ControladoresDBExcepti
       mensaje = "La tecnologia del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
       }  
    
-   if (zocalo.getFechaLanzamiento() == null || zocalo.getFechaLanzamiento().isEmpty()) {
+   if (zocalo.getFechaLanzamiento() == null) {
       mensaje = "La fecha de lanzamiento del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
       if (!mensaje.isEmpty()) {
