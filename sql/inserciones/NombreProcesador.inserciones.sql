@@ -121,8 +121,8 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("24
 -- Qualcomm
 -- Familia Kryo
   -- Serie 600
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("680","Kryo",6);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("670","Kryo",6);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("680 Gold","Kryo",6);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("670 Gold","Kryo",6);
   -- Serie 500
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("585","Kryo",5);
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("560","Kryo",5);
