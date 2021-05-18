@@ -40,7 +40,7 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10400F","Core i5",10);
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10600K","Core i5",10);
   -- 9 gen
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9600","Core i5",9);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9600KF","Core i5",9);
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9600","Core i5",9);
 
 -- Familia Core i3
