@@ -434,7 +434,31 @@ public class AppVista {
     }
 
     public static Arquitectura insertarArquitectura() {
-        int id = 0;
-        //Terminar
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Escribe la id del procesador");
+        int id = sn.nextInt();
+        System.out.println("Escribe la version de la arquitectura (x86-64 o ARM)");
+        String versionArquitectura = sn.next();
+        System.out.println("Escribe el diseño de la arquitectura (Por ejemplo Zen 3)");
+        String disenio = sn.next();
+        System.out.println("Escribe la tecnologia de la arquitectura s");
+        String tecnologia = sn.next();
+        String estandar = sn.next();
+        sn.close();
+        Arquitectura arquitectura = new Arquitectura(id, versionArquitectura, disenio, tecnologia, estandar);
+        return arquitectura;
+    }
+
+    public static Arquitectura insertarArquitectura() {
+        Scanner sn = new Scanner(System.in);
+        String codigo = sn.next();
+        String codigoPostal = sn.next();
+        String nombre = sn.next();
+        int numero = sn.nextInt();
+        String pais = sn.next();
+        String calle = sn.next();
+        String telefono = sn.next();
+        String correo = sn.next();
+        String web = sn.next();
     }
 }
