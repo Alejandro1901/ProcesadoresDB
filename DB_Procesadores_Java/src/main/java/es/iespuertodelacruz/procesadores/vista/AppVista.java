@@ -40,7 +40,7 @@ public class AppVista {
     private static final String ARQUITECTURA = "1. Arquitectura";
     private static final String SOLO_NUMEROS_ENTRE_1_Y_7 = "Solo números entre 1 y 7";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -49,8 +49,8 @@ public class AppVista {
  
             System.out.println("¡Hola! Bienvenido a ProcesadoresDB");
             System.out.println("¿Que tipo de usuario eres?");
-            System.out.println("1. Usuario estandar"); //Sin permiso para modificar la BBDD
-            System.out.println("2. Admin");
+            System.out.println("1. Admin"); 
+            System.out.println("2. Usuario estandar"); //Sin permiso para modificar la BBDD
             System.out.println("3. Salir");
  
             try {
@@ -83,8 +83,10 @@ public class AppVista {
 
     /**
      * Submenu para el admin
+     * @throws PersistenciaException
+     * @throws ControladoresDBException
      */
-    private static void menuAdmin() {
+    private static void menuAdmin() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -184,7 +186,7 @@ public class AppVista {
         }
     }
 
-    private static void menuInsertar() {
+    private static void menuInsertar() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -208,21 +210,27 @@ public class AppVista {
                 switch (opcion) {
                     case 1:
                         System.out.println("Has seleccionado insertar una Arquitectura");
+                        insertarArquitectura();
                         break;
                     case 2:
                         System.out.println("Has seleccionado insertar un Fabricante");
+                        insertarFabricante();
                         break;
                     case 3:
                         System.out.println("Has seleccionado insertar una Grafica integrada");
+                        insertarGraficaIntegrada();
                         break;
                     case 4:
                         System.out.println("Has seleccionado insertar un Procesador");
+                        insertarProcesador();
                         break;
                     case 5:
                         System.out.println("Has seleccionado insertar una Placa Base");
+                        insertarPlacaBase();
                         break;
                     case 6:
                         System.out.println("Has seleccionado insertar un Zocalo");
+                        insertarZocalo();
                         break;
                     case 7:
                         System.out.println(ADIOS);
