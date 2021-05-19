@@ -84,12 +84,12 @@ FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id)
    after insert
    on procesador
    for each row
- begin
- if procesador.graficapropia=1 then
-  insert into procesador_grafica_integrada.id_procesador
-end if;
- end //
- delimiter ;
+  begin
+    if procesador.graficapropia=1 then
+      insert into procesador_grafica_integrada (id_procesador,id_grafica_integrada) VALUES (procesador.id,null);
+    end if;
+  end //
+  delimiter ;
 
 
 
