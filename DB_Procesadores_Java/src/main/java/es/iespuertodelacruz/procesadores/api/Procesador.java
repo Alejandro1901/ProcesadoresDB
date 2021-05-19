@@ -1,14 +1,12 @@
 package es.iespuertodelacruz.procesadores.api;
 
-import java.sql.Date;
-
 public class Procesador {
     int id; //PK
     String codigoFabricante; //FK
     int idSocket; //FK
     int idArquitectura; //FK
     String modelo; //FK
-    Date fechaLanzamiento;
+    String fechaLanzamiento;
     int nucleos;
     int hilos;
     float frecuencia;
@@ -31,7 +29,7 @@ public class Procesador {
      * @param tdp del procesador
      * @param precio del procesador
      */
-    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio) {
+    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
         this.idSocket = idSocket;
@@ -96,11 +94,11 @@ public class Procesador {
         this.modelo = modelo;
     }
 
-    public Date getFechaLanzamiento() {
+    public String getFechaLanzamiento() {
         return this.fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(Date fechaLanzamiento) {
+    public void setFechaLanzamiento(String fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
