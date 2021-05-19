@@ -38,6 +38,10 @@ public NombreProcesadorControlador() {
    if (nombreProcesador.getFamilia() == null || nombreProcesador.getFamilia().isEmpty()) {
       mensaje = "El ModeloProcesador del nombreProcesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       } 
+
+   if (nombreProcesador.getGeneracion() < 0) {
+      mensaje = "La generacion del nombreProcesador no puede ser cero o menor que el, ";
+      }
       
    if (!mensaje.isEmpty()) {
       throw new ControladoresDBException(mensaje);

@@ -72,4 +72,97 @@ if (!mensaje.isEmpty()) {
     throw new ControladoresDBException(mensaje);
     }
   }
+
+    /** 
+     * Metodo encargado de insertar
+     * @param fabricante a insertar
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
+
+  public void insertar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
+    validarFabricante(fabricante);
+        if (existe(fabricante)) {
+           throw new ControladoresDBException("El fabricante que se indica ya existe");
+        }
+       fabricanteModelo.insertar(fabricante); 
+     }  
+     
+/**
+ * Metodo encargado de eliminar
+ * @param fabricante a eliminar 
+ * @throws ControladoresDBException con un mensaje controlado
+ * @throws PersistenciaException
+ */
+
+    public void eliminar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
+   validarFabricante(fabricante);
+        if (!existe(fabricante)) {
+           throw new ControladoresDBException(EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE);
+        }
+        fabricanteModelo.eliminar(fabricante); 
+    }
+    
+/**
+ * Metodo encargado de realizar la eliminacion de una arquitectura
+ * @param Id del elemento a eliminar
+ * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+ * @throws PersistenciaException 
+ */   
+    public void eliminar(string codigo) throws ControladoresDBException, PersistenciaException {
+        Fabricante fabricante;
+        fabricante = buscar(id);
+        eliminar(fabricante);
+     }
+
+     /**
+      * Metodo encargado de buscar por la id de la clase
+      * @param id para localizar la arquitectura
+      * @return fabricante a traves del id de la clase
+      * @throws PersistenciaException
+      */
+
+    public Fabricante buscar(String codigoFabricante) throws PersistenciaException {
+        Fabricante fabricante = null;
+        fabricante = fabricanteModelo.obtenerFabricante(codigoFabricante);
+        return fabricante;
+     }
+
+/**
+ * Metodo encargado de realizar la modificacion de un tipo de arquitectura
+ * @param fabricante modificar
+ * @throws ControladoresDBException controlada en caso de error
+ * @throws PersistenciaException
+ */
+
+    public void modificar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
+      
+        validarFabricante(fabricante);
+        if (!existe(fabricante)) {
+           throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);
+        }
+        arquitecturaModelo.modificar(arquitectura);
+     }
+  
+/**
+ * Funcion encargada de verificar si existe la arquitectura
+ * @param arquitectura a encontrar
+ * @return true/false
+ * @throws PersistenciaException error controlado
+ */
+
+     private boolean existe(Arquitectura arquitectura) throws PersistenciaException {
+        boolean encontrada = false;
+        Arquitectura arquitecturaEncontrada;
+   
+        arquitecturaEncontrada = buscar(arquitectura.getId());
+        if (arquitecturaEncontrada != null) {
+           encontrada = true;
+        }  
+        return encontrada;
+      }   
+
 }
+
+}
+
