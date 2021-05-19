@@ -3,7 +3,7 @@ package es.iespuertodelacruz.procesadores.api;
 public class NombreProcesador {
     String modeloProcesador;
     String familia;
-    byte generacion;
+    int generacion;
 
     /**
      * Constructor con todos los parametros
@@ -28,6 +28,7 @@ public class NombreProcesador {
      * Creacion de getter and setters
      */
 
+
     public String getModeloProcesador() {
         return this.modeloProcesador;
     }
@@ -44,11 +45,11 @@ public class NombreProcesador {
         this.familia = familia;
     }
 
-    public byte getGeneracion() {
+    public int getGeneracion() {
         return this.generacion;
     }
 
-    public void setGeneracion(byte generacion) {
+    public void setGeneracion(int generacion) {
         this.generacion = generacion;
     }
-}
+}    

@@ -5,7 +5,7 @@ USE ProcesadoresDB;
 CREATE TABLE nombre_procesador (
   modelo_procesador varchar(20) PRIMARY KEY,
   familia varchar(30),
-  generacion int(5) DEFAULT 1
+  generacion int(10) DEFAULT 1
 );
 
 CREATE TABLE arquitectura (
