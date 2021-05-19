@@ -39,7 +39,7 @@ CREATE TABLE placa_base (
   id INT PRIMARY KEY,
   id_socket int,
   nombre varchar (20),
-FOREIGN KEY (id_socket) REFERENCES socket(id)
+FOREIGN KEY (id_socket) REFERENCES zocalo(id)
 );
 
 CREATE TABLE grafica_integrada (
@@ -66,7 +66,7 @@ CREATE TABLE procesador (
   precio float,
   graficapropia BOOLEAN,
   FOREIGN KEY (codigo_fabricante) REFERENCES fabricante(codigo),
-  FOREIGN KEY (id_socket) REFERENCES socket(id),
+  FOREIGN KEY (id_socket) REFERENCES zocalo(id),
   FOREIGN KEY (id_arquitectura) REFERENCES arquitectura(id),
   FOREIGN KEY (modelo) REFERENCES nombre_procesador(modelo_procesador)
 );

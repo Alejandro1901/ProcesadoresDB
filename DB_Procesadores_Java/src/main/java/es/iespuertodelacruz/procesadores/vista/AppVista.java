@@ -574,4 +574,11 @@ public class AppVista {
         PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();
         placaBaseControlador.insertar(placaBase);
     }
+
+    private static void insertarZocalo() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Escribe la id del zocalo");
+        int id = sn.nextInt();
+        System.out.println("Escribe el ");
+    }
 }
