@@ -586,7 +586,7 @@ public class AppVista {
         System.out.println("Escribe la tecnologia del zocalo");
         String tecnologia = sn.next();
         System.out.println("Escribe la fecha de lanzamiento del zocalo");
-        String fechaLanzamiento = sn.next();
+        String fechaLanzamiento = sn.next(); //Validar fecha
         sn.close();
         Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
         ZocaloControlador zocaloControlador = new ZocaloControlador();
