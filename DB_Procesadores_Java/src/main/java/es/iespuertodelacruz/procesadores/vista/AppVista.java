@@ -14,6 +14,7 @@ import es.iespuertodelacruz.procesadores.api.NombreProcesador;
 import es.iespuertodelacruz.procesadores.api.PlacaBase;
 import es.iespuertodelacruz.procesadores.api.Procesador;
 import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
+import es.iespuertodelacruz.procesadores.api.Zocalo;
 import es.iespuertodelacruz.procesadores.controlador.ArquitecturaControlador;
 import es.iespuertodelacruz.procesadores.controlador.FabricanteControlador;
 import es.iespuertodelacruz.procesadores.controlador.GraficaIntegradaControlador;
@@ -21,6 +22,7 @@ import es.iespuertodelacruz.procesadores.controlador.NombreProcesadorControlador
 import es.iespuertodelacruz.procesadores.controlador.PlacaBaseControlador;
 import es.iespuertodelacruz.procesadores.controlador.ProcesadorControlador;
 import es.iespuertodelacruz.procesadores.controlador.ProcesadorGraficaIntegradaControlador;
+import es.iespuertodelacruz.procesadores.controlador.ZocaloControlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
@@ -579,6 +581,15 @@ public class AppVista {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id del zocalo");
         int id = sn.nextInt();
-        System.out.println("Escribe el ");
+        System.out.println("Escribe el tipo del zocalo");
+        String tipo = sn.next();
+        System.out.println("Escribe la tecnologia del zocalo");
+        String tecnologia = sn.next();
+        System.out.println("Escribe la fecha de lanzamiento del zocalo");
+        String fechaLanzamiento = sn.next();
+        sn.close();
+        Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
+        ZocaloControlador zocaloControlador = new ZocaloControlador();
+        zocaloControlador.insertar(zocalo);
     }
 }

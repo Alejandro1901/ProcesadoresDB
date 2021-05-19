@@ -6,7 +6,7 @@ public class Zocalo {
     int id;
     String tipo;
     String tecnologia;
-    Date fechaLanzamiento;
+    String fechaLanzamiento;
 
     /**
      * Constructor con todos los parametros
@@ -16,7 +16,7 @@ public class Zocalo {
      * @param tecnologia usada por el socket
      * @param fechaLanzamiento del socket
      */
-    public Zocalo(int id, String tipo, String tecnologia, Date fechaLanzamiento) {
+    public Zocalo(int id, String tipo, String tecnologia, String fechaLanzamiento) {
         this.id = id;
         this.tipo = tipo;
         this.tecnologia = tecnologia;
@@ -57,11 +57,11 @@ public class Zocalo {
         this.tecnologia = tecnologia;
     }
 
-    public Date getFechaLanzamiento() {
+    public String getFechaLanzamiento() {
         return this.fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(Date fechaLanzamiento) {
+    public void setFechaLanzamiento(String fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 }
