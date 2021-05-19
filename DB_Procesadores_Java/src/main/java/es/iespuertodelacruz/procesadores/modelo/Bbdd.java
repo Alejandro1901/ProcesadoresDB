@@ -896,7 +896,7 @@ public class Bbdd {
         int idSocket = CERO;
         int idArquitectura = CERO;
         String modelo = STRING_VACIO;
-        Date fechaLanzamiento; //inicializar
+        String fechaLanzamiento; //inicializar
         int nucleos = CERO;
         int hilos = CERO;
         float frecuencia = CERO;
@@ -908,7 +908,7 @@ public class Bbdd {
         idSocket = resultSet.getInt("id_socket");
         idArquitectura = resultSet.getInt("id_arquitectura");
         modelo = resultSet.getString("modelo");
-        fechaLanzamiento = resultSet.getDate("fecha_lanzamiento");
+        fechaLanzamiento = resultSet.getString("fecha_lanzamiento");
         nucleos = resultSet.getInt("nucleos");
         hilos = resultSet.getInt("hilos");
         frecuencia = resultSet.getFloat("frecuencia");

@@ -12,7 +12,7 @@ public class NombreProcesador {
      * @param familia a la que pertenece
      * @param generacion a la que pertenece
      */
-    public NombreProcesador(String modeloProcesador, String familia, byte generacion) {
+    public NombreProcesador(String modeloProcesador, String familia, int generacion) {
         this.modeloProcesador = modeloProcesador;
         this.familia = familia;
         this.generacion = generacion;

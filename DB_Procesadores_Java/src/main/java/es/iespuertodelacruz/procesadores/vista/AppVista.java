@@ -10,9 +10,17 @@ import java.util.Scanner;
 import es.iespuertodelacruz.procesadores.api.Arquitectura;
 import es.iespuertodelacruz.procesadores.api.Fabricante;
 import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
+import es.iespuertodelacruz.procesadores.api.NombreProcesador;
+import es.iespuertodelacruz.procesadores.api.PlacaBase;
+import es.iespuertodelacruz.procesadores.api.Procesador;
+import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
 import es.iespuertodelacruz.procesadores.controlador.ArquitecturaControlador;
 import es.iespuertodelacruz.procesadores.controlador.FabricanteControlador;
 import es.iespuertodelacruz.procesadores.controlador.GraficaIntegradaControlador;
+import es.iespuertodelacruz.procesadores.controlador.NombreProcesadorControlador;
+import es.iespuertodelacruz.procesadores.controlador.PlacaBaseControlador;
+import es.iespuertodelacruz.procesadores.controlador.ProcesadorControlador;
+import es.iespuertodelacruz.procesadores.controlador.ProcesadorGraficaIntegradaControlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
@@ -488,7 +496,7 @@ public class AppVista {
         fabricanteControlador.insertar(fabricante);
     }
 
-    public static void insertarGraficaIntegrada() {
+    private static void insertarGraficaIntegrada() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id de la grafica integrada");
         int id = sn.nextInt();
@@ -509,9 +517,8 @@ public class AppVista {
         graficaIntegradaControlador.insertar(graficaIntegrada);
     }
 
-    public static void insertarProcesador() throws ParseException {
+    private static void insertarProcesador() {
         Scanner sn = new Scanner(System.in);
-        SimpleDateFormat plantilla = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("Escribe la id del procesador");
         int id = sn.nextInt();
         System.out.println("Escibe la id del fabricante del procesador");
@@ -537,6 +544,34 @@ public class AppVista {
         System.out.println("Escribe la frecuencia a la que va el procesador");
         float frecuencia = sn.nextFloat();
         System.out.println("¿Se puede hacer overclock al procesador? (True o false)");
+        boolean overclock = sn.nextBoolean();
+        System.out.println("Escribe el tdp del procesador");
+        float tdp = sn.nextFloat();
+        System.out.println("Escribe el precio del procesador");
+        float precio = sn.nextFloat();
         sn.close();
+        Procesador procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
+        NombreProcesador nombreProcesador = new NombreProcesador(modelo, familia, generacion);
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(id, idGraficaIntegrada);
+        ProcesadorControlador procesadorControlador = new ProcesadorControlador();
+        NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();
+        ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
+        procesadorControlador.insertar(procesador);
+        nombreProcesadorControlador.insertar(nombreProcesador);
+        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegradaControlador);
+    }
+
+    private static void insertarPlacaBase() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Escribe la id de la placa base");
+        int id = sn.nextInt();
+        System.out.println("Escribe la id del socket de la placa base");
+        int idSocket = sn.nextInt();
+        System.out.println("Escribe el nombre de la placa base");
+        String nombre = sn.next();
+        sn.close();
+        PlacaBase placaBase = new PlacaBase(id, idSocket, nombre);
+        PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();
+        placaBaseControlador.insertar(placaBase);
     }
 }
