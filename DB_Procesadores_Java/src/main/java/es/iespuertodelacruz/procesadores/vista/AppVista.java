@@ -462,7 +462,7 @@ public class AppVista {
         }
     }
 
-    private static void insertarArquitectura() throws ControladoresDBException, PersistenciaException {
+    private static Arquitectura crearArquitectura() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id del procesador");
         int id = sn.nextInt();
@@ -475,12 +475,10 @@ public class AppVista {
         System.out.println("Escribe el estandar de la arquitectura (si tiene)");
         String estandar = sn.next();
         sn.close();
-        Arquitectura arquitectura = new Arquitectura(id, versionArquitectura, disenio, tecnologia, estandar);
-        ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
-        arquitecturaControlador.insertar(arquitectura);
+        return new Arquitectura(id, versionArquitectura, disenio, tecnologia, estandar);
     }
 
-    private static void insertarFabricante() {
+    private static Fabricante crearFabricante() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe el codigo del fabricante");
         String codigo = sn.next();
@@ -501,12 +499,10 @@ public class AppVista {
         System.out.println("Escribe la web del fabricante");
         String web = sn.next();
         sn.close();
-        Fabricante fabricante = new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);
-        FabricanteControlador fabricanteControlador = new FabricanteControlador();
-        fabricanteControlador.insertar(fabricante);
+        return new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);
     }
 
-    private static void insertarGraficaIntegrada() {
+    private static GraficaIntegrada crearGraficaIntegrada() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id de la grafica integrada");
         int id = sn.nextInt();
@@ -522,7 +518,27 @@ public class AppVista {
         System.out.println("(720p, 1080p ,2K, 4K, 8K o 16K)");
         String resolucion = sn.next();
         sn.close();
-        GraficaIntegrada graficaIntegrada = new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);
+        return new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);
+    }
+
+    private static Procesador crearProcesador() {
+        
+    }
+
+    private static void insertarArquitectura() throws ControladoresDBException, PersistenciaException {
+        Arquitectura arquitectura = crearArquitectura();
+        ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
+        arquitecturaControlador.insertar(arquitectura);
+    }
+
+    private static void insertarFabricante() {
+        Fabricante fabricante = crearFabricante();
+        FabricanteControlador fabricanteControlador = new FabricanteControlador();
+        fabricanteControlador.insertar(fabricante);
+    }
+
+    private static void insertarGraficaIntegrada() {
+        GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();
         GraficaIntegradaControlador graficaIntegradaControlador = new GraficaIntegradaControlador();
         graficaIntegradaControlador.insertar(graficaIntegrada);
     }
@@ -599,5 +615,10 @@ public class AppVista {
         Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
         ZocaloControlador zocaloControlador = new ZocaloControlador();
         zocaloControlador.insertar(zocalo);
+    }
+
+    private static void modificarArquitectura() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println();
     }
 }
