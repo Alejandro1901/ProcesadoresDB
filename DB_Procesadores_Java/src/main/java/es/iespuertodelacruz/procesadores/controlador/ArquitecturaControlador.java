@@ -49,7 +49,10 @@ public class ArquitecturaControlador {
 
     if (arquitectura.getEstandar() == null || arquitectura.getEstandar().isEmpty()) {
         mensaje = "El estandar de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
-        }    
+        } 
+    if (!mensaje.isEmpty()) {
+        throw new ControladoresDBException(mensaje);
+        }   
     }
 
     /**
@@ -101,9 +104,9 @@ public class ArquitecturaControlador {
       * @throws PersistenciaException
       */
 
-    public Arquitectura buscar(int idArquitectura) throws PersistenciaException {
+    public Arquitectura buscar(int id) throws PersistenciaException {
         Arquitectura arquitectura = null;
-        arquitectura = arquitecturaModelo.obtenerArquitectura(idArquitectura);
+        arquitectura = arquitecturaModelo.obtenerArquitectura(id);
         return arquitectura;
      }
 

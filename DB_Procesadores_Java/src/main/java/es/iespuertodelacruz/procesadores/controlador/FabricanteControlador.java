@@ -2,6 +2,7 @@ package es.iespuertodelacruz.procesadores.controlador;
 
 import es.iespuertodelacruz.procesadores.api.Fabricante;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 import es.iespuertodelacruz.procesadores.modelo.FabricanteModelo;
 
 public class FabricanteControlador {
@@ -90,7 +91,7 @@ if (!mensaje.isEmpty()) {
      
 /**
  * Metodo encargado de eliminar
- * @param fabricante a eliminar 
+ * @param codigo a eliminar 
  * @throws ControladoresDBException con un mensaje controlado
  * @throws PersistenciaException
  */
@@ -104,32 +105,32 @@ if (!mensaje.isEmpty()) {
     }
     
 /**
- * Metodo encargado de realizar la eliminacion de una arquitectura
- * @param Id del elemento a eliminar
+ * Metodo encargado de realizar la eliminacion de un fabricante
+ * @param Codigo del elemento a eliminar
  * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
  * @throws PersistenciaException 
  */   
-    public void eliminar(string codigo) throws ControladoresDBException, PersistenciaException {
+    public void eliminar(String codigo) throws ControladoresDBException, PersistenciaException {
         Fabricante fabricante;
-        fabricante = buscar(id);
+        fabricante = buscar(codigo);
         eliminar(fabricante);
      }
 
      /**
       * Metodo encargado de buscar por la id de la clase
-      * @param id para localizar la arquitectura
-      * @return fabricante a traves del id de la clase
+      * @param codigo para localizar al fabricante
+      * @return fabricante a traves del codigoFabricante de la clase
       * @throws PersistenciaException
       */
 
-    public Fabricante buscar(String codigoFabricante) throws PersistenciaException {
+    public Fabricante buscar(String codigo) throws PersistenciaException {
         Fabricante fabricante = null;
-        fabricante = fabricanteModelo.obtenerFabricante(codigoFabricante);
+        fabricante = fabricanteModelo.obtenerFabricante(codigo);
         return fabricante;
      }
 
 /**
- * Metodo encargado de realizar la modificacion de un tipo de arquitectura
+ * Metodo encargado de realizar la modificacion de un tipo de fabricante
  * @param fabricante modificar
  * @throws ControladoresDBException controlada en caso de error
  * @throws PersistenciaException
@@ -139,24 +140,24 @@ if (!mensaje.isEmpty()) {
       
         validarFabricante(fabricante);
         if (!existe(fabricante)) {
-           throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);
+           throw new ControladoresDBException(EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE);
         }
-        arquitecturaModelo.modificar(arquitectura);
+        fabricanteModelo.modificar(fabricante);
      }
   
 /**
- * Funcion encargada de verificar si existe la arquitectura
- * @param arquitectura a encontrar
+ * Funcion encargada de verificar si existe el fabricante
+ * @param fabricante a encontrar
  * @return true/false
  * @throws PersistenciaException error controlado
  */
 
-     private boolean existe(Arquitectura arquitectura) throws PersistenciaException {
+     private boolean existe(Fabricante fabricante) throws PersistenciaException {
         boolean encontrada = false;
-        Arquitectura arquitecturaEncontrada;
+        Fabricante fabricanteEncontrada;
    
-        arquitecturaEncontrada = buscar(arquitectura.getId());
-        if (arquitecturaEncontrada != null) {
+        fabricanteEncontrada = buscar(fabricante.getCodigo());
+        if (fabricanteEncontrada != null) {
            encontrada = true;
         }  
         return encontrada;
@@ -164,5 +165,5 @@ if (!mensaje.isEmpty()) {
 
 }
 
-}
+
 
