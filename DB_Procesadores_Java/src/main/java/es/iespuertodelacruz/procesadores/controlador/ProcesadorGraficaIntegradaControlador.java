@@ -100,7 +100,7 @@ public ProcesadorGraficaIntegradaControlador() {
 
    public ProcesadorGraficaIntegrada buscar(int idprocesador) throws PersistenciaException {
       ProcesadorGraficaIntegrada procesadorGraficaIntegrada = null;
-      procesadorGraficaIntegrada = procesadorGraficaIntegradaModelo.obtenerProcesadorGraficaIntegrada(id);
+      procesadorGraficaIntegrada = procesadorGraficaIntegradaModelo.obtenerProcesadorGraficaIntegrada(idprocesador);
       return procesadorGraficaIntegrada;
    }
 
