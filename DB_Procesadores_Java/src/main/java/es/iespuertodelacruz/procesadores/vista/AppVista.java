@@ -7,22 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import es.iespuertodelacruz.procesadores.api.Arquitectura;
-import es.iespuertodelacruz.procesadores.api.Fabricante;
-import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
-import es.iespuertodelacruz.procesadores.api.NombreProcesador;
-import es.iespuertodelacruz.procesadores.api.PlacaBase;
-import es.iespuertodelacruz.procesadores.api.Procesador;
-import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
-import es.iespuertodelacruz.procesadores.api.Zocalo;
-import es.iespuertodelacruz.procesadores.controlador.ArquitecturaControlador;
-import es.iespuertodelacruz.procesadores.controlador.FabricanteControlador;
-import es.iespuertodelacruz.procesadores.controlador.GraficaIntegradaControlador;
-import es.iespuertodelacruz.procesadores.controlador.NombreProcesadorControlador;
-import es.iespuertodelacruz.procesadores.controlador.PlacaBaseControlador;
-import es.iespuertodelacruz.procesadores.controlador.ProcesadorControlador;
-import es.iespuertodelacruz.procesadores.controlador.ProcesadorGraficaIntegradaControlador;
-import es.iespuertodelacruz.procesadores.controlador.ZocaloControlador;
+import es.iespuertodelacruz.procesadores.api.*;
+import es.iespuertodelacruz.procesadores.controlador.*;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
@@ -31,7 +17,7 @@ public class AppVista {
     private static final String DEBES_INSERTAR_UN_NUMERO = "Debes insertar un número";
     private static final String ADIOS = "¡Adios!";
     private static final String ESCRIBE_UNA_DE_LAS_OPCIONES = "Escribe una de las opciones";
-    private static final String SALIR = "7. Salir";
+    private static final String SALIR = "7. Atras";
     private static final String ZOCALO = "6. Zocalo";
     private static final String PLACA_BASE = "5. Placa Base";
     private static final String PROCESADOR = "4. Procesador";
@@ -39,6 +25,15 @@ public class AppVista {
     private static final String FABRICANTE = "2. Fabricante";
     private static final String ARQUITECTURA = "1. Arquitectura";
     private static final String SOLO_NUMEROS_ENTRE_1_Y_7 = "Solo números entre 1 y 7";
+
+    public static ProcesadorControlador procesadorControlador = new ProcesadorControlador();
+    public static ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
+    public static FabricanteControlador fabricanteControlador = new FabricanteControlador();
+    public static GraficaIntegradaControlador graficaIntegradaControlador = new GraficaIntegradaControlador();
+    public static NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();
+    public static PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();
+    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
+    public static ZocaloControlador zocaloControlador = new ZocaloControlador();
 
     public static void main(String[] args) throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
@@ -100,7 +95,7 @@ public class AppVista {
             System.out.println("3. Eliminar");
             System.out.println("4. Buscar");
             System.out.println("5. Listar");
-            System.out.println("6. Salir");
+            System.out.println("6. Atras");
  
             try {
  
@@ -129,7 +124,6 @@ public class AppVista {
                         menuListar();
                         break;
                     case 6:
-                        System.out.println(ADIOS);
                         salir = true;
                         break;
                     default:
@@ -156,7 +150,7 @@ public class AppVista {
             System.out.println("¿Que accion desea realizar?");
             System.out.println("1. Buscar");
             System.out.println("2. Listar");
-            System.out.println("3. Salir");
+            System.out.println("3. Atras");
  
             try {
  
@@ -173,7 +167,6 @@ public class AppVista {
                         menuListar();
                         break;
                     case 3:
-                        System.out.println(ADIOS);
                         salir = true;
                         break;
                     default:
@@ -233,7 +226,6 @@ public class AppVista {
                         insertarZocalo();
                         break;
                     case 7:
-                        System.out.println(ADIOS);
                         salir = true;
                         break;
                     default:
@@ -287,7 +279,12 @@ public class AppVista {
                         System.out.println("Has seleccionado modificar un Zocalo");
                         break;
                     case 7:
-                        System.out.println(ADIOS);
+                        System.out.println("Has seleccionado modificar una fila de NombreProcesador");
+                        break;
+                    case 8:
+                        System.out.println("Has seleccionado modificar una fila de ProcesadorGraficaIntegrada");
+                        break;
+                    case 9:
                         salir = true;
                         break;
                     default:
@@ -341,7 +338,6 @@ public class AppVista {
                         System.out.println("Has seleccionado eliminar un Zocalo");
                         break;
                     case 7:
-                        System.out.println(ADIOS);
                         salir = true;
                         break;
                     default:
@@ -395,7 +391,6 @@ public class AppVista {
                         System.out.println("Has seleccionado buscar un Zocalo");
                         break;
                     case 7:
-                        System.out.println(ADIOS);
                         salir = true;
                         break;
                     default:
@@ -431,25 +426,24 @@ public class AppVista {
  
                 switch (opcion) {
                     case 1:
-                        System.out.println("Has seleccionado buscar una Arquitectura");
+                        System.out.println("Has seleccionado listar una Arquitectura");
                         break;
                     case 2:
-                        System.out.println("Has seleccionado buscar un Fabricante");
+                        System.out.println("Has seleccionado listar un Fabricante");
                         break;
                     case 3:
-                        System.out.println("Has seleccionado buscar una Grafica integrada");
+                        System.out.println("Has seleccionado listar una Grafica integrada");
                         break;
                     case 4:
-                        System.out.println("Has seleccionado buscar un Procesador");
+                        System.out.println("Has seleccionado listar un Procesador");
                         break;
                     case 5:
-                        System.out.println("Has seleccionado buscar una Placa Base");
+                        System.out.println("Has seleccionado listar una Placa Base");
                         break;
                     case 6:
-                        System.out.println("Has seleccionado buscar un Zocalo");
+                        System.out.println("Has seleccionado listar un Zocalo");
                         break;
                     case 7:
-                        System.out.println(ADIOS);
                         salir = true;
                         break;
                     default:
@@ -522,28 +516,6 @@ public class AppVista {
     }
 
     private static Procesador crearProcesador() {
-        
-    }
-
-    private static void insertarArquitectura() throws ControladoresDBException, PersistenciaException {
-        Arquitectura arquitectura = crearArquitectura();
-        ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
-        arquitecturaControlador.insertar(arquitectura);
-    }
-
-    private static void insertarFabricante() {
-        Fabricante fabricante = crearFabricante();
-        FabricanteControlador fabricanteControlador = new FabricanteControlador();
-        fabricanteControlador.insertar(fabricante);
-    }
-
-    private static void insertarGraficaIntegrada() {
-        GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();
-        GraficaIntegradaControlador graficaIntegradaControlador = new GraficaIntegradaControlador();
-        graficaIntegradaControlador.insertar(graficaIntegrada);
-    }
-
-    private static void insertarProcesador() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id del procesador");
         int id = sn.nextInt();
@@ -553,14 +525,8 @@ public class AppVista {
         int idSocket = sn.nextInt();
         System.out.println("Escribe la id de la arquitectura del procesador");
         int idArquitectura = sn.nextInt();
-        System.out.println("Escribe la id de la grafica integrada que contiene el procesador (Si tiene)");
-        int idGraficaIntegrada = sn.nextInt();
         System.out.println("Escribe el modelo del procesador");
         String modelo = sn.next();
-        System.out.println("Escribe la familia del procesador");
-        String familia = sn.next();
-        System.out.println("Escribe la generacion del procesador");
-        int generacion = sn.nextInt();
         System.out.println("Escribe la fecha de lanzamiento del procesador");
         String fechaLanzamiento = sn.next(); //Hay que validar este valor
         System.out.println("Escribe el numero de nucleos del procesador");
@@ -576,18 +542,30 @@ public class AppVista {
         System.out.println("Escribe el precio del procesador");
         float precio = sn.nextFloat();
         sn.close();
-        Procesador procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
-        NombreProcesador nombreProcesador = new NombreProcesador(modelo, familia, generacion);
-        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(id, idGraficaIntegrada);
-        ProcesadorControlador procesadorControlador = new ProcesadorControlador();
-        NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();
-        ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
-        procesadorControlador.insertar(procesador);
-        nombreProcesadorControlador.insertar(nombreProcesador);
-        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegradaControlador);
+        return new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
     }
 
-    private static void insertarPlacaBase() {
+    private static NombreProcesador crearNombreProcesador(String modelo) {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Escribe la familia del procesador");
+        String familia = sn.next();
+        System.out.println("Escribe la generacion del procesador");
+        int generacion = sn.nextInt();
+        return new NombreProcesador(modelo, familia, generacion);
+    }
+
+    private static NombreProcesador crearNombreProcesador() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Escribe el modelo del procesador");
+        String modelo = sn.next();
+        System.out.println("Escribe la familia del procesador");
+        String familia = sn.next();
+        System.out.println("Escribe la generacion del procesador");
+        int generacion = sn.nextInt();
+        return new NombreProcesador(modelo, familia, generacion);
+    }
+
+    private static PlacaBase crearPlacaBase() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id de la placa base");
         int id = sn.nextInt();
@@ -596,12 +574,10 @@ public class AppVista {
         System.out.println("Escribe el nombre de la placa base");
         String nombre = sn.next();
         sn.close();
-        PlacaBase placaBase = new PlacaBase(id, idSocket, nombre);
-        PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();
-        placaBaseControlador.insertar(placaBase);
+        return new PlacaBase(id, idSocket, nombre);
     }
 
-    private static void insertarZocalo() {
+    private static Zocalo crearZocalo() {
         Scanner sn = new Scanner(System.in);
         System.out.println("Escribe la id del zocalo");
         int id = sn.nextInt();
@@ -612,13 +588,94 @@ public class AppVista {
         System.out.println("Escribe la fecha de lanzamiento del zocalo");
         String fechaLanzamiento = sn.next(); //Validar fecha
         sn.close();
-        Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
-        ZocaloControlador zocaloControlador = new ZocaloControlador();
+        return new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
+    }
+
+    private static ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Escribe la id del procesador");
+        int idProcesador = sn.nextInt();
+        System.out.println("Escribe la id de la grafica integrada");
+        int idGraficaIntegrada = sn.nextInt();
+        sn.close();
+        return new ProcesadorGraficaIntegrada(idProcesador, idGraficaIntegrada);
+    }
+
+    private static void insertarArquitectura() throws ControladoresDBException, PersistenciaException {
+        Arquitectura arquitectura = crearArquitectura();
+        arquitecturaControlador.insertar(arquitectura);
+    }
+
+    private static void insertarFabricante() {
+        Fabricante fabricante = crearFabricante();
+        fabricanteControlador.insertar(fabricante);
+    }
+
+    private static void insertarGraficaIntegrada() {
+        GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();
+        graficaIntegradaControlador.insertar(graficaIntegrada);
+    }
+
+    private static void insertarProcesador() {
+        Scanner sn = new Scanner(System.in);
+        Procesador procesador = crearProcesador();
+        NombreProcesador nombreProcesador = crearNombreProcesador(procesador.getModelo());
+        System.out.println("Escribe la id de la grafica integrada que contiene el procesador (Si tiene)");
+        int idGraficaIntegrada = sn.nextInt();
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(procesador.getId(), idGraficaIntegrada);
+        nombreProcesadorControlador.insertar(nombreProcesador);
+        procesadorControlador.insertar(procesador);
+        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
+    }
+
+    private static void insertarPlacaBase() {
+        PlacaBase placaBase = crearPlacaBase();
+        placaBaseControlador.insertar(placaBase);
+    }
+
+    private static void insertarZocalo() {
+        Zocalo zocalo = crearZocalo();
         zocaloControlador.insertar(zocalo);
     }
 
-    private static void modificarArquitectura() {
-        Scanner sn = new Scanner(System.in);
-        System.out.println();
+    private static void modificarArquitectura() throws ControladoresDBException, PersistenciaException {
+        Arquitectura arquitectura = crearArquitectura();
+        arquitecturaControlador.modificar(arquitectura);
     }
+
+    private static void modificarFabricante() {
+        Fabricante fabricante = crearFabricante();
+        fabricanteControlador.modificar(fabricante);
+    }
+
+    private static void modificarGraficaIntegrada() {
+        GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();
+        graficaIntegradaControlador.modificar(graficaIntegrada);
+    }
+
+    private static void modificarProcesador() {
+        Procesador procesador = crearProcesador();
+        procesadorControlador.modificar(procesador);
+    }
+
+    private static void modificarNombreProcesador() {
+        NombreProcesador nombreProcesador = crearNombreProcesador();
+        nombreProcesadorControlador.modificar(nombreProcesador);
+    }
+
+    private static void modificarProcesadorGraficaIntegrada() {
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada();
+        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
+    }
+
+    private static void modificarPlacaBase() {
+        PlacaBase placaBase = crearPlacaBase();
+        placaBaseControlador.modificar(placaBase);
+    }
+
+    private static void modificarZocalo() {
+        Zocalo zocalo = crearZocalo();
+        zocaloControlador.modificar(zocalo);
+    }
+    
 }
