@@ -238,7 +238,7 @@ public class AppVista {
         }
     }
 
-    private static void menuModificar() {
+    private static void menuModificar() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -262,27 +262,35 @@ public class AppVista {
                 switch (opcion) {
                     case 1:
                         System.out.println("Has seleccionado modificar una Arquitectura");
+                        modificarArquitectura();
                         break;
                     case 2:
                         System.out.println("Has seleccionado modificar un Fabricante");
+                        modificarFabricante();
                         break;
                     case 3:
                         System.out.println("Has seleccionado modificar una Grafica integrada");
+                        modificarGraficaIntegrada();
                         break;
                     case 4:
                         System.out.println("Has seleccionado modificar un Procesador");
+                        modificarProcesador();
                         break;
                     case 5:
                         System.out.println("Has seleccionado modificar una Placa Base");
+                        modificarPlacaBase();
                         break;
                     case 6:
                         System.out.println("Has seleccionado modificar un Zocalo");
+                        modificarZocalo();
                         break;
                     case 7:
                         System.out.println("Has seleccionado modificar una fila de NombreProcesador");
+                        modificarNombreProcesador();
                         break;
                     case 8:
                         System.out.println("Has seleccionado modificar una fila de ProcesadorGraficaIntegrada");
+                        modificarProcesadorGraficaIntegrada();
                         break;
                     case 9:
                         salir = true;
@@ -606,17 +614,17 @@ public class AppVista {
         arquitecturaControlador.insertar(arquitectura);
     }
 
-    private static void insertarFabricante() {
+    private static void insertarFabricante() throws ControladoresDBException, PersistenciaException {
         Fabricante fabricante = crearFabricante();
         fabricanteControlador.insertar(fabricante);
     }
 
-    private static void insertarGraficaIntegrada() {
+    private static void insertarGraficaIntegrada() throws ControladoresDBException, PersistenciaException {
         GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();
         graficaIntegradaControlador.insertar(graficaIntegrada);
     }
 
-    private static void insertarProcesador() {
+    private static void insertarProcesador() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         Procesador procesador = crearProcesador();
         NombreProcesador nombreProcesador = crearNombreProcesador(procesador.getModelo());
@@ -628,12 +636,12 @@ public class AppVista {
         procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
     }
 
-    private static void insertarPlacaBase() {
+    private static void insertarPlacaBase() throws ControladoresDBException, PersistenciaException {
         PlacaBase placaBase = crearPlacaBase();
         placaBaseControlador.insertar(placaBase);
     }
 
-    private static void insertarZocalo() {
+    private static void insertarZocalo() throws ControladoresDBException, PersistenciaException {
         Zocalo zocalo = crearZocalo();
         zocaloControlador.insertar(zocalo);
     }
@@ -643,37 +651,37 @@ public class AppVista {
         arquitecturaControlador.modificar(arquitectura);
     }
 
-    private static void modificarFabricante() {
+    private static void modificarFabricante() throws ControladoresDBException, PersistenciaException {
         Fabricante fabricante = crearFabricante();
         fabricanteControlador.modificar(fabricante);
     }
 
-    private static void modificarGraficaIntegrada() {
+    private static void modificarGraficaIntegrada() throws ControladoresDBException, PersistenciaException {
         GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();
         graficaIntegradaControlador.modificar(graficaIntegrada);
     }
 
-    private static void modificarProcesador() {
+    private static void modificarProcesador() throws ControladoresDBException, PersistenciaException {
         Procesador procesador = crearProcesador();
         procesadorControlador.modificar(procesador);
     }
 
-    private static void modificarNombreProcesador() {
+    private static void modificarNombreProcesador() throws ControladoresDBException, PersistenciaException {
         NombreProcesador nombreProcesador = crearNombreProcesador();
         nombreProcesadorControlador.modificar(nombreProcesador);
     }
 
-    private static void modificarProcesadorGraficaIntegrada() {
+    private static void modificarProcesadorGraficaIntegrada() throws ControladoresDBException, PersistenciaException {
         ProcesadorGraficaIntegrada procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada();
         procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
     }
 
-    private static void modificarPlacaBase() {
+    private static void modificarPlacaBase() throws ControladoresDBException, PersistenciaException {
         PlacaBase placaBase = crearPlacaBase();
         placaBaseControlador.modificar(placaBase);
     }
 
-    private static void modificarZocalo() {
+    private static void modificarZocalo() throws ControladoresDBException, PersistenciaException {
         Zocalo zocalo = crearZocalo();
         zocaloControlador.modificar(zocalo);
     }
