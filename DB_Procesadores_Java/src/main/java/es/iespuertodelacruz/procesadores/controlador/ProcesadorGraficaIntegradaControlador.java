@@ -84,9 +84,9 @@ public ProcesadorGraficaIntegradaControlador() {
     * @throws ControladoresDBException del elemento a eliminarcontrolada con el error                         
     * @throws PersistenciaException
     */
-   public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+   public void eliminar(int idprocesador) throws ControladoresDBException, PersistenciaException {
       ProcesadorGraficaIntegrada procesadorGraficaIntegrada;
-      procesadorGraficaIntegrada = buscar(id);
+      procesadorGraficaIntegrada = buscar(idprocesador);
       eliminar(procesadorGraficaIntegrada);
    }
 
