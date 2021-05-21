@@ -832,11 +832,11 @@ public class Bbdd {
         int id = CERO;
         String tipo = STRING_VACIO;
         String tecnologia = STRING_VACIO;
-        Date fechaLanzamiento; //Inicializar
+        String fechaLanzamiento; //Inicializar
         id = resultSet.getInt("id");
         tipo = resultSet.getString("tipo");
         tecnologia = resultSet.getString("tecnologia");
-        fechaLanzamiento = resultSet.getDate("fecha_lanzamiento");
+        fechaLanzamiento = resultSet.getString("fecha_lanzamiento");
         Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);
         return zocalo;
     }
