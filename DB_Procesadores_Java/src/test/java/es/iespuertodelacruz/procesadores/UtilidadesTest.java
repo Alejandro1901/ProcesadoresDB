@@ -11,11 +11,11 @@ public class UtilidadesTest {
     public Arquitectura generararquitectura(String id, String version_arquitectura, String disenio, String tecnologia, String estandar) {
        Arquitectura arquitectura = null;
        if (id != null && version_arquitectura!= null && disenio != null && tecnologia != null && estandar != null) {
-           arquitectura = new arquitectura(id, version_arquitectura, disenio, tecnologia, estandar);
+           arquitectura = new arquitectura(id, versionArquitectura, disenio, tecnologia, estandar);
        } else {
            arquitectura = new arquitectura();
            arquitectura.setId(1);
-           arquitectura.setVersion_Arquitectura(hola);
+           arquitectura.setVersionArquitectura(hola);
            arquitectura.setDisenio(peis);
            arquitectura.setTecnologia(yuuu);
            arquitectura.setEstandar(yeee);
