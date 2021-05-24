@@ -38,13 +38,13 @@ CREATE TABLE zocalo (
 CREATE TABLE placa_base (
   id INT PRIMARY KEY,
   id_socket int,
-  nombre varchar (20),
+  nombre varchar (100),
 FOREIGN KEY (id_socket) REFERENCES zocalo(id)
 );
 
 CREATE TABLE grafica_integrada (
   id INT PRIMARY KEY,
-  nombre_grafica varchar(20),
+  nombre_grafica varchar(100),
   frec_basica float,
   frec_max float,
   memoria_max int,
@@ -56,8 +56,8 @@ CREATE TABLE procesador (
   codigo_fabricante VARCHAR(50),
   id_socket INT,
   id_arquitectura INT,
-  modelo varchar(20), 
-  fecha_lanzamiento DATE,
+  modelo varchar(50), 
+  fecha_lanzamiento VARCHAR(10),
   nucleos int,
   hilos int,
   frecuencia float,
@@ -79,14 +79,16 @@ FOREIGN KEY (id_procesador) REFERENCES procesador(id),
 FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id)
 );
 
+drop trigger if exists procesador_trigger;
+
  delimiter //
- create trigger procesador
+ create trigger procesador_trigger
    after insert
    on procesador
    for each row
   begin
-    if procesador.graficapropia=1 then
-      insert into procesador_grafica_integrada (id_procesador,id_grafica_integrada) VALUES (procesador.id,null);
+    if new.graficapropia=true then
+      insert into procesador_grafica_integrada (id_procesador) VALUES (new.id);
     end if;
   end //
   delimiter ;
