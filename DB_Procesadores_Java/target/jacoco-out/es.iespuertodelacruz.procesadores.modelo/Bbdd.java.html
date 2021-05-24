@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bbdd.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">Bbdd.java</span></div><h1>Bbdd.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.*;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class Bbdd {
+
+    private static final String PUNTO_Y_COMA = &quot;;&quot;;
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = &quot;&quot;;
+    private static final String SQL_FIN_COMILLA_SIMPLE = &quot;';&quot;;
+    private static final String SQL_FIN_PARENTESIS = &quot;');&quot;;
+    private static final String SQL_VALUES = &quot;VALUES ('&quot;;
+    private static final String SQL_COMA = &quot;', '&quot;;
+    private String driver;
+    private String url;
+    private String usuario;
+    private String password;
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param driver   usado por la base de datos
+     * @param url      de la base de datos
+     * @param usuario  para logear en la base de datos
+     * @param password del usuario
+     */
+<span class="nc" id="L31">    public Bbdd(String driver, String url, String usuario, String password) {</span>
+<span class="nc" id="L32">        this.driver = driver;</span>
+<span class="nc" id="L33">        this.url = url;</span>
+<span class="nc" id="L34">        this.usuario = usuario;</span>
+<span class="nc" id="L35">        this.password = password;</span>
+<span class="nc" id="L36">    }</span>
+
+    /**
+     * Funcion encargada de realizar la conexion con la BBDD
+     * 
+     * @return la coneccion
+     * @throws PersistenciaException controlado
+     */
+    private Connection getConnection() throws PersistenciaException {
+<span class="nc" id="L45">        Connection connection = null;</span>
+
+        try {
+<span class="nc" id="L48">            Class.forName(driver);</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">            if (usuario == null || password == null) {</span>
+<span class="nc" id="L50">                connection = DriverManager.getConnection(url);</span>
+            } else {
+<span class="nc" id="L52">                DriverManager.getConnection(url, usuario, password);</span>
+            }
+<span class="nc" id="L54">        } catch (Exception exception) {</span>
+<span class="nc" id="L55">            throw new PersistenciaException(&quot;No se ha podido establecer la coneccion con la BBDD&quot;, exception);</span>
+<span class="nc" id="L56">        }</span>
+
+<span class="nc" id="L58">        return connection;</span>
+    }
+
+    /**
+     * Metodo encargado de realizar la actualizacion de la BBDD
+     * 
+     * @param sql a ejecutar
+     * @throws PersistenciaException error controlado
+     */
+    private void actualizar(String sql) throws PersistenciaException {
+<span class="nc" id="L68">        Statement statement = null;</span>
+<span class="nc" id="L69">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L71">            connection = getConnection();</span>
+<span class="nc" id="L72">            statement = connection.createStatement();</span>
+<span class="nc" id="L73">            statement.executeUpdate(sql);</span>
+<span class="nc" id="L74">        } catch (Exception exception) {</span>
+<span class="nc" id="L75">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="nc" id="L77">            closeConecction(connection, statement, null);</span>
+        }
+
+<span class="nc" id="L80">    }</span>
+
+    //METODOS DE INSERCION
+
+    /**
+     * Metodo encargado de realizar la insercion de una arquitectura
+     * 
+     * @param arquitectura a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Arquitectura arquitectura) throws PersistenciaException {
+<span class="nc" id="L91">        String sql = &quot;INSERT INTO arquitectura (id, version_arquitectura, disenio, tecnologia, estandar) &quot; + SQL_VALUES</span>
+<span class="nc" id="L92">                + arquitectura.getId() + SQL_COMA </span>
+<span class="nc" id="L93">                + arquitectura.getVersionArquitectura() + SQL_COMA </span>
+<span class="nc" id="L94">                + arquitectura.getDisenio() + SQL_COMA </span>
+<span class="nc" id="L95">                + arquitectura.getTecnologia() + SQL_COMA </span>
+<span class="nc" id="L96">                + arquitectura.getEstandar() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L97">        actualizar(sql);</span>
+<span class="nc" id="L98">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de un fabricante
+     * 
+     * @param fabricante a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Fabricante fabricante) throws PersistenciaException {
+<span class="nc" id="L107">        String sql = &quot;INSERT INTO fabricante (codigo, codigo_postal, nombre, numero, pais, calle, telefono, &quot;</span>
+                + &quot;correo, web) &quot; + SQL_VALUES 
+<span class="nc" id="L109">                + fabricante.getCodigo() + SQL_COMA </span>
+<span class="nc" id="L110">                + fabricante.getCodigoPostal() + SQL_COMA </span>
+<span class="nc" id="L111">                + fabricante.getNombre() + SQL_COMA </span>
+<span class="nc" id="L112">                + fabricante.getNumero() + SQL_COMA</span>
+<span class="nc" id="L113">                + fabricante.getPais() + SQL_COMA </span>
+<span class="nc" id="L114">                + fabricante.getCalle() + SQL_COMA </span>
+<span class="nc" id="L115">                + fabricante.getTelefono() + SQL_COMA </span>
+<span class="nc" id="L116">                + fabricante.getCorreo() + SQL_COMA </span>
+<span class="nc" id="L117">                + fabricante.getWeb() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L118">        actualizar(sql);</span>
+<span class="nc" id="L119">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de una grafica integrada
+     * 
+     * @param graficaIntegrada a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L128">        String sql = &quot;INSERT INTO grafica_integrada (id, nombre_grafica, frec_basica, frec_max, memoria_max, resolucion) &quot;</span>
+                + SQL_VALUES 
+<span class="nc" id="L130">                + graficaIntegrada.getId() + SQL_COMA </span>
+<span class="nc" id="L131">                + graficaIntegrada.getNombreGrafica() + SQL_COMA</span>
+<span class="nc" id="L132">                + graficaIntegrada.getFrecuenciaBasica() + SQL_COMA </span>
+<span class="nc" id="L133">                + graficaIntegrada.getFrecuenciaMaxima() + SQL_COMA</span>
+<span class="nc" id="L134">                + graficaIntegrada.getMemoriaMaxima() + SQL_COMA </span>
+<span class="nc" id="L135">                + graficaIntegrada.getResolucion() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L136">        actualizar(sql);</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de un registro en nombre_procesador
+     * 
+     * @param nombreProcesador a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(NombreProcesador nombreProcesador) throws PersistenciaException {
+<span class="nc" id="L146">        String sql = &quot;INSERT INTO nombre_procesador (modelo_procesador, familia, generacion) &quot; + SQL_VALUES</span>
+<span class="nc" id="L147">                + nombreProcesador.getModeloProcesador() + SQL_COMA </span>
+<span class="nc" id="L148">                + nombreProcesador.getFamilia() + SQL_COMA</span>
+<span class="nc" id="L149">                + nombreProcesador.getGeneracion() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L150">        actualizar(sql);</span>
+<span class="nc" id="L151">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de una placa base
+     * 
+     * @param placaBase a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L160">        String sql = &quot;INSERT INTO placa_base (id, id_socket, nombre) &quot; + SQL_VALUES </span>
+<span class="nc" id="L161">                + placaBase.getId() + SQL_COMA</span>
+<span class="nc" id="L162">                + placaBase.getIdSocket() + SQL_COMA </span>
+<span class="nc" id="L163">                + placaBase.getNombre() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L164">        actualizar(sql);</span>
+<span class="nc" id="L165">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de un procesador
+     * 
+     * @param procesador a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Procesador procesador) throws PersistenciaException {
+<span class="nc" id="L174">        String sql = &quot;INSERT INTO procesador (id, codigo_fabricante, id_socket, id_arquitectura, modelo, &quot;</span>
+                + &quot;fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio) &quot; + SQL_VALUES
+<span class="nc" id="L176">                + procesador.getId() + SQL_COMA </span>
+<span class="nc" id="L177">                + procesador.getCodigoFabricante() + SQL_COMA </span>
+<span class="nc" id="L178">                + procesador.getIdSocket() + SQL_COMA </span>
+<span class="nc" id="L179">                + procesador.getIdArquitectura() + SQL_COMA </span>
+<span class="nc" id="L180">                + procesador.getModelo() + SQL_COMA</span>
+<span class="nc" id="L181">                + procesador.getFechaLanzamiento() + SQL_COMA </span>
+<span class="nc" id="L182">                + procesador.getNucleos() + SQL_COMA</span>
+<span class="nc" id="L183">                + procesador.getHilos() + SQL_COMA </span>
+<span class="nc" id="L184">                + procesador.getFrecuencia() + SQL_COMA </span>
+<span class="nc" id="L185">                + procesador.getOverclock() + SQL_COMA </span>
+<span class="nc" id="L186">                + procesador.getTdp() + SQL_COMA </span>
+<span class="nc" id="L187">                + procesador.getPrecio() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L188">        actualizar(sql);</span>
+<span class="nc" id="L189">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de un registro en
+     * procesador_grafica_integrada
+     * 
+     * @param procesadorGraficaIntegrada a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L199">        String sql = &quot;INSERT INTO procesador_grafica_integrada (id_procesador, id_grafica_integrada) &quot; + SQL_VALUES</span>
+<span class="nc" id="L200">                + procesadorGraficaIntegrada.getIdProcesador() + SQL_COMA</span>
+<span class="nc" id="L201">                + procesadorGraficaIntegrada.getIdGraficaIntegrada() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L202">        actualizar(sql);</span>
+<span class="nc" id="L203">    }</span>
+
+    /**
+     * Metodo encargado de insertar un socket
+     * 
+     * @param socket a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Zocalo socket) throws PersistenciaException {
+<span class="nc" id="L212">        String sql = &quot;INSERT INTO socket (id, tipo, tecnologia, fecha_lanzamiento) &quot; + SQL_VALUES </span>
+<span class="nc" id="L213">                + socket.getId() + SQL_COMA </span>
+<span class="nc" id="L214">                + socket.getTipo() + SQL_COMA </span>
+<span class="nc" id="L215">                + socket.getTecnologia() + SQL_COMA</span>
+<span class="nc" id="L216">                + socket.getFechaLanzamiento() + SQL_FIN_PARENTESIS;</span>
+<span class="nc" id="L217">        actualizar(sql);</span>
+<span class="nc" id="L218">    }</span>
+
+    //METODOS DE MODIFICACION
+
+    /**
+     * Metodo encargado de modificar una arquitectura de la BBDD
+     * 
+     * @param arquitectura a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Arquitectura arquitectura) throws PersistenciaException {
+<span class="nc" id="L229">        String sql = &quot;UPDATE arquitectura SET id = '&quot; + arquitectura.getId() </span>
+<span class="nc" id="L230">                + &quot;', version_arquitectura = '&quot; + arquitectura.getVersionArquitectura() </span>
+<span class="nc" id="L231">                + &quot;', disenio = '&quot; + arquitectura.getDisenio() </span>
+<span class="nc" id="L232">                + &quot;', tecnologia = '&quot; + arquitectura.getTecnologia() </span>
+<span class="nc" id="L233">                + &quot;', estandar = '&quot; + arquitectura.getEstandar() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L235">        actualizar(sql);</span>
+<span class="nc" id="L236">    }</span>
+
+    /**
+     * Metodo encargado de modificar un fabricante de la BBDD
+     * 
+     * @param fabricante a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Fabricante fabricante) throws PersistenciaException {
+<span class="nc" id="L245">        String sql = &quot;UPDATE fabricante SET codigo = '&quot; + fabricante.getCodigo() </span>
+<span class="nc" id="L246">                + &quot;', codigo_postal = '&quot; + fabricante.getCodigoPostal() </span>
+<span class="nc" id="L247">                + &quot;', nombre = '&quot; + fabricante.getNombre() </span>
+<span class="nc" id="L248">                + &quot;', numero = '&quot; + fabricante.getNumero() </span>
+<span class="nc" id="L249">                + &quot;', pais = '&quot; + fabricante.getPais() </span>
+<span class="nc" id="L250">                + &quot;', calle = '&quot; + fabricante.getCalle() </span>
+<span class="nc" id="L251">                + &quot;', telefono = '&quot; + fabricante.getTelefono() </span>
+<span class="nc" id="L252">                + &quot;', correo = '&quot; + fabricante.getCorreo() </span>
+<span class="nc" id="L253">                + &quot;', web = '&quot; + fabricante.getWeb() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L255">        actualizar(sql);</span>
+<span class="nc" id="L256">    }</span>
+
+    /**
+     * Metodo encargado de modificar una grafica de la BBDD
+     * 
+     * @param graficaIntegrada a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L265">        String sql = &quot;UPDATE grafica_integrada SET id = '&quot; + graficaIntegrada.getId() </span>
+<span class="nc" id="L266">                + &quot;', nombre_grafica = '&quot; + graficaIntegrada.getNombreGrafica() </span>
+<span class="nc" id="L267">                + &quot;', frec_basica = '&quot; + graficaIntegrada.getFrecuenciaBasica() </span>
+<span class="nc" id="L268">                + &quot;', frec_max = '&quot; + graficaIntegrada.getFrecuenciaMaxima() </span>
+<span class="nc" id="L269">                + &quot;', memoria_max = '&quot; + graficaIntegrada.getMemoriaMaxima() </span>
+<span class="nc" id="L270">                + &quot;', resolucion = '&quot; + graficaIntegrada.getResolucion() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L272">        actualizar(sql);</span>
+<span class="nc" id="L273">    }</span>
+
+    /**
+     * Metodo encargado de modificar un registro en nombre_procesador
+     * 
+     * @param nombreProcesador a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(NombreProcesador nombreProcesador) throws PersistenciaException {
+<span class="nc" id="L282">        String sql = &quot;UPDATE nombre_procesador SET modelo_procesador = '&quot; + nombreProcesador.getModeloProcesador() </span>
+<span class="nc" id="L283">                + &quot;', familia = '&quot; + nombreProcesador.getFamilia() </span>
+<span class="nc" id="L284">                + &quot;', generacion = '&quot; + nombreProcesador.getGeneracion() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L286">        actualizar(sql);</span>
+<span class="nc" id="L287">    }</span>
+
+    /**
+     * Metodo encargado de modificar una placa base en la BBDD
+     * 
+     * @param placaBase a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L296">        String sql = &quot;UPDATE placa_base SET id = '&quot; + placaBase.getId() </span>
+<span class="nc" id="L297">                + &quot;', id_socket = '&quot; + placaBase.getIdSocket()</span>
+<span class="nc" id="L298">                + &quot;', nombre = '&quot; + placaBase.getNombre() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L300">        actualizar(sql);</span>
+<span class="nc" id="L301">    }</span>
+
+    /**
+     * Metodo encargado de modificar un procesador en la BBDD
+     * 
+     * @param procesador a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Procesador procesador) throws PersistenciaException {
+<span class="nc" id="L310">        String sql = &quot;UPDATE procesador SET id = '&quot; + procesador.getId()</span>
+<span class="nc" id="L311">                + &quot;', codigo_fabricante = '&quot; + procesador.getCodigoFabricante()</span>
+<span class="nc" id="L312">                + &quot;', id_socket = '&quot; + procesador.getIdSocket()</span>
+<span class="nc" id="L313">                + &quot;', id_arquitectura = '&quot; + procesador.getIdArquitectura()</span>
+<span class="nc" id="L314">                + &quot;', modelo = '&quot; + procesador.getModelo()</span>
+<span class="nc" id="L315">                + &quot;', fecha_lanzamiento = '&quot; + procesador.getFechaLanzamiento()</span>
+<span class="nc" id="L316">                + &quot;', nucleos = '&quot; + procesador.getNucleos()</span>
+<span class="nc" id="L317">                + &quot;', hilos = '&quot; + procesador.getHilos()</span>
+<span class="nc" id="L318">                + &quot;', frecuencia = '&quot; + procesador.getFrecuencia()</span>
+<span class="nc" id="L319">                + &quot;', overclock = '&quot; + procesador.getOverclock()</span>
+<span class="nc" id="L320">                + &quot;', tdp = '&quot; + procesador.getTdp()</span>
+<span class="nc" id="L321">                + &quot;', precio = '&quot; + procesador.getPrecio()</span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L323">        actualizar(sql);</span>
+<span class="nc" id="L324">    }</span>
+
+    /**
+     * Metodo encargado de modificar un registro en procesador_grafica_integrada
+     * 
+     * @param procesadorGraficaIntegrada a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L333">        String sql = &quot;UPDATE procesador_grafica_integrada SET id_procesador = '&quot; + procesadorGraficaIntegrada.getIdProcesador()</span>
+<span class="nc" id="L334">                + &quot;', id_grafica_integrada = '&quot; + procesadorGraficaIntegrada.getIdGraficaIntegrada()</span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L336">        actualizar(sql);</span>
+<span class="nc" id="L337">    }</span>
+
+    /**
+     * Metodo encargado de modificar un socket en la BBDD
+     * 
+     * @param socket a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Zocalo socket) throws PersistenciaException {
+<span class="nc" id="L346">        String sql = &quot;UPDATE socket SET id = '&quot; + socket.getId()</span>
+<span class="nc" id="L347">                + &quot;', tipo = '&quot; + socket.getTipo()</span>
+<span class="nc" id="L348">                + &quot;', tecnologia = '&quot; + socket.getTecnologia()</span>
+<span class="nc" id="L349">                + &quot;', fecha_lanzamiento = '&quot; + socket.getFechaLanzamiento()</span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L351">        actualizar(sql);</span>
+<span class="nc" id="L352">    }</span>
+
+    //METODOS DE ELIMINACION
+
+    /**
+     * Metodo encargado de eliminar una arquitectura de la BBDD
+     * 
+     * @param arquitectura a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Arquitectura arquitectura) throws PersistenciaException {
+<span class="nc" id="L363">        String sql = &quot;DELETE FROM arquitectura WHERE id = '&quot; + arquitectura.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L364">        actualizar(sql);</span>
+<span class="nc" id="L365">    }</span>
+
+    /**
+     * Metodo encargado de eliminar un fabricante de la BBDD
+     * 
+     * @param fabricante a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Fabricante fabricante) throws PersistenciaException {
+<span class="nc" id="L374">        String sql = &quot;DELETE FROM fabricante WHERE codigo = '&quot; + fabricante.getCodigo() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L375">        actualizar(sql);</span>
+<span class="nc" id="L376">    }</span>
+
+     /**
+     * Metodo encargado de eliminar una grafica integrada de la BBDD
+     * 
+     * @param graficaIntegrada a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L385">        String sql = &quot;DELETE FROM grafica_integrada WHERE id = '&quot; + graficaIntegrada.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L386">        actualizar(sql);</span>
+<span class="nc" id="L387">    }</span>
+
+    /**
+     * Metodo encargado de eliminar un registro de nombre_procesador
+     * 
+     * @param nombreProcesador a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(NombreProcesador nombreProcesador) throws PersistenciaException {
+<span class="nc" id="L396">        String sql = &quot;DELETE FROM nombre_procesador WHERE modelo_procesador = '&quot; + nombreProcesador.getModeloProcesador() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L397">        actualizar(sql);</span>
+<span class="nc" id="L398">    }</span>
+
+    /**
+     * Metodo encargado de eliminar una placa base de la BBDD
+     * 
+     * @param placaBase a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L407">        String sql = &quot;DELETE FROM placa_base WHERE id = '&quot; + placaBase.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L408">        actualizar(sql);</span>
+<span class="nc" id="L409">    }</span>
+
+    /**
+     * Metodo encargado de eliminar un procesador de la BBDD
+     * 
+     * @param procesador a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Procesador procesador) throws PersistenciaException {
+<span class="nc" id="L418">        String sql = &quot;DELETE FROM procesador WHERE id = '&quot; + procesador.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L419">        actualizar(sql);</span>
+<span class="nc" id="L420">    }</span>
+
+    /**
+     * Metodo encargado de eliminar un registro de procesador_grafica_integrada
+     * 
+     * @param procesadorGraficaIntegrada a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L429">        String sql = &quot;DELETE FROM procesador_grafica_integrada WHERE id_procesador = '&quot; + procesadorGraficaIntegrada.getIdProcesador() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L430">        actualizar(sql);</span>
+<span class="nc" id="L431">    }</span>
+
+    /**
+     * Metodo encargado de eliminar un socket de la BBDD
+     * 
+     * @param socket a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Zocalo socket) throws PersistenciaException {
+<span class="nc" id="L440">        String sql = &quot;DELETE FROM socket WHERE id = '&quot; + socket.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="nc" id="L441">        actualizar(sql);</span>
+<span class="nc" id="L442">    }</span>
+
+    //obtenerFila
+
+    /**
+     * Funcion encargada de devolver una arquitectura segun su id
+     * 
+     * @param idArquitectura de la arquitectura a devolver
+     * @return la arquitectura si existe
+     * @throws PersistenciaException controlada
+     */
+    public Arquitectura obtenerArquitectura(int idArquitectura) throws PersistenciaException {
+<span class="nc" id="L454">        Arquitectura arquitectura = new Arquitectura();</span>
+        ArrayList&lt;Arquitectura&gt; lista;
+<span class="nc" id="L456">        String sql = &quot;SELECT * FROM arquitectura WHERE id = &quot; + idArquitectura + PUNTO_Y_COMA;</span>
+<span class="nc" id="L457">        lista = (ArrayList&lt;Arquitectura&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L458" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L459">            arquitectura = lista.get(0);</span>
+        }
+<span class="nc" id="L461">        return arquitectura;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver un fabricante segun su codigo
+     * 
+     * @param codigo del fabricante a devolver
+     * @return el fabricante si existe
+     * @throws PersistenciaException controlada
+     */
+    public Fabricante obtenerFabricante(String codigo) throws PersistenciaException {
+<span class="nc" id="L472">        Fabricante fabricante = new Fabricante();</span>
+        ArrayList&lt;Fabricante&gt; lista;
+<span class="nc" id="L474">        String sql = &quot;SELECT * FROM fabricante WHERE codigo = &quot; + codigo + PUNTO_Y_COMA;</span>
+<span class="nc" id="L475">        lista = (ArrayList&lt;Fabricante&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L476" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L477">            fabricante = lista.get(0);</span>
+        }
+<span class="nc" id="L479">        return fabricante;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver una grafica integrada segun su id
+     * 
+     * @param id de la grafica integrada a devolver
+     * @return la grafica integrada si existe
+     * @throws PersistenciaException controlada
+     */
+    public GraficaIntegrada obtenerGraficaIntegrada(int idGraficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L490">        GraficaIntegrada graficaIntegrada = new GraficaIntegrada();</span>
+        ArrayList&lt;GraficaIntegrada&gt; lista;
+<span class="nc" id="L492">        String sql = &quot;SELECT * FROM grafica_integrada WHERE id = &quot; + idGraficaIntegrada + PUNTO_Y_COMA;</span>
+<span class="nc" id="L493">        lista = (ArrayList&lt;GraficaIntegrada&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L494" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L495">            graficaIntegrada = lista.get(0);</span>
+        }
+<span class="nc" id="L497">        return graficaIntegrada;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver una fila de la tabla nombre_procesador segun su modelo
+     * 
+     * @param modeloProcesador de la fila a devolver
+     * @return la fila si existe
+     * @throws PersistenciaException controlada
+     */
+    public NombreProcesador obtenerNombreProcesador(String modeloProcesador) throws PersistenciaException {
+<span class="nc" id="L508">        NombreProcesador nombreProcesador = new NombreProcesador();</span>
+        ArrayList&lt;NombreProcesador&gt; lista;
+<span class="nc" id="L510">        String sql = &quot;SELECT * FROM nombre_procesador WHERE modelo_procesador = &quot; + modeloProcesador + PUNTO_Y_COMA;</span>
+<span class="nc" id="L511">        lista = (ArrayList&lt;NombreProcesador&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L512" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L513">            nombreProcesador = lista.get(0);</span>
+        }
+<span class="nc" id="L515">        return nombreProcesador;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver una placa base segun su id
+     * 
+     * @param idPlacaBase de la placa base a devolver
+     * @return la placa base si existe
+     * @throws PersistenciaException controlada
+     */
+    public PlacaBase obtenerPlacaBase(int idPlacaBase) throws PersistenciaException {
+<span class="nc" id="L526">        PlacaBase placaBase = new PlacaBase();</span>
+        ArrayList&lt;PlacaBase&gt; lista;
+<span class="nc" id="L528">        String sql = &quot;SELECT * FROM placa_base WHERE id = &quot; + idPlacaBase + PUNTO_Y_COMA;</span>
+<span class="nc" id="L529">        lista = (ArrayList&lt;PlacaBase&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L530" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L531">            placaBase = lista.get(0);</span>
+        }
+<span class="nc" id="L533">        return placaBase;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver un procesador segun su id
+     * 
+     * @param idProcesador del procesador a devolver
+     * @return el procesador si existe
+     * @throws PersistenciaException controlada
+     */
+    public Procesador obtenerProcesador(int idProcesador) throws PersistenciaException {
+<span class="nc" id="L544">        Procesador procesador = new Procesador();</span>
+        ArrayList&lt;Procesador&gt; lista;
+<span class="nc" id="L546">        String sql = &quot;SELECT * FROM procesador WHERE id = &quot; + idProcesador + PUNTO_Y_COMA;</span>
+<span class="nc" id="L547">        lista = (ArrayList&lt;Procesador&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L548" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L549">            procesador = lista.get(0);</span>
+        }
+<span class="nc" id="L551">        return procesador;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver una fila de procesador_grafica_integrada segun la id del procesador
+     * 
+     * @param idProcesador de la fila a devolver
+     * @return la fila si existe
+     * @throws PersistenciaException controlada
+     */
+    public ProcesadorGraficaIntegrada obtenerProcesadorGraficaIntegrada(int idProcesador) throws PersistenciaException {
+<span class="nc" id="L562">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada();</span>
+        ArrayList&lt;ProcesadorGraficaIntegrada&gt; lista;
+<span class="nc" id="L564">        String sql = &quot;SELECT * FROM procesador_grafica_integrada WHERE id_procesador = &quot; + idProcesador + PUNTO_Y_COMA;</span>
+<span class="nc" id="L565">        lista = (ArrayList&lt;ProcesadorGraficaIntegrada&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L566" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L567">            procesadorGraficaIntegrada = lista.get(0);</span>
+        }
+<span class="nc" id="L569">        return procesadorGraficaIntegrada;</span>
+    }
+
+    /**
+     * Funcion encargada de devolver un zocalo segun su id
+     * 
+     * @param idZocalo del zocalo a devolver
+     * @return el zocalo si existe
+     * @throws PersistenciaException controlada
+     */
+    public Zocalo obtenerZocalo(int idZocalo) throws PersistenciaException {
+<span class="nc" id="L580">        Zocalo zocalo = new Zocalo();</span>
+        ArrayList&lt;Zocalo&gt; lista;
+<span class="nc" id="L582">        String sql = &quot;SELECT * FROM zocalo WHERE id = &quot; + idZocalo + PUNTO_Y_COMA;</span>
+<span class="nc" id="L583">        lista = (ArrayList&lt;Zocalo&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+<span class="nc bnc" id="L584" title="All 2 branches missed.">        if (!lista.isEmpty()) {</span>
+<span class="nc" id="L585">            zocalo = lista.get(0);</span>
+        }
+<span class="nc" id="L587">        return zocalo;</span>
+    }
+
+    //obtenerListado
+
+    /**
+     * Funcion que obtiene el listado de arquitecturas almacenadas en la BBDD
+     * 
+     * @return un arraylist con las arquitecturas
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Arquitectura&gt; obtenerListadoArquitectura() throws PersistenciaException {
+<span class="nc" id="L599">        String sql = &quot;SELECT * FROM arquitectura;&quot;;</span>
+<span class="nc" id="L600">        return (ArrayList&lt;Arquitectura&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene el listado de fabricantes almacenados en la BBDD
+     * 
+     * @return un arraylist con los fabricantes
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Fabricante&gt; obtenerListadoFabricante() throws PersistenciaException {
+<span class="nc" id="L610">        String sql = &quot;SELECT * FROM fabricante;&quot;;</span>
+<span class="nc" id="L611">        return (ArrayList&lt;Fabricante&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    } 
+
+    /**
+     * Funcion que obtiene el listado de graficas integradas almacenadas en la BBDD
+     * 
+     * @return un arraylist con las graficas integradas
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;GraficaIntegrada&gt; obtenerListadoGraficaIntegrada() throws PersistenciaException {
+<span class="nc" id="L621">        String sql = &quot;SELECT * FROM grafica_integrada;&quot;;</span>
+<span class="nc" id="L622">        return (ArrayList&lt;GraficaIntegrada&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    } 
+
+    /**
+     * Funcion que obtiene el listado de registros en nombre_procesador almacenados en la BBDD
+     * 
+     * @return un arraylist con los registros en nombre_procesador
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;NombreProcesador&gt; obtenerListadoNombreProcesador() throws PersistenciaException {
+<span class="nc" id="L632">        String sql = &quot;SELECT * FROM nombre_procesador;&quot;;</span>
+<span class="nc" id="L633">        return (ArrayList&lt;NombreProcesador&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene el listado de placas base almacenadas en la BBDD
+     * 
+     * @return un arraylist con las placas base
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;PlacaBase&gt; obtenerListadoPlacaBase() throws PersistenciaException {
+<span class="nc" id="L643">        String sql = &quot;SELECT * FROM placa_base;&quot;;</span>
+<span class="nc" id="L644">        return (ArrayList&lt;PlacaBase&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene el listado de procesadores almacenados en la BBDD
+     * 
+     * @return un arraylist con los procesadores
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Procesador&gt; obtenerListadoProcesador() throws PersistenciaException {
+<span class="nc" id="L654">        String sql = &quot;SELECT * FROM procesador;&quot;;</span>
+<span class="nc" id="L655">        return (ArrayList&lt;Procesador&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene el listado de registros en procesador_grafica_integrada almacenados en la BBDD
+     * 
+     * @return un arraylist con los registros en procesador_grafica_integrada
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;ProcesadorGraficaIntegrada&gt; obtenerListadoProcesadorGraficaIntegrada() throws PersistenciaException {
+<span class="nc" id="L665">        String sql = &quot;SELECT * FROM procesador_grafica_integrada;&quot;;</span>
+<span class="nc" id="L666">        return (ArrayList&lt;ProcesadorGraficaIntegrada&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene el listado de zocalos almacenados en la BBDD
+     * 
+     * @return un arraylist con los zocalos
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Zocalo&gt; obtenerListadoZocalo() throws PersistenciaException {
+<span class="nc" id="L676">        String sql = &quot;SELECT * FROM zocalo;&quot;;</span>
+<span class="nc" id="L677">        return (ArrayList&lt;Zocalo&gt;) (ArrayList&lt;?&gt;) obtenerListado(sql);</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre el listado en la BBDD
+     * 
+     * @param sql de la consulta
+     * @return lista de objetos
+     * @throws PersistenciaException controlada
+     */
+    private ArrayList&lt;Object&gt; obtenerListado(String sql) throws PersistenciaException {
+<span class="nc" id="L688">        ArrayList&lt;Object&gt; listado = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L690">        Statement statement = null;</span>
+<span class="nc" id="L691">        ResultSet resultSet = null;</span>
+<span class="nc" id="L692">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L694">            connection = getConnection();</span>
+<span class="nc" id="L695">            statement = connection.createStatement();</span>
+<span class="nc" id="L696">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc" id="L697">            decidirTabla(resultSet, sql, listado);</span>
+<span class="nc" id="L698">        } catch (Exception exception) {</span>
+<span class="nc" id="L699">            throw new PersistenciaException(&quot;Se ha producido un error realizando el listado&quot;);</span>
+        } finally {
+<span class="nc" id="L701">            closeConecction(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L703">        return listado;</span>
+    }
+
+    /**
+     * Funcion que decide sobre que tabla es la consulta
+     * 
+     * @param resultSet fila
+     * @param sql de la consulta
+     * @param listado de los objetos a listar
+     * @return una lista de objetos
+     * @throws SQLException
+     */
+    private ArrayList&lt;Object&gt; decidirTabla(ResultSet resultSet, String sql, ArrayList&lt;Object&gt; listado) throws SQLException {
+        NombreProcesador nombreProcesador;
+        Arquitectura arquitectura;
+        Fabricante fabricante;
+        Zocalo zocalo;
+        PlacaBase placaBase;
+        GraficaIntegrada graficaIntegrada;
+        Procesador procesador;
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada;
+<span class="nc bnc" id="L724" title="All 2 branches missed.">        while (resultSet.next()) {</span>
+<span class="nc bnc" id="L725" title="All 2 branches missed.">                if (sql.contains(&quot; nombre_procesador;&quot;)) {</span>
+<span class="nc" id="L726">                    nombreProcesador = crearNombreProcesador(resultSet);</span>
+<span class="nc" id="L727">                    listado.add(nombreProcesador);</span>
+<span class="nc bnc" id="L728" title="All 2 branches missed.">                } else if (sql.contains(&quot; arquitectura;&quot;)) {</span>
+<span class="nc" id="L729">                    arquitectura = crearArquitectura(resultSet);</span>
+<span class="nc" id="L730">                    listado.add(arquitectura);</span>
+<span class="nc bnc" id="L731" title="All 2 branches missed.">                } else if (sql.contains(&quot; fabricante;&quot;)) {</span>
+<span class="nc" id="L732">                    fabricante = crearFabricante(resultSet);</span>
+<span class="nc" id="L733">                    listado.add(fabricante);</span>
+<span class="nc bnc" id="L734" title="All 2 branches missed.">                } else if (sql.contains(&quot; zocalo;&quot;)) {</span>
+<span class="nc" id="L735">                    zocalo = crearZocalo(resultSet);</span>
+<span class="nc" id="L736">                    listado.add(zocalo);</span>
+<span class="nc bnc" id="L737" title="All 2 branches missed.">                } else if (sql.contains(&quot; placa_base;&quot;)) {</span>
+<span class="nc" id="L738">                    placaBase = crearPlacaBase(resultSet);</span>
+<span class="nc" id="L739">                    listado.add(placaBase);</span>
+<span class="nc bnc" id="L740" title="All 2 branches missed.">                } else if (sql.contains(&quot; grafica_integrada;&quot;)) {</span>
+<span class="nc" id="L741">                    graficaIntegrada = crearGraficaIntegrada(resultSet);</span>
+<span class="nc" id="L742">                    listado.add(graficaIntegrada);</span>
+<span class="nc bnc" id="L743" title="All 2 branches missed.">                } else if (sql.contains(&quot; procesador;&quot;)) {</span>
+<span class="nc" id="L744">                    procesador = crearProcesador(resultSet);</span>
+<span class="nc" id="L745">                    listado.add(procesador);</span>
+<span class="nc bnc" id="L746" title="All 2 branches missed.">                } else if (sql.contains(&quot; procesador_grafica_integrada;&quot;)) {</span>
+<span class="nc" id="L747">                    procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada(resultSet);</span>
+<span class="nc" id="L748">                    listado.add(procesadorGraficaIntegrada);</span>
+                }
+        }
+<span class="nc" id="L751">        return listado;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto NombreProcesador segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto NombreProcesador
+     * @throws SQLException 
+     */
+    private NombreProcesador crearNombreProcesador(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L762">        String modeloProcesador = STRING_VACIO;</span>
+<span class="nc" id="L763">        String familia = STRING_VACIO;</span>
+<span class="nc" id="L764">        byte generacion = CERO;</span>
+<span class="nc" id="L765">        modeloProcesador = resultSet.getString(&quot;modelo_procesador&quot;);</span>
+<span class="nc" id="L766">        familia = resultSet.getString(&quot;familia&quot;);</span>
+<span class="nc" id="L767">        generacion = resultSet.getByte(&quot;generacion&quot;);</span>
+<span class="nc" id="L768">        NombreProcesador nombreProcesador = new NombreProcesador(modeloProcesador, familia, generacion);</span>
+<span class="nc" id="L769">        return nombreProcesador;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto Arquitectura segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Arquitectura
+     * @throws SQLException  
+     */
+    private Arquitectura crearArquitectura(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L780">        int id = CERO;</span>
+<span class="nc" id="L781">        String version = STRING_VACIO;</span>
+<span class="nc" id="L782">        String disenio = STRING_VACIO;</span>
+<span class="nc" id="L783">        String tecnologia = STRING_VACIO;</span>
+<span class="nc" id="L784">        String estandar = STRING_VACIO;</span>
+<span class="nc" id="L785">        id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="nc" id="L786">        version = resultSet.getString(&quot;version_arquitectura&quot;);</span>
+<span class="nc" id="L787">        disenio = resultSet.getString(&quot;disenio&quot;);</span>
+<span class="nc" id="L788">        tecnologia = resultSet.getString(&quot;tecnologia&quot;);</span>
+<span class="nc" id="L789">        estandar = resultSet.getString(&quot;estandar&quot;);</span>
+<span class="nc" id="L790">        Arquitectura arquitectura = new Arquitectura(id,version,disenio,tecnologia,estandar);</span>
+<span class="nc" id="L791">        return arquitectura;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto Fabricante segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Fabricante
+     * @throws SQLException  
+     */
+    private Fabricante crearFabricante(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L802">        String codigo = STRING_VACIO;</span>
+<span class="nc" id="L803">        String codigoPostal = STRING_VACIO;</span>
+<span class="nc" id="L804">        String nombre = STRING_VACIO;</span>
+<span class="nc" id="L805">        int numero = CERO;</span>
+<span class="nc" id="L806">        String pais = STRING_VACIO;</span>
+<span class="nc" id="L807">        String calle = STRING_VACIO;</span>
+<span class="nc" id="L808">        String telefono = STRING_VACIO;</span>
+<span class="nc" id="L809">        String correo = STRING_VACIO;</span>
+<span class="nc" id="L810">        String web = STRING_VACIO;</span>
+<span class="nc" id="L811">        codigo = resultSet.getString(&quot;codigo&quot;);</span>
+<span class="nc" id="L812">        codigoPostal = resultSet.getString(&quot;codigo_postal&quot;);</span>
+<span class="nc" id="L813">        nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L814">        numero = resultSet.getInt(&quot;numero&quot;);</span>
+<span class="nc" id="L815">        pais = resultSet.getString(&quot;pais&quot;);</span>
+<span class="nc" id="L816">        calle = resultSet.getString(&quot;calle&quot;);</span>
+<span class="nc" id="L817">        telefono = resultSet.getString(&quot;telefono&quot;);</span>
+<span class="nc" id="L818">        correo = resultSet.getString(&quot;correo&quot;);</span>
+<span class="nc" id="L819">        web = resultSet.getString(&quot;web&quot;);</span>
+<span class="nc" id="L820">        Fabricante fabricante = new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);</span>
+<span class="nc" id="L821">        return fabricante;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto Zocalo segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Zocalo
+     * @throws SQLException  
+     */
+    private Zocalo crearZocalo(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L832">        int id = CERO;</span>
+<span class="nc" id="L833">        String tipo = STRING_VACIO;</span>
+<span class="nc" id="L834">        String tecnologia = STRING_VACIO;</span>
+        String fechaLanzamiento; //Inicializar
+<span class="nc" id="L836">        id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="nc" id="L837">        tipo = resultSet.getString(&quot;tipo&quot;);</span>
+<span class="nc" id="L838">        tecnologia = resultSet.getString(&quot;tecnologia&quot;);</span>
+<span class="nc" id="L839">        fechaLanzamiento = resultSet.getString(&quot;fecha_lanzamiento&quot;);</span>
+<span class="nc" id="L840">        Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);</span>
+<span class="nc" id="L841">        return zocalo;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto PlacaBase segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto PlacaBase
+     * @throws SQLException  
+     */
+    private PlacaBase crearPlacaBase(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L852">        int id = CERO;</span>
+<span class="nc" id="L853">        int idSocket = CERO;</span>
+<span class="nc" id="L854">        String nombre = STRING_VACIO;</span>
+<span class="nc" id="L855">        id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="nc" id="L856">        idSocket = resultSet.getInt(&quot;id_socket&quot;);</span>
+<span class="nc" id="L857">        nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L858">        PlacaBase placaBase = new PlacaBase(id, idSocket, nombre);</span>
+<span class="nc" id="L859">        return placaBase;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto GraficaIntegrada segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto GraficaIntegrada
+     * @throws SQLException
+     */
+    private GraficaIntegrada crearGraficaIntegrada(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L870">        int id = CERO;</span>
+<span class="nc" id="L871">        String nombreGrafica = STRING_VACIO;</span>
+<span class="nc" id="L872">        float frecuenciaBasica = CERO;</span>
+<span class="nc" id="L873">        float frecuenciaMaxima = CERO;</span>
+<span class="nc" id="L874">        int memoriaMaxima = CERO;</span>
+<span class="nc" id="L875">        String resolucion = STRING_VACIO;</span>
+<span class="nc" id="L876">        id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="nc" id="L877">        nombreGrafica = resultSet.getString(&quot;nombre_grafica&quot;);</span>
+<span class="nc" id="L878">        frecuenciaBasica = resultSet.getFloat(&quot;frec_basica&quot;);</span>
+<span class="nc" id="L879">        frecuenciaMaxima = resultSet.getFloat(&quot;frec_max&quot;);</span>
+<span class="nc" id="L880">        memoriaMaxima = resultSet.getInt(&quot;memoria_max&quot;);</span>
+<span class="nc" id="L881">        resolucion = resultSet.getString(&quot;resolucion&quot;);</span>
+<span class="nc" id="L882">        GraficaIntegrada graficaIntegrada = new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);</span>
+<span class="nc" id="L883">        return graficaIntegrada;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto Procesador segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto Procesador
+     * @throws SQLException
+     */
+    private Procesador crearProcesador(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L894">        int id = CERO;</span>
+<span class="nc" id="L895">        String codigoFabricante = STRING_VACIO;</span>
+<span class="nc" id="L896">        int idSocket = CERO;</span>
+<span class="nc" id="L897">        int idArquitectura = CERO;</span>
+<span class="nc" id="L898">        String modelo = STRING_VACIO;</span>
+        String fechaLanzamiento; //inicializar
+<span class="nc" id="L900">        int nucleos = CERO;</span>
+<span class="nc" id="L901">        int hilos = CERO;</span>
+<span class="nc" id="L902">        float frecuencia = CERO;</span>
+<span class="nc" id="L903">        boolean overclock = false;</span>
+<span class="nc" id="L904">        float tdp = CERO;</span>
+<span class="nc" id="L905">        float precio = CERO;</span>
+<span class="nc" id="L906">        id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="nc" id="L907">        codigoFabricante = resultSet.getString(&quot;codigo_fabricante&quot;);</span>
+<span class="nc" id="L908">        idSocket = resultSet.getInt(&quot;id_socket&quot;);</span>
+<span class="nc" id="L909">        idArquitectura = resultSet.getInt(&quot;id_arquitectura&quot;);</span>
+<span class="nc" id="L910">        modelo = resultSet.getString(&quot;modelo&quot;);</span>
+<span class="nc" id="L911">        fechaLanzamiento = resultSet.getString(&quot;fecha_lanzamiento&quot;);</span>
+<span class="nc" id="L912">        nucleos = resultSet.getInt(&quot;nucleos&quot;);</span>
+<span class="nc" id="L913">        hilos = resultSet.getInt(&quot;hilos&quot;);</span>
+<span class="nc" id="L914">        frecuencia = resultSet.getFloat(&quot;frecuencia&quot;);</span>
+<span class="nc" id="L915">        overclock = resultSet.getBoolean(&quot;overclock&quot;);</span>
+<span class="nc" id="L916">        tdp = resultSet.getFloat(&quot;tdp&quot;);</span>
+<span class="nc" id="L917">        precio = resultSet.getFloat(&quot;precio&quot;);</span>
+<span class="nc" id="L918">        Procesador procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);</span>
+<span class="nc" id="L919">        return procesador;</span>
+    }
+
+    /**
+     * Funcion que crea un objeto ProcesadorGraficaIntegrada segun el resultSet pasado
+     * 
+     * @param resultSet con la fila
+     * @return objeto ProcesadorGraficaIntegrada
+     * @throws SQLException
+     */
+    private ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada(ResultSet resultSet) throws SQLException {
+<span class="nc" id="L930">        int idProcesador = CERO;</span>
+<span class="nc" id="L931">        int idGraficaIntegrada = CERO;</span>
+<span class="nc" id="L932">        idProcesador = resultSet.getInt(&quot;id_procesador&quot;);</span>
+<span class="nc" id="L933">        idGraficaIntegrada = resultSet.getInt(&quot;id_grafica_integrada&quot;);</span>
+<span class="nc" id="L934">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(idProcesador, idGraficaIntegrada);</span>
+<span class="nc" id="L935">        return procesadorGraficaIntegrada;</span>
+    }
+
+    /**
+     * Metodo encargado de cerrar la conexion con la base de datos
+     * 
+     * @param connection a cerra
+     * @param statement  a cerrar
+     * @param resultSet  a cerrar
+     * @throws PersistenciaException con mensaje descriptivo
+     */
+    private void closeConecction(Connection connection, Statement statement, ResultSet resultSet)
+            throws PersistenciaException {
+        try {
+<span class="nc bnc" id="L949" title="All 2 branches missed.">            if (resultSet != null) {</span>
+<span class="nc" id="L950">                resultSet.close();</span>
+            }
+<span class="nc bnc" id="L952" title="All 2 branches missed.">            if (statement != null) {</span>
+<span class="nc" id="L953">                statement.close();</span>
+            }
+<span class="nc bnc" id="L955" title="All 2 branches missed.">            if (connection != null) {</span>
+<span class="nc" id="L956">                connection.close();</span>
+            }
+<span class="nc" id="L958">        } catch (Exception exception) {</span>
+<span class="nc" id="L959">            throw new PersistenciaException(&quot;Se ha producido un error cerrando la coneccion&quot;, exception);</span>
+<span class="nc" id="L960">        }</span>
+
+<span class="nc" id="L962">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

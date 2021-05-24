@@ -1,6 +1,11 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.Objects;
+
 public class GraficaIntegrada {
+
+    private static final String DELIMITADOR = "'";
+
     int id;
     String nombreGrafica;
     float frecuenciaBasica;
@@ -84,4 +89,28 @@ public class GraficaIntegrada {
     public void setResolucion(String resolucion) {
         this.resolucion = resolucion;
     }
+
+    @Override
+    public String toString() {
+        return getId() + DELIMITADOR +
+            getNombreGrafica() + DELIMITADOR +
+            getFrecuenciaBasica() + DELIMITADOR +
+            getFrecuenciaMaxima() + DELIMITADOR +
+            getMemoriaMaxima() + DELIMITADOR +
+            getResolucion(); 
+    }  
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof GraficaIntegrada)) {
+            return false;
+        }
+        GraficaIntegrada graficaIntegrada = (GraficaIntegrada) o;
+        return id == graficaIntegrada.id && Objects.equals(nombreGrafica, graficaIntegrada.nombreGrafica) && frecuenciaBasica == graficaIntegrada.frecuenciaBasica && frecuenciaMaxima == graficaIntegrada.frecuenciaMaxima && memoriaMaxima == graficaIntegrada.memoriaMaxima && Objects.equals(resolucion, graficaIntegrada.resolucion);
+    }
+
+   
+
 }

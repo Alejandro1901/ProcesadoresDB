@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlacaBaseModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">PlacaBaseModelo.java</span></div><h1>PlacaBaseModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.PlacaBase;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class PlacaBaseModelo {
+    
+    MySqlBbdd persistencia;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     */
+<span class="nc" id="L17">    public PlacaBaseModelo() {</span>
+<span class="nc" id="L18">        persistencia = new MySqlBbdd(&quot;com.mysql.jdbc.Driver&quot;,&quot;jdbc:mysql://localhost/text&quot;,&quot;admin&quot;, &quot;1234&quot;);</span>
+<span class="nc" id="L19">    }</span>
+
+    /**
+     * Metodo que inserta una placa base
+     * 
+     * @param placaBase a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L28">        persistencia.insertar(placaBase);</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * Metodo que elimina una placa base
+     * 
+     * @param placaBase a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L38">        persistencia.eliminar(placaBase);</span>
+<span class="nc" id="L39">    }</span>
+
+    /**
+     * Metodo que modifica una placa base
+     * 
+     * @param placaBase a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L48">        persistencia.modificar(placaBase);</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * Funcion que obtiene una placa base segun su id
+     * 
+     * @param idPlacaBase de la placa base a obtener
+     * @return la palca base si existe
+     * @throws PersistenciaException controlada
+     */
+    public PlacaBase obtenerPlacaBase(int idPlacaBase) throws PersistenciaException {
+<span class="nc" id="L59">        return persistencia.obtenerPlacaBase(idPlacaBase);</span>
+    }
+
+    /**
+     * Funcion que obtiene la lista de placas base almacenadas
+     * 
+     * @return la lista de placas base
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;PlacaBase&gt; obtenerListaPlacaBase() throws PersistenciaException {
+<span class="nc" id="L69">        return persistencia.obtenerListadoPlacaBase();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

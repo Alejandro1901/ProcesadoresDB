@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppVista.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.vista</a> &gt; <span class="el_source">AppVista.java</span></div><h1>AppVista.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.vista;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import es.iespuertodelacruz.procesadores.api.*;
+import es.iespuertodelacruz.procesadores.controlador.*;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+<span class="nc" id="L15">public class AppVista {</span>
+
+    private static final String DEBES_INSERTAR_UN_NUMERO = &quot;Debes insertar un número&quot;;
+    private static final String ADIOS = &quot;¡Adios!&quot;;
+    private static final String ESCRIBE_UNA_DE_LAS_OPCIONES = &quot;Escribe una de las opciones&quot;;
+    private static final String SALIR = &quot;7. Atras&quot;;
+    private static final String ZOCALO = &quot;6. Zocalo&quot;;
+    private static final String PLACA_BASE = &quot;5. Placa Base&quot;;
+    private static final String PROCESADOR = &quot;4. Procesador&quot;;
+    private static final String GRAFICA_INTEGRADA = &quot;3. Grafica integrada&quot;;
+    private static final String FABRICANTE = &quot;2. Fabricante&quot;;
+    private static final String ARQUITECTURA = &quot;1. Arquitectura&quot;;
+    private static final String SOLO_NUMEROS_ENTRE_1_Y_7 = &quot;Solo números entre 1 y 7&quot;;
+
+<span class="nc" id="L29">    public static ProcesadorControlador procesadorControlador = new ProcesadorControlador();</span>
+<span class="nc" id="L30">    public static ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();</span>
+<span class="nc" id="L31">    public static FabricanteControlador fabricanteControlador = new FabricanteControlador();</span>
+<span class="nc" id="L32">    public static GraficaIntegradaControlador graficaIntegradaControlador = new GraficaIntegradaControlador();</span>
+<span class="nc" id="L33">    public static NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();</span>
+<span class="nc" id="L34">    public static PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();</span>
+<span class="nc" id="L35">    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();</span>
+<span class="nc" id="L36">    public static ZocaloControlador zocaloControlador = new ZocaloControlador();</span>
+
+    public static void main(String[] args) throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L39">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L40">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L45">            System.out.println(&quot;¡Hola! Bienvenido a ProcesadoresDB&quot;);</span>
+<span class="nc" id="L46">            System.out.println(&quot;¿Que tipo de usuario eres?&quot;);</span>
+<span class="nc" id="L47">            System.out.println(&quot;1. Admin&quot;); </span>
+<span class="nc" id="L48">            System.out.println(&quot;2. Usuario estandar&quot;); //Sin permiso para modificar la BBDD</span>
+<span class="nc" id="L49">            System.out.println(&quot;3. Salir&quot;);</span>
+ 
+            try {
+ 
+<span class="nc" id="L53">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L54">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L56" title="All 4 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L58">                        System.out.println(&quot;Has seleccionado Admin&quot;);</span>
+<span class="nc" id="L59">                        menuAdmin();</span>
+<span class="nc" id="L60">                        break;</span>
+                    case 2:
+<span class="nc" id="L62">                        System.out.println(&quot;Has seleccionado Usuario&quot;);</span>
+<span class="nc" id="L63">                        menuUsuario();</span>
+<span class="nc" id="L64">                        break;</span>
+                    case 3:
+<span class="nc" id="L66">                        System.out.println(ADIOS);</span>
+<span class="nc" id="L67">                        salir = true;</span>
+<span class="nc" id="L68">                        break;</span>
+                    default:
+<span class="nc" id="L70">                        System.out.println(&quot;Solo números entre 1 y 3&quot;);</span>
+                }
+<span class="nc" id="L72">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L73">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L74">                sn.next();</span>
+<span class="nc" id="L75">            }</span>
+        }
+<span class="nc" id="L77">    }</span>
+
+    /**
+     * Submenu para el admin
+     * @throws PersistenciaException
+     * @throws ControladoresDBException
+     */
+    private static void menuAdmin() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L85">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L86">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L91">            System.out.println(&quot;Usted ha iniciado sesion como Admin&quot;);</span>
+<span class="nc" id="L92">            System.out.println(&quot;¿Que accion desea realizar?&quot;);</span>
+<span class="nc" id="L93">            System.out.println(&quot;1. Insertar&quot;);</span>
+<span class="nc" id="L94">            System.out.println(&quot;2. Modificar&quot;);</span>
+<span class="nc" id="L95">            System.out.println(&quot;3. Eliminar&quot;);</span>
+<span class="nc" id="L96">            System.out.println(&quot;4. Buscar&quot;);</span>
+<span class="nc" id="L97">            System.out.println(&quot;5. Listar&quot;);</span>
+<span class="nc" id="L98">            System.out.println(&quot;6. Atras&quot;);</span>
+ 
+            try {
+ 
+<span class="nc" id="L102">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L103">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L105" title="All 7 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L107">                        System.out.println(&quot;Has seleccionado insertar&quot;);</span>
+<span class="nc" id="L108">                        menuInsertar();</span>
+<span class="nc" id="L109">                        break;</span>
+                    case 2:
+<span class="nc" id="L111">                        System.out.println(&quot;Has seleccionado modificar&quot;);</span>
+<span class="nc" id="L112">                        menuModificar();</span>
+<span class="nc" id="L113">                        break;</span>
+                    case 3:
+<span class="nc" id="L115">                        System.out.println(&quot;Has seleccionado eliminar&quot;);</span>
+<span class="nc" id="L116">                        menuEliminar();</span>
+<span class="nc" id="L117">                        break;</span>
+                    case 4:
+<span class="nc" id="L119">                        System.out.println(&quot;Has seleccionado buscar&quot;);</span>
+<span class="nc" id="L120">                        menuBuscar();</span>
+<span class="nc" id="L121">                        break;</span>
+                    case 5:
+<span class="nc" id="L123">                        System.out.println(&quot;Has seleccionado listar&quot;);</span>
+<span class="nc" id="L124">                        menuListar();</span>
+<span class="nc" id="L125">                        break;</span>
+                    case 6:
+<span class="nc" id="L127">                        salir = true;</span>
+<span class="nc" id="L128">                        break;</span>
+                    default:
+<span class="nc" id="L130">                        System.out.println(&quot;Solo números entre 1 y 6&quot;);</span>
+                }
+<span class="nc" id="L132">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L133">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L134">                sn.next();</span>
+<span class="nc" id="L135">            }</span>
+        }
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * Submenu para el usuario (usuario estandar, sin permisos para modificar la BBDD)
+     */
+    private static void menuUsuario() {
+<span class="nc" id="L143">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L144">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L149">            System.out.println(&quot;Usted ha iniciado sesion como Usuario&quot;);</span>
+<span class="nc" id="L150">            System.out.println(&quot;¿Que accion desea realizar?&quot;);</span>
+<span class="nc" id="L151">            System.out.println(&quot;1. Buscar&quot;);</span>
+<span class="nc" id="L152">            System.out.println(&quot;2. Listar&quot;);</span>
+<span class="nc" id="L153">            System.out.println(&quot;3. Atras&quot;);</span>
+ 
+            try {
+ 
+<span class="nc" id="L157">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L158">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L160" title="All 4 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L162">                        System.out.println(&quot;Has seleccionado buscar&quot;);</span>
+<span class="nc" id="L163">                        menuBuscar();</span>
+<span class="nc" id="L164">                        break;</span>
+                    case 2:
+<span class="nc" id="L166">                        System.out.println(&quot;Has seleccionado listar&quot;);</span>
+<span class="nc" id="L167">                        menuListar();</span>
+<span class="nc" id="L168">                        break;</span>
+                    case 3:
+<span class="nc" id="L170">                        salir = true;</span>
+<span class="nc" id="L171">                        break;</span>
+                    default:
+<span class="nc" id="L173">                        System.out.println(&quot;Solo números entre 1 y 3&quot;);</span>
+                }
+<span class="nc" id="L175">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L176">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L177">                sn.next();</span>
+<span class="nc" id="L178">            }</span>
+        }
+<span class="nc" id="L180">    }</span>
+
+    private static void menuInsertar() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L183">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L184">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L187" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L189">            System.out.println(&quot;¿En que tabla deseas insertar una nueva fila?&quot;);</span>
+<span class="nc" id="L190">            System.out.println(ARQUITECTURA);</span>
+<span class="nc" id="L191">            System.out.println(FABRICANTE);</span>
+<span class="nc" id="L192">            System.out.println(GRAFICA_INTEGRADA);</span>
+<span class="nc" id="L193">            System.out.println(PROCESADOR);</span>
+<span class="nc" id="L194">            System.out.println(PLACA_BASE);</span>
+<span class="nc" id="L195">            System.out.println(ZOCALO);</span>
+<span class="nc" id="L196">            System.out.println(SALIR);</span>
+ 
+            try {
+ 
+<span class="nc" id="L200">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L201">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L203" title="All 8 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L205">                        System.out.println(&quot;Has seleccionado insertar una Arquitectura&quot;);</span>
+<span class="nc" id="L206">                        insertarArquitectura();</span>
+<span class="nc" id="L207">                        break;</span>
+                    case 2:
+<span class="nc" id="L209">                        System.out.println(&quot;Has seleccionado insertar un Fabricante&quot;);</span>
+<span class="nc" id="L210">                        insertarFabricante();</span>
+<span class="nc" id="L211">                        break;</span>
+                    case 3:
+<span class="nc" id="L213">                        System.out.println(&quot;Has seleccionado insertar una Grafica integrada&quot;);</span>
+<span class="nc" id="L214">                        insertarGraficaIntegrada();</span>
+<span class="nc" id="L215">                        break;</span>
+                    case 4:
+<span class="nc" id="L217">                        System.out.println(&quot;Has seleccionado insertar un Procesador&quot;);</span>
+<span class="nc" id="L218">                        insertarProcesador();</span>
+<span class="nc" id="L219">                        break;</span>
+                    case 5:
+<span class="nc" id="L221">                        System.out.println(&quot;Has seleccionado insertar una Placa Base&quot;);</span>
+<span class="nc" id="L222">                        insertarPlacaBase();</span>
+<span class="nc" id="L223">                        break;</span>
+                    case 6:
+<span class="nc" id="L225">                        System.out.println(&quot;Has seleccionado insertar un Zocalo&quot;);</span>
+<span class="nc" id="L226">                        insertarZocalo();</span>
+<span class="nc" id="L227">                        break;</span>
+                    case 7:
+<span class="nc" id="L229">                        salir = true;</span>
+<span class="nc" id="L230">                        break;</span>
+                    default:
+<span class="nc" id="L232">                        System.out.println(SOLO_NUMEROS_ENTRE_1_Y_7);</span>
+                }
+<span class="nc" id="L234">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L235">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L236">                sn.next();</span>
+<span class="nc" id="L237">            }</span>
+        }
+<span class="nc" id="L239">    }</span>
+
+    private static void menuModificar() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L242">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L243">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L248">            System.out.println(&quot;¿En que tabla desea modificar una fila?&quot;);</span>
+<span class="nc" id="L249">            System.out.println(ARQUITECTURA);</span>
+<span class="nc" id="L250">            System.out.println(FABRICANTE);</span>
+<span class="nc" id="L251">            System.out.println(GRAFICA_INTEGRADA);</span>
+<span class="nc" id="L252">            System.out.println(PROCESADOR);</span>
+<span class="nc" id="L253">            System.out.println(PLACA_BASE);</span>
+<span class="nc" id="L254">            System.out.println(ZOCALO);</span>
+<span class="nc" id="L255">            System.out.println(SALIR);</span>
+ 
+            try {
+ 
+<span class="nc" id="L259">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L260">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L262" title="All 10 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L264">                        System.out.println(&quot;Has seleccionado modificar una Arquitectura&quot;);</span>
+<span class="nc" id="L265">                        modificarArquitectura();</span>
+<span class="nc" id="L266">                        break;</span>
+                    case 2:
+<span class="nc" id="L268">                        System.out.println(&quot;Has seleccionado modificar un Fabricante&quot;);</span>
+<span class="nc" id="L269">                        modificarFabricante();</span>
+<span class="nc" id="L270">                        break;</span>
+                    case 3:
+<span class="nc" id="L272">                        System.out.println(&quot;Has seleccionado modificar una Grafica integrada&quot;);</span>
+<span class="nc" id="L273">                        modificarGraficaIntegrada();</span>
+<span class="nc" id="L274">                        break;</span>
+                    case 4:
+<span class="nc" id="L276">                        System.out.println(&quot;Has seleccionado modificar un Procesador&quot;);</span>
+<span class="nc" id="L277">                        modificarProcesador();</span>
+<span class="nc" id="L278">                        break;</span>
+                    case 5:
+<span class="nc" id="L280">                        System.out.println(&quot;Has seleccionado modificar una Placa Base&quot;);</span>
+<span class="nc" id="L281">                        modificarPlacaBase();</span>
+<span class="nc" id="L282">                        break;</span>
+                    case 6:
+<span class="nc" id="L284">                        System.out.println(&quot;Has seleccionado modificar un Zocalo&quot;);</span>
+<span class="nc" id="L285">                        modificarZocalo();</span>
+<span class="nc" id="L286">                        break;</span>
+                    case 7:
+<span class="nc" id="L288">                        System.out.println(&quot;Has seleccionado modificar una fila de NombreProcesador&quot;);</span>
+<span class="nc" id="L289">                        modificarNombreProcesador();</span>
+<span class="nc" id="L290">                        break;</span>
+                    case 8:
+<span class="nc" id="L292">                        System.out.println(&quot;Has seleccionado modificar una fila de ProcesadorGraficaIntegrada&quot;);</span>
+<span class="nc" id="L293">                        modificarProcesadorGraficaIntegrada();</span>
+<span class="nc" id="L294">                        break;</span>
+                    case 9:
+<span class="nc" id="L296">                        salir = true;</span>
+<span class="nc" id="L297">                        break;</span>
+                    default:
+<span class="nc" id="L299">                        System.out.println(SOLO_NUMEROS_ENTRE_1_Y_7);</span>
+                }
+<span class="nc" id="L301">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L302">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L303">                sn.next();</span>
+<span class="nc" id="L304">            }</span>
+        }
+<span class="nc" id="L306">    }</span>
+
+    private static void menuEliminar() {
+<span class="nc" id="L309">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L310">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L313" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L315">            System.out.println(&quot;¿En que tabla desea eliminar una fila?&quot;);</span>
+<span class="nc" id="L316">            System.out.println(ARQUITECTURA);</span>
+<span class="nc" id="L317">            System.out.println(FABRICANTE);</span>
+<span class="nc" id="L318">            System.out.println(GRAFICA_INTEGRADA);</span>
+<span class="nc" id="L319">            System.out.println(PROCESADOR);</span>
+<span class="nc" id="L320">            System.out.println(PLACA_BASE);</span>
+<span class="nc" id="L321">            System.out.println(ZOCALO);</span>
+<span class="nc" id="L322">            System.out.println(SALIR);</span>
+ 
+            try {
+ 
+<span class="nc" id="L326">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L327">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L329" title="All 8 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L331">                        System.out.println(&quot;Has seleccionado eliminar una Arquitectura&quot;);</span>
+<span class="nc" id="L332">                        break;</span>
+                    case 2:
+<span class="nc" id="L334">                        System.out.println(&quot;Has seleccionado eliminar un Fabricante&quot;);</span>
+<span class="nc" id="L335">                        break;</span>
+                    case 3:
+<span class="nc" id="L337">                        System.out.println(&quot;Has seleccionado eliminar una Grafica integrada&quot;);</span>
+<span class="nc" id="L338">                        break;</span>
+                    case 4:
+<span class="nc" id="L340">                        System.out.println(&quot;Has seleccionado eliminar un Procesador&quot;);</span>
+<span class="nc" id="L341">                        break;</span>
+                    case 5:
+<span class="nc" id="L343">                        System.out.println(&quot;Has seleccionado eliminar una Placa Base&quot;);</span>
+<span class="nc" id="L344">                        break;</span>
+                    case 6:
+<span class="nc" id="L346">                        System.out.println(&quot;Has seleccionado eliminar un Zocalo&quot;);</span>
+<span class="nc" id="L347">                        break;</span>
+                    case 7:
+<span class="nc" id="L349">                        salir = true;</span>
+<span class="nc" id="L350">                        break;</span>
+                    default:
+<span class="nc" id="L352">                        System.out.println(SOLO_NUMEROS_ENTRE_1_Y_7);</span>
+                }
+<span class="nc" id="L354">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L355">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L356">                sn.next();</span>
+<span class="nc" id="L357">            }</span>
+        }
+<span class="nc" id="L359">    }</span>
+
+    private static void menuBuscar() {
+<span class="nc" id="L362">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L363">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L366" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L368">            System.out.println(&quot;¿En que tabla deseas buscar?&quot;);</span>
+<span class="nc" id="L369">            System.out.println(ARQUITECTURA);</span>
+<span class="nc" id="L370">            System.out.println(FABRICANTE);</span>
+<span class="nc" id="L371">            System.out.println(GRAFICA_INTEGRADA);</span>
+<span class="nc" id="L372">            System.out.println(PROCESADOR);</span>
+<span class="nc" id="L373">            System.out.println(PLACA_BASE);</span>
+<span class="nc" id="L374">            System.out.println(ZOCALO);</span>
+<span class="nc" id="L375">            System.out.println(SALIR);</span>
+ 
+            try {
+ 
+<span class="nc" id="L379">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L380">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L382" title="All 8 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L384">                        System.out.println(&quot;Has seleccionado buscar una Arquitectura&quot;);</span>
+<span class="nc" id="L385">                        break;</span>
+                    case 2:
+<span class="nc" id="L387">                        System.out.println(&quot;Has seleccionado buscar un Fabricante&quot;);</span>
+<span class="nc" id="L388">                        break;</span>
+                    case 3:
+<span class="nc" id="L390">                        System.out.println(&quot;Has seleccionado buscar una Grafica integrada&quot;);</span>
+<span class="nc" id="L391">                        break;</span>
+                    case 4:
+<span class="nc" id="L393">                        System.out.println(&quot;Has seleccionado buscar un Procesador&quot;);</span>
+<span class="nc" id="L394">                        break;</span>
+                    case 5:
+<span class="nc" id="L396">                        System.out.println(&quot;Has seleccionado buscar una Placa Base&quot;);</span>
+<span class="nc" id="L397">                        break;</span>
+                    case 6:
+<span class="nc" id="L399">                        System.out.println(&quot;Has seleccionado buscar un Zocalo&quot;);</span>
+<span class="nc" id="L400">                        break;</span>
+                    case 7:
+<span class="nc" id="L402">                        salir = true;</span>
+<span class="nc" id="L403">                        break;</span>
+                    default:
+<span class="nc" id="L405">                        System.out.println(SOLO_NUMEROS_ENTRE_1_Y_7);</span>
+                }
+<span class="nc" id="L407">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L408">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L409">                sn.next();</span>
+<span class="nc" id="L410">            }</span>
+        }
+<span class="nc" id="L412">    }</span>
+
+    private static void menuListar() {
+<span class="nc" id="L415">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L416">        boolean salir = false;</span>
+        int opcion; //Guardaremos la opcion del usuario
+ 
+<span class="nc bnc" id="L419" title="All 2 branches missed.">        while (!salir) {</span>
+ 
+<span class="nc" id="L421">            System.out.println(&quot;¿Que tabla deseas listar?&quot;);</span>
+<span class="nc" id="L422">            System.out.println(ARQUITECTURA);</span>
+<span class="nc" id="L423">            System.out.println(FABRICANTE);</span>
+<span class="nc" id="L424">            System.out.println(GRAFICA_INTEGRADA);</span>
+<span class="nc" id="L425">            System.out.println(PROCESADOR);</span>
+<span class="nc" id="L426">            System.out.println(PLACA_BASE);</span>
+<span class="nc" id="L427">            System.out.println(ZOCALO);</span>
+<span class="nc" id="L428">            System.out.println(SALIR);</span>
+ 
+            try {
+ 
+<span class="nc" id="L432">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L433">                opcion = sn.nextInt();</span>
+ 
+<span class="nc bnc" id="L435" title="All 8 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L437">                        System.out.println(&quot;Has seleccionado listar una Arquitectura&quot;);</span>
+<span class="nc" id="L438">                        break;</span>
+                    case 2:
+<span class="nc" id="L440">                        System.out.println(&quot;Has seleccionado listar un Fabricante&quot;);</span>
+<span class="nc" id="L441">                        break;</span>
+                    case 3:
+<span class="nc" id="L443">                        System.out.println(&quot;Has seleccionado listar una Grafica integrada&quot;);</span>
+<span class="nc" id="L444">                        break;</span>
+                    case 4:
+<span class="nc" id="L446">                        System.out.println(&quot;Has seleccionado listar un Procesador&quot;);</span>
+<span class="nc" id="L447">                        break;</span>
+                    case 5:
+<span class="nc" id="L449">                        System.out.println(&quot;Has seleccionado listar una Placa Base&quot;);</span>
+<span class="nc" id="L450">                        break;</span>
+                    case 6:
+<span class="nc" id="L452">                        System.out.println(&quot;Has seleccionado listar un Zocalo&quot;);</span>
+<span class="nc" id="L453">                        break;</span>
+                    case 7:
+<span class="nc" id="L455">                        salir = true;</span>
+<span class="nc" id="L456">                        break;</span>
+                    default:
+<span class="nc" id="L458">                        System.out.println(SOLO_NUMEROS_ENTRE_1_Y_7);</span>
+                }
+<span class="nc" id="L460">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L461">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L462">                sn.next();</span>
+<span class="nc" id="L463">            }</span>
+        }
+<span class="nc" id="L465">    }</span>
+
+    private static Arquitectura crearArquitectura() {
+<span class="nc" id="L468">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L469">        System.out.println(&quot;Escribe la id del procesador&quot;);</span>
+<span class="nc" id="L470">        int id = sn.nextInt();</span>
+<span class="nc" id="L471">        System.out.println(&quot;Escribe la version de la arquitectura (x86-64 o ARM)&quot;);</span>
+<span class="nc" id="L472">        String versionArquitectura = sn.next();</span>
+<span class="nc" id="L473">        System.out.println(&quot;Escribe el diseño de la arquitectura (Por ejemplo Zen 3)&quot;);</span>
+<span class="nc" id="L474">        String disenio = sn.next();</span>
+<span class="nc" id="L475">        System.out.println(&quot;Escribe la tecnologia de la arquitectura (si tiene)&quot;);</span>
+<span class="nc" id="L476">        String tecnologia = sn.next();</span>
+<span class="nc" id="L477">        System.out.println(&quot;Escribe el estandar de la arquitectura (si tiene)&quot;);</span>
+<span class="nc" id="L478">        String estandar = sn.next();</span>
+<span class="nc" id="L479">        sn.close();</span>
+<span class="nc" id="L480">        return new Arquitectura(id, versionArquitectura, disenio, tecnologia, estandar);</span>
+    }
+
+    private static Fabricante crearFabricante() {
+<span class="nc" id="L484">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L485">        System.out.println(&quot;Escribe el codigo del fabricante&quot;);</span>
+<span class="nc" id="L486">        String codigo = sn.next();</span>
+<span class="nc" id="L487">        System.out.println(&quot;Escribe el codigo postal del fabricante&quot;);</span>
+<span class="nc" id="L488">        String codigoPostal = sn.next();</span>
+<span class="nc" id="L489">        System.out.println(&quot;Escribe el nombre del fabricante&quot;);</span>
+<span class="nc" id="L490">        String nombre = sn.next();</span>
+<span class="nc" id="L491">        System.out.println(&quot;Escribe el numero de la sede del fabricante&quot;);</span>
+<span class="nc" id="L492">        int numero = sn.nextInt();</span>
+<span class="nc" id="L493">        System.out.println(&quot;Escirbe el pais donde se ubica la sede del fabricante&quot;);</span>
+<span class="nc" id="L494">        String pais = sn.next();</span>
+<span class="nc" id="L495">        System.out.println(&quot;Escribe la calle donde se ubica la sede del fabricante&quot;);</span>
+<span class="nc" id="L496">        String calle = sn.next();</span>
+<span class="nc" id="L497">        System.out.println(&quot;Escribe el telefono de contacto del fabricante&quot;);</span>
+<span class="nc" id="L498">        String telefono = sn.next();</span>
+<span class="nc" id="L499">        System.out.println(&quot;Escribe el correo de contacto del fabricante&quot;);</span>
+<span class="nc" id="L500">        String correo = sn.next();</span>
+<span class="nc" id="L501">        System.out.println(&quot;Escribe la web del fabricante&quot;);</span>
+<span class="nc" id="L502">        String web = sn.next();</span>
+<span class="nc" id="L503">        sn.close();</span>
+<span class="nc" id="L504">        return new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);</span>
+    }
+
+    private static GraficaIntegrada crearGraficaIntegrada() {
+<span class="nc" id="L508">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L509">        System.out.println(&quot;Escribe la id de la grafica integrada&quot;);</span>
+<span class="nc" id="L510">        int id = sn.nextInt();</span>
+<span class="nc" id="L511">        System.out.println(&quot;Escibe el nombre de la grafica integrada&quot;);</span>
+<span class="nc" id="L512">        String nombreGrafica = sn.next();</span>
+<span class="nc" id="L513">        System.out.println(&quot;Escribe la frecuencia basica a la que trabaja la grafica integrada&quot;);</span>
+<span class="nc" id="L514">        float frecuenciaBasica = sn.nextFloat();</span>
+<span class="nc" id="L515">        System.out.println(&quot;Escribe la frecuencia maxima a la que trabaja la grafica integrada&quot;);</span>
+<span class="nc" id="L516">        float frecuenciaMaxima = sn.nextFloat();</span>
+<span class="nc" id="L517">        System.out.println(&quot;Escribe la memoria maxima de la grafica integrada&quot;);</span>
+<span class="nc" id="L518">        int memoriaMaxima = sn.nextInt();</span>
+<span class="nc" id="L519">        System.out.println(&quot;Escribe la resolucion maxima que puede alcanzar la grafica integrada&quot;);</span>
+<span class="nc" id="L520">        System.out.println(&quot;(720p, 1080p ,2K, 4K, 8K o 16K)&quot;);</span>
+<span class="nc" id="L521">        String resolucion = sn.next();</span>
+<span class="nc" id="L522">        sn.close();</span>
+<span class="nc" id="L523">        return new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);</span>
+    }
+
+    private static Procesador crearProcesador() {
+<span class="nc" id="L527">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L528">        System.out.println(&quot;Escribe la id del procesador&quot;);</span>
+<span class="nc" id="L529">        int id = sn.nextInt();</span>
+<span class="nc" id="L530">        System.out.println(&quot;Escibe la id del fabricante del procesador&quot;);</span>
+<span class="nc" id="L531">        String codigoFabricante = sn.next();</span>
+<span class="nc" id="L532">        System.out.println(&quot;Escribe la id del tipo de socket donde se puede alojar el procesador&quot;);</span>
+<span class="nc" id="L533">        int idSocket = sn.nextInt();</span>
+<span class="nc" id="L534">        System.out.println(&quot;Escribe la id de la arquitectura del procesador&quot;);</span>
+<span class="nc" id="L535">        int idArquitectura = sn.nextInt();</span>
+<span class="nc" id="L536">        System.out.println(&quot;Escribe el modelo del procesador&quot;);</span>
+<span class="nc" id="L537">        String modelo = sn.next();</span>
+<span class="nc" id="L538">        System.out.println(&quot;Escribe la fecha de lanzamiento del procesador&quot;);</span>
+<span class="nc" id="L539">        String fechaLanzamiento = sn.next(); //Hay que validar este valor</span>
+<span class="nc" id="L540">        System.out.println(&quot;Escribe el numero de nucleos del procesador&quot;);</span>
+<span class="nc" id="L541">        int nucleos = sn.nextInt();</span>
+<span class="nc" id="L542">        System.out.println(&quot;Escribe el numero de hilos del procesador&quot;);</span>
+<span class="nc" id="L543">        int hilos = sn.nextInt();</span>
+<span class="nc" id="L544">        System.out.println(&quot;Escribe la frecuencia a la que va el procesador&quot;);</span>
+<span class="nc" id="L545">        float frecuencia = sn.nextFloat();</span>
+<span class="nc" id="L546">        System.out.println(&quot;¿Se puede hacer overclock al procesador? (True o false)&quot;);</span>
+<span class="nc" id="L547">        boolean overclock = sn.nextBoolean();</span>
+<span class="nc" id="L548">        System.out.println(&quot;Escribe el tdp del procesador&quot;);</span>
+<span class="nc" id="L549">        float tdp = sn.nextFloat();</span>
+<span class="nc" id="L550">        System.out.println(&quot;Escribe el precio del procesador&quot;);</span>
+<span class="nc" id="L551">        float precio = sn.nextFloat();</span>
+<span class="nc" id="L552">        sn.close();</span>
+<span class="nc" id="L553">        return new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);</span>
+    }
+
+    private static NombreProcesador crearNombreProcesador(String modelo) {
+<span class="nc" id="L557">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L558">        System.out.println(&quot;Escribe la familia del procesador&quot;);</span>
+<span class="nc" id="L559">        String familia = sn.next();</span>
+<span class="nc" id="L560">        System.out.println(&quot;Escribe la generacion del procesador&quot;);</span>
+<span class="nc" id="L561">        int generacion = sn.nextInt();</span>
+<span class="nc" id="L562">        return new NombreProcesador(modelo, familia, generacion);</span>
+    }
+
+    private static NombreProcesador crearNombreProcesador() {
+<span class="nc" id="L566">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L567">        System.out.println(&quot;Escribe el modelo del procesador&quot;);</span>
+<span class="nc" id="L568">        String modelo = sn.next();</span>
+<span class="nc" id="L569">        System.out.println(&quot;Escribe la familia del procesador&quot;);</span>
+<span class="nc" id="L570">        String familia = sn.next();</span>
+<span class="nc" id="L571">        System.out.println(&quot;Escribe la generacion del procesador&quot;);</span>
+<span class="nc" id="L572">        int generacion = sn.nextInt();</span>
+<span class="nc" id="L573">        return new NombreProcesador(modelo, familia, generacion);</span>
+    }
+
+    private static PlacaBase crearPlacaBase() {
+<span class="nc" id="L577">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L578">        System.out.println(&quot;Escribe la id de la placa base&quot;);</span>
+<span class="nc" id="L579">        int id = sn.nextInt();</span>
+<span class="nc" id="L580">        System.out.println(&quot;Escribe la id del socket de la placa base&quot;);</span>
+<span class="nc" id="L581">        int idSocket = sn.nextInt();</span>
+<span class="nc" id="L582">        System.out.println(&quot;Escribe el nombre de la placa base&quot;);</span>
+<span class="nc" id="L583">        String nombre = sn.next();</span>
+<span class="nc" id="L584">        sn.close();</span>
+<span class="nc" id="L585">        return new PlacaBase(id, idSocket, nombre);</span>
+    }
+
+    private static Zocalo crearZocalo() {
+<span class="nc" id="L589">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L590">        System.out.println(&quot;Escribe la id del zocalo&quot;);</span>
+<span class="nc" id="L591">        int id = sn.nextInt();</span>
+<span class="nc" id="L592">        System.out.println(&quot;Escribe el tipo del zocalo&quot;);</span>
+<span class="nc" id="L593">        String tipo = sn.next();</span>
+<span class="nc" id="L594">        System.out.println(&quot;Escribe la tecnologia del zocalo&quot;);</span>
+<span class="nc" id="L595">        String tecnologia = sn.next();</span>
+<span class="nc" id="L596">        System.out.println(&quot;Escribe la fecha de lanzamiento del zocalo&quot;);</span>
+<span class="nc" id="L597">        String fechaLanzamiento = sn.next(); //Validar fecha</span>
+<span class="nc" id="L598">        sn.close();</span>
+<span class="nc" id="L599">        return new Zocalo(id, tipo, tecnologia, fechaLanzamiento);</span>
+    }
+
+    private static ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada() {
+<span class="nc" id="L603">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L604">        System.out.println(&quot;Escribe la id del procesador&quot;);</span>
+<span class="nc" id="L605">        int idProcesador = sn.nextInt();</span>
+<span class="nc" id="L606">        System.out.println(&quot;Escribe la id de la grafica integrada&quot;);</span>
+<span class="nc" id="L607">        int idGraficaIntegrada = sn.nextInt();</span>
+<span class="nc" id="L608">        sn.close();</span>
+<span class="nc" id="L609">        return new ProcesadorGraficaIntegrada(idProcesador, idGraficaIntegrada);</span>
+    }
+
+    private static void insertarArquitectura() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L613">        Arquitectura arquitectura = crearArquitectura();</span>
+<span class="nc" id="L614">        arquitecturaControlador.insertar(arquitectura);</span>
+<span class="nc" id="L615">    }</span>
+
+    private static void insertarFabricante() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L618">        Fabricante fabricante = crearFabricante();</span>
+<span class="nc" id="L619">        fabricanteControlador.insertar(fabricante);</span>
+<span class="nc" id="L620">    }</span>
+
+    private static void insertarGraficaIntegrada() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L623">        GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();</span>
+<span class="nc" id="L624">        graficaIntegradaControlador.insertar(graficaIntegrada);</span>
+<span class="nc" id="L625">    }</span>
+
+    private static void insertarProcesador() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L628">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L629">        Procesador procesador = crearProcesador();</span>
+<span class="nc" id="L630">        NombreProcesador nombreProcesador = crearNombreProcesador(procesador.getModelo());</span>
+<span class="nc" id="L631">        System.out.println(&quot;Escribe la id de la grafica integrada que contiene el procesador (Si tiene)&quot;);</span>
+<span class="nc" id="L632">        int idGraficaIntegrada = sn.nextInt();</span>
+<span class="nc" id="L633">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(procesador.getId(), idGraficaIntegrada);</span>
+<span class="nc" id="L634">        nombreProcesadorControlador.insertar(nombreProcesador);</span>
+<span class="nc" id="L635">        procesadorControlador.insertar(procesador);</span>
+<span class="nc" id="L636">        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);</span>
+<span class="nc" id="L637">    }</span>
+
+    private static void insertarPlacaBase() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L640">        PlacaBase placaBase = crearPlacaBase();</span>
+<span class="nc" id="L641">        placaBaseControlador.insertar(placaBase);</span>
+<span class="nc" id="L642">    }</span>
+
+    private static void insertarZocalo() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L645">        Zocalo zocalo = crearZocalo();</span>
+<span class="nc" id="L646">        zocaloControlador.insertar(zocalo);</span>
+<span class="nc" id="L647">    }</span>
+
+    private static void modificarArquitectura() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L650">        Arquitectura arquitectura = crearArquitectura();</span>
+<span class="nc" id="L651">        arquitecturaControlador.modificar(arquitectura);</span>
+<span class="nc" id="L652">    }</span>
+
+    private static void modificarFabricante() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L655">        Fabricante fabricante = crearFabricante();</span>
+<span class="nc" id="L656">        fabricanteControlador.modificar(fabricante);</span>
+<span class="nc" id="L657">    }</span>
+
+    private static void modificarGraficaIntegrada() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L660">        GraficaIntegrada graficaIntegrada = crearGraficaIntegrada();</span>
+<span class="nc" id="L661">        graficaIntegradaControlador.modificar(graficaIntegrada);</span>
+<span class="nc" id="L662">    }</span>
+
+    private static void modificarProcesador() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L665">        Procesador procesador = crearProcesador();</span>
+<span class="nc" id="L666">        procesadorControlador.modificar(procesador);</span>
+<span class="nc" id="L667">    }</span>
+
+    private static void modificarNombreProcesador() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L670">        NombreProcesador nombreProcesador = crearNombreProcesador();</span>
+<span class="nc" id="L671">        nombreProcesadorControlador.modificar(nombreProcesador);</span>
+<span class="nc" id="L672">    }</span>
+
+    private static void modificarProcesadorGraficaIntegrada() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L675">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada();</span>
+<span class="nc" id="L676">        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);</span>
+<span class="nc" id="L677">    }</span>
+
+    private static void modificarPlacaBase() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L680">        PlacaBase placaBase = crearPlacaBase();</span>
+<span class="nc" id="L681">        placaBaseControlador.modificar(placaBase);</span>
+<span class="nc" id="L682">    }</span>
+
+    private static void modificarZocalo() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L685">        Zocalo zocalo = crearZocalo();</span>
+<span class="nc" id="L686">        zocaloControlador.modificar(zocalo);</span>
+<span class="nc" id="L687">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

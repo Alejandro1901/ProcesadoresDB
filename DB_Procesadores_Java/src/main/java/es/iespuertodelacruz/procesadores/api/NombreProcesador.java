@@ -1,6 +1,11 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.Objects;
+
 public class NombreProcesador {
+
+    private static final String DELIMITADOR = "'";
+
     String modeloProcesador;
     String familia;
     int generacion;
@@ -52,4 +57,27 @@ public class NombreProcesador {
     public void setGeneracion(int generacion) {
         this.generacion = generacion;
     }
+
+    @Override
+    public String toString() {
+        return getModeloProcesador() + DELIMITADOR +
+            getFamilia() + DELIMITADOR +
+            getGeneracion(); 
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof NombreProcesador)) {
+            return false;
+        }
+        NombreProcesador nombreProcesador = (NombreProcesador) o;
+        return Objects.equals(modeloProcesador, nombreProcesador.modeloProcesador) && Objects.equals(familia, nombreProcesador.familia) && generacion == nombreProcesador.generacion;
+    }
+
+    
+
+
 }    

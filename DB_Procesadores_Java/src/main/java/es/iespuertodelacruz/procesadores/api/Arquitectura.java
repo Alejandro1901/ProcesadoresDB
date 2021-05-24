@@ -1,6 +1,11 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.Objects;
+
 public class Arquitectura {
+
+    private static final String DELIMITADOR = "'";
+
     int id;
     String versionArquitectura;
     String disenio;
@@ -80,4 +85,25 @@ public class Arquitectura {
         this.estandar = estandar;
     }
 
+    @Override
+    public String toString() {
+        return getId() + DELIMITADOR +
+            getVersionArquitectura() + DELIMITADOR +
+            getDisenio() + DELIMITADOR +
+            getTecnologia() + DELIMITADOR +
+            getEstandar(); 
+}
+    
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Arquitectura)) {
+            return false;
+        }
+        Arquitectura arquitectura = (Arquitectura) o;
+        return id == arquitectura.id && Objects.equals(versionArquitectura, arquitectura.versionArquitectura) && Objects.equals(disenio, arquitectura.disenio) && Objects.equals(tecnologia, arquitectura.tecnologia) && Objects.equals(estandar, arquitectura.estandar);
+    }
 }

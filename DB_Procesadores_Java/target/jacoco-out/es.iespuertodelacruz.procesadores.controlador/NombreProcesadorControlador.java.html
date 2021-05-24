@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NombreProcesadorControlador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.controlador</a> &gt; <span class="el_source">NombreProcesadorControlador.java</span></div><h1>NombreProcesadorControlador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.controlador;
+
+import es.iespuertodelacruz.procesadores.api.NombreProcesador;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+import es.iespuertodelacruz.procesadores.modelo.NombreProcesadorModelo;
+
+public class NombreProcesadorControlador {
+
+ /**
+ * Controlador de la clase NombreProcesadorDBControlador
+ */
+
+private static final String EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = &quot;La grafica integrada que se indica NO existe en nuestra base de datos&quot;;
+NombreProcesadorModelo nombreProcesadorModelo;
+
+<span class="nc" id="L17">public NombreProcesadorControlador() {</span>
+<span class="nc" id="L18">   nombreProcesadorModelo = new NombreProcesadorModelo();</span>
+<span class="nc" id="L19">   }</span>
+
+/**
+ * 
+ * @param nombreProcesador a validar
+ * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+ */
+
+   public void validarNombreProcesador(NombreProcesador nombreProcesador) throws ControladoresDBException {
+<span class="nc" id="L28">      String mensaje = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L30" title="All 2 branches missed.">   if (nombreProcesador == null) {</span>
+<span class="nc" id="L31">      mensaje = &quot;Se esta validando un objeto nulo de NombreProcesador&quot;;</span>
+<span class="nc" id="L32">      throw new ControladoresDBException(mensaje);</span>
+      } 
+
+<span class="nc bnc" id="L35" title="All 4 branches missed.">   if (nombreProcesador.getModeloProcesador() == null || nombreProcesador.getModeloProcesador().isEmpty()) {</span>
+<span class="nc" id="L36">        mensaje = &quot;El ModeloProcesador del nombreProcesador no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        } 
+
+<span class="nc bnc" id="L39" title="All 4 branches missed.">   if (nombreProcesador.getFamilia() == null || nombreProcesador.getFamilia().isEmpty()) {</span>
+<span class="nc" id="L40">      mensaje = &quot;El ModeloProcesador del nombreProcesador no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+      } 
+
+<span class="nc bnc" id="L43" title="All 2 branches missed.">   if (nombreProcesador.getGeneracion() &lt; 0) {</span>
+<span class="nc" id="L44">      mensaje = &quot;La generacion del nombreProcesador no puede ser cero o menor que el, &quot;;</span>
+      }
+      
+<span class="nc bnc" id="L47" title="All 2 branches missed.">   if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L48">      throw new ControladoresDBException(mensaje);</span>
+      }  
+
+<span class="nc" id="L51">   }</span>
+
+ /** 
+     * Metodo encargado de insertar
+     * @param nombreProcesador a insertar
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
+
+    public void insertar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L61">      validarNombreProcesador(nombreProcesador);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">          if (existe(nombreProcesador)) {</span>
+<span class="nc" id="L63">             throw new ControladoresDBException(&quot;El nombreProcesador que se indica ya existe&quot;);</span>
+          }
+<span class="nc" id="L65">         nombreProcesadorModelo.insertar(nombreProcesador); </span>
+<span class="nc" id="L66">       }  </span>
+       
+  /**
+   * Metodo encargado de eliminar
+   * @param modeloProcesador a eliminar 
+   * @throws ControladoresDBException con un mensaje controlado
+   * @throws PersistenciaException
+   */
+  
+      public void eliminar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L76">     validarNombreProcesador(nombreProcesador);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">          if (!existe(nombreProcesador)) {</span>
+<span class="nc" id="L78">             throw new ControladoresDBException(EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);</span>
+          }
+<span class="nc" id="L80">          nombreProcesadorModelo.eliminar(nombreProcesador); </span>
+<span class="nc" id="L81">      }</span>
+      
+  /**
+   * Metodo encargado de realizar la eliminacion de modeloProcasador
+   * @param modeloProcesador del elemento a eliminar
+   * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+   * @throws PersistenciaException 
+   */   
+      public void eliminar(String modeloProcesador) throws ControladoresDBException, PersistenciaException {
+          NombreProcesador nombreProcesador;
+<span class="nc" id="L91">          nombreProcesador = buscar(modeloProcesador);</span>
+<span class="nc" id="L92">          eliminar(nombreProcesador);</span>
+<span class="nc" id="L93">       }</span>
+  
+       /**
+        * Metodo encargado de buscar por el modeloProcesador de la clase
+        * @param modeloProcesador para localizar al nombreProcesador
+        * @return nombreProcesador a traves del modeloProcesador de la clase
+        * @throws PersistenciaException
+        */
+  
+      public NombreProcesador buscar(String modeloProcesador) throws PersistenciaException {
+<span class="nc" id="L103">          NombreProcesador nombreProcesador = null;</span>
+<span class="nc" id="L104">          nombreProcesador = nombreProcesadorModelo.obtenerNombreProcesador(modeloProcesador);</span>
+<span class="nc" id="L105">          return nombreProcesador;</span>
+       }
+  
+  /**
+   * Metodo encargado de realizar la modificacion de un tipo de nombreProcesador
+   * @param nombreProcesador modificar
+   * @throws ControladoresDBException controlada en caso de error
+   * @throws PersistenciaException
+   */
+  
+      public void modificar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
+        
+<span class="nc" id="L117">          validarNombreProcesador(nombreProcesador);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">          if (!existe(nombreProcesador)) {</span>
+<span class="nc" id="L119">             throw new ControladoresDBException(EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);</span>
+          }
+<span class="nc" id="L121">          nombreProcesadorModelo.modificar(nombreProcesador);</span>
+<span class="nc" id="L122">       }</span>
+    
+  /**
+   * Funcion encargada de verificar si existe el nombreProcesador
+   * @param nombreProcesador a encontrar
+   * @return true/false
+   * @throws PersistenciaException error controlado
+   */
+  
+       private boolean existe(NombreProcesador nombreProcesador) throws PersistenciaException {
+<span class="nc" id="L132">          boolean encontrada = false;</span>
+          NombreProcesador nombreProcesadorEncontrada;
+     
+<span class="nc" id="L135">          nombreProcesadorEncontrada = buscar(nombreProcesador.getModeloProcesador());</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">          if (nombreProcesadorEncontrada != null) {</span>
+<span class="nc" id="L137">             encontrada = true;</span>
+          }  
+<span class="nc" id="L139">          return encontrada;</span>
+        }   
+  
+  }
+
+
+   
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
