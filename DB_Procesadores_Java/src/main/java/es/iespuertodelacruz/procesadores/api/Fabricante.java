@@ -1,6 +1,11 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.Objects;
+
 public class Fabricante {
+
+ private static final String DELIMITADOR = "'";
+
     String codigo;
     String codigoPostal;
     String nombre;
@@ -119,4 +124,27 @@ public class Fabricante {
         this.web = web;
     }
 
+    @Override
+    public String toString() {
+        return getCodigo() + DELIMITADOR +
+            getCodigoPostal() + DELIMITADOR +
+            getNombre() + DELIMITADOR +
+            getCalle() + DELIMITADOR +
+            getNumero() + DELIMITADOR +
+            getPais() + DELIMITADOR +
+            getTelefono() + DELIMITADOR +
+            getCorreo() + DELIMITADOR +
+            getWeb(); 
 }
+    
+  @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Fabricante)) {
+            return false;
+        }
+        Fabricante fabricante = (Fabricante) o;
+        return Objects.equals(codigo, fabricante.codigo) && Objects.equals(codigoPostal, fabricante.codigoPostal) && Objects.equals(nombre, fabricante.nombre) && numero == fabricante.numero && Objects.equals(pais, fabricante.pais) && Objects.equals(calle, fabricante.calle) && Objects.equals(telefono, fabricante.telefono) && Objects.equals(correo, fabricante.correo) && Objects.equals(web, fabricante.web);
+    }
+ }

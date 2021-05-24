@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Procesador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.api</a> &gt; <span class="el_source">Procesador.java</span></div><h1>Procesador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.api;
+
+public class Procesador {
+    int id; //PK
+    String codigoFabricante; //FK
+    int idSocket; //FK
+    int idArquitectura; //FK
+    String modelo; //FK
+    String fechaLanzamiento;
+    int nucleos;
+    int hilos;
+    float frecuencia;
+    boolean overclock;
+    float tdp;
+    float precio;
+
+    /**
+     * 
+     * @param id del procesador
+     * @param codigoFabricante Foreignkey de la tabla fabricante
+     * @param idSocket Foreignkey de la tabla socket
+     * @param idArquitectura Foreiginkey de la tabla arquitectura
+     * @param modelo foreignkey de la tabla nombre_procesador
+     * @param fechaLanzamiento Cuando salio a la venta el procesador 
+     * @param nucleos el tamaño de nucleos del procesador 
+     * @param hilos a los que va el procesador
+     * @param frecuencia a la que va el procesador
+     * @param overclock si es posible overclock o no 
+     * @param tdp del procesador
+     * @param precio del procesador
+     */
+<span class="nc" id="L32">    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio) {</span>
+<span class="nc" id="L33">        this.id = id;</span>
+<span class="nc" id="L34">        this.codigoFabricante = codigoFabricante;</span>
+<span class="nc" id="L35">        this.idSocket = idSocket;</span>
+<span class="nc" id="L36">        this.idArquitectura = idArquitectura;</span>
+<span class="nc" id="L37">        this.modelo = modelo;</span>
+<span class="nc" id="L38">        this.fechaLanzamiento = fechaLanzamiento;</span>
+<span class="nc" id="L39">        this.nucleos = nucleos;</span>
+<span class="nc" id="L40">        this.hilos = hilos;</span>
+<span class="nc" id="L41">        this.frecuencia = frecuencia;</span>
+<span class="nc" id="L42">        this.overclock = overclock;</span>
+<span class="nc" id="L43">        this.tdp = tdp;</span>
+<span class="nc" id="L44">        this.precio = precio;</span>
+<span class="nc" id="L45">    }</span>
+
+    /**
+     * Constructor vacio
+     */
+<span class="nc" id="L50">    public Procesador() {</span>
+<span class="nc" id="L51">    }</span>
+
+    /**
+     * Creacion de getter and setters
+     */
+
+    public int getId() {
+<span class="nc" id="L58">        return this.id;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L62">        this.id = id;</span>
+<span class="nc" id="L63">    }</span>
+
+    public String getCodigoFabricante() {
+<span class="nc" id="L66">        return this.codigoFabricante;</span>
+    }
+
+    public void setCodigoFabricante(String codigoFabricante) {
+<span class="nc" id="L70">        this.codigoFabricante = codigoFabricante;</span>
+<span class="nc" id="L71">    }</span>
+
+    public int getIdSocket() {
+<span class="nc" id="L74">        return this.idSocket;</span>
+    }
+
+    public void setIdSocket(int idSocket) {
+<span class="nc" id="L78">        this.idSocket = idSocket;</span>
+<span class="nc" id="L79">    }</span>
+
+    public int getIdArquitectura() {
+<span class="nc" id="L82">        return this.idArquitectura;</span>
+    }
+
+    public void setIdArquitectura(int idArquitectura) {
+<span class="nc" id="L86">        this.idArquitectura = idArquitectura;</span>
+<span class="nc" id="L87">    }</span>
+
+    public String getModelo() {
+<span class="nc" id="L90">        return this.modelo;</span>
+    }
+
+    public void setModelo(String modelo) {
+<span class="nc" id="L94">        this.modelo = modelo;</span>
+<span class="nc" id="L95">    }</span>
+
+    public String getFechaLanzamiento() {
+<span class="nc" id="L98">        return this.fechaLanzamiento;</span>
+    }
+
+    public void setFechaLanzamiento(String fechaLanzamiento) {
+<span class="nc" id="L102">        this.fechaLanzamiento = fechaLanzamiento;</span>
+<span class="nc" id="L103">    }</span>
+
+    public int getNucleos() {
+<span class="nc" id="L106">        return this.nucleos;</span>
+    }
+
+    public void setNucleos(int nucleos) {
+<span class="nc" id="L110">        this.nucleos = nucleos;</span>
+<span class="nc" id="L111">    }</span>
+
+    public int getHilos() {
+<span class="nc" id="L114">        return this.hilos;</span>
+    }
+
+    public void setHilos(int hilos) {
+<span class="nc" id="L118">        this.hilos = hilos;</span>
+<span class="nc" id="L119">    }</span>
+
+    public float getFrecuencia() {
+<span class="nc" id="L122">        return this.frecuencia;</span>
+    }
+
+    public void setFrecuencia(float frecuencia) {
+<span class="nc" id="L126">        this.frecuencia = frecuencia;</span>
+<span class="nc" id="L127">    }</span>
+
+    public boolean isOverclock() {
+<span class="nc" id="L130">        return this.overclock;</span>
+    }
+
+    public boolean getOverclock() {
+<span class="nc" id="L134">        return this.overclock;</span>
+    }
+
+    public void setOverclock(boolean overclock) {
+<span class="nc" id="L138">        this.overclock = overclock;</span>
+<span class="nc" id="L139">    }</span>
+
+    public float getTdp() {
+<span class="nc" id="L142">        return this.tdp;</span>
+    }
+
+    public void setTdp(float tdp) {
+<span class="nc" id="L146">        this.tdp = tdp;</span>
+<span class="nc" id="L147">    }</span>
+
+    public float getPrecio() {
+<span class="nc" id="L150">        return this.precio;</span>
+    }
+
+    public void setPrecio(float precio) {
+<span class="nc" id="L154">        this.precio = precio;</span>
+<span class="nc" id="L155">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

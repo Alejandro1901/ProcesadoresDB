@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.procesadores.api;
 
 public class Procesador {
+
+    private static final String DELIMITADOR = "'";
+
     int id; //PK
     String codigoFabricante; //FK
     int idSocket; //FK

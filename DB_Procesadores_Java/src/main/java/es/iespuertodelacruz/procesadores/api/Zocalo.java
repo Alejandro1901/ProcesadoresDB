@@ -1,8 +1,10 @@
 package es.iespuertodelacruz.procesadores.api;
 
-import java.sql.Date;
 
 public class Zocalo {
+
+    private static final String DELIMITADOR = "'";
+
     int id;
     String tipo;
     String tecnologia;

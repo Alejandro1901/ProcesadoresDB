@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.procesadores.api;
 
 public class ProcesadorGraficaIntegrada {
+
+    private static final String DELIMITADOR = "'";
+
     int idProcesador;
     int idGraficaIntegrada;
 
