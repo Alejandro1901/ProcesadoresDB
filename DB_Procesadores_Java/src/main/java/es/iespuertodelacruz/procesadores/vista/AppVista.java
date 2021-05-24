@@ -1,14 +1,8 @@
 package es.iespuertodelacruz.procesadores.vista;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import es.iespuertodelacruz.procesadores.api.*;
-import es.iespuertodelacruz.procesadores.controlador.*;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
@@ -34,17 +28,6 @@ public class AppVista {
     public static PlacaBaseVista placaBaseVista = new PlacaBaseVista();
     public static ProcesadorGraficaIntegradaVista procesadorGraficaIntegradaVista = new ProcesadorGraficaIntegradaVista();
     public static ZocaloVista zocaloVista = new ZocaloVista();
-
-    /*
-    public static ProcesadorControlador procesadorControlador = new ProcesadorControlador();
-    public static ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
-    public static FabricanteControlador fabricanteControlador = new FabricanteControlador();
-    public static GraficaIntegradaControlador graficaIntegradaControlador = new GraficaIntegradaControlador();
-    public static NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();
-    public static PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();
-    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
-    public static ZocaloControlador zocaloControlador = new ZocaloControlador();
-    */
 
     public static void main(String[] args) throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
