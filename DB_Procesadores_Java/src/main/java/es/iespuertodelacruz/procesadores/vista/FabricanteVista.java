@@ -60,4 +60,16 @@ public class FabricanteVista {
         Fabricante fabricante = crearFabricante();
         fabricanteControlador.modificar(fabricante);
     }
+
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        String codigo = sn.next();
+        fabricanteControlador.eliminar(codigo);
+    }
 }

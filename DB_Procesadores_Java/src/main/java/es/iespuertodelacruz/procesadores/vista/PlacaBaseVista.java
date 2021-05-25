@@ -48,4 +48,16 @@ public class PlacaBaseVista {
         PlacaBase placaBase = crearPlacaBase();
         placaBaseControlador.modificar(placaBase);
     }
+
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        placaBaseControlador.eliminar(id);
+    }
 }

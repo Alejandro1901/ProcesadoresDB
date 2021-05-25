@@ -51,4 +51,16 @@ public class NombreProcesadorVista {
         NombreProcesador nombreProcesador = crearNombreProcesador();
         nombreProcesadorControlador.modificar(nombreProcesador);
     }
+
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        String modeloProcesador = sn.next();
+        nombreProcesadorControlador.eliminar(modeloProcesador);
+    }
 }

@@ -80,4 +80,16 @@ public class ProcesadorVista {
         Procesador procesador = crearProcesador();
         procesadorControlador.modificar(procesador);
     }
+
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        procesadorControlador.eliminar(id);
+    }
 }

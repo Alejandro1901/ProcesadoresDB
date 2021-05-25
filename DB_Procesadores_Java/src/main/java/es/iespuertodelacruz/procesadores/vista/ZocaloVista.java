@@ -50,4 +50,10 @@ public class ZocaloVista {
         Zocalo zocalo = crearZocalo();
         zocaloControlador.modificar(zocalo);
     }
+
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        zocaloControlador.eliminar(id);
+    }
 }

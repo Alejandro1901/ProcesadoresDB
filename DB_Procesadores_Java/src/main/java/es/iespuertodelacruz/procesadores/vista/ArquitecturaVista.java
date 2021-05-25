@@ -53,5 +53,15 @@ public class ArquitecturaVista {
         arquitecturaControlador.modificar(arquitectura);
     }
 
-
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        arquitecturaControlador.eliminar(id);
+    }
 }

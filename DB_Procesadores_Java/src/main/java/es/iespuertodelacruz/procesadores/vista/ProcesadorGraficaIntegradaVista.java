@@ -36,4 +36,16 @@ public class ProcesadorGraficaIntegradaVista {
         ProcesadorGraficaIntegrada procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada();
         procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
     }
+
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        int idProcesador = sn.nextInt();
+        procesadorGraficaIntegradaControlador.eliminar(idProcesador);
+    }
 }
