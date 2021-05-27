@@ -9,7 +9,17 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class ArquitecturaVista {
 
-    public static ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
+    public static ArquitecturaControlador arquitecturaControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public ArquitecturaVista() throws PersistenciaException {
+        arquitecturaControlador = new ArquitecturaControlador();
+    }
+    
     
     /**
      * Funcion que nos permite crear una arquitectura

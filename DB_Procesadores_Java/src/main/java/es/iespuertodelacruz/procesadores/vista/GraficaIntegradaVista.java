@@ -8,7 +8,17 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class GraficaIntegradaVista {
-    public static GraficaIntegradaControlador graficaIntegradaControlador = new GraficaIntegradaControlador();
+    public static GraficaIntegradaControlador graficaIntegradaControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public GraficaIntegradaVista() throws PersistenciaException {
+        graficaIntegradaControlador = new GraficaIntegradaControlador();
+    }
+
 
     /**
      * Funcion que nos permite crear una grafica integrada

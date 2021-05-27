@@ -8,7 +8,17 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class FabricanteVista {
-    public static FabricanteControlador fabricanteControlador = new FabricanteControlador();
+    public static FabricanteControlador fabricanteControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public FabricanteVista() throws PersistenciaException {
+        fabricanteControlador = new FabricanteControlador();    
+    }
+
 
     /**
      * Funcion que nos permite crear un fabricante

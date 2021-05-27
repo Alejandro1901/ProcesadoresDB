@@ -8,7 +8,17 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class PlacaBaseVista {
-    public static PlacaBaseControlador placaBaseControlador = new PlacaBaseControlador();
+    public static PlacaBaseControlador placaBaseControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public PlacaBaseVista() throws PersistenciaException {
+        placaBaseControlador = new PlacaBaseControlador();
+    }
+
 
     /**
      * Funcion que nos permite crear una placa base
