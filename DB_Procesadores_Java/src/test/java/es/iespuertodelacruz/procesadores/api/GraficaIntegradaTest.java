@@ -5,46 +5,54 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PlacaBaseTest {
+public class GraficaIntegradaTest {
   // Variables de la clase
     
-  PlacaBase placaBase1;
-  PlacaBase placaBase2;
-  PlacaBase placaBase3;
+  GraficaIntegrada graficaIntegrada1;
+  GraficaIntegrada graficaIntegrada2;
+  GraficaIntegrada graficaIntegrada3;
 
   //BeforeEach y AfterEach
 
   @BeforeEach
   public void SetUp() {
-      placaBase1 = crearPlacaBase();
-      placaBase2 = new PlacaBase(1,2,"Gigabyte");
-      placaBase3 = new PlacaBase("1'2'Gigabyte");
+      graficaIntegrada1 = crearGraficaIntegrada();
+      graficaIntegrada2 = new GraficaIntegrada(1,"Intel UHD Graphics 750",0.35F,1.25F,64,"4K");
+      graficaIntegrada3 = new GraficaIntegrada("1'Intel UHD Graphics 750'0.35F'1.25F'64'4K");
   }
 
   //Test
 
   @Test
   public void toStringTest() {
-      assertEquals("1'2'Gigabyte",placaBase1.toString(), "El texto recibido no era el esperado");
+      assertEquals("1'Intel UHD Graphics 750'0.35F'1.25F'64'4K",graficaIntegrada1.toString(), "El texto recibido no era el esperado");
   }
 
   @Test
   public void EqualsTest() {
-      assertEquals(placaBase2,placaBase3,"Los objetos son iguales y equals no lo reconoce");
+      assertEquals(graficaIntegrada2,graficaIntegrada3,"Los objetos son iguales y equals no lo reconoce");
   }
 
   //Funciones y metodos
 
-  private PlacaBase crearPlacaBase() {
-      PlacaBase placaBase;
-      placaBase = new PlacaBase();
-      placaBase.setId(1);
-      placaBase.setIdSocket(2);
-      placaBase.setNombre("Gigabyte");
+  private GraficaIntegrada crearGraficaIntegrada() {
+      GraficaIntegrada graficaIntegrada;
+      graficaIntegrada = new GraficaIntegrada();
+      graficaIntegrada.setId(1);
+      graficaIntegrada.setNombreGrafica("Intel UHD Graphics 750");
+      graficaIntegrada.setFrecuenciaBasica(0.35F);
+      graficaIntegrada.setFrecuenciaMaxima(1.25F);
+      graficaIntegrada.setMemoriaMaxima(64);
+      graficaIntegrada.setResolucion("4K");
 
-      return placaBase;
+      return graficaIntegrada;
   }  
 
-
+  int id;
+  String nombreGrafica;
+  float frecuenciaBasica;
+  float frecuenciaMaxima;
+  float memoriaMaxima;
+  String resolucion;
   
 }
