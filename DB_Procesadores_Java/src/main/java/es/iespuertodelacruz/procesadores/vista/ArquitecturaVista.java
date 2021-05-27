@@ -8,6 +8,7 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class ArquitecturaVista {
+
     public static ArquitecturaControlador arquitecturaControlador = new ArquitecturaControlador();
     
     /**

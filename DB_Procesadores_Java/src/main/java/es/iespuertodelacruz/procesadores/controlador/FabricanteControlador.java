@@ -7,17 +7,17 @@ import es.iespuertodelacruz.procesadores.modelo.FabricanteModelo;
 
 public class FabricanteControlador {
 
- /**
- * Controlador de la clase FabricanteDBControlador
- */
+    private static final String EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE = "El fabricante que se indica NO existe en nuestra base de datos";
+    FabricanteModelo fabricanteModelo;
 
-private static final String EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE = "El fabricante que se indica NO existe en nuestra base de datos";
-FabricanteModelo fabricanteModelo;
-
-public FabricanteControlador() {
-   fabricanteModelo = new FabricanteModelo();
-   
-}
+    /**
+     * Constructor con el modelo
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public FabricanteControlador() throws PersistenciaException {
+        fabricanteModelo = new FabricanteModelo();
+    }
 
 /**
  * 

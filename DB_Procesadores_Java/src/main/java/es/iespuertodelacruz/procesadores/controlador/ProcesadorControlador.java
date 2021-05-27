@@ -14,7 +14,12 @@ public class ProcesadorControlador {
    private static final String EL_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "El procesador que se indicada NO existe en nuestra base de datos";
    ProcesadorModelo procesadorModelo;
 
-   public ProcesadorControlador() {
+   /**
+    * Controlador con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+   public ProcesadorControlador() throws PersistenciaException {
       procesadorModelo = new ProcesadorModelo();
 
    }

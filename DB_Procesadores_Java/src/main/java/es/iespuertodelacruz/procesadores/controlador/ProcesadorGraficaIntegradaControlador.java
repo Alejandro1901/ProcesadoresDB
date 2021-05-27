@@ -7,15 +7,16 @@ import es.iespuertodelacruz.procesadores.modelo.ProcesadorGraficaIntegradaModelo
 
 public class ProcesadorGraficaIntegradaControlador {
 
- /**
- * Controlador de la clase ProcesadorGraficaIntegrada
- */
+   private static final String EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = "El ProcesadorGraficaIntegrada que se indica NO existe en nuestra base de datos";
+   ProcesadorGraficaIntegradaModelo procesadorGraficaIntegradaModelo;
 
-private static final String EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = "El ProcesadorGraficaIntegrada que se indica NO existe en nuestra base de datos";
-ProcesadorGraficaIntegradaModelo procesadorGraficaIntegradaModelo;
-
-public ProcesadorGraficaIntegradaControlador() {
-   procesadorGraficaIntegradaModelo = new ProcesadorGraficaIntegradaModelo();
+   /**
+    * Controlador con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+   public ProcesadorGraficaIntegradaControlador() throws PersistenciaException {
+      procesadorGraficaIntegradaModelo = new ProcesadorGraficaIntegradaModelo();
    }
    
    /**

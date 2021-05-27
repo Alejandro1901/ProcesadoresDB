@@ -7,17 +7,20 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class GraficaIntegradaControlador {
 
- /**
- * Controlador de la clase GraficaIntegradaDBControlador
- */
+    private static final String LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
+    GraficaIntegradaModelo graficaIntegradaModelo;
 
-private static final String LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
-GraficaIntegradaModelo graficaIntegradaModelo;
+    /**
+     * Constructos con el modelo
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public GraficaIntegradaControlador() throws PersistenciaException {
+        graficaIntegradaModelo = new GraficaIntegradaModelo();
+    }
 
-public GraficaIntegradaControlador() {
-   graficaIntegradaModelo = new GraficaIntegradaModelo();
-   }
    /**
+    * Metodo que valida las graficas integradas
     * 
     * @param graficaIntegrada a validar
     * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede

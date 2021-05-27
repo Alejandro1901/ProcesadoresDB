@@ -11,7 +11,7 @@ public class MySqlBbdd extends Bbdd {
      * @param url      de la base de datos
      * @param usuario  para logear en la base de datos
      * @param password del usuario
-     * @throws PersistenciaException
+     * @throws PersistenciaException controlada
      */
     public MySqlBbdd (String driver, String url, String usuario, String password) throws PersistenciaException {
         super(driver, url, usuario, password);

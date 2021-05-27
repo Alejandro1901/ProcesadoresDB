@@ -7,23 +7,24 @@ import es.iespuertodelacruz.procesadores.modelo.NombreProcesadorModelo;
 
 public class NombreProcesadorControlador {
 
- /**
- * Controlador de la clase NombreProcesadorDBControlador
- */
+   private static final String EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
+   NombreProcesadorModelo nombreProcesadorModelo;
 
-private static final String EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "La grafica integrada que se indica NO existe en nuestra base de datos";
-NombreProcesadorModelo nombreProcesadorModelo;
-
-public NombreProcesadorControlador() {
-   nombreProcesadorModelo = new NombreProcesadorModelo();
+   /**
+    * Controlador con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+   public NombreProcesadorControlador() throws PersistenciaException {
+      nombreProcesadorModelo = new NombreProcesadorModelo();
    }
 
-/**
- * 
- * @param nombreProcesador a validar
- * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
- */
-
+   /**
+    * Metodo que valida los objetos NombreProcesador
+    * 
+    * @param nombreProcesador a validar
+    * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+    */
    public void validarNombreProcesador(NombreProcesador nombreProcesador) throws ControladoresDBException {
       String mensaje = "";
 
