@@ -15,10 +15,20 @@ public class Bbdd {
     private static final String SQL_FIN_PARENTESIS = "');";
     private static final String SQL_VALUES = "VALUES ('";
     private static final String SQL_COMA = "', '";
+
     private String driver;
     private String url;
     private String usuario;
     private String password;
+
+    private static final String ARQUITECTURA = "arquitectura";
+    private static final String FABRICANTE = "fabricante";
+    private static final String GRAFICA_INTEGRADA = "grafica_integrada";
+    private static final String NOMBRE_PROCESADOR = "nombre_procesador";
+    private static final String PLACA_BASE = "placa_base";
+    private static final String PROCESADOR = "procesador";
+    private static final String PROCESADOR_GRAFICA_INTEGRADA = "procesador_grafica_integrada";
+    private static final String ZOCALO = "zocalo";
 
     /**
      * Constructor con todos los parametros
@@ -27,12 +37,121 @@ public class Bbdd {
      * @param url      de la base de datos
      * @param usuario  para logear en la base de datos
      * @param password del usuario
+     * @throws PersistenciaException
      */
-    public Bbdd(String driver, String url, String usuario, String password) {
+    public Bbdd(String driver, String url, String usuario, String password) throws PersistenciaException {
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
         this.password = password;
+        inicializarDdBd();
+    }
+
+    /**
+     * Metodo que inicializa la BBDD
+     * 
+     * @throws PersistenciaException controlada
+     */
+    private void inicializarDdBd() throws PersistenciaException {
+        DatabaseMetaData databaseMetaData;
+        Connection connection = null;
+        ResultSet resultSet = null;
+        ArrayList<String> listaTablas = new ArrayList<>();
+        try {
+            connection = getConnection();
+            databaseMetaData = connection.getMetaData();
+            resultSet = databaseMetaData.getTables(null, null, null,
+                    new String[] { ARQUITECTURA, FABRICANTE, GRAFICA_INTEGRADA, NOMBRE_PROCESADOR, PLACA_BASE,
+                                    PROCESADOR, PROCESADOR_GRAFICA_INTEGRADA, ZOCALO});
+            while (resultSet.next()) {
+                listaTablas.add(resultSet.getString(ARQUITECTURA));
+                listaTablas.add(resultSet.getString(FABRICANTE));
+                listaTablas.add(resultSet.getString(GRAFICA_INTEGRADA));
+                listaTablas.add(resultSet.getString(NOMBRE_PROCESADOR));
+                listaTablas.add(resultSet.getString(PLACA_BASE));
+                listaTablas.add(resultSet.getString(PROCESADOR));
+                listaTablas.add(resultSet.getString(PROCESADOR_GRAFICA_INTEGRADA));
+                listaTablas.add(resultSet.getString(ZOCALO));
+            }
+            if (!listaTablas.contains(ARQUITECTURA) && !listaTablas.contains(FABRICANTE)
+                    && !listaTablas.contains(GRAFICA_INTEGRADA) && !listaTablas.contains(NOMBRE_PROCESADOR)
+                    && !listaTablas.contains(PLACA_BASE) && !listaTablas.contains(PROCESADOR) 
+                    && !listaTablas.contains(PROCESADOR_GRAFICA_INTEGRADA) && !listaTablas.contains(ZOCALO)) {
+                
+                String sqlCrearTablaNombreProcesador = "CREATE TABLE nombre_procesador ("
+                    + "modelo_procesador varchar(20) PRIMARY KEY,"
+                    + "familia varchar(30),"
+                    + "generacion int(10) DEFAULT 1);";
+                String sqlCrearTablaArquitectura = "CREATE TABLE arquitectura ("
+                    + "id INT PRIMARY KEY,"
+                    + "version_arquitectura ENUM('ARM','x86-64'),"
+                    + "disenio varchar(20),"
+                    + "tecnologia ENUM('Thumb','Jazelle','No tiene') DEFAULT 'No tiene',"
+                    + "estandar ENUM('AMD 64','Intel 64','No tiene') DEFAULT 'No tiene');";
+                String sqlCrearTablaFabricante = "CREATE TABLE fabricante ("
+                    + "codigo varchar(50) PRIMARY KEY,"
+                    + "codigo_postal varchar(50)," 
+                    + "nombre VARCHAR(20),"
+                    + "numero int(3),"
+                    + "pais varchar(20),"
+                    + "calle varchar(50),"
+                    + "telefono varchar(50),"
+                    + "correo varchar(50),"
+                    + "web varchar(50));";
+                String sqlCrearTablaZocalo = "CREATE TABLE zocalo ("
+                    + "id INT PRIMARY KEY,"
+                    + "tipo VARCHAR(30),"
+                    + "tecnologia VARCHAR(20) NOT NULL,"
+                    + "fecha_lanzamiento VARCHAR(10));";
+                String sqlCrearTablaPlacaBase = "CREATE TABLE placa_base ("
+                    + "id INT PRIMARY KEY,"
+                    + "id_socket int,"
+                    + "nombre varchar (100),"
+                    + "FOREIGN KEY (id_socket) REFERENCES zocalo(id));";
+                String sqlCrearTablaGraficaIntegrada = "CREATE TABLE grafica_integrada ("
+                    + "id INT PRIMARY KEY,"
+                    + "nombre_grafica varchar(100),"
+                    + "frec_basica float,"
+                    + "frec_max float,"
+                    + "memoria_max int,"
+                    + "resolucion ENUM('720p','1080p','2K','4K','8K','16K'));";
+                String sqlCrearTablaProcesador = "CREATE TABLE procesador ("
+                    + "id INT(8) PRIMARY KEY,"
+                    + "codigo_fabricante VARCHAR(50),"
+                    + "id_socket INT,"
+                    + "id_arquitectura INT,"
+                    + "modelo varchar(50)," 
+                    + "fecha_lanzamiento VARCHAR(10),"
+                    + "nucleos int,"
+                    + "hilos int,"
+                    + "frecuencia float,"
+                    + "overclock BOOLEAN,"
+                    + "tdp FLOAT,"
+                    + "precio float,"
+                    + "graficapropia BOOLEAN,"
+                    + "FOREIGN KEY (codigo_fabricante) REFERENCES fabricante(codigo),"
+                    + "FOREIGN KEY (id_socket) REFERENCES zocalo(id),"
+                    + "FOREIGN KEY (id_arquitectura) REFERENCES arquitectura(id),"
+                    + "FOREIGN KEY (modelo) REFERENCES nombre_procesador(modelo_procesador));";
+                String sqlCrearTablaProcesadorGraficaIntegrada = "CREATE TABLE procesador_grafica_integrada ("
+                    + "id_procesador INT,"
+                    + "id_grafica_integrada int,"
+                    + "FOREIGN KEY (id_procesador) REFERENCES procesador(id),"
+                    + "FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id));";
+                actualizar(sqlCrearTablaNombreProcesador);
+                actualizar(sqlCrearTablaArquitectura);
+                actualizar(sqlCrearTablaFabricante);
+                actualizar(sqlCrearTablaZocalo);
+                actualizar(sqlCrearTablaPlacaBase);
+                actualizar(sqlCrearTablaGraficaIntegrada);
+                actualizar(sqlCrearTablaProcesador);
+                actualizar(sqlCrearTablaProcesadorGraficaIntegrada);
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
+        } finally {
+            closeConecction(connection, null, resultSet);
+        }
     }
 
     /**
