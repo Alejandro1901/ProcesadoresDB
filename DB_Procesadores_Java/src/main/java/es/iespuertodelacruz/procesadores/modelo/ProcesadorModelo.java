@@ -13,7 +13,11 @@ public class ProcesadorModelo {
      * Constructor con la persistencia
      * 
      * @param persistencia elegida
+<<<<<<< HEAD
      * @throws PersistenciaException
+=======
+     * @throws PersistenciaException controlada
+>>>>>>> 9ce3322a96adfc6872a460a095ea94933654e122
      */
     public ProcesadorModelo() throws PersistenciaException {
         persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");

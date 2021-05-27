@@ -14,7 +14,12 @@ public class ZocaloControlador {
    private static final String EL_ZOCALO_QUE_SE_INDICA_NO_EXISTE = "El zocalo que se indica NO existe en nuestra base de datos";
    ZocaloModelo zocaloModelo;
 
-   public ZocaloControlador() {
+   /**
+    * Controlador con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+   public ZocaloControlador() throws PersistenciaException {
       zocaloModelo = new ZocaloModelo();
    }
 

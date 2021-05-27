@@ -12,10 +12,23 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class ProcesadorVista {
-    public static ProcesadorControlador procesadorControlador = new ProcesadorControlador();
-    public static NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();
-    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
-    public static NombreProcesadorVista nombreProcesadorVista = new NombreProcesadorVista();
+    public static ProcesadorControlador procesadorControlador;
+    public static NombreProcesadorControlador nombreProcesadorControlador;
+    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador;
+    public static NombreProcesadorVista nombreProcesadorVista;
+
+    /**
+     * Constructor con los controladores
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public ProcesadorVista() throws PersistenciaException {
+        procesadorControlador = new ProcesadorControlador();
+        nombreProcesadorControlador = new NombreProcesadorControlador();
+        procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
+        nombreProcesadorVista = new NombreProcesadorVista();
+    }
+
 
     /**
      * Funcion que nos permite crear una procesador

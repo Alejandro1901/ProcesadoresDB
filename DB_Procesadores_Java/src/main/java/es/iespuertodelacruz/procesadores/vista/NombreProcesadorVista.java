@@ -8,7 +8,17 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class NombreProcesadorVista {
-    public static NombreProcesadorControlador nombreProcesadorControlador = new NombreProcesadorControlador();
+    public static NombreProcesadorControlador nombreProcesadorControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public NombreProcesadorVista() throws PersistenciaException {
+        nombreProcesadorControlador = new NombreProcesadorControlador();
+    }
+
     
     /**
      * Funcion que nos permite crear un objeto NombreProcesador

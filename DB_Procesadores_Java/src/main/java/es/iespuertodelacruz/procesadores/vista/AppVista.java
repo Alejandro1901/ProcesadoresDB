@@ -20,14 +20,27 @@ public class AppVista {
     private static final String ARQUITECTURA = "1. Arquitectura";
     private static final String SOLO_NUMEROS_ENTRE_1_Y_7 = "Solo números entre 1 y 7";
 
-    public static ArquitecturaVista arquitecturaVista = new ArquitecturaVista();
-    public static FabricanteVista fabricanteVista = new FabricanteVista();
-    public static GraficaIntegradaVista graficaIntegradaVista = new GraficaIntegradaVista();
-    public static ProcesadorVista procesadorVista = new ProcesadorVista();
-    public static NombreProcesadorVista nombreProcesadorVista = new NombreProcesadorVista();
-    public static PlacaBaseVista placaBaseVista = new PlacaBaseVista();
-    public static ProcesadorGraficaIntegradaVista procesadorGraficaIntegradaVista = new ProcesadorGraficaIntegradaVista();
-    public static ZocaloVista zocaloVista = new ZocaloVista();
+    public static ArquitecturaVista arquitecturaVista;
+    public static FabricanteVista fabricanteVista;
+    public static GraficaIntegradaVista graficaIntegradaVista;
+    public static ProcesadorVista procesadorVista;
+    public static NombreProcesadorVista nombreProcesadorVista;
+    public static PlacaBaseVista placaBaseVista;
+    public static ProcesadorGraficaIntegradaVista procesadorGraficaIntegradaVista;
+    public static ZocaloVista zocaloVista;
+
+
+    public AppVista() throws PersistenciaException {
+        arquitecturaVista = new ArquitecturaVista();
+        fabricanteVista = new FabricanteVista();
+        graficaIntegradaVista = new GraficaIntegradaVista();
+        procesadorVista = new ProcesadorVista();
+        nombreProcesadorVista = new NombreProcesadorVista();
+        placaBaseVista = new PlacaBaseVista();
+        procesadorGraficaIntegradaVista = new ProcesadorGraficaIntegradaVista();
+        zocaloVista = new ZocaloVista();
+    }
+
 
     public static void main(String[] args) throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);

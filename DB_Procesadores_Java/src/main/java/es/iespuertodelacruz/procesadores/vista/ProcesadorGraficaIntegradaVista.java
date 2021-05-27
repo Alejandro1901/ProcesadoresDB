@@ -8,7 +8,17 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class ProcesadorGraficaIntegradaVista {
-    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
+    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public ProcesadorGraficaIntegradaVista() throws PersistenciaException {
+        procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
+    }
+
 
     /**
      * Funcion que nos permite crear un objeto NombreProcesador

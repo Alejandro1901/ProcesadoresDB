@@ -8,7 +8,17 @@ import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class ZocaloVista {
-    public static ZocaloControlador zocaloControlador = new ZocaloControlador();
+    public static ZocaloControlador zocaloControlador;
+
+    /**
+     * Constructor con el controlador
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public ZocaloVista() throws PersistenciaException {
+        zocaloControlador = new ZocaloControlador();
+    }
+
 
     /**
      * Funcion que nos permite crear un zocalo

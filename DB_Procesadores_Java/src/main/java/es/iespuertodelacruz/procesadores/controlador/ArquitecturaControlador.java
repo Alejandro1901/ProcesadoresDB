@@ -14,11 +14,17 @@ public class ArquitecturaControlador {
    private static final String LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE = "La arquitectura que se indica NO existe en nuestra base de datos";
    ArquitecturaModelo arquitecturaModelo;
    
-   public ArquitecturaControlador() {
-      arquitecturaModelo = new ArquitecturaModelo();
-      
-   }
    /**
+    * Constructor con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+    public ArquitecturaControlador() throws PersistenciaException {
+        arquitecturaModelo = new ArquitecturaModelo();
+    }
+
+   /**
+    * Metodo que valida las arquitecturas
     * 
     * @param arquitectura a validar
     * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
