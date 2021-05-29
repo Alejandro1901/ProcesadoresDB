@@ -3,7 +3,6 @@ package es.iespuertodelacruz.procesadores.vista;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import es.iespuertodelacruz.procesadores.api.PlacaBase;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
@@ -19,7 +18,7 @@ public class AppVista {
     private static final String GRAFICA_INTEGRADA = "3. Grafica integrada";
     private static final String FABRICANTE = "2. Fabricante";
     private static final String ARQUITECTURA = "1. Arquitectura";
-    private static final String SOLO_NUMEROS_ENTRE_1_Y_7 = "Solo números entre 1 y 7";
+    private static final String SOLO_NUMEROS_ENTRE_1_Y_7 = "Solo números entre 1 y 9";
 
 
     public static void main(String[] args) throws ControladoresDBException, PersistenciaException {
@@ -124,7 +123,7 @@ public class AppVista {
         }
     }
 
-    private static void menuUsuario() {
+    private static void menuUsuario() throws PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -388,7 +387,7 @@ public class AppVista {
                         ProcesadorGraficaIntegradaVista procesadorGraficaIntegradaVista = new ProcesadorGraficaIntegradaVista();
                         procesadorGraficaIntegradaVista.eliminar();
                         break;
-                    case 7:
+                    case 9:
                         salir = true;
                         break;
                     default:
@@ -401,7 +400,7 @@ public class AppVista {
         }
     }
 
-    private static void menuBuscar() {
+    private static void menuBuscar() throws PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -425,23 +424,45 @@ public class AppVista {
                 switch (opcion) {
                     case 1:
                         System.out.println("Has seleccionado buscar una Arquitectura");
+                        ArquitecturaVista arquitecturaVista = new ArquitecturaVista();
+                        arquitecturaVista.buscar();
                         break;
                     case 2:
                         System.out.println("Has seleccionado buscar un Fabricante");
+                        FabricanteVista fabricanteVista = new FabricanteVista();
+                        fabricanteVista.buscar();
                         break;
                     case 3:
                         System.out.println("Has seleccionado buscar una Grafica integrada");
+                        GraficaIntegradaVista graficaIntegradaVista = new GraficaIntegradaVista();
+                        graficaIntegradaVista.buscar();
                         break;
                     case 4:
                         System.out.println("Has seleccionado buscar un Procesador");
+                        ProcesadorVista procesadorVista = new ProcesadorVista();
+                        procesadorVista.buscar();
                         break;
                     case 5:
                         System.out.println("Has seleccionado buscar una Placa Base");
+                        PlacaBaseVista placaBaseVista = new PlacaBaseVista();
+                        placaBaseVista.buscar();
                         break;
                     case 6:
                         System.out.println("Has seleccionado buscar un Zocalo");
+                        ZocaloVista zocaloVista = new ZocaloVista();
+                        zocaloVista.buscar();
                         break;
                     case 7:
+                        System.out.println("Has seleccionado buscar una fila de NombreProcesador");
+                        NombreProcesadorVista nombreProcesadorVista = new NombreProcesadorVista();
+                        nombreProcesadorVista.buscar();
+                        break;
+                    case 8:
+                        System.out.println("Has seleccionado buscar una fila de ProcesadorGraficaIntegrada");
+                        ProcesadorGraficaIntegradaVista procesadorGraficaIntegradaVista = new ProcesadorGraficaIntegradaVista();
+                        procesadorGraficaIntegradaVista.buscar();;
+                        break;
+                    case 9:
                         salir = true;
                         break;
                     default:

@@ -37,6 +37,17 @@ public class ProcesadorGraficaIntegradaVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+        Scanner sn = new Scanner(System.in);
+        int id_procesador = sn.nextInt();
+        return id_procesador;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -69,5 +80,16 @@ public class ProcesadorGraficaIntegradaVista {
         Scanner sn = new Scanner(System.in);
         int idProcesador = sn.nextInt();
         procesadorGraficaIntegradaControlador.eliminar(idProcesador);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        int id = crearClave();
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = procesadorGraficaIntegradaControlador.buscar(id);
+        procesadorGraficaIntegrada.toString();
     }
 }

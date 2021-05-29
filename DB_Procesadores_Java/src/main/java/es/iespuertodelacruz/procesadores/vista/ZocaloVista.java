@@ -40,6 +40,17 @@ public class ZocaloVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        return id;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -71,5 +82,16 @@ public class ZocaloVista {
         Scanner sn = new Scanner(System.in);
         int id = sn.nextInt();
         zocaloControlador.eliminar(id);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        int id = crearClave();
+        Zocalo zocalo = zocaloControlador.buscar(id);
+        zocalo.toString();
     }
 }
