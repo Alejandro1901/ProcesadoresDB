@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest
+EqualsTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.NumberFormatException: For input string: "0.35F"
+	at es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest.SetUp(GraficaIntegradaTest.java:21)
+
+toStringTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.NumberFormatException: For input string: "0.35F"
+	at es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest.SetUp(GraficaIntegradaTest.java:21)
+

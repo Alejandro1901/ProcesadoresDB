@@ -74,13 +74,7 @@ public class ProcesadorVista {
     public void insertar() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         Procesador procesador = crearProcesador();
-        NombreProcesador nombreProcesador = nombreProcesadorVista.crearNombreProcesador(procesador.getModelo());
-        System.out.println("Escribe la id de la grafica integrada que contiene el procesador (Si tiene)");
-        int idGraficaIntegrada = sn.nextInt();
-        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(procesador.getId(), idGraficaIntegrada);
-        nombreProcesadorControlador.insertar(nombreProcesador);
         procesadorControlador.insertar(procesador);
-        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
     }
 
     /**

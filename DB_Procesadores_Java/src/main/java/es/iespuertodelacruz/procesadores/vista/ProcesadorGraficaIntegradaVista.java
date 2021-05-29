@@ -37,6 +37,18 @@ public class ProcesadorGraficaIntegradaVista {
     }
 
     /**
+     * Metodo que nos permite insertar en la BBDD
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void insertar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = crearProcesadorGraficaIntegrada();
+        procesadorGraficaIntegradaControlador.insertar(procesadorGraficaIntegrada);
+    }
+
+    /**
      * Metodo que nos permite modificar un campo de la BBDD
      * 
      * @throws ControladoresDBException controlada
