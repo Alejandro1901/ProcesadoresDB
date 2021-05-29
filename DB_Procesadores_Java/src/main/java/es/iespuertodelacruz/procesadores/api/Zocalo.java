@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.Objects;
 
 public class Zocalo {
 
@@ -66,4 +67,29 @@ public class Zocalo {
     public void setFechaLanzamiento(String fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
+
+    @Override
+    public String toString() {
+        return getId() + DELIMITADOR +
+            getTipo() + DELIMITADOR +
+            getTecnologia() + DELIMITADOR +
+            getFechaLanzamiento();
+}
+    
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Zocalo)) {
+            return false;
+        }
+        Zocalo zocalo = (Zocalo) o;
+        return id == zocalo.id && Objects.equals(tipo, zocalo.tipo) && Objects.equals(tecnologia, zocalo.tecnologia) && Objects.equals(fechaLanzamiento, zocalo.fechaLanzamiento);
+    }
+
+    
+  
+
 }

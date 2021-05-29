@@ -1,10 +1,12 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Fabricante {
 
- private static final String DELIMITADOR = "'";
+    private static final String DELIMITADOR = "'";
 
     String codigo;
     String codigoPostal;
@@ -19,18 +21,19 @@ public class Fabricante {
     /**
      * Constructor con todos los parametros
      * 
-     * @param codigo del fabricante 
-     * @param codigoPostal del fabricante 
-     * @param nombre del fabricante
-     * @param calle del fabricante, donde esta situado la fabrica 
-     * @param numero de la fabrica 
-     * @param pais donde se fabrican los procesadores 
-     * @param telefono del fabricante 
-     * @param correo del fabricante 
-     * @param web del fabricante
+     * @param codigo       del fabricante
+     * @param codigoPostal del fabricante
+     * @param nombre       del fabricante
+     * @param calle        del fabricante, donde esta situado la fabrica
+     * @param numero       de la fabrica
+     * @param pais         donde se fabrican los procesadores
+     * @param telefono     del fabricante
+     * @param correo       del fabricante
+     * @param web          del fabricante
      */
-    
-     public Fabricante(String codigo, String codigoPostal, String nombre, String calle, int numero, String pais, String telefono, String correo, String web) {
+
+    public Fabricante(String codigo, String codigoPostal, String nombre, String calle, int numero, String pais,
+            String telefono, String correo, String web) {
         this.codigo = codigo;
         this.codigoPostal = codigoPostal;
         this.nombre = nombre;
@@ -40,6 +43,23 @@ public class Fabricante {
         this.telefono = telefono;
         this.correo = correo;
         this.web = web;
+    }
+
+    public Fabricante(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.codigo = (String) elementos.get(0);
+        this.codigoPostal = (String) elementos.get(1);
+        this.nombre = (String) elementos.get(2);
+        this.calle = (String) elementos.get(3);
+        this.numero = Integer.parseInt((String) elementos.get(4));
+        this.pais = (String) elementos.get(5);
+        this.telefono = (String) elementos.get(6);
+        this.correo = (String) elementos.get(7);
+        this.web = (String) elementos.get(8);
     }
 
     /**
@@ -126,18 +146,12 @@ public class Fabricante {
 
     @Override
     public String toString() {
-        return getCodigo() + DELIMITADOR +
-            getCodigoPostal() + DELIMITADOR +
-            getNombre() + DELIMITADOR +
-            getCalle() + DELIMITADOR +
-            getNumero() + DELIMITADOR +
-            getPais() + DELIMITADOR +
-            getTelefono() + DELIMITADOR +
-            getCorreo() + DELIMITADOR +
-            getWeb(); 
-}
-    
-  @Override
+        return getCodigo() + DELIMITADOR + getCodigoPostal() + DELIMITADOR + getNombre() + DELIMITADOR + getCalle()
+                + DELIMITADOR + getNumero() + DELIMITADOR + getPais() + DELIMITADOR + getTelefono() + DELIMITADOR
+                + getCorreo() + DELIMITADOR + getWeb();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this)
             return true;
@@ -145,6 +159,10 @@ public class Fabricante {
             return false;
         }
         Fabricante fabricante = (Fabricante) o;
-        return Objects.equals(codigo, fabricante.codigo) && Objects.equals(codigoPostal, fabricante.codigoPostal) && Objects.equals(nombre, fabricante.nombre) && numero == fabricante.numero && Objects.equals(pais, fabricante.pais) && Objects.equals(calle, fabricante.calle) && Objects.equals(telefono, fabricante.telefono) && Objects.equals(correo, fabricante.correo) && Objects.equals(web, fabricante.web);
+        return Objects.equals(codigo, fabricante.codigo) && Objects.equals(codigoPostal, fabricante.codigoPostal)
+                && Objects.equals(nombre, fabricante.nombre) && numero == fabricante.numero
+                && Objects.equals(pais, fabricante.pais) && Objects.equals(calle, fabricante.calle)
+                && Objects.equals(telefono, fabricante.telefono) && Objects.equals(correo, fabricante.correo)
+                && Objects.equals(web, fabricante.web);
     }
- }
+}

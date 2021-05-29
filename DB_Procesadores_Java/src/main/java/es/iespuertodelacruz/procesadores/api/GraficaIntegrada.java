@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class GraficaIntegrada {
 
@@ -30,6 +32,24 @@ public class GraficaIntegrada {
         this.frecuenciaMaxima = frecuenciaMaxima;
         this.memoriaMaxima = memoriaMaxima;
         this.resolucion = resolucion;
+    }
+/**
+ * Constructor con to string
+ * @param cadena
+ */
+    public GraficaIntegrada(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.id = Integer.parseInt((String) elementos.get(0));
+        this.nombreGrafica = (String) elementos.get(1);
+        this.frecuenciaBasica = Integer.parseInt((String) elementos.get(2));
+        this.frecuenciaMaxima = Integer.parseInt((String) elementos.get(3));
+        this.memoriaMaxima = Integer.parseInt((String) elementos.get(4));
+        this.resolucion = (String) elementos.get(5);
+        
     }
 
     /**

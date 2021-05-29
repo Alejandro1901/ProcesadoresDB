@@ -43,4 +43,28 @@ public class ProcesadorGraficaIntegrada {
     public void setIdGraficaIntegrada(int idGraficaIntegrada) {
         this.idGraficaIntegrada = idGraficaIntegrada;
     }
+
+    @Override
+    public String toString() {
+        return getIdProcesador() + DELIMITADOR +
+               getIdGraficaIntegrada();
+}
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof ProcesadorGraficaIntegrada)) {
+            return false;
+        }
+        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = (ProcesadorGraficaIntegrada) o;
+        return idProcesador == procesadorGraficaIntegrada.idProcesador && idGraficaIntegrada == procesadorGraficaIntegrada.idGraficaIntegrada;
+    }
+
+
+   
+
+    
+    
+
 }

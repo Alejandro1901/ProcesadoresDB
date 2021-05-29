@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.Objects;
+
 public class Procesador {
 
     private static final String DELIMITADOR = "'";
@@ -155,5 +157,32 @@ public class Procesador {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+    @Override
+    public String toString() {
+        return getId() + DELIMITADOR +
+            getCodigoFabricante() + DELIMITADOR +
+            getIdSocket() + DELIMITADOR +
+            getIdArquitectura() + DELIMITADOR +
+            getModelo() + DELIMITADOR +
+            getFechaLanzamiento() + DELIMITADOR +
+            getNucleos() + DELIMITADOR +
+            getHilos() + DELIMITADOR +
+            getFrecuencia() + DELIMITADOR +
+            getOverclock() + DELIMITADOR +
+            getTdp() + DELIMITADOR +
+            getPrecio();
+}
+    
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Procesador)) {
+            return false;
+        }
+        Procesador procesador = (Procesador) o;
+        return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio;
     }
 }

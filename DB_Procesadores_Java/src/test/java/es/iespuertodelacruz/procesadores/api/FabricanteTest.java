@@ -5,46 +5,51 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PlacaBaseTest {
+public class FabricanteTest {
   // Variables de la clase
     
-  PlacaBase placaBase1;
-  PlacaBase placaBase2;
-  PlacaBase placaBase3;
+  Fabricante fabricante1;
+  Fabricante fabricante2;
+  Fabricante fabricante3;
 
   //BeforeEach y AfterEach
 
   @BeforeEach
   public void SetUp() {
-      placaBase1 = crearPlacaBase();
-      placaBase2 = new PlacaBase(1,2,"Gigabyte");
-      placaBase3 = new PlacaBase("1'2'Gigabyte");
+      fabricante1 = crearFabricante();
+      fabricante2 = new Fabricante("US4581401001","95052","Intel","Mission College Blvd",3186,"Estados Unidos","877-284-1566","investor.relations@intel.com","https://www.intel.es");
+      fabricante3 = new Fabricante("US4581401001'95052'Intel'Mission College Blvd'3186'Estados Unidos'877-284-1566'investor.relations@intel.com'https://www.intel.es");
   }
 
   //Test
 
   @Test
   public void toStringTest() {
-      assertEquals("1'2'Gigabyte",placaBase1.toString(), "El texto recibido no era el esperado");
+      assertEquals("1'2'Gigabyte",fabricante1.toString(), "El texto recibido no era el esperado");
   }
 
   @Test
   public void EqualsTest() {
-      assertEquals(placaBase2,placaBase3,"Los objetos son iguales y equals no lo reconoce");
+      assertEquals(fabricante2,fabricante3,"Los objetos son iguales y equals no lo reconoce");
   }
 
   //Funciones y metodos
 
-  private PlacaBase crearPlacaBase() {
-      PlacaBase placaBase;
-      placaBase = new PlacaBase();
-      placaBase.setId(1);
-      placaBase.setIdSocket(2);
-      placaBase.setNombre("Gigabyte");
+  private Fabricante crearFabricante() {
+      Fabricante fabricante;
+      fabricante = new Fabricante();
+      fabricante.setCodigo("US4581401001");
+      fabricante.setCodigoPostal("95052");
+      fabricante.setNombre("Intel");
+      fabricante.setCalle("Mission College Blvd");
+      fabricante.setNumero(3186);
+      fabricante.setPais("Estados Unidos");
+      fabricante.setTelefono("877-284-1566");
+      fabricante.setCorreo("investor.relations@intel.com");
+      fabricante.setWeb("https://www.intel.es");
 
-      return placaBase;
+      return fabricante;
   }  
-
 
   
 }
