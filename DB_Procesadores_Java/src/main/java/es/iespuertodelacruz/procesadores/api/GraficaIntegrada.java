@@ -45,8 +45,8 @@ public class GraficaIntegrada {
         }
         this.id = Integer.parseInt((String) elementos.get(0));
         this.nombreGrafica = (String) elementos.get(1);
-        this.frecuenciaBasica = Integer.parseInt((String) elementos.get(2));
-        this.frecuenciaMaxima = Integer.parseInt((String) elementos.get(3));
+        this.frecuenciaBasica = Float.parseFloat((String) elementos.get(2));
+        this.frecuenciaMaxima = Float.parseFloat((String) elementos.get(3));
         this.memoriaMaxima = Integer.parseInt((String) elementos.get(4));
         this.resolucion = (String) elementos.get(5);
         

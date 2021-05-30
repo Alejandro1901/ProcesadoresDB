@@ -25,7 +25,7 @@ public class FabricanteTest {
 
   @Test
   public void toStringTest() {
-      assertEquals("1'2'Gigabyte",fabricante1.toString(), "El texto recibido no era el esperado");
+      assertEquals("US4581401001'95052'Intel'Mission College Blvd'3186'Estados Unidos'877-284-1566'investor.relations@intel.com'https://www.intel.es",fabricante1.toString(), "El texto recibido no era el esperado");
   }
 
   @Test
