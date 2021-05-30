@@ -2,20 +2,14 @@ package es.iespuertodelacruz.procesadores.vista;
 
 import java.util.Scanner;
 
-import es.iespuertodelacruz.procesadores.api.NombreProcesador;
 import es.iespuertodelacruz.procesadores.api.Procesador;
 import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
-import es.iespuertodelacruz.procesadores.controlador.NombreProcesadorControlador;
 import es.iespuertodelacruz.procesadores.controlador.ProcesadorControlador;
-import es.iespuertodelacruz.procesadores.controlador.ProcesadorGraficaIntegradaControlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class ProcesadorVista {
     public static ProcesadorControlador procesadorControlador;
-    public static NombreProcesadorControlador nombreProcesadorControlador;
-    public static ProcesadorGraficaIntegradaControlador procesadorGraficaIntegradaControlador;
-    public static NombreProcesadorVista nombreProcesadorVista;
 
     /**
      * Constructor con los controladores
@@ -24,9 +18,6 @@ public class ProcesadorVista {
      */
     public ProcesadorVista() throws PersistenciaException {
         procesadorControlador = new ProcesadorControlador();
-        nombreProcesadorControlador = new NombreProcesadorControlador();
-        procesadorGraficaIntegradaControlador = new ProcesadorGraficaIntegradaControlador();
-        nombreProcesadorVista = new NombreProcesadorVista();
     }
 
 
@@ -66,6 +57,17 @@ public class ProcesadorVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        return id;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -74,13 +76,7 @@ public class ProcesadorVista {
     public void insertar() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         Procesador procesador = crearProcesador();
-        NombreProcesador nombreProcesador = nombreProcesadorVista.crearNombreProcesador(procesador.getModelo());
-        System.out.println("Escribe la id de la grafica integrada que contiene el procesador (Si tiene)");
-        int idGraficaIntegrada = sn.nextInt();
-        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = new ProcesadorGraficaIntegrada(procesador.getId(), idGraficaIntegrada);
-        nombreProcesadorControlador.insertar(nombreProcesador);
         procesadorControlador.insertar(procesador);
-        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegrada);
     }
 
     /**
@@ -104,5 +100,16 @@ public class ProcesadorVista {
         Scanner sn = new Scanner(System.in);
         int id = sn.nextInt();
         procesadorControlador.eliminar(id);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        int id = crearClave();
+        Procesador procesador = procesadorControlador.buscar(id);
+        procesador.toString();
     }
 }

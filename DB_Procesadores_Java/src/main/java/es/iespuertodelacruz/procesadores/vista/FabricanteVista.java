@@ -50,6 +50,17 @@ public class FabricanteVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static String crearClave() {
+        Scanner sn = new Scanner(System.in);
+        String codigo = sn.next();
+        return codigo;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -78,8 +89,18 @@ public class FabricanteVista {
      * @throws PersistenciaException controlada
      */
     public void eliminar() throws ControladoresDBException, PersistenciaException {
-        Scanner sn = new Scanner(System.in);
-        String codigo = sn.next();
+        String codigo = crearClave();
         fabricanteControlador.eliminar(codigo);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        String codigo = crearClave();
+        Fabricante fabricante = fabricanteControlador.buscar(codigo);
+        fabricante.toString();
     }
 }

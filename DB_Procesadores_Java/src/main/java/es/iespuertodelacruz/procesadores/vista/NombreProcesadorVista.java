@@ -52,6 +52,29 @@ public class NombreProcesadorVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static String crearClave() {
+        Scanner sn = new Scanner(System.in);
+        String modelo = sn.next();
+        return modelo;
+    }
+
+    /**
+     * Metodo que nos permite insertar en la BBDD
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void insertar() throws ControladoresDBException, PersistenciaException {
+        Scanner sn = new Scanner(System.in);
+        NombreProcesador nombreProcesador = crearNombreProcesador();
+        nombreProcesadorControlador.insertar(nombreProcesador);
+    }
+
+    /**
      * Metodo que nos permite modificar un campo de la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -72,5 +95,16 @@ public class NombreProcesadorVista {
         Scanner sn = new Scanner(System.in);
         String modeloProcesador = sn.next();
         nombreProcesadorControlador.eliminar(modeloProcesador);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        String modelo = crearClave();
+        NombreProcesador nombreProcesador = nombreProcesadorControlador.buscar(modelo);
+        nombreProcesador.toString();
     }
 }

@@ -43,6 +43,17 @@ public class ArquitecturaVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        return id;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -71,8 +82,18 @@ public class ArquitecturaVista {
      * @throws PersistenciaException controlada
      */
     public void eliminar() throws ControladoresDBException, PersistenciaException {
-        Scanner sn = new Scanner(System.in);
-        int id = sn.nextInt();
+        int id = crearClave();
         arquitecturaControlador.eliminar(id);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        int id = crearClave();
+        Arquitectura arquitectura = arquitecturaControlador.buscar(id);
+        arquitectura.toString();
     }
 }

@@ -45,6 +45,17 @@ public class GraficaIntegradaVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        return id;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -76,5 +87,16 @@ public class GraficaIntegradaVista {
         Scanner sn = new Scanner(System.in);
         int id = sn.nextInt();
         graficaIntegradaControlador.eliminar(id);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        int id = crearClave();
+        GraficaIntegrada graficaIntegrada = graficaIntegradaControlador.buscar(id);
+        graficaIntegrada.toString();
     }
 }

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertodelacruz.procesadores.FicheroTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 s - in es.iespuertodelacruz.procesadores.FicheroTest
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in es.iespuertodelacruz.procesadores.FicheroTest
+>>>>>>> 50203298e478d9830e90d52c24d6a282791087e6

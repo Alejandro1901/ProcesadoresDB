@@ -38,6 +38,17 @@ public class PlacaBaseVista {
     }
 
     /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+        Scanner sn = new Scanner(System.in);
+        int id = sn.nextInt();
+        return id;
+    }
+
+    /**
      * Metodo que nos permite insertar en la BBDD
      * 
      * @throws ControladoresDBException controlada
@@ -69,5 +80,16 @@ public class PlacaBaseVista {
         Scanner sn = new Scanner(System.in);
         int id = sn.nextInt();
         placaBaseControlador.eliminar(id);
+    }
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+        int id = crearClave();
+        PlacaBase placaBase = placaBaseControlador.buscar(id);
+        placaBase.toString();
     }
 }
