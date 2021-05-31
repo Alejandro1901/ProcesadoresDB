@@ -13,7 +13,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class GraficaIntegradaControladorTest {
     GraficaIntegrada graficaIntegrada = new GraficaIntegrada();
-    GraficaIntegrada graficaIntegradaControlador;
+    GraficaIntegradaControlador graficaIntegradaControlador;
 
     @BeforeEach
     public void setUp() throws PersistenciaException, ControladoresDBException {

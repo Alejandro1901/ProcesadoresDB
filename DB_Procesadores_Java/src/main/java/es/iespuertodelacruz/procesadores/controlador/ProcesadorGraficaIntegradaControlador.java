@@ -99,9 +99,9 @@ public class ProcesadorGraficaIntegradaControlador {
     * @throws PersistenciaException
     */
 
-   public ProcesadorGraficaIntegrada buscar(int idprocesador) throws PersistenciaException {
+   public ProcesadorGraficaIntegrada buscar(int idProcesador) throws PersistenciaException {
       ProcesadorGraficaIntegrada procesadorGraficaIntegrada = null;
-      procesadorGraficaIntegrada = procesadorGraficaIntegradaModelo.obtenerProcesadorGraficaIntegrada(idprocesador);
+      procesadorGraficaIntegrada = procesadorGraficaIntegradaModelo.buscar(idProcesador);
       return procesadorGraficaIntegrada;
    }
 
