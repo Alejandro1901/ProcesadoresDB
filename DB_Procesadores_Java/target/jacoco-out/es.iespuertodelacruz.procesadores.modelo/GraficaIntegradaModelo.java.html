@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GraficaIntegradaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">GraficaIntegradaModelo.java</span></div><h1>GraficaIntegradaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class GraficaIntegradaModelo {
+    
+    MySqlBbdd persistencia;
+
+    private static final String TABLA = &quot;grafica_integrada&quot;;
+    private static final String CLAVE_PRIMARIA = &quot;id&quot;;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     * @throws PersistenciaException controlada
+     */
+<span class="nc" id="L21">    public GraficaIntegradaModelo() throws PersistenciaException {</span>
+<span class="nc" id="L22">        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);</span>
+<span class="nc" id="L23">    }</span>
+
+    /**
+     * Metodo que inserta una grafica integrada
+     * 
+     * @param graficaIntegrada a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L32">        persistencia.insertar(graficaIntegrada);</span>
+<span class="nc" id="L33">    }</span>
+
+    /**
+     * Metodo que elimina una grafica integrada
+     * 
+     * @param graficaIntegrada a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L42">        persistencia.eliminar(graficaIntegrada);</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * Metodo que modifica una grafica integrada
+     * 
+     * @param graficaIntegrada a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L52">        persistencia.modificar(graficaIntegrada);</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Funcion que obtiene una grafica integrada segun su id
+     * 
+     * @param idGraficaIntegrada de la grafica integrada a obtener
+     * @return la grafica integrada si existe
+     * @throws PersistenciaException controlada
+     */
+    public GraficaIntegrada obtenerGraficaIntegrada(int idGraficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L63">        return persistencia.obtenerGraficaIntegrada(idGraficaIntegrada);</span>
+    }
+
+    /**
+     * Funcion que obtiene la lista de graficas integradas almacenadas
+     * 
+     * @return la lista de graficas integradas
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;GraficaIntegrada&gt; obtenerListaGraficaIntegrada() throws PersistenciaException {
+<span class="nc" id="L73">        return persistencia.obtenerListadoGraficaIntegrada();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -2,7 +2,7 @@ package es.iespuertodelacruz.procesadores.vista;
 
 import java.util.Scanner;
 
-import es.iespuertodelacruz.procesadores.api.Arquitectura;
+import es.iespuertodelacruz.procesadores.api.*;
 import es.iespuertodelacruz.procesadores.controlador.ArquitecturaControlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
