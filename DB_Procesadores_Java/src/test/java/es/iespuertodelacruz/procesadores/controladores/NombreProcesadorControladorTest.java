@@ -26,7 +26,7 @@ public class NombreProcesadorControladorTest {
                 nombreProcesador = crearNombreProcesador();
             }
             if (nombreProcesadorControlador.buscar(nombreProcesador.getModeloProcesador()) == null) {
-                nombreProcesadorControlador.insertar(nombreProcesador;
+                nombreProcesadorControlador.insertar(nombreProcesador);
             }
         }
     
