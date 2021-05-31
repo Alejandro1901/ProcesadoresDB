@@ -96,7 +96,7 @@ public class PlacaBaseControlador {
   
       public PlacaBase buscar(int id) throws PersistenciaException {
           PlacaBase placaBase = null;
-          placaBase = placaBaseModelo.obtenerPlacaBase(id);
+          placaBase = placaBaseModelo.buscar(id);
           return placaBase;
        }
   
