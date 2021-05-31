@@ -32,18 +32,19 @@ public class Fabricante {
      * @param web          del fabricante
      */
 
-    public Fabricante(String codigo, String codigoPostal, String nombre, String calle, int numero, String pais,
-            String telefono, String correo, String web) {
+
+    public Fabricante(String codigo, String codigoPostal, String nombre, int numero, String pais, String calle, String telefono, String correo, String web) {
         this.codigo = codigo;
         this.codigoPostal = codigoPostal;
         this.nombre = nombre;
-        this.calle = calle;
         this.numero = numero;
         this.pais = pais;
+        this.calle = calle;
         this.telefono = telefono;
         this.correo = correo;
         this.web = web;
     }
+
 
     public Fabricante(String cadena) {
         ArrayList<Object> elementos = new ArrayList<>();
@@ -54,9 +55,9 @@ public class Fabricante {
         this.codigo = (String) elementos.get(0);
         this.codigoPostal = (String) elementos.get(1);
         this.nombre = (String) elementos.get(2);
-        this.calle = (String) elementos.get(3);
         this.numero = Integer.parseInt((String) elementos.get(4));
         this.pais = (String) elementos.get(5);
+        this.calle = (String) elementos.get(3);
         this.telefono = (String) elementos.get(6);
         this.correo = (String) elementos.get(7);
         this.web = (String) elementos.get(8);
@@ -71,6 +72,7 @@ public class Fabricante {
     /**
      * Creacion de getter and setters
      */
+
 
     public String getCodigo() {
         return this.codigo;
@@ -96,14 +98,6 @@ public class Fabricante {
         this.nombre = nombre;
     }
 
-    public String getCalle() {
-        return this.calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
     public int getNumero() {
         return this.numero;
     }
@@ -118,6 +112,14 @@ public class Fabricante {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public String getCalle() {
+        return this.calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
     }
 
     public String getTelefono() {
@@ -143,13 +145,15 @@ public class Fabricante {
     public void setWeb(String web) {
         this.web = web;
     }
+    
 
     @Override
     public String toString() {
-        return getCodigo() + DELIMITADOR + getCodigoPostal() + DELIMITADOR + getNombre() + DELIMITADOR + getCalle()
-                + DELIMITADOR + getNumero() + DELIMITADOR + getPais() + DELIMITADOR + getTelefono() + DELIMITADOR
+        return getCodigo() + DELIMITADOR + getCodigoPostal() + DELIMITADOR + getNombre() + DELIMITADOR + getNumero()
+                + DELIMITADOR + getPais() + DELIMITADOR + getCalle() + DELIMITADOR + getTelefono() + DELIMITADOR
                 + getCorreo() + DELIMITADOR + getWeb();
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -159,10 +163,9 @@ public class Fabricante {
             return false;
         }
         Fabricante fabricante = (Fabricante) o;
-        return Objects.equals(codigo, fabricante.codigo) && Objects.equals(codigoPostal, fabricante.codigoPostal)
-                && Objects.equals(nombre, fabricante.nombre) && numero == fabricante.numero
-                && Objects.equals(pais, fabricante.pais) && Objects.equals(calle, fabricante.calle)
-                && Objects.equals(telefono, fabricante.telefono) && Objects.equals(correo, fabricante.correo)
-                && Objects.equals(web, fabricante.web);
+        return Objects.equals(codigo, fabricante.codigo) && Objects.equals(codigoPostal, fabricante.codigoPostal) && Objects.equals(nombre, fabricante.nombre) && numero == fabricante.numero && Objects.equals(pais, fabricante.pais) && Objects.equals(calle, fabricante.calle) && Objects.equals(telefono, fabricante.telefono) && Objects.equals(correo, fabricante.correo) && Objects.equals(web, fabricante.web);
     }
+
+
+    
 }
