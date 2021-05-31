@@ -1,11 +1,21 @@
 package es.iespuertodelacruz.procesadores.modelo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class GraficaIntegradaModelo {
+
+    private static final String PUNTO_Y_COMA = ";";
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = "";
+    private static final String SQL_FIN_COMILLA_SIMPLE = "';";
+    private static final String SQL_FIN_PARENTESIS = "');";
+    private static final String SQL_VALUES = "VALUES ('";
+    private static final String SQL_COMA = "', '";
     
     MySqlBbdd persistencia;
 
@@ -23,53 +33,124 @@ public class GraficaIntegradaModelo {
     }
 
     /**
-     * Metodo que inserta una grafica integrada
+     * Metodo que inserta una graficaIntegrada
      * 
      * @param graficaIntegrada a insertar
      * @throws PersistenciaException controlada
      */
     public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
-        persistencia.insertar(graficaIntegrada);
+        String sql = "UPDATE grafica_integrada SET id = '" + graficaIntegrada.getId() 
+        + "', nombre_grafica = '" + graficaIntegrada.getNombreGrafica() 
+        + "', frec_basica = '" + graficaIntegrada.getFrecuenciaBasica() 
+        + "', frec_max = '" + graficaIntegrada.getFrecuenciaMaxima() 
+        + "', memoria_max = '" + graficaIntegrada.getMemoriaMaxima() 
+        + "', resolucion = '" + graficaIntegrada.getResolucion() 
+        + SQL_FIN_COMILLA_SIMPLE;
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Metodo que elimina una grafica integrada
+     * Metodo que elimina una graficaIntegrada
      * 
      * @param graficaIntegrada a eliminar
      * @throws PersistenciaException controlada
      */
     public void eliminar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
-        persistencia.eliminar(graficaIntegrada);
+        String sql = "DELETE FROM grafica_integrada WHERE id = '" + graficaIntegrada.getId() + SQL_FIN_COMILLA_SIMPLE;
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Metodo que modifica una grafica integrada
+     * Metodo que modifica una graficaIntegrada
      * 
      * @param graficaIntegrada a modificar
      * @throws PersistenciaException controlada
      */
     public void modificar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
-        persistencia.modificar(graficaIntegrada);
+        String sql = "UPDATE grafica_integrada SET id = '" + graficaIntegrada.getId() 
+        + "', nombre_grafica = '" + graficaIntegrada.getNombreGrafica() 
+        + "', frec_basica = '" + graficaIntegrada.getFrecuenciaBasica() 
+        + "', frec_max = '" + graficaIntegrada.getFrecuenciaMaxima() 
+        + "', memoria_max = '" + graficaIntegrada.getMemoriaMaxima() 
+        + "', resolucion = '" + graficaIntegrada.getResolucion() 
+        + SQL_FIN_COMILLA_SIMPLE;
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Funcion que obtiene una grafica integrada segun su id
+     * Funcion que busca una graficaIntegrada en la bbdd
      * 
-     * @param idGraficaIntegrada de la grafica integrada a obtener
-     * @return la grafica integrada si existe
+     * @param clave de la graficaIntegrada
+     * @return graficaIntegrada encontrada
      * @throws PersistenciaException controlada
      */
-    public GraficaIntegrada obtenerGraficaIntegrada(int idGraficaIntegrada) throws PersistenciaException {
-        return persistencia.obtenerGraficaIntegrada(idGraficaIntegrada);
+    public GraficaIntegrada buscar(int clave) throws PersistenciaException {
+        GraficaIntegrada graficaIntegradaEncontrada = null;
+        String sql = "SELECT * FROM " + TABLA + " WHERE " + CLAVE_PRIMARIA + "='" + clave + "'";
+        ResultSet resultSet;
+        ArrayList<GraficaIntegrada> lista = new ArrayList<>();
+        try {
+            resultSet = persistencia.buscarElementos(sql);
+            lista = buscar(resultSet);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException("Se ha producido un error realizando la consulta", e);
+        } finally {
+            persistencia.closeConecction(persistencia.getConnection(), null, null);
+        }
+
+        if (!lista.isEmpty()) {
+            graficaIntegradaEncontrada = lista.get(0);
+        }
+        return graficaIntegradaEncontrada;
     }
 
     /**
-     * Funcion que obtiene la lista de graficas integradas almacenadas
+     * Funcion encargada de transformar un ResultSet en una lista de resultados
      * 
-     * @return la lista de graficas integradas
+     * @param resultSet de entrada
+     * @return lista de graficaIntegrada
      * @throws PersistenciaException controlada
      */
-    public ArrayList<GraficaIntegrada> obtenerListaGraficaIntegrada() throws PersistenciaException {
-        return persistencia.obtenerListadoGraficaIntegrada();
+    private ArrayList<GraficaIntegrada> buscar(ResultSet resultSet) throws PersistenciaException {
+        ArrayList<GraficaIntegrada> lista = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nombreGrafica = resultSet.getString("nombre_grafica");
+                float frecuenciaBasica = resultSet.getFloat("frec_basica");
+                float frecuenciaMaxima = resultSet.getFloat("frec_max");
+                int memoriaMaxima = resultSet.getInt("memoria_max");
+                String resolucion = resultSet.getString("resolucion");
+                GraficaIntegrada GraficaIntegrada = new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);
+                lista.add(GraficaIntegrada);
+            }
+        } catch (SQLException e) {
+            throw new PersistenciaException("Se ha producido un error realizando la transformacion a GraficaIntegrada", e);
+        } finally {
+            persistencia.closeConecction(null, null, resultSet);
+        }
+        return lista;
+    }
+
+
+    /**
+     * Funcion encargada de buscar todas los graficaIntegrada de la bbdd
+     * 
+     * @return arraylist de graficaIntegrada
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<GraficaIntegrada> buscarTodos() throws PersistenciaException {
+        String sql = "SELECT * FROM " + TABLA;
+        ResultSet resultSet;
+        ArrayList<GraficaIntegrada> lista = new ArrayList<>();
+        try {
+            resultSet = persistencia.buscarElementos(sql);
+            lista = buscar(resultSet);
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException("Se ha producido un error realizando la consulta", e);
+        } finally {
+            persistencia.closeConecction(persistencia.getConnection(), null, null);
+        }
+        return lista;
     }
 }

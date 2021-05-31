@@ -113,7 +113,7 @@ public class GraficaIntegradaControlador {
     
         public GraficaIntegrada buscar(int id) throws PersistenciaException {
             GraficaIntegrada graficaIntegrada = null;
-            graficaIntegrada = graficaIntegradaModelo.obtenerGraficaIntegrada(id);
+            graficaIntegrada = graficaIntegradaModelo.buscar(id);
             return graficaIntegrada;
          }
     
