@@ -141,7 +141,7 @@ public class ProcesadorControlador {
 
    public Procesador buscar(int id) throws PersistenciaException {
       Procesador procesador = null;
-      procesador = procesadorModelo.obtenerProcesador(id);
+      procesador = procesadorModelo.buscar(id);
       return procesador;
    }
 
