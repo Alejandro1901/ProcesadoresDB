@@ -3,6 +3,8 @@ package es.iespuertodelacruz.procesadores.modelo;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class MySqlBbdd extends Bbdd {
+    private static final String DRIVER_BBDD = "org.sqlite.JDBC";
+    private static final String URL = "jdbc:sqlite:test.db";
     
     /**
      * Constructor con los aprametros que extienden desde Bbdd
@@ -15,6 +17,10 @@ public class MySqlBbdd extends Bbdd {
      */
     public MySqlBbdd (String driver, String url, String usuario, String password) throws PersistenciaException {
         super(driver, url, usuario, password);
+    }
+
+    public MySqlBbdd (String usuario, String password) throws PersistenciaException {
+        super(DRIVER_BBDD, URL, usuario, password);
     }
 
 }

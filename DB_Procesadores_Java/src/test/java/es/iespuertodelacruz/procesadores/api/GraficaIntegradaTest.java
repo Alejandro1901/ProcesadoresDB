@@ -16,7 +16,7 @@ public class GraficaIntegradaTest {
   @BeforeEach
   public void SetUp() {
       graficaIntegrada1 = crearGraficaIntegrada();
-      graficaIntegrada2 = new GraficaIntegrada(1,"Intel UHD Graphics 750",0.35F,1.25F,64,"4K");
+      graficaIntegrada2 = new GraficaIntegrada(1,"Intel UHD Graphics 750",0.35F,1.25F,64F,"4K");
       graficaIntegrada3 = new GraficaIntegrada("1'Intel UHD Graphics 750'0.35F'1.25F'64'4K");
   }
 
@@ -24,7 +24,7 @@ public class GraficaIntegradaTest {
 
   @Test
   public void toStringTest() {
-      assertEquals("1'Intel UHD Graphics 750'0.35F'1.25F'64'4K",graficaIntegrada1.toString(), "El texto recibido no era el esperado");
+      assertEquals("1'Intel UHD Graphics 750'0.35'1.25'64.0'4K",graficaIntegrada1.toString(), "El texto recibido no era el esperado");
   }
 
   @Test
@@ -41,7 +41,7 @@ public class GraficaIntegradaTest {
       graficaIntegrada.setNombreGrafica("Intel UHD Graphics 750");
       graficaIntegrada.setFrecuenciaBasica(0.35F);
       graficaIntegrada.setFrecuenciaMaxima(1.25F);
-      graficaIntegrada.setMemoriaMaxima(64);
+      graficaIntegrada.setMemoriaMaxima(64F);
       graficaIntegrada.setResolucion("4K");
 
       return graficaIntegrada;

@@ -17,15 +17,15 @@ public class ProcesadorTest {
   @BeforeEach
   public void SetUp() {
       procesador1 = crearProcesador();
-      procesador2 = new Procesador(1,"US4581401001",1,2,"11900K","Q1´21",8,16,3.5F,true,125,569.90F,true);
-      procesador3 = new Procesador("1'US4581401001'1'2'11900K'Q1´21'8'16'3.5F'true'125'569.90F'true");
+      procesador2 = new Procesador(1,"US4581401001",1,2,"11900K","Q1´21",8,16,3.5F,true,125F,569.90F,true);
+      procesador3 = new Procesador("1'US4581401001'1'2'11900K'Q1´21'8'16'3.5'true'125'569.90'true");
   }
 
   //Test
 
   @Test
   public void toStringTest() {
-      assertEquals("1'US4581401001'1'2'11900K'Q1´21'8'16'3.5'true'125'569.90'true",procesador1.toString(), "El texto recibido no era el esperado");
+      assertEquals("1'US4581401001'1'2'11900K'Q1´21'8'16'3.5'true'125.0'569.9'true",procesador1.toString(), "El texto recibido no era el esperado");
   }
 
   @Test
@@ -48,7 +48,7 @@ public class ProcesadorTest {
       procesador.setHilos(16);
       procesador.setFrecuencia(3.5F);
       procesador.setOverclock(true);
-      procesador.setTdp(125);
+      procesador.setTdp(125F);
       procesador.setPrecio(569.90F);
       procesador.setGraficaPropia(true);
 

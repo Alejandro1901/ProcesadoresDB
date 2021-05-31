@@ -17,15 +17,15 @@ public class ProcesadorGraficaIntegradaTest {
   @BeforeEach
   public void SetUp() {
       procesadorgraficaintegrada1 = crearProcesadorGraficaIntegrada();
-      procesadorgraficaintegrada2 = new ProcesadorGraficaIntegrada(1,1);
-      procesadorgraficaintegrada3 = new ProcesadorGraficaIntegrada("1'1");
+      procesadorgraficaintegrada2 = new ProcesadorGraficaIntegrada(1,3);
+      procesadorgraficaintegrada3 = new ProcesadorGraficaIntegrada("1'3");
   }
 
   //Test
 
   @Test
   public void toStringTest() {
-      assertEquals("1'1",procesadorgraficaintegrada1.toString(), "El texto recibido no era el esperado");
+      assertEquals("1'3",procesadorgraficaintegrada1.toString(), "El texto recibido no era el esperado");
   }
 
   @Test
