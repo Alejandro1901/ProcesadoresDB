@@ -108,7 +108,7 @@ public void validarZocalo(Zocalo zocalo) throws ControladoresDBException {
   
       public Zocalo buscar(int id) throws PersistenciaException {
           Zocalo zocalo = null;
-          zocalo = zocaloModelo.obtenerZocalo(id);
+          zocalo = zocaloModelo.buscar(id);
           return zocalo;
        }
   
