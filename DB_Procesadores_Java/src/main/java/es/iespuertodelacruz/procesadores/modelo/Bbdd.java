@@ -90,7 +90,7 @@ public class Bbdd {
      * @return la coneccion
      * @throws PersistenciaException controlado
      */
-    private Connection getConnection() throws PersistenciaException {
+    public Connection getConnection() throws PersistenciaException {
         Connection connection = null;
 
         try {
@@ -113,7 +113,7 @@ public class Bbdd {
      * @param sql a ejecutar
      * @throws PersistenciaException error controlado
      */
-    private void actualizar(String sql) throws PersistenciaException {
+    public void actualizar(String sql) throws PersistenciaException {
         Statement statement = null;
         Connection connection = null;
         try {
@@ -1001,6 +1001,27 @@ public class Bbdd {
     }
 
     /**
+     * Funcion que realiza una consulta sobre una sentencia sql
+     * 
+     * @param sql de la consulta
+     * @return lista resultados
+     * @throws PersistenciaException controlada
+     */
+    protected ResultSet buscarElementos(String sql) throws PersistenciaException {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+        } catch (SQLException exception) {
+            throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
+        }
+        return resultSet;
+    }
+
+    /**
      * Metodo encargado de cerrar la conexion con la base de datos
      * 
      * @param connection a cerra
@@ -1008,7 +1029,7 @@ public class Bbdd {
      * @param resultSet  a cerrar
      * @throws PersistenciaException con mensaje descriptivo
      */
-    private void closeConecction(Connection connection, Statement statement, ResultSet resultSet)
+    public void closeConecction(Connection connection, Statement statement, ResultSet resultSet)
             throws PersistenciaException {
         try {
             if (resultSet != null) {

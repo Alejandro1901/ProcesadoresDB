@@ -103,18 +103,18 @@ public class ArquitecturaControlador {
         eliminar(arquitectura);
      }
 
-     /**
-      * Metodo encargado de buscar por la id de la clase
-      * @param id para localizar la arquitectura
-      * @return arquitectura a traves del id de la clase
-      * @throws PersistenciaException
-      */
-
+    /**
+     * Funcion encargada de buscar una arquitectura
+     * 
+     * @param id de la arquitectura
+     * @return objeto arquitectura
+     * @throws PersistenciaException controlada
+     */
     public Arquitectura buscar(int id) throws PersistenciaException {
         Arquitectura arquitectura = null;
-        arquitectura = arquitecturaModelo.obtenerArquitectura(id);
+        arquitectura = arquitecturaModelo.buscar(id);
         return arquitectura;
-     }
+    }
 
 /**
  * Metodo encargado de realizar la modificacion de un tipo de arquitectura
