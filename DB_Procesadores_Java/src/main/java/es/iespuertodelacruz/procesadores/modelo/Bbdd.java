@@ -881,7 +881,7 @@ public class Bbdd {
         telefono = resultSet.getString("telefono");
         correo = resultSet.getString("correo");
         web = resultSet.getString("web");
-        Fabricante fabricante = new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);
+        Fabricante fabricante = new Fabricante(codigo, codigoPostal, nombre, numero, pais, calle, telefono, correo, web);
         return fabricante;
     }
 

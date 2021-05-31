@@ -55,9 +55,9 @@ public class Fabricante {
         this.codigo = (String) elementos.get(0);
         this.codigoPostal = (String) elementos.get(1);
         this.nombre = (String) elementos.get(2);
-        this.numero = Integer.parseInt((String) elementos.get(4));
-        this.pais = (String) elementos.get(5);
-        this.calle = (String) elementos.get(3);
+        this.numero = Integer.parseInt((String) elementos.get(3));
+        this.pais = (String) elementos.get(4);
+        this.calle = (String) elementos.get(5);
         this.telefono = (String) elementos.get(6);
         this.correo = (String) elementos.get(7);
         this.web = (String) elementos.get(8);

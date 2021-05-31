@@ -46,7 +46,7 @@ public class FabricanteVista {
         System.out.println("Escribe la web del fabricante");
         String web = sn.next();
         sn.close();
-        return new Fabricante(codigo, codigoPostal, nombre, calle, numero, pais, telefono, correo, web);
+        return new Fabricante(codigo, codigoPostal, nombre, numero, pais, calle, telefono, correo, web);
     }
 
     /**
