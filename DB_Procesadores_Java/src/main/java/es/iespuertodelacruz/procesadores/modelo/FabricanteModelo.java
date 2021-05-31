@@ -9,6 +9,9 @@ public class FabricanteModelo {
     
     MySqlBbdd persistencia;
 
+    private static final String TABLA = "fabricante";
+    private static final String CLAVE_PRIMARIA = "codigo";
+
     /**
      * Constructor con la persistencia
      * 

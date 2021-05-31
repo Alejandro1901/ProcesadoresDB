@@ -9,6 +9,9 @@ public class PlacaBaseModelo {
     
     MySqlBbdd persistencia;
 
+    private static final String TABLA = "placa_base";
+    private static final String CLAVE_PRIMARIA = "id";
+
     /**
      * Constructor con la persistencia
      * 

@@ -9,6 +9,9 @@ public class NombreProcesadorModelo {
     
     MySqlBbdd persistencia;
 
+    private static final String TABLA = "nombre_procesador";
+    private static final String CLAVE_PRIMARIA = "modelo_procesador";
+
     /**
      * Constructor con la persistencia
      * 

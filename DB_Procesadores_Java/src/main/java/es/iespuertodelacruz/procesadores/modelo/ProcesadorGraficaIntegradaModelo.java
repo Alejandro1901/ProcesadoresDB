@@ -9,6 +9,9 @@ public class ProcesadorGraficaIntegradaModelo {
     
     MySqlBbdd persistencia;
 
+    private static final String TABLA = "procesador_grafica_integrada";
+    private static final String CLAVE_PRIMARIA = "id_procesador";
+
     /**
      * Constructor con la persistencia
      * 

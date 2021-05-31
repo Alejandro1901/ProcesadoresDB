@@ -15,12 +15,11 @@ public class MySqlBbdd extends Bbdd {
      * @param password del usuario
      * @throws PersistenciaException controlada
      */
-    public MySqlBbdd (String driver, String url, String usuario, String password) throws PersistenciaException {
-        super(driver, url, usuario, password);
+    public MySqlBbdd (String tabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
+        super(tabla, clave, driver, url, usuario, password);
     }
 
-    public MySqlBbdd (String usuario, String password) throws PersistenciaException {
-        super(DRIVER_BBDD, URL, usuario, password);
+    public MySqlBbdd (String tabla, String clave, String usuario, String password) throws PersistenciaException {
+        super(tabla, clave, DRIVER_BBDD, URL, usuario, password);
     }
-
 }

@@ -9,6 +9,9 @@ public class GraficaIntegradaModelo {
     
     MySqlBbdd persistencia;
 
+    private static final String TABLA = "grafica_integrada";
+    private static final String CLAVE_PRIMARIA = "id";
+
     /**
      * Constructor con la persistencia
      * 
