@@ -1,5 +1,4 @@
 
-/*
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,4 +46,3 @@ public class ArquitecturaControladorTest {
         return new Arquitectura(100, "test", "test", "test", "test");
     }
 }
-*/
