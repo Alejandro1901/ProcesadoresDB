@@ -1,3 +1,5 @@
+/*
+
 package es.iespuertodelacruz.procesadores.vista;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -27,6 +29,6 @@ public class VistaTest {
         assertNull(AppVista.menu(6));
     }
 
-    
+    */
     
 
