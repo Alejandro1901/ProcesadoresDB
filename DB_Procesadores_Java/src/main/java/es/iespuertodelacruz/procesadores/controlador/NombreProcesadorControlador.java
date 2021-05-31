@@ -102,7 +102,7 @@ public class NombreProcesadorControlador {
   
       public NombreProcesador buscar(String modeloProcesador) throws PersistenciaException {
           NombreProcesador nombreProcesador = null;
-          nombreProcesador = nombreProcesadorModelo.obtenerNombreProcesador(modeloProcesador);
+          nombreProcesador = nombreProcesadorModelo.buscar(modeloProcesador);
           return nombreProcesador;
        }
   
