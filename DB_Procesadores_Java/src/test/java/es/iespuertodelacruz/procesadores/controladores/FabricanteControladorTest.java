@@ -1,4 +1,4 @@
-/*
+
 
 package es.iespuertodelacruz.procesadores.controladores;
 
@@ -23,7 +23,7 @@ public class FabricanteControladorTest {
             if (fabricanteControlador == null) {
                 fabricanteControlador = new FabricanteControlador();
             }
-            if (fabricante.getCodigo() == null) {
+            if (fabricante.getCodigo() == null || fabricante.getCodigo().isEmpty()) {
                 fabricante = crearFabricante();
             }
             if (fabricanteControlador.buscar(fabricante.getCodigo()) == null) {
@@ -47,4 +47,4 @@ public class FabricanteControladorTest {
         }
     }
 
-*/
+
