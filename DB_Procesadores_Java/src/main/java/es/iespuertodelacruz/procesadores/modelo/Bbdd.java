@@ -291,7 +291,7 @@ public class Bbdd {
      */
     public void insertar(Procesador procesador) throws PersistenciaException {
         String sql = "INSERT INTO procesador (id, codigo_fabricante, id_socket, id_arquitectura, modelo, "
-                + "fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio) " + SQL_VALUES
+                + "fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio, graficapropia) " + SQL_VALUES
                 + procesador.getId() + SQL_COMA 
                 + procesador.getCodigoFabricante() + SQL_COMA 
                 + procesador.getIdSocket() + SQL_COMA 
@@ -303,7 +303,8 @@ public class Bbdd {
                 + procesador.getFrecuencia() + SQL_COMA 
                 + procesador.getOverclock() + SQL_COMA 
                 + procesador.getTdp() + SQL_COMA 
-                + procesador.getPrecio() + SQL_FIN_PARENTESIS;
+                + procesador.getPrecio() + SQL_COMA
+                + procesador.getGraficaPropia() + SQL_FIN_PARENTESIS;
         actualizar(sql);
     }
 
@@ -438,6 +439,7 @@ public class Bbdd {
                 + "', overclock = '" + procesador.getOverclock()
                 + "', tdp = '" + procesador.getTdp()
                 + "', precio = '" + procesador.getPrecio()
+                + "', graficapropia = '" + procesador.getGraficaPropia()
                 + SQL_FIN_COMILLA_SIMPLE;
         actualizar(sql);
     }
@@ -1022,6 +1024,7 @@ public class Bbdd {
         boolean overclock = false;
         float tdp = CERO;
         float precio = CERO;
+        boolean graficaPropia = false;
         id = resultSet.getInt("id");
         codigoFabricante = resultSet.getString("codigo_fabricante");
         idSocket = resultSet.getInt("id_socket");
@@ -1034,8 +1037,8 @@ public class Bbdd {
         overclock = resultSet.getBoolean("overclock");
         tdp = resultSet.getFloat("tdp");
         precio = resultSet.getFloat("precio");
-        Procesador procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
-        return procesador;
+        graficaPropia = resultSet.getBoolean("graficapropia");
+        return new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio, graficaPropia);
     }
 
     /**

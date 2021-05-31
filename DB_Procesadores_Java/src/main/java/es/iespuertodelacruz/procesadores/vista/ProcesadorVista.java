@@ -52,8 +52,10 @@ public class ProcesadorVista {
         float tdp = sn.nextFloat();
         System.out.println("Escribe el precio del procesador");
         float precio = sn.nextFloat();
+        System.out.println("Tiene grafica el procesador? (True o false)");
+        boolean graficaPropia = sn.nextBoolean();
         sn.close();
-        return new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio);
+        return new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio, graficaPropia);
     }
 
     /**
