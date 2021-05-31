@@ -30,7 +30,7 @@ public class GraficaIntegradaControladorTest {
 
     @AfterEach
     public void after() throws ControladoresDBException, PersistenciaException {
-    graficaIntegradaControlador.eliminar(graficaIntegrada.getCodigo());
+    graficaIntegradaControlador.eliminar(graficaIntegrada.getId());
     }
     
     @Test
@@ -43,4 +43,4 @@ public class GraficaIntegradaControladorTest {
         return new GraficaIntegrada(100, "test", 5.1F, 5.9F, 9.6F, "test");
     }
 }  
-}
+
