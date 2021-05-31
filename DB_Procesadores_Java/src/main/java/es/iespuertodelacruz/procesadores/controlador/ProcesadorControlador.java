@@ -73,10 +73,6 @@ public class ProcesadorControlador {
          mensaje = "La frecuencia del procesador no puede ser cero o menor que el, ";
       }
 
-      if (procesador.getOverclock()) {
-         mensaje = "el overclock del procesador tiene que ser si o no, ";
-      }
-
       if (procesador.getTdp() < 0) {
          mensaje = "Los tdp del procesador no puede ser cero o menor que el, ";
       }
@@ -84,7 +80,6 @@ public class ProcesadorControlador {
       if (procesador.getPrecio() < 0) {
          mensaje = "Los precios del procesador no puede ser cero o menor que el. ";
       }
-
       if (!mensaje.isEmpty()) {
          throw new ControladoresDBException(mensaje);
       }

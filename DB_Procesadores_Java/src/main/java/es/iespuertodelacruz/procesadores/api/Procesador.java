@@ -20,9 +20,10 @@ public class Procesador {
     boolean overclock;
     float tdp;
     float precio;
-    boolean GraficaPropia;
+    boolean graficaPropia;
 
     /**
+     * Constructor con todos los parametros
      * 
      * @param id del procesador
      * @param codigoFabricante Foreignkey de la tabla fabricante
@@ -36,9 +37,10 @@ public class Procesador {
      * @param overclock si es posible overclock o no 
      * @param tdp del procesador
      * @param precio del procesador
+     * @param graficaPropia del procesador
      */
 
-    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio, boolean GraficaPropia) {
+    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio, boolean graficaPropia) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
         this.idSocket = idSocket;
@@ -51,7 +53,7 @@ public class Procesador {
         this.overclock = overclock;
         this.tdp = tdp;
         this.precio = precio;
-        this.GraficaPropia = GraficaPropia;
+        this.graficaPropia = graficaPropia;
     }
     
 
@@ -73,7 +75,7 @@ public class Procesador {
         this.overclock = Boolean.parseBoolean((String) elementos.get(9));
         this.tdp = Float.parseFloat((String) elementos.get(10));
         this.precio = Float.parseFloat((String) elementos.get(11));
-        this.GraficaPropia = Boolean.parseBoolean((String) elementos.get(12));
+        this.graficaPropia = Boolean.parseBoolean((String) elementos.get(12));
     }
 
     /**
@@ -187,15 +189,15 @@ public class Procesador {
     }
 
     public boolean isGraficaPropia() {
-        return this.GraficaPropia;
+        return this.graficaPropia;
     }
 
     public boolean getGraficaPropia() {
-        return this.GraficaPropia;
+        return this.graficaPropia;
     }
 
     public void setGraficaPropia(boolean GraficaPropia) {
-        this.GraficaPropia = GraficaPropia;
+        this.graficaPropia = GraficaPropia;
     }
 
     
@@ -226,7 +228,7 @@ public class Procesador {
             return false;
         }
         Procesador procesador = (Procesador) o;
-        return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio && GraficaPropia == procesador.GraficaPropia;
+        return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio && graficaPropia == procesador.graficaPropia;
     }
 
 }
