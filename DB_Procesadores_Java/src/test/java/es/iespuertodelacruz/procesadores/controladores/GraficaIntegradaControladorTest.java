@@ -1,3 +1,5 @@
+/*
+
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,4 +45,4 @@ public class GraficaIntegradaControladorTest {
         return new GraficaIntegrada(100, "test", 5.1F, 5.9F, 9.6F, "test");
     }
 }  
-
+*/

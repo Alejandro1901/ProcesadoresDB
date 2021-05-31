@@ -23,7 +23,7 @@ public class FicheroTest {
     @Test
     public void leerFicheroTest() {
         try {
-            fichero.leer("ProcesadoresDB.sql");
+            fichero.leer("insertar.sql");
         } catch (Exception e) {
             assertTrue(e.getMessage().contains("El fichero a leer no existe"));
         }

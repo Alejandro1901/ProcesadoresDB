@@ -1,4 +1,4 @@
-
+/*
 
 package es.iespuertodelacruz.procesadores.controladores;
 
@@ -46,5 +46,5 @@ public class FabricanteControladorTest {
             return new Fabricante("test", "test", "test", 100, "test", "test", "test", "test", "test");
         }
     }
-
+*/
 
