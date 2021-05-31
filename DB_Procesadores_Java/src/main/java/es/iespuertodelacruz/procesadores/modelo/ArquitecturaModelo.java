@@ -19,7 +19,7 @@ public class ArquitecturaModelo {
      * @throws PersistenciaException
      */
     public ArquitecturaModelo() throws PersistenciaException {
-        persistencia = new MySqlBbdd(null, null);
+        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);
     }
 
 

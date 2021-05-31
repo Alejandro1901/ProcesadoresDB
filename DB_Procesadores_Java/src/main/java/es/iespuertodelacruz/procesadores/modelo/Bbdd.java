@@ -16,6 +16,8 @@ public class Bbdd {
     private static final String SQL_VALUES = "VALUES ('";
     private static final String SQL_COMA = "', '";
 
+    private String tabla;
+    private String clave;
     private String driver;
     private String url;
     private String usuario;
@@ -39,12 +41,14 @@ public class Bbdd {
      * @param password del usuario
      * @throws PersistenciaException
      */
-    public Bbdd(String driver, String url, String usuario, String password) throws PersistenciaException {
+    public Bbdd(String tabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
+        this.tabla = tabla;
+        this.clave = clave;
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
         this.password = password;
-        inicializarDdBd();
+        inicializarDdBd(tabla);
     }
 
     /**
@@ -52,7 +56,7 @@ public class Bbdd {
      * 
      * @throws PersistenciaException controlada
      */
-    private void inicializarDdBd() throws PersistenciaException {
+    private void inicializarDdBd(String tabla) throws PersistenciaException {
         DatabaseMetaData databaseMetaData;
         Connection connection = null;
         ResultSet resultSet = null;

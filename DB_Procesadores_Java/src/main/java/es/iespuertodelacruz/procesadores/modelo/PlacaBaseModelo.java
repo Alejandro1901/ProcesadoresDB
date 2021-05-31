@@ -19,7 +19,7 @@ public class PlacaBaseModelo {
      * @throws PersistenciaException controlada
      */
     public PlacaBaseModelo() throws PersistenciaException {
-        persistencia = new MySqlBbdd("com.mysql.jdbc.Driver","jdbc:mysql://localhost/text","admin", "1234");
+        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);
     }
 
     /**
