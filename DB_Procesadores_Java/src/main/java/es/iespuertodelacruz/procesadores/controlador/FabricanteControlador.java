@@ -125,7 +125,7 @@ if (!mensaje.isEmpty()) {
 
     public Fabricante buscar(String codigo) throws PersistenciaException {
         Fabricante fabricante = null;
-        fabricante = fabricanteModelo.obtenerFabricante(codigo);
+        fabricante = fabricanteModelo.buscar(codigo);
         return fabricante;
      }
 
