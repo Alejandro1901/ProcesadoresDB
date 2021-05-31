@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertodelacruz.procesadores.controladores.FabricanteControladorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in es.iespuertodelacruz.procesadores.controladores.FabricanteControladorTest
+buscarFabricanteTest  Time elapsed: 0.001 s  <<< ERROR!
+es.iespuertodelacruz.procesadores.excepcion.PersistenciaException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertodelacruz.procesadores.controladores.FabricanteControladorTest.setUp(FabricanteControladorTest.java:24)
+Caused by: es.iespuertodelacruz.procesadores.excepcion.FicheroException: El fichero a leer no existe
+	at es.iespuertodelacruz.procesadores.controladores.FabricanteControladorTest.setUp(FabricanteControladorTest.java:24)
+
