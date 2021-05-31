@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import es.iespuertodelacruz.procesadores.api.*;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+import es.iespuertodelacruz.procesadores.fichero.Fichero;
 
 public class Bbdd {
 
@@ -52,8 +53,9 @@ public class Bbdd {
     }
 
     /**
-     * Metodo que inicializa la BBDD
+     * Metodo que inicializa la base de datos
      * 
+     * @param tabla que iniciar
      * @throws PersistenciaException controlada
      */
     private void inicializarDdBd(String tabla) throws PersistenciaException {
@@ -65,91 +67,15 @@ public class Bbdd {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
             resultSet = databaseMetaData.getTables(null, null, null,
-                    new String[] { ARQUITECTURA, FABRICANTE, GRAFICA_INTEGRADA, NOMBRE_PROCESADOR, PLACA_BASE,
-                                    PROCESADOR, PROCESADOR_GRAFICA_INTEGRADA, ZOCALO});
+                    new String[] {"TABLE"});
             while (resultSet.next()) {
-                listaTablas.add(resultSet.getString(ARQUITECTURA));
-                listaTablas.add(resultSet.getString(FABRICANTE));
-                listaTablas.add(resultSet.getString(GRAFICA_INTEGRADA));
-                listaTablas.add(resultSet.getString(NOMBRE_PROCESADOR));
-                listaTablas.add(resultSet.getString(PLACA_BASE));
-                listaTablas.add(resultSet.getString(PROCESADOR));
-                listaTablas.add(resultSet.getString(PROCESADOR_GRAFICA_INTEGRADA));
-                listaTablas.add(resultSet.getString(ZOCALO));
+                listaTablas.add(resultSet.getString("TABLE_NAME"));
             }
-            if (!listaTablas.contains(ARQUITECTURA) && !listaTablas.contains(FABRICANTE)
-                    && !listaTablas.contains(GRAFICA_INTEGRADA) && !listaTablas.contains(NOMBRE_PROCESADOR)
-                    && !listaTablas.contains(PLACA_BASE) && !listaTablas.contains(PROCESADOR) 
-                    && !listaTablas.contains(PROCESADOR_GRAFICA_INTEGRADA) && !listaTablas.contains(ZOCALO)) {
-                
-                String sqlCrearTablaNombreProcesador = "CREATE TABLE nombre_procesador ("
-                    + "modelo_procesador varchar(20) PRIMARY KEY,"
-                    + "familia varchar(30),"
-                    + "generacion int(10) DEFAULT 1);";
-                String sqlCrearTablaArquitectura = "CREATE TABLE arquitectura ("
-                    + "id INT PRIMARY KEY,"
-                    + "version_arquitectura ENUM('ARM','x86-64'),"
-                    + "disenio varchar(20),"
-                    + "tecnologia ENUM('Thumb','Jazelle','No tiene') DEFAULT 'No tiene',"
-                    + "estandar ENUM('AMD 64','Intel 64','No tiene') DEFAULT 'No tiene');";
-                String sqlCrearTablaFabricante = "CREATE TABLE fabricante ("
-                    + "codigo varchar(50) PRIMARY KEY,"
-                    + "codigo_postal varchar(50)," 
-                    + "nombre VARCHAR(20),"
-                    + "numero int(3),"
-                    + "pais varchar(20),"
-                    + "calle varchar(50),"
-                    + "telefono varchar(50),"
-                    + "correo varchar(50),"
-                    + "web varchar(50));";
-                String sqlCrearTablaZocalo = "CREATE TABLE zocalo ("
-                    + "id INT PRIMARY KEY,"
-                    + "tipo VARCHAR(30),"
-                    + "tecnologia VARCHAR(20) NOT NULL,"
-                    + "fecha_lanzamiento VARCHAR(10));";
-                String sqlCrearTablaPlacaBase = "CREATE TABLE placa_base ("
-                    + "id INT PRIMARY KEY,"
-                    + "id_socket int,"
-                    + "nombre varchar (100),"
-                    + "FOREIGN KEY (id_socket) REFERENCES zocalo(id));";
-                String sqlCrearTablaGraficaIntegrada = "CREATE TABLE grafica_integrada ("
-                    + "id INT PRIMARY KEY,"
-                    + "nombre_grafica varchar(100),"
-                    + "frec_basica float,"
-                    + "frec_max float,"
-                    + "memoria_max int,"
-                    + "resolucion ENUM('720p','1080p','2K','4K','8K','16K'));";
-                String sqlCrearTablaProcesador = "CREATE TABLE procesador ("
-                    + "id INT(8) PRIMARY KEY,"
-                    + "codigo_fabricante VARCHAR(50),"
-                    + "id_socket INT,"
-                    + "id_arquitectura INT,"
-                    + "modelo varchar(50)," 
-                    + "fecha_lanzamiento VARCHAR(10),"
-                    + "nucleos int,"
-                    + "hilos int,"
-                    + "frecuencia float,"
-                    + "overclock BOOLEAN,"
-                    + "tdp FLOAT,"
-                    + "precio float,"
-                    + "graficapropia BOOLEAN,"
-                    + "FOREIGN KEY (codigo_fabricante) REFERENCES fabricante(codigo),"
-                    + "FOREIGN KEY (id_socket) REFERENCES zocalo(id),"
-                    + "FOREIGN KEY (id_arquitectura) REFERENCES arquitectura(id),"
-                    + "FOREIGN KEY (modelo) REFERENCES nombre_procesador(modelo_procesador));";
-                String sqlCrearTablaProcesadorGraficaIntegrada = "CREATE TABLE procesador_grafica_integrada ("
-                    + "id_procesador INT,"
-                    + "id_grafica_integrada int,"
-                    + "FOREIGN KEY (id_procesador) REFERENCES procesador(id),"
-                    + "FOREIGN KEY (id_grafica_integrada) REFERENCES grafica_integrada(id));";
-                actualizar(sqlCrearTablaNombreProcesador);
-                actualizar(sqlCrearTablaArquitectura);
-                actualizar(sqlCrearTablaFabricante);
-                actualizar(sqlCrearTablaZocalo);
-                actualizar(sqlCrearTablaPlacaBase);
-                actualizar(sqlCrearTablaGraficaIntegrada);
-                actualizar(sqlCrearTablaProcesador);
-                actualizar(sqlCrearTablaProcesadorGraficaIntegrada);
+            if (!listaTablas.contains(tabla)) {
+                String crearTabla = new Fichero().leer("resources/sql/sqlite" + tabla + ".crear.sql");
+                actualizar(crearTabla);
+                String insertElemento = new Fichero().leer("resources/sql/sqlite" + tabla + ".insertar.sql");
+                insertarElementos(insertElemento);
             }
         } catch (Exception e) {
             throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
@@ -200,6 +126,19 @@ public class Bbdd {
             closeConecction(connection, statement, null);
         }
 
+    }
+
+    /**
+     * Metodo que inserta elementos en la base de datos
+     * 
+     * @param cadena con las inserciones
+     * @throws PersistenciaException controlada
+     */
+    protected void insertarElementos(String cadena) throws PersistenciaException {
+        String[] cadenaSeparada = cadena.split(";");
+        for (String sentencia : cadenaSeparada) {
+            actualizar(sentencia);
+        }
     }
 
     //METODOS DE INSERCION
