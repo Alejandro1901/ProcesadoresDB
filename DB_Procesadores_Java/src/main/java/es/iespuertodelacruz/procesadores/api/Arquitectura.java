@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Arquitectura {
 
@@ -32,6 +34,19 @@ public class Arquitectura {
         this.disenio = disenio;
         this.tecnologia = tecnologia;
         this.estandar = estandar;
+    }
+
+    public Arquitectura(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.id = Integer.parseInt((String) elementos.get(0));
+        this.versionArquitectura = (String) elementos.get(1);
+        this.disenio = (String) elementos.get(2);
+        this.tecnologia = (String) elementos.get(3);
+        this.estandar = (String) elementos.get(4);
     }
 
     /**

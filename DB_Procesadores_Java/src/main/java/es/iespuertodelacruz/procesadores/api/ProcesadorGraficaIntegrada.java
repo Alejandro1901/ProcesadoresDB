@@ -1,5 +1,8 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 public class ProcesadorGraficaIntegrada {
 
     private static final String DELIMITADOR = "'";
@@ -16,6 +19,17 @@ public class ProcesadorGraficaIntegrada {
     public ProcesadorGraficaIntegrada(int idProcesador, int idGraficaIntegrada) {
         this.idProcesador = idProcesador;
         this.idGraficaIntegrada = idGraficaIntegrada;
+    }
+
+    public ProcesadorGraficaIntegrada (String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.idProcesador = Integer.parseInt((String) elementos.get(0));
+        this.idGraficaIntegrada = Integer.parseInt((String) elementos.get(1));
+        
     }
 
     /**

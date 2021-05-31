@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Zocalo {
 
@@ -24,6 +26,18 @@ public class Zocalo {
         this.tipo = tipo;
         this.tecnologia = tecnologia;
         this.fechaLanzamiento = fechaLanzamiento;
+    }
+
+    public Zocalo(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.id = Integer.parseInt((String) elementos.get(0));
+        this.tipo = (String) elementos.get(1);
+        this.tecnologia = (String) elementos.get(2);
+        this.fechaLanzamiento = (String) elementos.get(3);   
     }
 
     /**

@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Procesador {
 
@@ -18,6 +20,7 @@ public class Procesador {
     boolean overclock;
     float tdp;
     float precio;
+    boolean GraficaPropia;
 
     /**
      * 
@@ -34,7 +37,8 @@ public class Procesador {
      * @param tdp del procesador
      * @param precio del procesador
      */
-    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio) {
+
+    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio, boolean GraficaPropia) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
         this.idSocket = idSocket;
@@ -47,6 +51,29 @@ public class Procesador {
         this.overclock = overclock;
         this.tdp = tdp;
         this.precio = precio;
+        this.GraficaPropia = GraficaPropia;
+    }
+    
+
+    public Procesador(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.id = Integer.parseInt((String) elementos.get(0));
+        this.codigoFabricante = (String) elementos.get(1);
+        this.idSocket = Integer.parseInt((String) elementos.get(2));
+        this.idArquitectura = Integer.parseInt((String) elementos.get(3));
+        this.modelo = (String) elementos.get(4);
+        this.fechaLanzamiento = (String) elementos.get(5);
+        this.nucleos = Integer.parseInt((String) elementos.get(6));
+        this.hilos = Integer.parseInt((String) elementos.get(7));
+        this.frecuencia = Float.parseFloat((String) elementos.get(8));
+        this.overclock = Boolean.parseBoolean((String) elementos.get(9));
+        this.tdp = Float.parseFloat((String) elementos.get(10));
+        this.precio = Float.parseFloat((String) elementos.get(11));
+        this.GraficaPropia = Boolean.parseBoolean((String) elementos.get(12));
     }
 
     /**
@@ -158,6 +185,20 @@ public class Procesador {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+
+    public boolean isGraficaPropia() {
+        return this.GraficaPropia;
+    }
+
+    public boolean getGraficaPropia() {
+        return this.GraficaPropia;
+    }
+
+    public void setGraficaPropia(boolean GraficaPropia) {
+        this.GraficaPropia = GraficaPropia;
+    }
+
+    
     @Override
     public String toString() {
         return getId() + DELIMITADOR +
@@ -171,9 +212,11 @@ public class Procesador {
             getFrecuencia() + DELIMITADOR +
             getOverclock() + DELIMITADOR +
             getTdp() + DELIMITADOR +
-            getPrecio();
+            getPrecio() + DELIMITADOR +
+            getGraficaPropia();
 }
     
+
 
     @Override
     public boolean equals(Object o) {
@@ -183,6 +226,7 @@ public class Procesador {
             return false;
         }
         Procesador procesador = (Procesador) o;
-        return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio;
+        return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio && GraficaPropia == procesador.GraficaPropia;
     }
+
 }

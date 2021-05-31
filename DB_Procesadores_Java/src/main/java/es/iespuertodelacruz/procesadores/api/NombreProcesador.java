@@ -1,6 +1,8 @@
 package es.iespuertodelacruz.procesadores.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class NombreProcesador {
 
@@ -21,6 +23,18 @@ public class NombreProcesador {
         this.modeloProcesador = modeloProcesador;
         this.familia = familia;
         this.generacion = generacion;
+    }
+
+    public NombreProcesador(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.modeloProcesador = (String) elementos.get(0);
+        this.familia = (String) elementos.get(1);
+        this.generacion = Integer.parseInt((String) elementos.get(2));
+        
     }
 
     /**
