@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.26 s - in es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 s - in es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest

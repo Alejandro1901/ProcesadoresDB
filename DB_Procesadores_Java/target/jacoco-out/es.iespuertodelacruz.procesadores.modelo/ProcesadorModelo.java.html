@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcesadorModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">ProcesadorModelo.java</span></div><h1>ProcesadorModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.Procesador;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class ProcesadorModelo {
+
+    private static final String PUNTO_Y_COMA = &quot;;&quot;;
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = &quot;&quot;;
+    private static final String SQL_FIN_COMILLA_SIMPLE = &quot;';&quot;;
+    private static final String SQL_FIN_PARENTESIS = &quot;');&quot;;
+    private static final String SQL_VALUES = &quot;VALUES ('&quot;;
+    private static final String SQL_COMA = &quot;', '&quot;;
+    
+    MySqlBbdd persistencia;
+
+    private static final String TABLA = &quot;procesador&quot;;
+    private static final String CLAVE_PRIMARIA = &quot;id&quot;;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     * @throws PersistenciaException
+     */
+<span class="fc" id="L31">    public ProcesadorModelo() throws PersistenciaException {</span>
+<span class="fc" id="L32">        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Metodo que inserta una procesador
+     * 
+     * @param procesador a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Procesador procesador) throws PersistenciaException {
+<span class="fc" id="L42">        String sql = &quot;INSERT INTO procesador (id, codigo_fabricante, id_socket, id_arquitectura, modelo, &quot;</span>
+                + &quot;fecha_lanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio, graficapropia) &quot; + SQL_VALUES
+<span class="fc" id="L44">                + procesador.getId() + SQL_COMA </span>
+<span class="fc" id="L45">                + procesador.getCodigoFabricante() + SQL_COMA </span>
+<span class="fc" id="L46">                + procesador.getIdSocket() + SQL_COMA </span>
+<span class="fc" id="L47">                + procesador.getIdArquitectura() + SQL_COMA </span>
+<span class="fc" id="L48">                + procesador.getModelo() + SQL_COMA</span>
+<span class="fc" id="L49">                + procesador.getFechaLanzamiento() + SQL_COMA </span>
+<span class="fc" id="L50">                + procesador.getNucleos() + SQL_COMA</span>
+<span class="fc" id="L51">                + procesador.getHilos() + SQL_COMA </span>
+<span class="fc" id="L52">                + procesador.getFrecuencia() + SQL_COMA </span>
+<span class="fc" id="L53">                + procesador.getOverclock() + SQL_COMA </span>
+<span class="fc" id="L54">                + procesador.getTdp() + SQL_COMA </span>
+<span class="fc" id="L55">                + procesador.getPrecio() + SQL_COMA</span>
+<span class="fc" id="L56">                + procesador.getGraficaPropia() + SQL_FIN_PARENTESIS;</span>
+<span class="fc" id="L57">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Metodo que elimina una procesador
+     * 
+     * @param procesador a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Procesador procesador) throws PersistenciaException {
+<span class="fc" id="L67">        String sql = &quot;DELETE FROM procesador WHERE id = '&quot; + procesador.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="fc" id="L68">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     * Metodo que modifica una procesador
+     * 
+     * @param procesador a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Procesador procesador) throws PersistenciaException {
+<span class="nc" id="L78">        String sql = &quot;UPDATE procesador SET id = '&quot; + procesador.getId()</span>
+<span class="nc" id="L79">                + &quot;', codigo_fabricante = '&quot; + procesador.getCodigoFabricante()</span>
+<span class="nc" id="L80">                + &quot;', id_socket = '&quot; + procesador.getIdSocket()</span>
+<span class="nc" id="L81">                + &quot;', id_arquitectura = '&quot; + procesador.getIdArquitectura()</span>
+<span class="nc" id="L82">                + &quot;', modelo = '&quot; + procesador.getModelo()</span>
+<span class="nc" id="L83">                + &quot;', fecha_lanzamiento = '&quot; + procesador.getFechaLanzamiento()</span>
+<span class="nc" id="L84">                + &quot;', nucleos = '&quot; + procesador.getNucleos()</span>
+<span class="nc" id="L85">                + &quot;', hilos = '&quot; + procesador.getHilos()</span>
+<span class="nc" id="L86">                + &quot;', frecuencia = '&quot; + procesador.getFrecuencia()</span>
+<span class="nc" id="L87">                + &quot;', overclock = '&quot; + procesador.getOverclock()</span>
+<span class="nc" id="L88">                + &quot;', tdp = '&quot; + procesador.getTdp()</span>
+<span class="nc" id="L89">                + &quot;', precio = '&quot; + procesador.getPrecio()</span>
+<span class="nc" id="L90">                + &quot;', graficapropia = '&quot; + procesador.getGraficaPropia()</span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L92">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * Funcion que busca una procesador en la bbdd
+     * 
+     * @param clave de la procesador
+     * @return procesador encontrada
+     * @throws PersistenciaException controlada
+     */
+    public Procesador buscar(int clave) throws PersistenciaException {
+<span class="fc" id="L103">        Procesador procesadorEncontrada = null;</span>
+<span class="fc" id="L104">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE_PRIMARIA + &quot;='&quot; + clave + &quot;'&quot;;</span>
+        ResultSet resultSet;
+<span class="fc" id="L106">        ArrayList&lt;Procesador&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L108">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc" id="L109">            lista = buscar(resultSet);</span>
+<span class="nc" id="L110">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L111">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="fc" id="L113">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        if (!lista.isEmpty()) {</span>
+<span class="fc" id="L117">            procesadorEncontrada = lista.get(0);</span>
+        }
+<span class="fc" id="L119">        return procesadorEncontrada;</span>
+    }
+
+    /**
+     * Funcion encargada de transformar un ResultSet en una lista de resultados
+     * 
+     * @param resultSet de entrada
+     * @return lista de procesador
+     * @throws PersistenciaException controlada
+     */
+    private ArrayList&lt;Procesador&gt; buscar(ResultSet resultSet) throws PersistenciaException {
+<span class="fc" id="L130">        ArrayList&lt;Procesador&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc bfc" id="L132" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L133">                int id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="fc" id="L134">                String codigoFabricante = resultSet.getString(&quot;codigo_fabricante&quot;);</span>
+<span class="fc" id="L135">                int idSocket = resultSet.getInt(&quot;id_socket&quot;);</span>
+<span class="fc" id="L136">                int idArquitectura = resultSet.getInt(&quot;id_arquitectura&quot;);</span>
+<span class="fc" id="L137">                String modelo = resultSet.getString(&quot;modelo&quot;);</span>
+<span class="fc" id="L138">                String fechaLanzamiento = resultSet.getString(&quot;fecha_lanzamiento&quot;);</span>
+<span class="fc" id="L139">                int nucleos = resultSet.getInt(&quot;nucleos&quot;);</span>
+<span class="fc" id="L140">                int hilos = resultSet.getInt(&quot;hilos&quot;);</span>
+<span class="fc" id="L141">                float frecuencia = resultSet.getFloat(&quot;frecuencia&quot;);</span>
+<span class="fc" id="L142">                boolean overclock = resultSet.getBoolean(&quot;overclock&quot;);</span>
+<span class="fc" id="L143">                float tdp = resultSet.getFloat(&quot;tdp&quot;);</span>
+<span class="fc" id="L144">                float precio = resultSet.getFloat(&quot;precio&quot;);</span>
+<span class="fc" id="L145">                boolean graficaPropia = resultSet.getBoolean(&quot;graficaPropia&quot;);</span>
+<span class="fc" id="L146">                Procesador Procesador = new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio, graficaPropia);</span>
+<span class="fc" id="L147">                lista.add(Procesador);</span>
+<span class="fc" id="L148">            }</span>
+<span class="nc" id="L149">        } catch (SQLException e) {</span>
+<span class="nc" id="L150">            throw new PersistenciaException(&quot;Se ha producido un error realizando la transformacion a Procesador&quot;, e);</span>
+        } finally {
+<span class="fc" id="L152">            persistencia.closeConecction(null, null, resultSet);</span>
+        }
+<span class="fc" id="L154">        return lista;</span>
+    }
+
+
+    /**
+     * Funcion encargada de buscar todas los procesador de la bbdd
+     * 
+     * @return arraylist de procesador
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Procesador&gt; buscarTodos() throws PersistenciaException {
+<span class="nc" id="L165">        String sql = &quot;SELECT * FROM &quot; + TABLA;</span>
+        ResultSet resultSet;
+<span class="nc" id="L167">        ArrayList&lt;Procesador&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="nc" id="L169">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="nc" id="L170">            lista = buscar(resultSet);</span>
+<span class="nc" id="L171">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L172">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="nc" id="L174">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+<span class="nc" id="L176">        return lista;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

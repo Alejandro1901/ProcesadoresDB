@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlacaBaseModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">PlacaBaseModelo.java</span></div><h1>PlacaBaseModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.PlacaBase;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class PlacaBaseModelo {
+
+    private static final String PUNTO_Y_COMA = &quot;;&quot;;
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = &quot;&quot;;
+    private static final String SQL_FIN_COMILLA_SIMPLE = &quot;';&quot;;
+    private static final String SQL_FIN_PARENTESIS = &quot;');&quot;;
+    private static final String SQL_VALUES = &quot;VALUES ('&quot;;
+    private static final String SQL_COMA = &quot;', '&quot;;
+    
+    MySqlBbdd persistencia;
+
+    private static final String TABLA = &quot;placa_base&quot;;
+    private static final String CLAVE_PRIMARIA = &quot;id&quot;;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     * @throws PersistenciaException controlada
+     */
+<span class="fc" id="L31">    public PlacaBaseModelo() throws PersistenciaException {</span>
+<span class="fc" id="L32">        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Metodo que inserta una placaBase
+     * 
+     * @param placaBase a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(PlacaBase placaBase) throws PersistenciaException {
+<span class="fc" id="L42">        String sql = &quot;INSERT INTO placa_base (id, id_socket, nombre) &quot; + SQL_VALUES </span>
+<span class="fc" id="L43">                + placaBase.getId() + SQL_COMA</span>
+<span class="fc" id="L44">                + placaBase.getIdSocket() + SQL_COMA </span>
+<span class="fc" id="L45">                + placaBase.getNombre() + SQL_FIN_PARENTESIS;</span>
+<span class="fc" id="L46">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Metodo que elimina una placaBase
+     * 
+     * @param placaBase a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(PlacaBase placaBase) throws PersistenciaException {
+<span class="fc" id="L56">        String sql = &quot;DELETE FROM placa_base WHERE id = '&quot; + placaBase.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="fc" id="L57">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Metodo que modifica una placaBase
+     * 
+     * @param placaBase a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(PlacaBase placaBase) throws PersistenciaException {
+<span class="nc" id="L67">        String sql = &quot;UPDATE placa_base SET id = '&quot; + placaBase.getId() </span>
+<span class="nc" id="L68">                + &quot;', id_socket = '&quot; + placaBase.getIdSocket()</span>
+<span class="nc" id="L69">                + &quot;', nombre = '&quot; + placaBase.getNombre() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L71">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Funcion que busca una placaBase en la bbdd
+     * 
+     * @param clave de la placaBase
+     * @return placaBase encontrada
+     * @throws PersistenciaException controlada
+     */
+    public PlacaBase buscar(int clave) throws PersistenciaException {
+<span class="fc" id="L82">        PlacaBase placaBaseEncontrada = null;</span>
+<span class="fc" id="L83">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE_PRIMARIA + &quot;='&quot; + clave + &quot;'&quot;;</span>
+        ResultSet resultSet;
+<span class="fc" id="L85">        ArrayList&lt;PlacaBase&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L87">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc" id="L88">            lista = buscar(resultSet);</span>
+<span class="nc" id="L89">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L90">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="fc" id="L92">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (!lista.isEmpty()) {</span>
+<span class="fc" id="L96">            placaBaseEncontrada = lista.get(0);</span>
+        }
+<span class="fc" id="L98">        return placaBaseEncontrada;</span>
+    }
+
+    /**
+     * Funcion encargada de transformar un ResultSet en una lista de resultados
+     * 
+     * @param resultSet de entrada
+     * @return lista de placaBase
+     * @throws PersistenciaException controlada
+     */
+    private ArrayList&lt;PlacaBase&gt; buscar(ResultSet resultSet) throws PersistenciaException {
+<span class="fc" id="L109">        ArrayList&lt;PlacaBase&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L112">                int id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="fc" id="L113">                int idSocket = resultSet.getInt(&quot;id_socket&quot;);</span>
+<span class="fc" id="L114">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="fc" id="L115">                PlacaBase PlacaBase = new PlacaBase(id, idSocket, nombre);</span>
+<span class="fc" id="L116">                lista.add(PlacaBase);</span>
+<span class="fc" id="L117">            }</span>
+<span class="nc" id="L118">        } catch (SQLException e) {</span>
+<span class="nc" id="L119">            throw new PersistenciaException(&quot;Se ha producido un error realizando la transformacion a PlacaBase&quot;, e);</span>
+        } finally {
+<span class="fc" id="L121">            persistencia.closeConecction(null, null, resultSet);</span>
+        }
+<span class="fc" id="L123">        return lista;</span>
+    }
+
+
+    /**
+     * Funcion encargada de buscar todas los placaBase de la bbdd
+     * 
+     * @return arraylist de placaBase
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;PlacaBase&gt; buscarTodos() throws PersistenciaException {
+<span class="nc" id="L134">        String sql = &quot;SELECT * FROM &quot; + TABLA;</span>
+        ResultSet resultSet;
+<span class="nc" id="L136">        ArrayList&lt;PlacaBase&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="nc" id="L138">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="nc" id="L139">            lista = buscar(resultSet);</span>
+<span class="nc" id="L140">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L141">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="nc" id="L143">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+<span class="nc" id="L145">        return lista;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

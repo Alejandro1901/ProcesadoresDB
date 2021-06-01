@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GraficaIntegradaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">GraficaIntegradaModelo.java</span></div><h1>GraficaIntegradaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class GraficaIntegradaModelo {
+
+    private static final String PUNTO_Y_COMA = &quot;;&quot;;
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = &quot;&quot;;
+    private static final String SQL_FIN_COMILLA_SIMPLE = &quot;';&quot;;
+    private static final String SQL_FIN_PARENTESIS = &quot;');&quot;;
+    private static final String SQL_VALUES = &quot;VALUES ('&quot;;
+    private static final String SQL_COMA = &quot;', '&quot;;
+    
+    MySqlBbdd persistencia;
+
+    private static final String TABLA = &quot;grafica_integrada&quot;;
+    private static final String CLAVE_PRIMARIA = &quot;id&quot;;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     * @throws PersistenciaException controlada
+     */
+<span class="fc" id="L31">    public GraficaIntegradaModelo() throws PersistenciaException {</span>
+<span class="fc" id="L32">        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Metodo que inserta una graficaIntegrada
+     * 
+     * @param graficaIntegrada a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="fc" id="L42">        String sql = &quot;INSERT INTO grafica_integrada (id, nombre_grafica, frec_basica, frec_max, memoria_max, resolucion) &quot;</span>
+                + SQL_VALUES 
+<span class="fc" id="L44">                + graficaIntegrada.getId() + SQL_COMA </span>
+<span class="fc" id="L45">                + graficaIntegrada.getNombreGrafica() + SQL_COMA</span>
+<span class="fc" id="L46">                + graficaIntegrada.getFrecuenciaBasica() + SQL_COMA </span>
+<span class="fc" id="L47">                + graficaIntegrada.getFrecuenciaMaxima() + SQL_COMA</span>
+<span class="fc" id="L48">                + graficaIntegrada.getMemoriaMaxima() + SQL_COMA </span>
+<span class="fc" id="L49">                + graficaIntegrada.getResolucion() + SQL_FIN_PARENTESIS;</span>
+<span class="fc" id="L50">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Metodo que elimina una graficaIntegrada
+     * 
+     * @param graficaIntegrada a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="fc" id="L60">        String sql = &quot;DELETE FROM grafica_integrada WHERE id = '&quot; + graficaIntegrada.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="fc" id="L61">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Metodo que modifica una graficaIntegrada
+     * 
+     * @param graficaIntegrada a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="nc" id="L71">        String sql = &quot;UPDATE grafica_integrada SET id = '&quot; + graficaIntegrada.getId() </span>
+<span class="nc" id="L72">        + &quot;', nombre_grafica = '&quot; + graficaIntegrada.getNombreGrafica() </span>
+<span class="nc" id="L73">        + &quot;', frec_basica = '&quot; + graficaIntegrada.getFrecuenciaBasica() </span>
+<span class="nc" id="L74">        + &quot;', frec_max = '&quot; + graficaIntegrada.getFrecuenciaMaxima() </span>
+<span class="nc" id="L75">        + &quot;', memoria_max = '&quot; + graficaIntegrada.getMemoriaMaxima() </span>
+<span class="nc" id="L76">        + &quot;', resolucion = '&quot; + graficaIntegrada.getResolucion() </span>
+        + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L78">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L79">    }</span>
+
+    /**
+     * Funcion que busca una graficaIntegrada en la bbdd
+     * 
+     * @param clave de la graficaIntegrada
+     * @return graficaIntegrada encontrada
+     * @throws PersistenciaException controlada
+     */
+    public GraficaIntegrada buscar(int clave) throws PersistenciaException {
+<span class="fc" id="L89">        GraficaIntegrada graficaIntegradaEncontrada = null;</span>
+<span class="fc" id="L90">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE_PRIMARIA + &quot;='&quot; + clave + &quot;'&quot;;</span>
+        ResultSet resultSet;
+<span class="fc" id="L92">        ArrayList&lt;GraficaIntegrada&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L94">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc" id="L95">            lista = buscar(resultSet);</span>
+<span class="nc" id="L96">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L97">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="fc" id="L99">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (!lista.isEmpty()) {</span>
+<span class="fc" id="L103">            graficaIntegradaEncontrada = lista.get(0);</span>
+        }
+<span class="fc" id="L105">        return graficaIntegradaEncontrada;</span>
+    }
+
+    /**
+     * Funcion encargada de transformar un ResultSet en una lista de resultados
+     * 
+     * @param resultSet de entrada
+     * @return lista de graficaIntegrada
+     * @throws PersistenciaException controlada
+     */
+    private ArrayList&lt;GraficaIntegrada&gt; buscar(ResultSet resultSet) throws PersistenciaException {
+<span class="fc" id="L116">        ArrayList&lt;GraficaIntegrada&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L119">                int id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="fc" id="L120">                String nombreGrafica = resultSet.getString(&quot;nombre_grafica&quot;);</span>
+<span class="fc" id="L121">                float frecuenciaBasica = resultSet.getFloat(&quot;frec_basica&quot;);</span>
+<span class="fc" id="L122">                float frecuenciaMaxima = resultSet.getFloat(&quot;frec_max&quot;);</span>
+<span class="fc" id="L123">                int memoriaMaxima = resultSet.getInt(&quot;memoria_max&quot;);</span>
+<span class="fc" id="L124">                String resolucion = resultSet.getString(&quot;resolucion&quot;);</span>
+<span class="fc" id="L125">                GraficaIntegrada GraficaIntegrada = new GraficaIntegrada(id, nombreGrafica, frecuenciaBasica, frecuenciaMaxima, memoriaMaxima, resolucion);</span>
+<span class="fc" id="L126">                lista.add(GraficaIntegrada);</span>
+<span class="fc" id="L127">            }</span>
+<span class="nc" id="L128">        } catch (SQLException e) {</span>
+<span class="nc" id="L129">            throw new PersistenciaException(&quot;Se ha producido un error realizando la transformacion a GraficaIntegrada&quot;, e);</span>
+        } finally {
+<span class="fc" id="L131">            persistencia.closeConecction(null, null, resultSet);</span>
+        }
+<span class="fc" id="L133">        return lista;</span>
+    }
+
+
+    /**
+     * Funcion encargada de buscar todas los graficaIntegrada de la bbdd
+     * 
+     * @return arraylist de graficaIntegrada
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;GraficaIntegrada&gt; buscarTodos() throws PersistenciaException {
+<span class="nc" id="L144">        String sql = &quot;SELECT * FROM &quot; + TABLA;</span>
+        ResultSet resultSet;
+<span class="nc" id="L146">        ArrayList&lt;GraficaIntegrada&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="nc" id="L148">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="nc" id="L149">            lista = buscar(resultSet);</span>
+<span class="nc" id="L150">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L151">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="nc" id="L153">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+<span class="nc" id="L155">        return lista;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
