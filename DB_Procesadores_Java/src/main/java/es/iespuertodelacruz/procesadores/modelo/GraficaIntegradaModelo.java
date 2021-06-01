@@ -39,13 +39,14 @@ public class GraficaIntegradaModelo {
      * @throws PersistenciaException controlada
      */
     public void insertar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
-        String sql = "UPDATE grafica_integrada SET id = '" + graficaIntegrada.getId() 
-        + "', nombre_grafica = '" + graficaIntegrada.getNombreGrafica() 
-        + "', frec_basica = '" + graficaIntegrada.getFrecuenciaBasica() 
-        + "', frec_max = '" + graficaIntegrada.getFrecuenciaMaxima() 
-        + "', memoria_max = '" + graficaIntegrada.getMemoriaMaxima() 
-        + "', resolucion = '" + graficaIntegrada.getResolucion() 
-        + SQL_FIN_COMILLA_SIMPLE;
+        String sql = "INSERT INTO grafica_integrada (id, nombre_grafica, frec_basica, frec_max, memoria_max, resolucion) "
+                + SQL_VALUES 
+                + graficaIntegrada.getId() + SQL_COMA 
+                + graficaIntegrada.getNombreGrafica() + SQL_COMA
+                + graficaIntegrada.getFrecuenciaBasica() + SQL_COMA 
+                + graficaIntegrada.getFrecuenciaMaxima() + SQL_COMA
+                + graficaIntegrada.getMemoriaMaxima() + SQL_COMA 
+                + graficaIntegrada.getResolucion() + SQL_FIN_PARENTESIS;
         persistencia.actualizar(sql);
     }
 

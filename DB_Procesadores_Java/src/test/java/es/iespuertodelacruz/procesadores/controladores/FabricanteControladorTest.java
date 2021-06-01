@@ -1,5 +1,3 @@
-/*
-
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,5 +44,4 @@ public class FabricanteControladorTest {
             return new Fabricante("test", "test", "test", 100, "test", "test", "test", "test", "test");
         }
     }
-*/
 

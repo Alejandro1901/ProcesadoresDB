@@ -72,9 +72,9 @@ public class Bbdd {
                 listaTablas.add(resultSet.getString("TABLE_NAME"));
             }
             if (!listaTablas.contains(tabla)) {
-                String crearTabla = new Fichero().leer("resources/sql/sqlite" + tabla + ".crear.sql");
+                String crearTabla = new Fichero().leer("resources/creaciones/" + tabla + ".crear.sql");
                 actualizar(crearTabla);
-                String insertElemento = new Fichero().leer("resources/sql/sqlite" + tabla + ".insertar.sql");
+                String insertElemento = new Fichero().leer("resources/inserciones/" + tabla + ".insertar.sql");
                 insertarElementos(insertElemento);
             }
         } catch (Exception e) {

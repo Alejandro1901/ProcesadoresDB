@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FabricanteModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">FabricanteModelo.java</span></div><h1>FabricanteModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.Fabricante;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class FabricanteModelo {
+
+    private static final String PUNTO_Y_COMA = &quot;;&quot;;
+    private static final int CERO = 0;
+    private static final String STRING_VACIO = &quot;&quot;;
+    private static final String SQL_FIN_COMILLA_SIMPLE = &quot;';&quot;;
+    private static final String SQL_FIN_PARENTESIS = &quot;');&quot;;
+    private static final String SQL_VALUES = &quot;VALUES ('&quot;;
+    private static final String SQL_COMA = &quot;', '&quot;;
+    
+    MySqlBbdd persistencia;
+
+    private static final String TABLA = &quot;fabricante&quot;;
+    private static final String CLAVE_PRIMARIA = &quot;codigo&quot;;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     * @throws PersistenciaException controlada
+     */
+<span class="fc" id="L31">    public FabricanteModelo() throws PersistenciaException {</span>
+<span class="fc" id="L32">        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Metodo que inserta una fabricante
+     * 
+     * @param fabricante a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Fabricante fabricante) throws PersistenciaException {
+<span class="fc" id="L42">        String sql = &quot;INSERT INTO fabricante (codigo, codigo_postal, nombre, numero, pais, calle, telefono, &quot;</span>
+        + &quot;correo, web) &quot; + SQL_VALUES 
+<span class="fc" id="L44">        + fabricante.getCodigo() + SQL_COMA </span>
+<span class="fc" id="L45">        + fabricante.getCodigoPostal() + SQL_COMA </span>
+<span class="fc" id="L46">        + fabricante.getNombre() + SQL_COMA </span>
+<span class="fc" id="L47">        + fabricante.getNumero() + SQL_COMA</span>
+<span class="fc" id="L48">        + fabricante.getPais() + SQL_COMA </span>
+<span class="fc" id="L49">        + fabricante.getCalle() + SQL_COMA </span>
+<span class="fc" id="L50">        + fabricante.getTelefono() + SQL_COMA </span>
+<span class="fc" id="L51">        + fabricante.getCorreo() + SQL_COMA </span>
+<span class="fc" id="L52">        + fabricante.getWeb() + SQL_FIN_PARENTESIS;</span>
+<span class="fc" id="L53">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L54">    }</span>
+
+    /**
+     * Metodo que elimina una fabricante
+     * 
+     * @param fabricante a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Fabricante fabricante) throws PersistenciaException {
+<span class="fc" id="L63">        String sql = &quot;DELETE FROM fabricante WHERE codigo = '&quot; + fabricante.getCodigo() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="fc" id="L64">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Metodo que modifica una fabricante
+     * 
+     * @param fabricante a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Fabricante fabricante) throws PersistenciaException {
+<span class="nc" id="L74">        String sql = &quot;UPDATE fabricante SET codigo = '&quot; + fabricante.getCodigo() </span>
+<span class="nc" id="L75">                + &quot;', codigo_postal = '&quot; + fabricante.getCodigoPostal() </span>
+<span class="nc" id="L76">                + &quot;', nombre = '&quot; + fabricante.getNombre() </span>
+<span class="nc" id="L77">                + &quot;', numero = '&quot; + fabricante.getNumero() </span>
+<span class="nc" id="L78">                + &quot;', pais = '&quot; + fabricante.getPais() </span>
+<span class="nc" id="L79">                + &quot;', calle = '&quot; + fabricante.getCalle() </span>
+<span class="nc" id="L80">                + &quot;', telefono = '&quot; + fabricante.getTelefono() </span>
+<span class="nc" id="L81">                + &quot;', correo = '&quot; + fabricante.getCorreo() </span>
+<span class="nc" id="L82">                + &quot;', web = '&quot; + fabricante.getWeb() </span>
+                + SQL_FIN_COMILLA_SIMPLE;
+<span class="nc" id="L84">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L85">    }</span>
+
+    /**
+     * Funcion que busca una fabricante en la bbdd
+     * 
+     * @param clave de la fabricante
+     * @return fabricante encontrada
+     * @throws PersistenciaException controlada
+     */
+    public Fabricante buscar(String clave) throws PersistenciaException {
+<span class="fc" id="L95">        Fabricante fabricanteEncontrado = null;</span>
+<span class="fc" id="L96">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE_PRIMARIA + &quot;='&quot; + clave + &quot;'&quot;;</span>
+        ResultSet resultSet;
+<span class="fc" id="L98">        ArrayList&lt;Fabricante&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L100">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc" id="L101">            lista = buscar(resultSet);</span>
+<span class="nc" id="L102">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L103">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="fc" id="L105">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if (!lista.isEmpty()) {</span>
+<span class="fc" id="L109">            fabricanteEncontrado = lista.get(0);</span>
+        }
+<span class="fc" id="L111">        return fabricanteEncontrado;</span>
+    }
+
+    /**
+     * Funcion encargada de transformar un ResultSet en una lista de resultados
+     * 
+     * @param resultSet de entrada
+     * @return lista de fabricante
+     * @throws PersistenciaException controlada
+     */
+    private ArrayList&lt;Fabricante&gt; buscar(ResultSet resultSet) throws PersistenciaException {
+<span class="fc" id="L122">        ArrayList&lt;Fabricante&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc bfc" id="L124" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L125">                String codigo = resultSet.getString(&quot;codigo&quot;);</span>
+<span class="fc" id="L126">                String codigoPostal = resultSet.getString(&quot;codigo_postal&quot;);</span>
+<span class="fc" id="L127">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="fc" id="L128">                int numero = resultSet.getInt(&quot;numero&quot;);</span>
+<span class="fc" id="L129">                String pais = resultSet.getString(&quot;pais&quot;);</span>
+<span class="fc" id="L130">                String calle = resultSet.getString(&quot;calle&quot;);</span>
+<span class="fc" id="L131">                String telefono = resultSet.getString(&quot;telefono&quot;);</span>
+<span class="fc" id="L132">                String correo = resultSet.getString(&quot;correo&quot;);</span>
+<span class="fc" id="L133">                String web = resultSet.getString(&quot;web&quot;);</span>
+<span class="fc" id="L134">                Fabricante Fabricante = new Fabricante(codigo, codigoPostal, nombre, numero, pais, calle, telefono, correo, web);</span>
+<span class="fc" id="L135">                lista.add(Fabricante);</span>
+<span class="fc" id="L136">            }</span>
+<span class="nc" id="L137">        } catch (SQLException e) {</span>
+<span class="nc" id="L138">            throw new PersistenciaException(&quot;Se ha producido un error realizando la transformacion a Fabricante&quot;, e);</span>
+        } finally {
+<span class="fc" id="L140">            persistencia.closeConecction(null, null, resultSet);</span>
+        }
+<span class="fc" id="L142">        return lista;</span>
+    }
+
+
+    /**
+     * Funcion encargada de buscar todas los fabricantes de la bbdd
+     * 
+     * @return arraylist de fabricante
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Fabricante&gt; buscarTodos() throws PersistenciaException {
+<span class="nc" id="L153">        String sql = &quot;SELECT * FROM &quot; + TABLA;</span>
+        ResultSet resultSet;
+<span class="nc" id="L155">        ArrayList&lt;Fabricante&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="nc" id="L157">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="nc" id="L158">            lista = buscar(resultSet);</span>
+<span class="nc" id="L159">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L160">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="nc" id="L162">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+<span class="nc" id="L164">        return lista;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

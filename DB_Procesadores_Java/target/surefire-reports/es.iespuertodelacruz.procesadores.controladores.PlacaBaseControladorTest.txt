@@ -1,10 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.021 s <<< FAILURE! - in es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest
-buscarPlacaBase  Time elapsed: 0.019 s  <<< ERROR!
-es.iespuertodelacruz.procesadores.excepcion.PersistenciaException: Se ha producido un error en la inicializacion de la BBDD
-	at es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest.setUp(PlacaBaseControladorTest.java:22)
-Caused by: es.iespuertodelacruz.procesadores.excepcion.FicheroException: El fichero a leer no existe
-	at es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest.setUp(PlacaBaseControladorTest.java:22)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 s - in es.iespuertodelacruz.procesadores.controladores.PlacaBaseControladorTest

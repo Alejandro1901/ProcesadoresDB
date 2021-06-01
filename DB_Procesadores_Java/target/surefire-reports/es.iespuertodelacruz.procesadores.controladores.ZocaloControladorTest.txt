@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertodelacruz.procesadores.controladores.ZocaloControladorTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.03 s - in es.iespuertodelacruz.procesadores.controladores.ZocaloControladorTest

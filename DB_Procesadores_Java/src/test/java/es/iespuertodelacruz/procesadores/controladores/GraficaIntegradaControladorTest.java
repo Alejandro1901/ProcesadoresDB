@@ -1,4 +1,3 @@
-/*
 
 package es.iespuertodelacruz.procesadores.controladores;
 
@@ -42,7 +41,6 @@ public class GraficaIntegradaControladorTest {
     }
 
     private static GraficaIntegrada crearGraficaIntegrada() {
-        return new GraficaIntegrada(100, "test", 5.1F, 5.9F, 9.6F, "test");
+        return new GraficaIntegrada(123, "test", 5.1F, 5.9F, 9.0F, "720p");
     }
-}  
-*/
+} 
