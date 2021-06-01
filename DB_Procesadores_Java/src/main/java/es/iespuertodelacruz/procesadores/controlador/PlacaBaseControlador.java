@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.procesadores.api.PlacaBase;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
@@ -134,5 +136,14 @@ public class PlacaBaseControlador {
           return encontrada;
         }   
 
+   /**
+   * Funcion que devuelve el listado completo
+   * 
+   * @return arraylist con los campos
+   * @throws PersistenciaException controlada
+   */
+   public ArrayList<PlacaBase> buscarTodos() throws PersistenciaException {
+      return placaBaseModelo.buscarTodos();
+   }
 }
    

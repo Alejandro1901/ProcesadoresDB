@@ -2,6 +2,9 @@ package es.iespuertodelacruz.procesadores.controlador;
 
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.procesadores.api.Zocalo;
 import es.iespuertodelacruz.procesadores.modelo.ZocaloModelo;
 
@@ -144,6 +147,16 @@ public void validarZocalo(Zocalo zocalo) throws ControladoresDBException {
              encontrada = true;
           }  
           return encontrada;
-        }   
+        }
+
+   /**
+   * Funcion que devuelve el listado completo
+   * 
+   * @return arraylist con los campos
+   * @throws PersistenciaException controlada
+   */
+   public ArrayList<Zocalo> buscarTodos() throws PersistenciaException {
+      return zocaloModelo.buscarTodos();
+   }
   
-  }
+}

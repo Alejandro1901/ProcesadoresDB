@@ -2,6 +2,9 @@ package es.iespuertodelacruz.procesadores.controlador;
 
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.procesadores.api.Arquitectura;
 import es.iespuertodelacruz.procesadores.modelo.ArquitecturaModelo;
 
@@ -139,7 +142,7 @@ public class ArquitecturaControlador {
  * @throws PersistenciaException error controlado
  */
 
-     private boolean existe(Arquitectura arquitectura) throws PersistenciaException {
+    private boolean existe(Arquitectura arquitectura) throws PersistenciaException {
         boolean encontrada = false;
         Arquitectura arquitecturaEncontrada;
    
@@ -148,6 +151,15 @@ public class ArquitecturaControlador {
            encontrada = true;
         }  
         return encontrada;
-      }   
+    }   
 
+    /**
+     * Funcion que devuelve el listado completo
+     * 
+     * @return arraylist con los campos
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<Arquitectura> buscarTodos() throws PersistenciaException {
+        return arquitecturaModelo.buscarTodos();
+    }
 }

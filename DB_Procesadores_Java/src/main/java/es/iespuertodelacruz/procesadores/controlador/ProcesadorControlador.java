@@ -181,4 +181,13 @@ public class ProcesadorControlador {
       return encontrada;
    }
 
+   /**
+   * Funcion que devuelve el listado completo
+   * 
+   * @return arraylist con los campos
+   * @throws PersistenciaException controlada
+   */
+   public ArrayList<Procesador> buscarTodos() throws PersistenciaException {
+      return procesadorModelo.buscarTodos();
+   }
 }
