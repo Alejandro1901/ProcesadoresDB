@@ -1,8 +1,8 @@
 es/iespuertodelacruz/procesadores/api/ArquitecturaTest.class
 es/iespuertodelacruz/procesadores/api/PlacaBaseTest.class
-es/iespuertodelacruz/procesadores/fichero/FicheroTest.class
 es/iespuertodelacruz/procesadores/api/FabricanteTest.class
 es/iespuertodelacruz/procesadores/controladores/NombreProcesadorControladorTest.class
+es/iespuertodelacruz/procesadores/fichero/FicheroTest.class
 es/iespuertodelacruz/procesadores/api/ProcesadorGraficaIntegradaTest.class
 es/iespuertodelacruz/procesadores/controladores/ArquitecturaControladorTest.class
 es/iespuertodelacruz/procesadores/api/ProcesadorTest.class
