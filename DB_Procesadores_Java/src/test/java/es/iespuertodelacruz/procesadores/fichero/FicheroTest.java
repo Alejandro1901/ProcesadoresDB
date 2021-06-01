@@ -1,4 +1,4 @@
-/*
+
 
 package es.iespuertodelacruz.procesadores.fichero;
 
@@ -35,4 +35,4 @@ public class FicheroTest {
         }
     }
 }
-*/
+
