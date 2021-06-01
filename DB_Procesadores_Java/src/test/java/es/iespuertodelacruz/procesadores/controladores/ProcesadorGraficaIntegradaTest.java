@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +40,12 @@ public class ProcesadorGraficaIntegradaTest {
     public void buscarProcesadorGraficaIntegrada() throws PersistenciaException {
         ProcesadorGraficaIntegrada placaBaseEncontrada = procesadorGraficaIntegradaControlador.buscar(procesadorGraficaIntegrada.getIdProcesador());
         assertEquals(placaBaseEncontrada, procesadorGraficaIntegrada, "No es igual la ruta encontrada a la esperada");
+    }
+
+    @Test
+    public void listarProcesadorGraficaIntegradaTest() throws PersistenciaException {
+        ArrayList<ProcesadorGraficaIntegrada> lista = procesadorGraficaIntegradaControlador.buscarTodos();
+        assertTrue(lista.contains(procesadorGraficaIntegrada),"La lista no contiene el valor esperado");
     }
 
     private static ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada() {

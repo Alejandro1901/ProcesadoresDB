@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +40,12 @@ public class ZocaloControladorTest {
     public void buscarZocalo() throws PersistenciaException {
         Zocalo placaBaseEncontrada = zocaloControlador.buscar(zocalo.getId());
         assertEquals(placaBaseEncontrada, zocalo, "No es igual la ruta encontrada a la esperada");
+    }
+
+    @Test
+    public void listarZocaloTest() throws PersistenciaException {
+        ArrayList<Zocalo> lista = zocaloControlador.buscarTodos();
+        assertTrue(lista.contains(zocalo),"La lista no contiene el valor esperado");
     }
 
     private static Zocalo crearZocalo() {

@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,6 +42,12 @@ public class NombreProcesadorControladorTest {
         public void buscarNombreProcesador() throws PersistenciaException {
             NombreProcesador nombreProcesadorEncontrada = nombreProcesadorControlador.buscar(nombreProcesador.getModeloProcesador());
             assertEquals(nombreProcesadorEncontrada, nombreProcesador, "No es igual la ruta encontrada a la esperada");
+        }
+
+        @Test
+        public void listarNombreProcesadorTest() throws PersistenciaException {
+            ArrayList<NombreProcesador> lista = nombreProcesadorControlador.buscarTodos();
+            assertTrue(lista.contains(nombreProcesador),"La lista no contiene el valor esperado");
         }
     
         private static NombreProcesador crearNombreProcesador() {

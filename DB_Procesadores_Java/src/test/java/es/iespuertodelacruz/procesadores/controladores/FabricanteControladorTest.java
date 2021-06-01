@@ -1,6 +1,9 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +41,12 @@ public class FabricanteControladorTest {
         public void buscarFabricanteTest() throws PersistenciaException {
             Fabricante fabricanteEncontrada = fabricanteControlador.buscar(fabricante.getCodigo());
             assertEquals(fabricanteEncontrada, fabricante, "No es igual la ruta encontrada a la esperada");
+        }
+
+        @Test
+        public void listarFabricanteTest() throws PersistenciaException {
+            ArrayList<Fabricante> lista = fabricanteControlador.buscarTodos();
+            assertTrue(lista.contains(fabricante),"La lista no contiene el valor esperado");
         }
     
         private static Fabricante crearFabricante() {

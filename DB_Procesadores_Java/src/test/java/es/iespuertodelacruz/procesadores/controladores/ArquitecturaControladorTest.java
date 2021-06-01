@@ -3,6 +3,8 @@ package es.iespuertodelacruz.procesadores.controladores;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +41,12 @@ public class ArquitecturaControladorTest {
     public void buscarArquitecturaTest() throws PersistenciaException {
         Arquitectura arquitecturaEncontrada = arquitecturaControlador.buscar(arquitectura.getId());
         assertEquals(arquitecturaEncontrada, arquitectura, "No es igual la ruta encontrada a la esperada");
+    }
+
+    @Test
+    public void listarArquitecturaTest() throws PersistenciaException {
+        ArrayList<Arquitectura> lista = arquitecturaControlador.buscarTodos();
+        assertTrue(lista.contains(arquitectura),"La lista no contiene el valor esperado");
     }
 
     private static Arquitectura crearArquitectura() {

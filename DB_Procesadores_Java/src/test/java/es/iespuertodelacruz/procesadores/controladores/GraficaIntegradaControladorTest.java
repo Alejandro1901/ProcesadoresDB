@@ -2,6 +2,9 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +41,12 @@ public class GraficaIntegradaControladorTest {
     public void buscarGraficaIntegradaTest() throws PersistenciaException {
         GraficaIntegrada graficaIntegradaEncontrada = graficaIntegradaControlador.buscar(graficaIntegrada.getId());
         assertEquals(graficaIntegradaEncontrada, graficaIntegrada, "No es igual la ruta encontrada a la esperada");
+    }
+
+    @Test
+    public void listarGraficaIntegradaTest() throws PersistenciaException {
+        ArrayList<GraficaIntegrada> lista = graficaIntegradaControlador.buscarTodos();
+        assertTrue(lista.contains(graficaIntegrada),"La lista no contiene el valor esperado");
     }
 
     private static GraficaIntegrada crearGraficaIntegrada() {
