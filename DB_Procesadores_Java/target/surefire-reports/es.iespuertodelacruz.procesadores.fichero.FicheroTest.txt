@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertodelacruz.procesadores.fichero.FicheroTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.017 s <<< FAILURE! - in es.iespuertodelacruz.procesadores.fichero.FicheroTest
+leerFicheroTest  Time elapsed: 0.014 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Se ha producido un error leyendo el fichero
+	at es.iespuertodelacruz.procesadores.fichero.FicheroTest.leerFicheroTest(FicheroTest.java:34)
+Caused by: es.iespuertodelacruz.procesadores.excepcion.FicheroException: El fichero a leer no existe
+	at es.iespuertodelacruz.procesadores.fichero.FicheroTest.leerFicheroTest(FicheroTest.java:31)
+

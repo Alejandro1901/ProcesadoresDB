@@ -1,4 +1,4 @@
-CREATE TABLE zocalo (
+CREATE TABLE IF NOT EXISTS zocalo (
   id INT PRIMARY KEY,
   tipo VARCHAR(30),
   tecnologia VARCHAR(20) NOT NULL,

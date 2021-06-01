@@ -1,4 +1,4 @@
-CREATE TABLE fabricante (
+CREATE TABLE IF NOT EXISTS fabricante (
   codigo varchar(50) PRIMARY KEY,
   codigo_postal varchar(50), 
   nombre VARCHAR(20),

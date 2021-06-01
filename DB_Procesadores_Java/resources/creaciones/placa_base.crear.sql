@@ -1,4 +1,4 @@
-CREATE TABLE placa_base (
+CREATE TABLE IF NOT EXISTS placa_base (
   id INT PRIMARY KEY,
   id_socket int,
   nombre varchar (100),

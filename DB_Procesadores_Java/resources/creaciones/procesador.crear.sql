@@ -1,4 +1,4 @@
-CREATE TABLE procesador (
+CREATE TABLE IF NOT EXISTS procesador (
   id INT(8) PRIMARY KEY,
   codigo_fabricante VARCHAR(50),
   id_socket INT,
