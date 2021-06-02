@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertodelacruz.procesadores.api.NombreProcesadorTest
+-------------------------------------------------------------------------------
+<<<<<<< HEAD
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s - in es.iespuertodelacruz.procesadores.api.NombreProcesadorTest
+=======
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in es.iespuertodelacruz.procesadores.api.NombreProcesadorTest
+>>>>>>> 61a3bb76c5a1a92acc738f66fc0bdf0c7451656a

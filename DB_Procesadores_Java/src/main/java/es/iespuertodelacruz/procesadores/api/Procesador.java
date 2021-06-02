@@ -1,22 +1,29 @@
 package es.iespuertodelacruz.procesadores.api;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Procesador {
+
+    private static final String DELIMITADOR = "'";
+
     int id; //PK
     String codigoFabricante; //FK
     int idSocket; //FK
     int idArquitectura; //FK
     String modelo; //FK
-    Date fechaLanzamiento;
+    String fechaLanzamiento;
     int nucleos;
     int hilos;
     float frecuencia;
     boolean overclock;
     float tdp;
     float precio;
+    boolean graficaPropia;
 
     /**
+     * Constructor con todos los parametros
      * 
      * @param id del procesador
      * @param codigoFabricante Foreignkey de la tabla fabricante
@@ -30,8 +37,9 @@ public class Procesador {
      * @param overclock si es posible overclock o no 
      * @param tdp del procesador
      * @param precio del procesador
+     * @param graficaPropia del procesador
      */
-    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, Date fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio) {
+    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio, boolean graficaPropia) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
         this.idSocket = idSocket;
@@ -44,13 +52,39 @@ public class Procesador {
         this.overclock = overclock;
         this.tdp = tdp;
         this.precio = precio;
+        this.graficaPropia = graficaPropia;
+    }
+    
+    /**
+     * Constructor mediante cadena de texto
+     * 
+     * @param cadena con el procesador
+     */
+    public Procesador(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.id = Integer.parseInt((String) elementos.get(0));
+        this.codigoFabricante = (String) elementos.get(1);
+        this.idSocket = Integer.parseInt((String) elementos.get(2));
+        this.idArquitectura = Integer.parseInt((String) elementos.get(3));
+        this.modelo = (String) elementos.get(4);
+        this.fechaLanzamiento = (String) elementos.get(5);
+        this.nucleos = Integer.parseInt((String) elementos.get(6));
+        this.hilos = Integer.parseInt((String) elementos.get(7));
+        this.frecuencia = Float.parseFloat((String) elementos.get(8));
+        this.overclock = Boolean.parseBoolean((String) elementos.get(9));
+        this.tdp = Float.parseFloat((String) elementos.get(10));
+        this.precio = Float.parseFloat((String) elementos.get(11));
+        this.graficaPropia = Boolean.parseBoolean((String) elementos.get(12));
     }
 
     /**
      * Constructor vacio
      */
-    public Procesador() {
-    }
+    public Procesador() {}
 
     /**
      * Creacion de getter and setters
@@ -96,11 +130,11 @@ public class Procesador {
         this.modelo = modelo;
     }
 
-    public Date getFechaLanzamiento() {
+    public String getFechaLanzamiento() {
         return this.fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(Date fechaLanzamiento) {
+    public void setFechaLanzamiento(String fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
@@ -154,5 +188,45 @@ public class Procesador {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public boolean isGraficaPropia() {
+        return this.graficaPropia;
+    }
+
+    public boolean getGraficaPropia() {
+        return this.graficaPropia;
+    }
+
+    public void setGraficaPropia(boolean GraficaPropia) {
+        this.graficaPropia = GraficaPropia;
+    }
+
+    @Override
+    public String toString() {
+        return getId() + DELIMITADOR +
+            getCodigoFabricante() + DELIMITADOR +
+            getIdSocket() + DELIMITADOR +
+            getIdArquitectura() + DELIMITADOR +
+            getModelo() + DELIMITADOR +
+            getFechaLanzamiento() + DELIMITADOR +
+            getNucleos() + DELIMITADOR +
+            getHilos() + DELIMITADOR +
+            getFrecuencia() + DELIMITADOR +
+            getOverclock() + DELIMITADOR +
+            getTdp() + DELIMITADOR +
+            getPrecio() + DELIMITADOR +
+            getGraficaPropia();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Procesador)) {
+            return false;
+        }
+        Procesador procesador = (Procesador) o;
+        return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio && graficaPropia == procesador.graficaPropia;
     }
 }
