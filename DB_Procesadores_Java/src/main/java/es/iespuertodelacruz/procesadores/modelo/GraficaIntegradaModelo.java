@@ -68,13 +68,13 @@ public class GraficaIntegradaModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
-        String sql = "UPDATE grafica_integrada SET id = '" + graficaIntegrada.getId() 
-        + "', nombre_grafica = '" + graficaIntegrada.getNombreGrafica() 
+        String sql = "UPDATE grafica_integrada SET"
+        + " nombre_grafica = '" + graficaIntegrada.getNombreGrafica() 
         + "', frec_basica = '" + graficaIntegrada.getFrecuenciaBasica() 
         + "', frec_max = '" + graficaIntegrada.getFrecuenciaMaxima() 
         + "', memoria_max = '" + graficaIntegrada.getMemoriaMaxima() 
         + "', resolucion = '" + graficaIntegrada.getResolucion() 
-        + SQL_FIN_COMILLA_SIMPLE;
+        + "' WHERE id = '" + graficaIntegrada.getId() + "';";
         persistencia.actualizar(sql);
     }
 

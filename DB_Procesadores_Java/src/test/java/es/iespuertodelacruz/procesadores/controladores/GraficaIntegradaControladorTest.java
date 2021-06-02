@@ -2,6 +2,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -65,6 +66,13 @@ public class GraficaIntegradaControladorTest {
         }
     }
 
+    @Test
+    public void modificarGraficaIntegradaTest() throws ControladoresDBException, PersistenciaException {
+        GraficaIntegrada graficaIntegradaModificada = crearGraficaIntegradaModificada();
+        graficaIntegradaControlador.modificar(graficaIntegradaModificada);
+        assertNotEquals(, actual);
+    }
+
     private static GraficaIntegrada crearGraficaIntegrada() {
         return new GraficaIntegrada(123, "test", 5.1F, 5.9F, 9.0F, "720p");
     }
@@ -79,4 +87,8 @@ public class GraficaIntegradaControladorTest {
         graficaIntegrada.setResolucion("");
         return graficaIntegrada;
     } 
+
+    private static GraficaIntegrada crearGraficaIntegradaModificada() {
+        return new GraficaIntegrada(123, "test2", 5.1F, 5.9F, 9.0F, "720p");
+    }
 } 

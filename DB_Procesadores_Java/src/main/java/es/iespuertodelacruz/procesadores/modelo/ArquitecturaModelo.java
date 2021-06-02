@@ -68,12 +68,12 @@ public class ArquitecturaModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(Arquitectura arquitectura) throws PersistenciaException {
-        String sql = "UPDATE arquitectura SET id = '" + arquitectura.getId() 
-        + "', version_arquitectura = '" + arquitectura.getVersionArquitectura() 
+        String sql = "UPDATE arquitectura SET"
+        + " version_arquitectura = '" + arquitectura.getVersionArquitectura() 
         + "', disenio = '" + arquitectura.getDisenio() 
         + "', tecnologia = '" + arquitectura.getTecnologia() 
         + "', estandar = '" + arquitectura.getEstandar() 
-        + SQL_FIN_COMILLA_SIMPLE;
+        + "' WHERE id = '" + arquitectura.getId() + "';";
         persistencia.actualizar(sql);
     }
 

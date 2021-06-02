@@ -71,8 +71,8 @@ public class FabricanteModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(Fabricante fabricante) throws PersistenciaException {
-        String sql = "UPDATE fabricante SET codigo = '" + fabricante.getCodigo() 
-                + "', codigo_postal = '" + fabricante.getCodigoPostal() 
+        String sql = "UPDATE fabricante SET"
+                + " codigo_postal = '" + fabricante.getCodigoPostal() 
                 + "', nombre = '" + fabricante.getNombre() 
                 + "', numero = '" + fabricante.getNumero() 
                 + "', pais = '" + fabricante.getPais() 
@@ -80,7 +80,7 @@ public class FabricanteModelo {
                 + "', telefono = '" + fabricante.getTelefono() 
                 + "', correo = '" + fabricante.getCorreo() 
                 + "', web = '" + fabricante.getWeb() 
-                + SQL_FIN_COMILLA_SIMPLE;
+                + "' WHERE codigo = '" + fabricante.getCodigo() + "';";
         persistencia.actualizar(sql);
     }
 

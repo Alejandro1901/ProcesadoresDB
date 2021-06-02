@@ -2,6 +2,7 @@ package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -67,6 +68,13 @@ public class ArquitecturaControladorTest {
         }
     }
 
+    @Test
+    public void modificarArquitecturaTest() throws ControladoresDBException, PersistenciaException {
+        Arquitectura arquitecturaModificada = crearArquitecturaParaModificar();
+        arquitecturaControlador.modificar(arquitecturaModificada);
+        assertNotEquals(arquitecturaModificada, arquitectura, "No se ha modificado el campo");
+    }
+
     private static Arquitectura crearArquitectura() {
         return new Arquitectura(100, "ARM", "test", "Thumb", "No tiene");
     }
@@ -79,5 +87,9 @@ public class ArquitecturaControladorTest {
         arquitectura.setTecnologia("");
         arquitectura.setEstandar("");
         return arquitectura;
+    }
+
+    private static Arquitectura crearArquitecturaParaModificar() {
+        return new Arquitectura(100, "ARM", "test2", "Thumb", "No tiene");
     }
 }

@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import es.iespuertodelacruz.procesadores.api.Fabricante;
 import es.iespuertodelacruz.procesadores.controlador.FabricanteControlador;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+import es.iespuertodelacruz.procesadores.vista.FabricanteVista;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 public class FabricanteControladorTest {
     
@@ -64,6 +66,13 @@ public class FabricanteControladorTest {
         }
     }
 
+    @Test
+    public void modificarFabricanteTest() throws ControladoresDBException, PersistenciaException {
+        Fabricante fabricanteModificado = crearFabricanteParaModificar();
+        fabricanteControlador.modificar(fabricanteModificado);
+        assertNotEquals(fabricanteModificado, fabricante, "No se ha modificado el campo");
+    }
+
     private static Fabricante crearFabricante() {
         return new Fabricante("test", "test", "test", 100, "test", "test", "test", "test", "test");
     }
@@ -80,6 +89,10 @@ public class FabricanteControladorTest {
         fabricante.setCorreo("");
         fabricante.setWeb("");
         return fabricante;
+    }
+
+    private static Fabricante crearFabricanteParaModificar() {
+        return new Fabricante("test", "test", "test", 100, "test2", "test", "test", "test", "test");
     }
 }
 
