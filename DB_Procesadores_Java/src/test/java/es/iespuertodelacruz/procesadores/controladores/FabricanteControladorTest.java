@@ -70,7 +70,7 @@ public class FabricanteControladorTest {
     public void modificarFabricanteTest() throws ControladoresDBException, PersistenciaException {
         Fabricante fabricanteModificado = crearFabricanteParaModificar();
         fabricanteControlador.modificar(fabricanteModificado);
-        assertNotEquals(fabricanteModificado, fabricante, "No se ha modificado el campo");
+        assertNotEquals(fabricanteControlador.buscar(fabricante.getCodigo()),fabricante, "No se ha modificado el campo");
     }
 
     private static Fabricante crearFabricante() {

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GraficaIntegrada.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.api</a> &gt; <span class="el_source">GraficaIntegrada.java</span></div><h1>GraficaIntegrada.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.api;
+
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.StringTokenizer;
+
+public class GraficaIntegrada {
+
+    private static final String DELIMITADOR = &quot;'&quot;;
+
+    int id;
+    String nombreGrafica;
+    float frecuenciaBasica;
+    float frecuenciaMaxima;
+    float memoriaMaxima;
+    String resolucion;
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param id de al grafica
+     * @param nombreGrafica de la grafica 
+     * @param frecuenciaBasica a la que va la grafica 
+     * @param frecuenciaMaxima a la que va la grafica 
+     * @param memoriaMaxima de la grafica
+     * @param resolucion maxima permitida por la grafica
+     */
+<span class="fc" id="L28">    public GraficaIntegrada(int id, String nombreGrafica, float frecuenciaBasica, float frecuenciaMaxima, float memoriaMaxima, String resolucion) {</span>
+<span class="fc" id="L29">        this.id = id;</span>
+<span class="fc" id="L30">        this.nombreGrafica = nombreGrafica;</span>
+<span class="fc" id="L31">        this.frecuenciaBasica = frecuenciaBasica;</span>
+<span class="fc" id="L32">        this.frecuenciaMaxima = frecuenciaMaxima;</span>
+<span class="fc" id="L33">        this.memoriaMaxima = memoriaMaxima;</span>
+<span class="fc" id="L34">        this.resolucion = resolucion;</span>
+<span class="fc" id="L35">    }</span>
+/**
+ * Constructor con to string
+ * @param cadena
+ */
+<span class="fc" id="L40">    public GraficaIntegrada(String cadena) {</span>
+<span class="fc" id="L41">        ArrayList&lt;Object&gt; elementos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L42">        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        while (tokenizer.hasMoreElements()) {</span>
+<span class="fc" id="L44">            elementos.add(tokenizer.nextToken());</span>
+        }
+<span class="fc" id="L46">        this.id = Integer.parseInt((String) elementos.get(0));</span>
+<span class="fc" id="L47">        this.nombreGrafica = (String) elementos.get(1);</span>
+<span class="fc" id="L48">        this.frecuenciaBasica = Float.parseFloat((String) elementos.get(2));</span>
+<span class="fc" id="L49">        this.frecuenciaMaxima = Float.parseFloat((String) elementos.get(3));</span>
+<span class="fc" id="L50">        this.memoriaMaxima = Integer.parseInt((String) elementos.get(4));</span>
+<span class="fc" id="L51">        this.resolucion = (String) elementos.get(5);</span>
+        
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * Constructor vacio
+     */
+<span class="fc" id="L58">    public GraficaIntegrada() {</span>
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * Creacion de getter and setters
+     */
+
+    public int getId() {
+<span class="fc" id="L66">        return this.id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L70">        this.id = id;</span>
+<span class="fc" id="L71">    }</span>
+
+    public String getNombreGrafica() {
+<span class="fc" id="L74">        return this.nombreGrafica;</span>
+    }
+
+    public void setNombreGrafica(String nombreGrafica) {
+<span class="fc" id="L78">        this.nombreGrafica = nombreGrafica;</span>
+<span class="fc" id="L79">    }</span>
+
+    public float getFrecuenciaBasica() {
+<span class="fc" id="L82">        return this.frecuenciaBasica;</span>
+    }
+
+    public void setFrecuenciaBasica(float frecuenciaBasica) {
+<span class="fc" id="L86">        this.frecuenciaBasica = frecuenciaBasica;</span>
+<span class="fc" id="L87">    }</span>
+
+    public float getFrecuenciaMaxima() {
+<span class="fc" id="L90">        return this.frecuenciaMaxima;</span>
+    }
+
+    public void setFrecuenciaMaxima(float frecuenciaMaxima) {
+<span class="fc" id="L94">        this.frecuenciaMaxima = frecuenciaMaxima;</span>
+<span class="fc" id="L95">    }</span>
+
+    public float getMemoriaMaxima() {
+<span class="fc" id="L98">        return this.memoriaMaxima;</span>
+    }
+
+    public void setMemoriaMaxima(float memoriaMaxima) {
+<span class="fc" id="L102">        this.memoriaMaxima = memoriaMaxima;</span>
+<span class="fc" id="L103">    }</span>
+
+    public String getResolucion() {
+<span class="fc" id="L106">        return this.resolucion;</span>
+    }
+
+    public void setResolucion(String resolucion) {
+<span class="fc" id="L110">        this.resolucion = resolucion;</span>
+<span class="fc" id="L111">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L115">        return getId() + DELIMITADOR +</span>
+<span class="fc" id="L116">            getNombreGrafica() + DELIMITADOR +</span>
+<span class="fc" id="L117">            getFrecuenciaBasica() + DELIMITADOR +</span>
+<span class="fc" id="L118">            getFrecuenciaMaxima() + DELIMITADOR +</span>
+<span class="fc" id="L119">            getMemoriaMaxima() + DELIMITADOR +</span>
+<span class="fc" id="L120">            getResolucion(); </span>
+    }  
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L126">            return true;</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        if (!(o instanceof GraficaIntegrada)) {</span>
+<span class="nc" id="L128">            return false;</span>
+        }
+<span class="fc" id="L130">        GraficaIntegrada graficaIntegrada = (GraficaIntegrada) o;</span>
+<span class="pc bpc" id="L131" title="4 of 12 branches missed.">        return id == graficaIntegrada.id &amp;&amp; Objects.equals(nombreGrafica, graficaIntegrada.nombreGrafica) &amp;&amp; frecuenciaBasica == graficaIntegrada.frecuenciaBasica &amp;&amp; frecuenciaMaxima == graficaIntegrada.frecuenciaMaxima &amp;&amp; memoriaMaxima == graficaIntegrada.memoriaMaxima &amp;&amp; Objects.equals(resolucion, graficaIntegrada.resolucion);</span>
+    }
+
+   
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

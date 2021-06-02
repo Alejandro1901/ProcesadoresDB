@@ -72,7 +72,7 @@ public class ArquitecturaControladorTest {
     public void modificarArquitecturaTest() throws ControladoresDBException, PersistenciaException {
         Arquitectura arquitecturaModificada = crearArquitecturaParaModificar();
         arquitecturaControlador.modificar(arquitecturaModificada);
-        assertNotEquals(arquitecturaModificada, arquitectura, "No se ha modificado el campo");
+        assertNotEquals(arquitecturaControlador.buscar(arquitectura.getId()), arquitectura, "No se ha modificado el campo");
     }
 
     private static Arquitectura crearArquitectura() {

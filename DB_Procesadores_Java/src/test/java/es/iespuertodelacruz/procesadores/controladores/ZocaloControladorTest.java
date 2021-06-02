@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -64,6 +65,13 @@ public class ZocaloControladorTest {
         }
     }
 
+    @Test
+    public void modificarZocaloTest() throws ControladoresDBException, PersistenciaException {
+        Zocalo zocaloModificado = crearZocaloModificado();
+        zocaloControlador.modificar(zocaloModificado);
+        assertNotEquals(zocaloControlador.buscar(zocalo.getId()),zocalo,"No se han modificado los campos esperados");
+    }
+
     private static Zocalo crearZocalo() {
         return new Zocalo(101,"test","test","Q2´20");
     }
@@ -75,5 +83,9 @@ public class ZocaloControladorTest {
         zocalo.setTecnologia("");
         zocalo.setFechaLanzamiento("");
         return zocalo;
+    }
+
+    private static Zocalo crearZocaloModificado() {
+        return new Zocalo(101,"test2","test","Q2´20");
     }
 }

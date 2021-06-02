@@ -65,11 +65,11 @@ public class ZocaloModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(Zocalo zocalo) throws PersistenciaException {
-        String sql = "UPDATE zocalo SET id = '" + zocalo.getId()
-                + "', tipo = '" + zocalo.getTipo()
+        String sql = "UPDATE zocalo SET"
+                + " tipo = '" + zocalo.getTipo()
                 + "', tecnologia = '" + zocalo.getTecnologia()
                 + "', fecha_lanzamiento = '" + zocalo.getFechaLanzamiento()
-                + SQL_FIN_COMILLA_SIMPLE;
+                + "' WHERE id = '" + zocalo.getId() + "';";
         persistencia.actualizar(sql);
     }
 

@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -62,6 +63,13 @@ public class ProcesadorGraficaIntegradaTest {
         }
     }
 
+    @Test
+    public void modificarProcesadorGraficaIntegradaTest() throws ControladoresDBException, PersistenciaException {
+        ProcesadorGraficaIntegrada procesadorGraficaIntegradaModificado = crearProcesadorGraficaIntegradaModificado();
+        procesadorGraficaIntegradaControlador.modificar(procesadorGraficaIntegradaModificado);
+        assertNotEquals(procesadorGraficaIntegradaControlador.buscar(procesadorGraficaIntegrada.getIdProcesador()), procesadorGraficaIntegrada, "No se ha modificado el campo esperado");
+    }
+
     private static ProcesadorGraficaIntegrada crearProcesadorGraficaIntegrada() {
         return new ProcesadorGraficaIntegrada(1,3);
     }
@@ -71,5 +79,9 @@ public class ProcesadorGraficaIntegradaTest {
         procesadorGraficaIntegrada.setIdProcesador(-6);
         procesadorGraficaIntegrada.setIdGraficaIntegrada(-5);
         return procesadorGraficaIntegrada;
+    }
+
+    private static ProcesadorGraficaIntegrada crearProcesadorGraficaIntegradaModificado() {
+        return new ProcesadorGraficaIntegrada(1,5);
     }
 }

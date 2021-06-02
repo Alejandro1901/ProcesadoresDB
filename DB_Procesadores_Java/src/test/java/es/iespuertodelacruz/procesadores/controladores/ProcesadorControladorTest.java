@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -64,6 +65,13 @@ public class ProcesadorControladorTest {
         }
     }
 
+    @Test
+    public void modificarProcesadorTest() throws ControladoresDBException, PersistenciaException {
+        Procesador procesadorModificado = crearProcesadorModificado();
+        procesadorControlador.modificar(procesadorModificado);
+        assertNotEquals(procesadorControlador.buscar(procesador.getId()), procesador, "No se ha modificado el campo esperado");
+    }
+
     private static Procesador crearProcesador() {
         return new Procesador(143,"US4581401001",1,2,"11900K","Q1´21",8,16,3.5F,false,125F,569.90F,false);
     }
@@ -82,5 +90,9 @@ public class ProcesadorControladorTest {
         procesador.setTdp(-33);
         procesador.setPrecio(-66);
         return procesador;
+    }
+
+    private static Procesador crearProcesadorModificado() {
+        return new Procesador(143,"US4581401001",1,2,"11900K","Q1´21",8,16,4.5F,false,125F,569.90F,false);
     }
 }

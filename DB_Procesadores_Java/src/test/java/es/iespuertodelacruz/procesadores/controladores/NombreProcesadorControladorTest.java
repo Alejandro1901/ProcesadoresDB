@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -66,6 +67,13 @@ public class NombreProcesadorControladorTest {
         }
     }
 
+    @Test
+    public void modificarNombreProcesadorTest() throws ControladoresDBException, PersistenciaException {
+        NombreProcesador nombreProcesadorModificado = crearNombreProcesadorParaModificar();
+        nombreProcesadorControlador.modificar(nombreProcesadorModificado);
+        assertNotEquals(nombreProcesadorControlador.buscar(nombreProcesador.getModeloProcesador()), nombreProcesador, "El campo no se ha modificado");
+    }
+
     private static NombreProcesador crearNombreProcesador() {
         return new NombreProcesador("test", "test", 100);
     }
@@ -76,6 +84,10 @@ public class NombreProcesadorControladorTest {
         nombreProcesador.setFamilia("");
         nombreProcesador.setGeneracion(-5);
         return nombreProcesador;
+    }
+
+    private static NombreProcesador crearNombreProcesadorParaModificar() {
+        return new NombreProcesador("test", "test2", 100);
     }
 }   
 

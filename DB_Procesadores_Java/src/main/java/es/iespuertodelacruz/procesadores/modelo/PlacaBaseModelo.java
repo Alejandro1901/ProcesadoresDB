@@ -64,10 +64,10 @@ public class PlacaBaseModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(PlacaBase placaBase) throws PersistenciaException {
-        String sql = "UPDATE placa_base SET id = '" + placaBase.getId() 
-                + "', id_socket = '" + placaBase.getIdSocket()
+        String sql = "UPDATE placa_base SET"
+                + " id_socket = '" + placaBase.getIdSocket()
                 + "', nombre = '" + placaBase.getNombre() 
-                + SQL_FIN_COMILLA_SIMPLE;
+                + "' WHERE id = '" + placaBase.getId() + "';";
         persistencia.actualizar(sql);
     }
 

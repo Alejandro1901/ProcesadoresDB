@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -65,6 +66,13 @@ public class PlacaBaseControladorTest {
         }
     }
 
+    @Test
+    public void modificarPlacaBaseTest() throws ControladoresDBException, PersistenciaException {
+        PlacaBase placaBaseModificada = crearPlacaBaseModificada();
+        placaBaseControlador.modificar(placaBaseModificada);
+        assertNotEquals(placaBaseControlador.buscar(placaBase.getId()), placaBase, "No se ha modificado el campo esperado");
+    }
+
     private static PlacaBase crearPlacaBase() {
         return new PlacaBase(100, 101, "test" );
     }
@@ -75,6 +83,10 @@ public class PlacaBaseControladorTest {
         placaBase.setIdSocket(-9);
         placaBase.setNombre("");
         return placaBase;
+    }
+
+    private static PlacaBase crearPlacaBaseModificada() {
+        return new PlacaBase(100, 101, "test2" );
     }
 }
 

@@ -70,7 +70,7 @@ public class GraficaIntegradaControladorTest {
     public void modificarGraficaIntegradaTest() throws ControladoresDBException, PersistenciaException {
         GraficaIntegrada graficaIntegradaModificada = crearGraficaIntegradaModificada();
         graficaIntegradaControlador.modificar(graficaIntegradaModificada);
-        assertNotEquals(, actual);
+        assertNotEquals(graficaIntegradaControlador.buscar(graficaIntegrada.getId()), graficaIntegrada, "El campo no se ha modificado");
     }
 
     private static GraficaIntegrada crearGraficaIntegrada() {

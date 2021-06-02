@@ -64,10 +64,10 @@ public class NombreProcesadorModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(NombreProcesador nombreProcesador) throws PersistenciaException {
-        String sql = "UPDATE nombre_procesador SET modelo_procesador = '" + nombreProcesador.getModeloProcesador() 
-        + "', familia = '" + nombreProcesador.getFamilia() 
+        String sql = "UPDATE nombre_procesador SET"
+        + " familia = '" + nombreProcesador.getFamilia() 
         + "', generacion = '" + nombreProcesador.getGeneracion() 
-        + SQL_FIN_COMILLA_SIMPLE;
+        + "' WHERE modelo_procesador = '" + nombreProcesador.getModeloProcesador() + "';";
         persistencia.actualizar(sql);
     }
 

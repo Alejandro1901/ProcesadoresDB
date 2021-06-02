@@ -63,9 +63,8 @@ public class ProcesadorGraficaIntegradaModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
-        String sql = "UPDATE procesador_grafica_integrada SET id_procesador = '" + procesadorGraficaIntegrada.getIdProcesador()
-                + "', id_grafica_integrada = '" + procesadorGraficaIntegrada.getIdGraficaIntegrada()
-                + SQL_FIN_COMILLA_SIMPLE;
+        String sql = "UPDATE procesador_grafica_integrada SET id_grafica_integrada = '" + procesadorGraficaIntegrada.getIdGraficaIntegrada()
+                + "' WHERE id_procesador = '" + procesadorGraficaIntegrada.getIdProcesador() + "';";
         persistencia.actualizar(sql);
     }
 

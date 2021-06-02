@@ -75,8 +75,8 @@ public class ProcesadorModelo {
      * @throws PersistenciaException controlada
      */
     public void modificar(Procesador procesador) throws PersistenciaException {
-        String sql = "UPDATE procesador SET id = '" + procesador.getId()
-                + "', codigo_fabricante = '" + procesador.getCodigoFabricante()
+        String sql = "UPDATE procesador SET"
+                + " codigo_fabricante = '" + procesador.getCodigoFabricante()
                 + "', id_socket = '" + procesador.getIdSocket()
                 + "', id_arquitectura = '" + procesador.getIdArquitectura()
                 + "', modelo = '" + procesador.getModelo()
@@ -88,7 +88,7 @@ public class ProcesadorModelo {
                 + "', tdp = '" + procesador.getTdp()
                 + "', precio = '" + procesador.getPrecio()
                 + "', graficapropia = '" + procesador.getGraficaPropia()
-                + SQL_FIN_COMILLA_SIMPLE;
+                + "' WHERE id = '" + procesador.getId() + "';";
         persistencia.actualizar(sql);
     }
 
