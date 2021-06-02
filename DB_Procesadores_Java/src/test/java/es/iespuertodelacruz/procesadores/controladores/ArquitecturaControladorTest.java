@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -14,9 +15,12 @@ import es.iespuertodelacruz.procesadores.controlador.ArquitecturaControlador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
+
+
 public class ArquitecturaControladorTest {
 
     Arquitectura arquitectura = new Arquitectura();
+    Arquitectura arquitecturaInvalida = new Arquitectura();
     ArquitecturaControlador arquitecturaControlador;
 
     @BeforeEach
@@ -29,6 +33,9 @@ public class ArquitecturaControladorTest {
         }
         if (arquitecturaControlador.buscar(arquitectura.getId()) == null) {
             arquitecturaControlador.insertar(arquitectura);
+        }
+        if (arquitecturaInvalida.getId() == 0) {
+            arquitecturaInvalida = crearArquitecturaInvalida();
         }
     }
 
@@ -49,7 +56,22 @@ public class ArquitecturaControladorTest {
         assertTrue(lista.contains(arquitectura),"La lista no contiene el valor esperado");
     }
 
+    @Test
+    public void arquitecturaInvalidaTest() throws ControladoresDBException, PersistenciaException {
+        //metodo vacio
+    }
+
     private static Arquitectura crearArquitectura() {
         return new Arquitectura(100, "ARM", "test", "Thumb", "No tiene");
+    }
+
+    private static Arquitectura crearArquitecturaInvalida() {
+        Arquitectura arquitectura = new Arquitectura();
+        arquitectura.setId(-4);
+        arquitectura.setVersionArquitectura("");
+        arquitectura.setDisenio("");
+        arquitectura.setTecnologia("");
+        arquitectura.setEstandar("");
+        return arquitectura;
     }
 }
