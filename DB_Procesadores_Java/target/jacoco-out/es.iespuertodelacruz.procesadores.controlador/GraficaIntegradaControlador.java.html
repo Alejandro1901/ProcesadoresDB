@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GraficaIntegradaControlador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.controlador</a> &gt; <span class="el_source">GraficaIntegradaControlador.java</span></div><h1>GraficaIntegradaControlador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.controlador;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.modelo.GraficaIntegradaModelo;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class GraficaIntegradaControlador {
+
+    private static final String LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = &quot;La grafica integrada que se indica NO existe en nuestra base de datos&quot;;
+    GraficaIntegradaModelo graficaIntegradaModelo;
+
+    /**
+     * Constructos con el modelo
+     * 
+     * @throws PersistenciaException controlada
+     */
+<span class="fc" id="L20">    public GraficaIntegradaControlador() throws PersistenciaException {</span>
+<span class="fc" id="L21">        graficaIntegradaModelo = new GraficaIntegradaModelo();</span>
+<span class="fc" id="L22">    }</span>
+
+   /**
+    * Metodo que valida las graficas integradas
+    * 
+    * @param graficaIntegrada a validar
+    * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+    */
+   public void validarGraficaIntegrada(GraficaIntegrada graficaIntegrada) throws ControladoresDBException {
+<span class="fc" id="L31">        String mensaje = &quot;&quot;;</span>
+    
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (graficaIntegrada == null) {</span>
+<span class="nc" id="L34">            mensaje = &quot;Se esta validando un objeto nulo de GraficaIntegrada&quot;;</span>
+<span class="nc" id="L35">            throw new ControladoresDBException(mensaje);</span>
+        }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (graficaIntegrada.getId() &lt; 0) {</span>
+<span class="fc" id="L38">            mensaje = &quot;El ID del GraficaIntegrada no puede ser cero o menor que el, &quot;;</span>
+        }
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if (graficaIntegrada.getNombreGrafica() == null || graficaIntegrada.getNombreGrafica().isEmpty()) {</span>
+<span class="fc" id="L41">            mensaje += &quot;El nombregrafica de la GraficaIntegrada no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (graficaIntegrada.getFrecuenciaBasica() &lt; 0) {</span>
+<span class="fc" id="L44">            mensaje += &quot;El frecuenciabasica del GraficaIntegrada no puede ser cero o menor que el, &quot;;</span>
+        }
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (graficaIntegrada.getFrecuenciaMaxima() &lt; 0) {</span>
+<span class="fc" id="L47">            mensaje += &quot;El frecuenciamaxima del GraficaIntegrada no puede ser cero o menor que el, &quot;;</span>
+        }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (graficaIntegrada.getMemoriaMaxima() &lt; 0) {</span>
+<span class="fc" id="L50">            mensaje += &quot;El MemoriaMaxima del GraficaIntegrada no puede ser cero o menor que el, &quot;;</span>
+        }
+<span class="pc bpc" id="L52" title="1 of 4 branches missed.">        if (graficaIntegrada.getResolucion() == null || graficaIntegrada.getResolucion().isEmpty()) {</span>
+<span class="fc" id="L53">            mensaje += &quot;El Resolucion de la GraficaIntegrada no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L56">            throw new ControladoresDBException(mensaje);</span>
+        }
+<span class="fc" id="L58">   }</span>
+
+  /** 
+     * Metodo encargado de insertar
+     * @param graficaIntegrada a insertar
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
+
+    public void insertar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L68">        validarGraficaIntegrada(graficaIntegrada);</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">            if (existe(graficaIntegrada)) {</span>
+<span class="nc" id="L70">               throw new ControladoresDBException(&quot;La graficaIntegrada que se indica ya existe&quot;);</span>
+            }
+<span class="fc" id="L72">           graficaIntegradaModelo.insertar(graficaIntegrada); </span>
+<span class="fc" id="L73">         }  </span>
+         
+    /**
+     * Metodo encargado de eliminar
+     * @param graficaIntegrada a eliminar 
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
+    
+        public void eliminar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L83">       validarGraficaIntegrada(graficaIntegrada);</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">            if (!existe(graficaIntegrada)) {</span>
+<span class="nc" id="L85">               throw new ControladoresDBException(LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);</span>
+            }
+<span class="fc" id="L87">            graficaIntegradaModelo.eliminar(graficaIntegrada); </span>
+<span class="fc" id="L88">        }</span>
+        
+    /**
+     * Metodo encargado de realizar la eliminacion de una graficaIntegrada
+     * @param id del elemento a eliminar
+     * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+     * @throws PersistenciaException 
+     */   
+        public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+            GraficaIntegrada graficaIntegrada;
+<span class="fc" id="L98">            graficaIntegrada = buscar(id);</span>
+<span class="fc" id="L99">            eliminar(graficaIntegrada);</span>
+<span class="fc" id="L100">         }</span>
+    
+         /**
+          * Metodo encargado de buscar por la id de la clase
+          * @param id para localizar la grafica integrada
+          * @return graficaIntehrada a traves del id de la clase
+          * @throws PersistenciaException
+          */
+    
+        public GraficaIntegrada buscar(int id) throws PersistenciaException {
+<span class="fc" id="L110">            GraficaIntegrada graficaIntegrada = null;</span>
+<span class="fc" id="L111">            graficaIntegrada = graficaIntegradaModelo.buscar(id);</span>
+<span class="fc" id="L112">            return graficaIntegrada;</span>
+         }
+    
+    /**
+     * Metodo encargado de realizar la modificacion de un tipo de graficaIntegrada
+     * @param graficaIntegrada modificar
+     * @throws ControladoresDBException controlada en caso de error
+     * @throws PersistenciaException
+     */
+    
+        public void modificar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
+          
+<span class="nc" id="L124">            validarGraficaIntegrada(graficaIntegrada);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (!existe(graficaIntegrada)) {</span>
+<span class="nc" id="L126">               throw new ControladoresDBException(LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);</span>
+            }
+<span class="nc" id="L128">            graficaIntegradaModelo.modificar(graficaIntegrada);</span>
+<span class="nc" id="L129">         }</span>
+      
+    /**
+     * Funcion encargada de verificar si existe la graficaIntegrada
+     * @param graficaIntegrada a encontrar
+     * @return true/false
+     * @throws PersistenciaException error controlado
+     */
+    
+         private boolean existe(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+<span class="fc" id="L139">            boolean encontrada = false;</span>
+            GraficaIntegrada graficaIntegradaEncontrada;
+       
+<span class="fc" id="L142">            graficaIntegradaEncontrada = buscar(graficaIntegrada.getId());</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">            if (graficaIntegradaEncontrada != null) {</span>
+<span class="fc" id="L144">               encontrada = true;</span>
+            }  
+<span class="fc" id="L146">            return encontrada;</span>
+          }   
+
+        /**
+         * Funcion que devuelve el listado completo
+         * 
+         * @return arraylist con los campos
+         * @throws PersistenciaException controlada
+         */
+        public ArrayList&lt;GraficaIntegrada&gt; buscarTodos() throws PersistenciaException {
+<span class="fc" id="L156">            return graficaIntegradaModelo.buscarTodos();</span>
+        }
+    }
+
+
+
+   
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

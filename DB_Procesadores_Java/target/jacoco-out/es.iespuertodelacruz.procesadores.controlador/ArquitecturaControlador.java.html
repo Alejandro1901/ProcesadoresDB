@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArquitecturaControlador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.controlador</a> &gt; <span class="el_source">ArquitecturaControlador.java</span></div><h1>ArquitecturaControlador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.controlador;
+
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.Arquitectura;
+import es.iespuertodelacruz.procesadores.modelo.ArquitecturaModelo;
+
+public class ArquitecturaControlador {
+
+    /**
+    * Controlador de la clase ArquitecturaDBControlador
+    */
+   
+   private static final String LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE = &quot;La arquitectura que se indica NO existe en nuestra base de datos&quot;;
+   ArquitecturaModelo arquitecturaModelo;
+   
+   /**
+    * Constructor con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+<span class="fc" id="L25">    public ArquitecturaControlador() throws PersistenciaException {</span>
+<span class="fc" id="L26">        arquitecturaModelo = new ArquitecturaModelo();</span>
+<span class="fc" id="L27">    }</span>
+
+   /**
+    * Metodo que valida las arquitecturas
+    * 
+    * @param arquitectura a validar
+    * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+    */
+   public void validarArquitectura(Arquitectura arquitectura) throws ControladoresDBException {
+<span class="fc" id="L36">       String mensaje = &quot;&quot;;</span>
+
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if (arquitectura == null) {</span>
+<span class="nc" id="L39">            mensaje = &quot;Se esta validando un objeto nulo de Procesadores&quot;;</span>
+<span class="nc" id="L40">            throw new ControladoresDBException(mensaje);</span>
+        }  
+      
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (arquitectura.getId() &lt; 0) {</span>
+<span class="fc" id="L44">            mensaje = &quot;El ID de arquitectura no puede ser cero o menor que el, &quot;;</span>
+        }
+<span class="pc bpc" id="L46" title="1 of 4 branches missed.">        if (arquitectura.getVersionArquitectura() == null || arquitectura.getVersionArquitectura().isEmpty()) {</span>
+<span class="fc" id="L47">            mensaje += &quot;La version_arquitectura de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        } 
+
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        if (arquitectura.getDisenio() == null || arquitectura.getDisenio().isEmpty()) {</span>
+<span class="fc" id="L51">            mensaje += &quot;El diseño de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        } 
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">        if (arquitectura.getTecnologia() == null || arquitectura.getTecnologia().isEmpty()) {</span>
+<span class="fc" id="L54">            mensaje += &quot;La tecnologia de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        } 
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">        if (arquitectura.getEstandar() == null || arquitectura.getEstandar().isEmpty()) {</span>
+<span class="fc" id="L57">            mensaje += &quot;El estandar de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        } 
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L60">            throw new ControladoresDBException(mensaje);</span>
+        }   
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Metodo encargado de insertar
+     * @param arquitectura a insertar
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
+   
+     public void insertar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L72">    validarArquitectura(arquitectura);</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        if (existe(arquitectura)) {</span>
+<span class="nc" id="L74">           throw new ControladoresDBException(&quot;La Arquitectura que se indica ya existe&quot;);</span>
+        }
+<span class="fc" id="L76">        arquitecturaModelo.insertar(arquitectura); </span>
+<span class="fc" id="L77">     }  </span>
+     
+/**
+ * Metodo encargado de eliminar
+ * @param arquitectura a eliminar 
+ * @throws ControladoresDBException con un mensaje controlado
+ * @throws PersistenciaException
+ */
+
+    public void eliminar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L87">   validarArquitectura(arquitectura);</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (!existe(arquitectura)) {</span>
+<span class="nc" id="L89">           throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);</span>
+        }
+<span class="fc" id="L91">        arquitecturaModelo.eliminar(arquitectura); </span>
+<span class="fc" id="L92">    }</span>
+    
+/**
+ * Metodo encargado de realizar la eliminacion de una arquitectura
+ * @param Id del elemento a eliminar
+ * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+ * @throws PersistenciaException 
+ */   
+    public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+        Arquitectura arquitectura;
+<span class="fc" id="L102">        arquitectura = buscar(id);</span>
+<span class="fc" id="L103">        eliminar(arquitectura);</span>
+<span class="fc" id="L104">     }</span>
+
+    /**
+     * Funcion encargada de buscar una arquitectura
+     * 
+     * @param id de la arquitectura
+     * @return objeto arquitectura
+     * @throws PersistenciaException controlada
+     */
+    public Arquitectura buscar(int id) throws PersistenciaException {
+<span class="fc" id="L114">        Arquitectura arquitectura = null;</span>
+<span class="fc" id="L115">        arquitectura = arquitecturaModelo.buscar(id);</span>
+<span class="fc" id="L116">        return arquitectura;</span>
+    }
+
+/**
+ * Metodo encargado de realizar la modificacion de un tipo de arquitectura
+ * @param arquitectura a modificar
+ * @throws ControladoresDBException controlada en caso de error
+ * @throws PersistenciaException
+ */
+
+    public void modificar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
+      
+<span class="nc" id="L128">        validarArquitectura(arquitectura);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (!existe(arquitectura)) {</span>
+<span class="nc" id="L130">           throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);</span>
+        }
+<span class="nc" id="L132">        arquitecturaModelo.modificar(arquitectura);</span>
+<span class="nc" id="L133">     }</span>
+  
+/**
+ * Funcion encargada de verificar si existe la arquitectura
+ * @param arquitectura a encontrar
+ * @return true/false
+ * @throws PersistenciaException error controlado
+ */
+
+    private boolean existe(Arquitectura arquitectura) throws PersistenciaException {
+<span class="fc" id="L143">        boolean encontrada = false;</span>
+        Arquitectura arquitecturaEncontrada;
+   
+<span class="fc" id="L146">        arquitecturaEncontrada = buscar(arquitectura.getId());</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (arquitecturaEncontrada != null) {</span>
+<span class="fc" id="L148">           encontrada = true;</span>
+        }  
+<span class="fc" id="L150">        return encontrada;</span>
+    }   
+
+    /**
+     * Funcion que devuelve el listado completo
+     * 
+     * @return arraylist con los campos
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Arquitectura&gt; buscarTodos() throws PersistenciaException {
+<span class="fc" id="L160">        return arquitecturaModelo.buscarTodos();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,7 +1,9 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 public class ZocaloControladorTest {
     Zocalo zocalo = new Zocalo();
     ZocaloControlador zocaloControlador;
+    Zocalo zocaloInvalido = new Zocalo();
 
     @BeforeEach
     public void setUp() throws PersistenciaException, ControladoresDBException {
@@ -28,6 +31,9 @@ public class ZocaloControladorTest {
         }
         if (zocaloControlador.buscar(zocalo.getId()) == null) {
             zocaloControlador.insertar(zocalo);
+        }
+        if (zocaloInvalido.getId() == 0) {
+            zocaloInvalido = crearZocaloInvalido();
         }
     }
 
@@ -48,7 +54,26 @@ public class ZocaloControladorTest {
         assertTrue(lista.contains(zocalo),"La lista no contiene el valor esperado");
     }
 
+    @Test
+    public void zocaloInvalidoTest() throws ControladoresDBException, PersistenciaException {
+        try {
+            zocaloControlador.insertar(zocalo);
+            fail("No deberia llegar a esta linea");
+        } catch (Exception e) {
+            assertNull(zocaloControlador.buscar(zocaloInvalido.getId()));
+        }
+    }
+
     private static Zocalo crearZocalo() {
         return new Zocalo(101,"test","test","Q2´20");
+    }
+
+    private static Zocalo crearZocaloInvalido() {
+        Zocalo zocalo = new Zocalo();
+        zocalo.setId(-5);
+        zocalo.setTipo("");
+        zocalo.setTecnologia("");
+        zocalo.setFechaLanzamiento("");
+        return zocalo;
     }
 }

@@ -53,7 +53,7 @@ public class ProcesadorControlador {
       if (procesador.getModelo() == null || procesador.getModelo().isEmpty()) {
          mensaje += "El modelo del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
-      if (procesador.getFechaLanzamiento() == null) {
+      if (procesador.getFechaLanzamiento() == null || procesador.getFechaLanzamiento().isEmpty()) {
          mensaje += "El CodigoFabricante del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
       if (procesador.getNucleos() < 0) {

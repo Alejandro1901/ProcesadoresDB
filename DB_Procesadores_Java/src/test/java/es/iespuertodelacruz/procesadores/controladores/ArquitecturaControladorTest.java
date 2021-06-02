@@ -1,14 +1,15 @@
 package es.iespuertodelacruz.procesadores.controladores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import es.iespuertodelacruz.procesadores.api.Arquitectura;
 import es.iespuertodelacruz.procesadores.controlador.ArquitecturaControlador;
@@ -58,7 +59,12 @@ public class ArquitecturaControladorTest {
 
     @Test
     public void arquitecturaInvalidaTest() throws ControladoresDBException, PersistenciaException {
-        //metodo vacio
+        try {
+            arquitecturaControlador.insertar(arquitecturaInvalida);
+            fail("No deberia llegar a esta linea");
+        } catch (Exception e) {
+            assertNull(arquitecturaControlador.buscar(arquitecturaInvalida.getId()));
+        }
     }
 
     private static Arquitectura crearArquitectura() {

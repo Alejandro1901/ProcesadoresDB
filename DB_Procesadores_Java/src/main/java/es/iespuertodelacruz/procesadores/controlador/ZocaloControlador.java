@@ -47,7 +47,7 @@ public class ZocaloControlador {
       if (zocalo.getTecnologia() == null || zocalo.getTecnologia().isEmpty()) {
          mensaje += "La tecnologia del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
       }  
-      if (zocalo.getFechaLanzamiento() == null) {
+      if (zocalo.getFechaLanzamiento() == null || zocalo.getFechaLanzamiento().isEmpty()) {
          mensaje += "La fecha de lanzamiento del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
       if (!mensaje.isEmpty()) {
