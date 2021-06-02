@@ -31,8 +31,6 @@ public class Fabricante {
      * @param correo       del fabricante
      * @param web          del fabricante
      */
-
-
     public Fabricante(String codigo, String codigoPostal, String nombre, int numero, String pais, String calle, String telefono, String correo, String web) {
         this.codigo = codigo;
         this.codigoPostal = codigoPostal;
@@ -44,7 +42,6 @@ public class Fabricante {
         this.correo = correo;
         this.web = web;
     }
-
 
     public Fabricante(String cadena) {
         ArrayList<Object> elementos = new ArrayList<>();
@@ -66,13 +63,11 @@ public class Fabricante {
     /**
      * Constructor vacio
      */
-    public Fabricante() {
-    }
+    public Fabricante() {}
 
     /**
      * Creacion de getter and setters
      */
-
 
     public String getCodigo() {
         return this.codigo;
@@ -146,14 +141,12 @@ public class Fabricante {
         this.web = web;
     }
     
-
     @Override
     public String toString() {
         return getCodigo() + DELIMITADOR + getCodigoPostal() + DELIMITADOR + getNombre() + DELIMITADOR + getNumero()
                 + DELIMITADOR + getPais() + DELIMITADOR + getCalle() + DELIMITADOR + getTelefono() + DELIMITADOR
                 + getCorreo() + DELIMITADOR + getWeb();
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -165,7 +158,4 @@ public class Fabricante {
         Fabricante fabricante = (Fabricante) o;
         return Objects.equals(codigo, fabricante.codigo) && Objects.equals(codigoPostal, fabricante.codigoPostal) && Objects.equals(nombre, fabricante.nombre) && numero == fabricante.numero && Objects.equals(pais, fabricante.pais) && Objects.equals(calle, fabricante.calle) && Objects.equals(telefono, fabricante.telefono) && Objects.equals(correo, fabricante.correo) && Objects.equals(web, fabricante.web);
     }
-
-
-    
 }

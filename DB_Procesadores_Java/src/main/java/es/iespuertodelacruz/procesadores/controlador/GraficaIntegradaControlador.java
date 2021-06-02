@@ -13,7 +13,7 @@ public class GraficaIntegradaControlador {
     GraficaIntegradaModelo graficaIntegradaModelo;
 
     /**
-     * Constructos con el modelo
+     * Constructor con el modelo
      * 
      * @throws PersistenciaException controlada
      */
@@ -27,7 +27,7 @@ public class GraficaIntegradaControlador {
     * @param graficaIntegrada a validar
     * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
     */
-   public void validarGraficaIntegrada(GraficaIntegrada graficaIntegrada) throws ControladoresDBException {
+    public void validarGraficaIntegrada(GraficaIntegrada graficaIntegrada) throws ControladoresDBException {
         String mensaje = "";
     
         if (graficaIntegrada == null) {
@@ -57,54 +57,56 @@ public class GraficaIntegradaControlador {
         }
    }
 
-  /** 
+    /** 
      * Metodo encargado de insertar
+     * 
      * @param graficaIntegrada a insertar
      * @throws ControladoresDBException con un mensaje controlado
      * @throws PersistenciaException
      */
-
     public void insertar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
         validarGraficaIntegrada(graficaIntegrada);
-            if (existe(graficaIntegrada)) {
-               throw new ControladoresDBException("La graficaIntegrada que se indica ya existe");
-            }
-           graficaIntegradaModelo.insertar(graficaIntegrada); 
-         }  
+        if (existe(graficaIntegrada)) {
+            throw new ControladoresDBException("La graficaIntegrada que se indica ya existe");
+        }
+        graficaIntegradaModelo.insertar(graficaIntegrada); 
+    }  
          
     /**
      * Metodo encargado de eliminar
+     * 
      * @param graficaIntegrada a eliminar 
      * @throws ControladoresDBException con un mensaje controlado
      * @throws PersistenciaException
      */
-    
-        public void eliminar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
-       validarGraficaIntegrada(graficaIntegrada);
-            if (!existe(graficaIntegrada)) {
-               throw new ControladoresDBException(LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);
-            }
-            graficaIntegradaModelo.eliminar(graficaIntegrada); 
+    public void eliminar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
+        validarGraficaIntegrada(graficaIntegrada);
+        if (!existe(graficaIntegrada)) {
+            throw new ControladoresDBException(LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);
         }
+        graficaIntegradaModelo.eliminar(graficaIntegrada); 
+    }
         
     /**
      * Metodo encargado de realizar la eliminacion de una graficaIntegrada
+     * 
      * @param id del elemento a eliminar
      * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
      * @throws PersistenciaException 
      */   
-        public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
-            GraficaIntegrada graficaIntegrada;
-            graficaIntegrada = buscar(id);
-            eliminar(graficaIntegrada);
-         }
+    public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+        GraficaIntegrada graficaIntegrada;
+        graficaIntegrada = buscar(id);
+        eliminar(graficaIntegrada);
+    }
     
-         /**
-          * Metodo encargado de buscar por la id de la clase
-          * @param id para localizar la grafica integrada
-          * @return graficaIntehrada a traves del id de la clase
-          * @throws PersistenciaException
-          */
+    /**
+     * Metodo encargado de buscar por la id de la clase
+     * 
+     * @param id para localizar la grafica integrada
+     * @return graficaIntehrada a traves del id de la clase
+     * @throws PersistenciaException
+    */
     
         public GraficaIntegrada buscar(int id) throws PersistenciaException {
             GraficaIntegrada graficaIntegrada = null;
@@ -118,15 +120,14 @@ public class GraficaIntegradaControlador {
      * @throws ControladoresDBException controlada en caso de error
      * @throws PersistenciaException
      */
-    
-        public void modificar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
-          
-            validarGraficaIntegrada(graficaIntegrada);
-            if (!existe(graficaIntegrada)) {
-               throw new ControladoresDBException(LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);
-            }
-            graficaIntegradaModelo.modificar(graficaIntegrada);
-         }
+    public void modificar(GraficaIntegrada graficaIntegrada) throws ControladoresDBException, PersistenciaException {
+        
+        validarGraficaIntegrada(graficaIntegrada);
+        if (!existe(graficaIntegrada)) {
+            throw new ControladoresDBException(LA_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);
+        }
+        graficaIntegradaModelo.modificar(graficaIntegrada);
+    }
       
     /**
      * Funcion encargada de verificar si existe la graficaIntegrada
@@ -134,28 +135,26 @@ public class GraficaIntegradaControlador {
      * @return true/false
      * @throws PersistenciaException error controlado
      */
-    
-         private boolean existe(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
-            boolean encontrada = false;
-            GraficaIntegrada graficaIntegradaEncontrada;
-       
-            graficaIntegradaEncontrada = buscar(graficaIntegrada.getId());
-            if (graficaIntegradaEncontrada != null) {
-               encontrada = true;
-            }  
-            return encontrada;
-          }   
+    private boolean existe(GraficaIntegrada graficaIntegrada) throws PersistenciaException {
+        boolean encontrada = false;
+        GraficaIntegrada graficaIntegradaEncontrada;
+        graficaIntegradaEncontrada = buscar(graficaIntegrada.getId());
+        if (graficaIntegradaEncontrada != null) {
+            encontrada = true;
+        }  
+        return encontrada;
+    }   
 
-        /**
-         * Funcion que devuelve el listado completo
-         * 
-         * @return arraylist con los campos
-         * @throws PersistenciaException controlada
-         */
-        public ArrayList<GraficaIntegrada> buscarTodos() throws PersistenciaException {
-            return graficaIntegradaModelo.buscarTodos();
-        }
+    /**
+     * Funcion que devuelve el listado completo
+     * 
+     * @return arraylist con los campos
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList<GraficaIntegrada> buscarTodos() throws PersistenciaException {
+        return graficaIntegradaModelo.buscarTodos();
     }
+}
 
 
 

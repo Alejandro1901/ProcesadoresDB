@@ -9,10 +9,6 @@ import es.iespuertodelacruz.procesadores.api.Arquitectura;
 import es.iespuertodelacruz.procesadores.modelo.ArquitecturaModelo;
 
 public class ArquitecturaControlador {
-
-    /**
-    * Controlador de la clase ArquitecturaDBControlador
-    */
    
    private static final String LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE = "La arquitectura que se indica NO existe en nuestra base de datos";
    ArquitecturaModelo arquitecturaModelo;
@@ -63,45 +59,46 @@ public class ArquitecturaControlador {
 
     /**
      * Metodo encargado de insertar
+     * 
      * @param arquitectura a insertar
      * @throws ControladoresDBException con un mensaje controlado
      * @throws PersistenciaException
      */
-   
-     public void insertar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
-    validarArquitectura(arquitectura);
+    public void insertar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
+        validarArquitectura(arquitectura);
         if (existe(arquitectura)) {
            throw new ControladoresDBException("La Arquitectura que se indica ya existe");
         }
         arquitecturaModelo.insertar(arquitectura); 
-     }  
+    }  
      
-/**
- * Metodo encargado de eliminar
- * @param arquitectura a eliminar 
- * @throws ControladoresDBException con un mensaje controlado
- * @throws PersistenciaException
- */
-
+    /**
+     * Metodo encargado de eliminar
+     * 
+     * @param arquitectura a eliminar 
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
     public void eliminar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
-   validarArquitectura(arquitectura);
+        validarArquitectura(arquitectura);
         if (!existe(arquitectura)) {
            throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);
         }
         arquitecturaModelo.eliminar(arquitectura); 
     }
     
-/**
- * Metodo encargado de realizar la eliminacion de una arquitectura
- * @param Id del elemento a eliminar
- * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
- * @throws PersistenciaException 
- */   
+    /**
+     * Metodo encargado de realizar la eliminacion de una arquitectura
+     * 
+     * @param Id del elemento a eliminar
+     * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+     * @throws PersistenciaException 
+     */   
     public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
         Arquitectura arquitectura;
         arquitectura = buscar(id);
         eliminar(arquitectura);
-     }
+    }
 
     /**
      * Funcion encargada de buscar una arquitectura
@@ -116,13 +113,13 @@ public class ArquitecturaControlador {
         return arquitectura;
     }
 
-/**
- * Metodo encargado de realizar la modificacion de un tipo de arquitectura
- * @param arquitectura a modificar
- * @throws ControladoresDBException controlada en caso de error
- * @throws PersistenciaException
- */
-
+    /**
+     * Metodo encargado de realizar la modificacion de un tipo de arquitectura
+     * 
+     * @param arquitectura a modificar
+     * @throws ControladoresDBException controlada en caso de error
+     * @throws PersistenciaException
+     */
     public void modificar(Arquitectura arquitectura) throws ControladoresDBException, PersistenciaException {
       
         validarArquitectura(arquitectura);
@@ -130,15 +127,15 @@ public class ArquitecturaControlador {
            throw new ControladoresDBException(LA_ARQUITECTURA_QUE_SE_INDICA_NO_EXISTE);
         }
         arquitecturaModelo.modificar(arquitectura);
-     }
+    }
   
-/**
- * Funcion encargada de verificar si existe la arquitectura
- * @param arquitectura a encontrar
- * @return true/false
- * @throws PersistenciaException error controlado
- */
-
+    /**
+     * Funcion encargada de verificar si existe la arquitectura
+     * 
+     * @param arquitectura a encontrar
+     * @return true/false
+     * @throws PersistenciaException error controlado
+     */
     private boolean existe(Arquitectura arquitectura) throws PersistenciaException {
         boolean encontrada = false;
         Arquitectura arquitecturaEncontrada;

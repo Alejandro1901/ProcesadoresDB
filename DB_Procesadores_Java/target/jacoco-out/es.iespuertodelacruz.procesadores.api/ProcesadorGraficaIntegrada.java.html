@@ -29,57 +29,48 @@ public class ProcesadorGraficaIntegrada {
         }
 <span class="fc" id="L30">        this.idProcesador = Integer.parseInt((String) elementos.get(0));</span>
 <span class="fc" id="L31">        this.idGraficaIntegrada = Integer.parseInt((String) elementos.get(1));</span>
-        
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L32">    }</span>
 
     /**
      * Constructor vacio
      */
-<span class="fc" id="L38">    public ProcesadorGraficaIntegrada() {</span>
-<span class="fc" id="L39">    }</span>
+<span class="fc" id="L37">    public ProcesadorGraficaIntegrada() {}</span>
 
      /**
      * Creacion de getter and setters
      */
 
     public int getIdProcesador() {
-<span class="fc" id="L46">        return this.idProcesador;</span>
+<span class="fc" id="L44">        return this.idProcesador;</span>
     }
 
     public void setIdProcesador(int idProcesador) {
-<span class="fc" id="L50">        this.idProcesador = idProcesador;</span>
-<span class="fc" id="L51">    }</span>
+<span class="fc" id="L48">        this.idProcesador = idProcesador;</span>
+<span class="fc" id="L49">    }</span>
 
     public int getIdGraficaIntegrada() {
-<span class="fc" id="L54">        return this.idGraficaIntegrada;</span>
+<span class="fc" id="L52">        return this.idGraficaIntegrada;</span>
     }
 
     public void setIdGraficaIntegrada(int idGraficaIntegrada) {
-<span class="fc" id="L58">        this.idGraficaIntegrada = idGraficaIntegrada;</span>
-<span class="fc" id="L59">    }</span>
+<span class="fc" id="L56">        this.idGraficaIntegrada = idGraficaIntegrada;</span>
+<span class="fc" id="L57">    }</span>
 
     @Override
     public String toString() {
-<span class="fc" id="L63">        return getIdProcesador() + DELIMITADOR +</span>
-<span class="fc" id="L64">               getIdGraficaIntegrada();</span>
-}
+<span class="fc" id="L61">        return getIdProcesador() + DELIMITADOR +</span>
+<span class="fc" id="L62">               getIdGraficaIntegrada();</span>
+    }
     
     @Override
     public boolean equals(Object o) {
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (o == this)</span>
-<span class="nc" id="L70">            return true;</span>
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if (!(o instanceof ProcesadorGraficaIntegrada)) {</span>
-<span class="nc" id="L72">            return false;</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L68">            return true;</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (!(o instanceof ProcesadorGraficaIntegrada)) {</span>
+<span class="nc" id="L70">            return false;</span>
         }
-<span class="fc" id="L74">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = (ProcesadorGraficaIntegrada) o;</span>
-<span class="pc bpc" id="L75" title="1 of 4 branches missed.">        return idProcesador == procesadorGraficaIntegrada.idProcesador &amp;&amp; idGraficaIntegrada == procesadorGraficaIntegrada.idGraficaIntegrada;</span>
+<span class="fc" id="L72">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = (ProcesadorGraficaIntegrada) o;</span>
+<span class="pc bpc" id="L73" title="1 of 4 branches missed.">        return idProcesador == procesadorGraficaIntegrada.idProcesador &amp;&amp; idGraficaIntegrada == procesadorGraficaIntegrada.idGraficaIntegrada;</span>
     }
-
-
-   
-
-    
-    
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

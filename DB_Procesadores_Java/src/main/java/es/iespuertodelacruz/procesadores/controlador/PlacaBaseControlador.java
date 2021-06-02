@@ -22,6 +22,12 @@ public class PlacaBaseControlador {
       placaBaseModelo= new PlacaBaseModelo();
    }
 
+   /**
+    * Metodo que valida una placa base
+    *
+    * @param placaBase a validar
+    * @throws ControladoresDBException controlada
+    */
    public void validarPlacaBase(PlacaBase placaBase) throws ControladoresDBException {
       String mensaje = "";
      
@@ -43,20 +49,19 @@ public class PlacaBaseControlador {
       }
    }
 
-/**
-     * Metodo encargado de insertar
-     * @param placaBase a insertar
-     * @throws ControladoresDBException con un mensaje controlado
-     * @throws PersistenciaException
-     */
-   
-    public void insertar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+   /**
+    * Metodo encargado de insertar
+    * @param placaBase a insertar
+    * @throws ControladoresDBException con un mensaje controlado
+    * @throws PersistenciaException
+    */
+   public void insertar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
       validarPlacaBase(placaBase);
-          if (existe(placaBase)) {
-             throw new ControladoresDBException("La placaBase que se indica ya existe");
-          }
-          placaBaseModelo.insertar(placaBase); 
-       }  
+      if (existe(placaBase)) {
+         throw new ControladoresDBException("La placaBase que se indica ya existe");
+      }
+      placaBaseModelo.insertar(placaBase); 
+   }  
        
   /**
    * Metodo encargado de eliminar

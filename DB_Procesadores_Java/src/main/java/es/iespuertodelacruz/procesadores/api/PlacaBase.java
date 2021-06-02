@@ -25,6 +25,11 @@ private static final String DELIMITADOR = "'";
         this.nombre = nombre;
     }
 
+    /**
+     * Constructor mediante cadena de texto
+     * 
+     * @param cadena con la se crea la placa base
+     */
     public PlacaBase(String cadena) {
         ArrayList<Object> elementos = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
@@ -39,8 +44,7 @@ private static final String DELIMITADOR = "'";
     /**
      * Constructor vacio
      */
-    public PlacaBase() {
-    }
+    public PlacaBase() {}
 
     public int getId() {
         return this.id;
@@ -71,9 +75,8 @@ private static final String DELIMITADOR = "'";
         return getId() + DELIMITADOR +
             getIdSocket() + DELIMITADOR +
             getNombre();
-}
+    }
     
-
     @Override
     public boolean equals(Object o) {
         if (o == this)

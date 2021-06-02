@@ -34,7 +34,6 @@ public class NombreProcesador {
         this.modeloProcesador = (String) elementos.get(0);
         this.familia = (String) elementos.get(1);
         this.generacion = Integer.parseInt((String) elementos.get(2));
-        
     }
 
     /**
@@ -46,7 +45,6 @@ public class NombreProcesador {
     /**
      * Creacion de getter and setters
      */
-
 
     public String getModeloProcesador() {
         return this.modeloProcesador;
@@ -79,7 +77,6 @@ public class NombreProcesador {
             getGeneracion(); 
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -90,8 +87,4 @@ public class NombreProcesador {
         NombreProcesador nombreProcesador = (NombreProcesador) o;
         return Objects.equals(modeloProcesador, nombreProcesador.modeloProcesador) && Objects.equals(familia, nombreProcesador.familia) && generacion == nombreProcesador.generacion;
     }
-
-    
-
-
 }    

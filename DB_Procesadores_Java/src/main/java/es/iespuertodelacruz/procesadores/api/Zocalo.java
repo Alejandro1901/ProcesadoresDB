@@ -28,6 +28,11 @@ public class Zocalo {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
+    /**
+     * Constructor mediante cadena de texto
+     * 
+     * @param cadena con el zocalo
+     */
     public Zocalo(String cadena) {
         ArrayList<Object> elementos = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
@@ -43,8 +48,7 @@ public class Zocalo {
     /**
      * Constructor vacio
      */
-    public Zocalo() {
-    }
+    public Zocalo() {}
 
     /**
      * Creacion de getter and setters
@@ -88,10 +92,8 @@ public class Zocalo {
             getTipo() + DELIMITADOR +
             getTecnologia() + DELIMITADOR +
             getFechaLanzamiento();
-}
+    }
     
-
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -102,8 +104,4 @@ public class Zocalo {
         Zocalo zocalo = (Zocalo) o;
         return id == zocalo.id && Objects.equals(tipo, zocalo.tipo) && Objects.equals(tecnologia, zocalo.tecnologia) && Objects.equals(fechaLanzamiento, zocalo.fechaLanzamiento);
     }
-
-    
-  
-
 }

@@ -21,138 +21,135 @@ public class FabricanteControlador {
 <span class="fc" id="L21">        fabricanteModelo = new FabricanteModelo();</span>
 <span class="fc" id="L22">    }</span>
 
-/**
- * 
- * @param fabricante a validar
- * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
- */
+    /**
+     * Metodo encargado de validar a un fabricante
+     * 
+     * @param fabricante a validar
+     * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+     */
+    public void validarFabricante(Fabricante fabricante) throws ControladoresDBException {
+<span class="fc" id="L31">        String mensaje = &quot;&quot;;</span>
 
-public void validarFabricante(Fabricante fabricante) throws ControladoresDBException {
-<span class="fc" id="L31">    String mensaje = &quot;&quot;;</span>
-
-<span class="pc bpc" id="L33" title="1 of 2 branches missed.">    if (fabricante == null) {</span>
-<span class="nc" id="L34">        mensaje = &quot;Se esta validando un objeto nulo de Procesadores&quot;;</span>
-<span class="nc" id="L35">        throw new ControladoresDBException(mensaje);</span>
-    }
-<span class="pc bpc" id="L37" title="1 of 4 branches missed.">    if (fabricante.getCodigo() == null || fabricante.getCodigo().isEmpty()) {</span>
-<span class="fc" id="L38">        mensaje = &quot;El Codigo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }
-<span class="pc bpc" id="L40" title="1 of 4 branches missed.">    if (fabricante.getCodigoPostal() == null || fabricante.getCodigoPostal().isEmpty()) {</span>
-<span class="fc" id="L41">        mensaje += &quot;El CodigoPostal del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }
-<span class="pc bpc" id="L43" title="1 of 4 branches missed.">    if (fabricante.getNombre() == null || fabricante.getNombre().isEmpty()) {</span>
-<span class="fc" id="L44">        mensaje += &quot;El nombre del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }
-<span class="fc bfc" id="L46" title="All 2 branches covered.">    if (fabricante.getNumero() &lt; 0) {</span>
-<span class="fc" id="L47">        mensaje += &quot;El numero del fabricante no puede ser cero o menor que el, &quot;;</span>
-    }
-<span class="pc bpc" id="L49" title="1 of 4 branches missed.">    if (fabricante.getPais() == null || fabricante.getPais().isEmpty()) {</span>
-<span class="fc" id="L50">        mensaje += &quot;El pais del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }  
-<span class="pc bpc" id="L52" title="1 of 4 branches missed.">    if (fabricante.getCalle() == null || fabricante.getCalle().isEmpty()) {</span>
-<span class="fc" id="L53">        mensaje = &quot;La calle del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }
-<span class="pc bpc" id="L55" title="1 of 4 branches missed.">    if (fabricante.getTelefono() == null || fabricante.getTelefono().isEmpty()) {</span>
-<span class="fc" id="L56">        mensaje += &quot;El telefono del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }
-<span class="pc bpc" id="L58" title="1 of 4 branches missed.">    if (fabricante.getCorreo() == null || fabricante.getCorreo().isEmpty()) {</span>
-<span class="fc" id="L59">        mensaje += &quot;El correo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }
-<span class="pc bpc" id="L61" title="1 of 4 branches missed.">    if (fabricante.getWeb() == null || fabricante.getWeb().isEmpty()) {</span>
-<span class="fc" id="L62">        mensaje += &quot;La web del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
-    }   
-<span class="fc bfc" id="L64" title="All 2 branches covered.">    if (!mensaje.isEmpty()) {</span>
-<span class="fc" id="L65">        throw new ControladoresDBException(mensaje);</span>
-    }
-<span class="fc" id="L67">  }</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (fabricante == null) {</span>
+<span class="nc" id="L34">            mensaje = &quot;Se esta validando un objeto nulo de Procesadores&quot;;</span>
+<span class="nc" id="L35">            throw new ControladoresDBException(mensaje);</span>
+        }
+<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        if (fabricante.getCodigo() == null || fabricante.getCodigo().isEmpty()) {</span>
+<span class="fc" id="L38">            mensaje = &quot;El Codigo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if (fabricante.getCodigoPostal() == null || fabricante.getCodigoPostal().isEmpty()) {</span>
+<span class="fc" id="L41">            mensaje += &quot;El CodigoPostal del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">        if (fabricante.getNombre() == null || fabricante.getNombre().isEmpty()) {</span>
+<span class="fc" id="L44">            mensaje += &quot;El nombre del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (fabricante.getNumero() &lt; 0) {</span>
+<span class="fc" id="L47">            mensaje += &quot;El numero del fabricante no puede ser cero o menor que el, &quot;;</span>
+        }
+<span class="pc bpc" id="L49" title="1 of 4 branches missed.">        if (fabricante.getPais() == null || fabricante.getPais().isEmpty()) {</span>
+<span class="fc" id="L50">            mensaje += &quot;El pais del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }  
+<span class="pc bpc" id="L52" title="1 of 4 branches missed.">        if (fabricante.getCalle() == null || fabricante.getCalle().isEmpty()) {</span>
+<span class="fc" id="L53">            mensaje = &quot;La calle del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="pc bpc" id="L55" title="1 of 4 branches missed.">        if (fabricante.getTelefono() == null || fabricante.getTelefono().isEmpty()) {</span>
+<span class="fc" id="L56">            mensaje += &quot;El telefono del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="pc bpc" id="L58" title="1 of 4 branches missed.">        if (fabricante.getCorreo() == null || fabricante.getCorreo().isEmpty()) {</span>
+<span class="fc" id="L59">            mensaje += &quot;El correo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }
+<span class="pc bpc" id="L61" title="1 of 4 branches missed.">        if (fabricante.getWeb() == null || fabricante.getWeb().isEmpty()) {</span>
+<span class="fc" id="L62">            mensaje += &quot;La web del fabricante no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+        }   
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L65">            throw new ControladoresDBException(mensaje);</span>
+        }
+<span class="fc" id="L67">    }</span>
 
     /** 
      * Metodo encargado de insertar
+     * 
      * @param fabricante a insertar
      * @throws ControladoresDBException con un mensaje controlado
      * @throws PersistenciaException
      */
-
-  public void insertar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
-<span class="fc" id="L77">    validarFabricante(fabricante);</span>
+    public void insertar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L77">        validarFabricante(fabricante);</span>
 <span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (existe(fabricante)) {</span>
-<span class="nc" id="L79">           throw new ControladoresDBException(&quot;El fabricante que se indica ya existe&quot;);</span>
+<span class="nc" id="L79">            throw new ControladoresDBException(&quot;El fabricante que se indica ya existe&quot;);</span>
         }
-<span class="fc" id="L81">       fabricanteModelo.insertar(fabricante); </span>
-<span class="fc" id="L82">     }  </span>
+<span class="fc" id="L81">        fabricanteModelo.insertar(fabricante); </span>
+<span class="fc" id="L82">    }  </span>
      
-/**
- * Metodo encargado de eliminar
- * @param codigo a eliminar 
- * @throws ControladoresDBException con un mensaje controlado
- * @throws PersistenciaException
- */
-
+    /**
+     * Metodo encargado de eliminar
+     * @param codigo a eliminar 
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
     public void eliminar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
-<span class="fc" id="L92">   validarFabricante(fabricante);</span>
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">        if (!existe(fabricante)) {</span>
-<span class="nc" id="L94">           throw new ControladoresDBException(EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE);</span>
+<span class="fc" id="L91">        validarFabricante(fabricante);</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        if (!existe(fabricante)) {</span>
+<span class="nc" id="L93">           throw new ControladoresDBException(EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE);</span>
         }
-<span class="fc" id="L96">        fabricanteModelo.eliminar(fabricante); </span>
-<span class="fc" id="L97">    }</span>
+<span class="fc" id="L95">        fabricanteModelo.eliminar(fabricante); </span>
+<span class="fc" id="L96">    }</span>
     
-/**
- * Metodo encargado de realizar la eliminacion de un fabricante
- * @param Codigo del elemento a eliminar
- * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
- * @throws PersistenciaException 
- */   
+    /**
+     * Metodo encargado de realizar la eliminacion de un fabricante
+     * @param Codigo del elemento a eliminar
+     * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+     * @throws PersistenciaException 
+     */   
     public void eliminar(String codigo) throws ControladoresDBException, PersistenciaException {
         Fabricante fabricante;
-<span class="fc" id="L107">        fabricante = buscar(codigo);</span>
-<span class="fc" id="L108">        eliminar(fabricante);</span>
-<span class="fc" id="L109">     }</span>
+<span class="fc" id="L106">        fabricante = buscar(codigo);</span>
+<span class="fc" id="L107">        eliminar(fabricante);</span>
+<span class="fc" id="L108">    }</span>
 
-     /**
-      * Metodo encargado de buscar por la id de la clase
-      * @param codigo para localizar al fabricante
-      * @return fabricante a traves del codigoFabricante de la clase
-      * @throws PersistenciaException
-      */
-
+    /**
+     * Metodo encargado de buscar por la id de la clase
+     * 
+     * @param codigo para localizar al fabricante
+     * @return fabricante a traves del codigoFabricante de la clase
+     * @throws PersistenciaException
+    */
     public Fabricante buscar(String codigo) throws PersistenciaException {
-<span class="fc" id="L119">        Fabricante fabricante = null;</span>
-<span class="fc" id="L120">        fabricante = fabricanteModelo.buscar(codigo);</span>
-<span class="fc" id="L121">        return fabricante;</span>
-     }
+<span class="fc" id="L118">        Fabricante fabricante = null;</span>
+<span class="fc" id="L119">        fabricante = fabricanteModelo.buscar(codigo);</span>
+<span class="fc" id="L120">        return fabricante;</span>
+    }
 
-/**
- * Metodo encargado de realizar la modificacion de un tipo de fabricante
- * @param fabricante modificar
- * @throws ControladoresDBException controlada en caso de error
- * @throws PersistenciaException
- */
-
+    /**
+     * Metodo encargado de realizar la modificacion de un tipo de fabricante
+     * 
+     * @param fabricante modificar
+     * @throws ControladoresDBException controlada en caso de error
+     * @throws PersistenciaException
+     */
     public void modificar(Fabricante fabricante) throws ControladoresDBException, PersistenciaException {
-      
-<span class="fc" id="L133">        validarFabricante(fabricante);</span>
-<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        if (!existe(fabricante)) {</span>
-<span class="nc" id="L135">           throw new ControladoresDBException(EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE);</span>
+<span class="fc" id="L131">        validarFabricante(fabricante);</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">        if (!existe(fabricante)) {</span>
+<span class="nc" id="L133">           throw new ControladoresDBException(EL_FABRICANTE_QUE_SE_INDICA_NO_EXISTE);</span>
         }
-<span class="fc" id="L137">        fabricanteModelo.modificar(fabricante);</span>
-<span class="fc" id="L138">     }</span>
+<span class="fc" id="L135">        fabricanteModelo.modificar(fabricante);</span>
+<span class="fc" id="L136">    }</span>
   
-/**
- * Funcion encargada de verificar si existe el fabricante
- * @param fabricante a encontrar
- * @return true/false
- * @throws PersistenciaException error controlado
- */
-
+    /**
+     * Funcion encargada de verificar si existe el fabricante
+     * 
+     * @param fabricante a encontrar
+     * @return true/false
+     * @throws PersistenciaException error controlado
+     */
     private boolean existe(Fabricante fabricante) throws PersistenciaException {
-<span class="fc" id="L148">        boolean encontrada = false;</span>
+<span class="fc" id="L146">        boolean encontrada = false;</span>
         Fabricante fabricanteEncontrada;
-
-<span class="fc" id="L151">        fabricanteEncontrada = buscar(fabricante.getCodigo());</span>
-<span class="fc bfc" id="L152" title="All 2 branches covered.">        if (fabricanteEncontrada != null) {</span>
-<span class="fc" id="L153">            encontrada = true;</span>
+<span class="fc" id="L148">        fabricanteEncontrada = buscar(fabricante.getCodigo());</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (fabricanteEncontrada != null) {</span>
+<span class="fc" id="L150">            encontrada = true;</span>
         }  
-<span class="fc" id="L155">        return encontrada;</span>
+<span class="fc" id="L152">        return encontrada;</span>
     }   
 
     /**
@@ -162,7 +159,7 @@ public void validarFabricante(Fabricante fabricante) throws ControladoresDBExcep
      * @throws PersistenciaException controlada
      */
     public ArrayList&lt;Fabricante&gt; buscarTodos() throws PersistenciaException {
-<span class="fc" id="L165">        return fabricanteModelo.buscarTodos();</span>
+<span class="fc" id="L162">        return fabricanteModelo.buscarTodos();</span>
     }
 }
 

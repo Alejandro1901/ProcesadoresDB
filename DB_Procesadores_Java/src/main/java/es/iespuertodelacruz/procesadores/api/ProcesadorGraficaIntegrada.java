@@ -29,14 +29,12 @@ public class ProcesadorGraficaIntegrada {
         }
         this.idProcesador = Integer.parseInt((String) elementos.get(0));
         this.idGraficaIntegrada = Integer.parseInt((String) elementos.get(1));
-        
     }
 
     /**
      * Constructor vacio
      */
-    public ProcesadorGraficaIntegrada() {
-    }
+    public ProcesadorGraficaIntegrada() {}
 
      /**
      * Creacion de getter and setters
@@ -62,7 +60,7 @@ public class ProcesadorGraficaIntegrada {
     public String toString() {
         return getIdProcesador() + DELIMITADOR +
                getIdGraficaIntegrada();
-}
+    }
     
     @Override
     public boolean equals(Object o) {
@@ -74,11 +72,4 @@ public class ProcesadorGraficaIntegrada {
         ProcesadorGraficaIntegrada procesadorGraficaIntegrada = (ProcesadorGraficaIntegrada) o;
         return idProcesador == procesadorGraficaIntegrada.idProcesador && idGraficaIntegrada == procesadorGraficaIntegrada.idGraficaIntegrada;
     }
-
-
-   
-
-    
-    
-
 }

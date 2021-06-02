@@ -39,7 +39,6 @@ public class Procesador {
      * @param precio del procesador
      * @param graficaPropia del procesador
      */
-
     public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio, boolean graficaPropia) {
         this.id = id;
         this.codigoFabricante = codigoFabricante;
@@ -56,7 +55,11 @@ public class Procesador {
         this.graficaPropia = graficaPropia;
     }
     
-
+    /**
+     * Constructor mediante cadena de texto
+     * 
+     * @param cadena con el procesador
+     */
     public Procesador(String cadena) {
         ArrayList<Object> elementos = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
@@ -81,8 +84,7 @@ public class Procesador {
     /**
      * Constructor vacio
      */
-    public Procesador() {
-    }
+    public Procesador() {}
 
     /**
      * Creacion de getter and setters
@@ -200,7 +202,6 @@ public class Procesador {
         this.graficaPropia = GraficaPropia;
     }
 
-    
     @Override
     public String toString() {
         return getId() + DELIMITADOR +
@@ -216,10 +217,8 @@ public class Procesador {
             getTdp() + DELIMITADOR +
             getPrecio() + DELIMITADOR +
             getGraficaPropia();
-}
+    }
     
-
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -230,5 +229,4 @@ public class Procesador {
         Procesador procesador = (Procesador) o;
         return id == procesador.id && Objects.equals(codigoFabricante, procesador.codigoFabricante) && idSocket == procesador.idSocket && idArquitectura == procesador.idArquitectura && Objects.equals(modelo, procesador.modelo) && Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) && nucleos == procesador.nucleos && hilos == procesador.hilos && frecuencia == procesador.frecuencia && overclock == procesador.overclock && tdp == procesador.tdp && precio == procesador.precio && graficaPropia == procesador.graficaPropia;
     }
-
 }

@@ -9,7 +9,6 @@ es/iespuertodelacruz/procesadores/vista/ProcesadorVista.class
 es/iespuertodelacruz/procesadores/excepcion/PersistenciaException.class
 es/iespuertodelacruz/procesadores/controlador/FabricanteControlador.class
 es/iespuertodelacruz/procesadores/api/Zocalo.class
-es/iespuertodelacruz/procesadores/vista/AppVista.class
 es/iespuertodelacruz/procesadores/api/Fabricante.class
 es/iespuertodelacruz/procesadores/modelo/MySqlBbdd.class
 es/iespuertodelacruz/procesadores/api/GraficaIntegrada.class
@@ -29,10 +28,8 @@ es/iespuertodelacruz/procesadores/controlador/ProcesadorControlador.class
 es/iespuertodelacruz/procesadores/controlador/ProcesadorGraficaIntegradaControlador.class
 es/iespuertodelacruz/procesadores/modelo/ProcesadorGraficaIntegradaModelo.class
 es/iespuertodelacruz/procesadores/modelo/FabricanteModelo.class
-es/iespuertodelacruz/procesadores/controlador/PlacaBaseControlador.class
 es/iespuertodelacruz/procesadores/modelo/ArquitecturaModelo.class
 es/iespuertodelacruz/procesadores/vista/GraficaIntegradaVista.class
-es/iespuertodelacruz/procesadores/vista/PlacaBaseVista.class
 es/iespuertodelacruz/procesadores/api/Arquitectura.class
 es/iespuertodelacruz/procesadores/vista/ZocaloVista.class
 es/iespuertodelacruz/procesadores/modelo/ZocaloModelo.class

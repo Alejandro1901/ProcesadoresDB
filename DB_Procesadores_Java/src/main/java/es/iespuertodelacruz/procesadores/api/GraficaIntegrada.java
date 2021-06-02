@@ -33,10 +33,12 @@ public class GraficaIntegrada {
         this.memoriaMaxima = memoriaMaxima;
         this.resolucion = resolucion;
     }
-/**
- * Constructor con to string
- * @param cadena
- */
+
+    /**
+     * Constructor con to string
+     * 
+     * @param cadena
+     */
     public GraficaIntegrada(String cadena) {
         ArrayList<Object> elementos = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
@@ -55,8 +57,7 @@ public class GraficaIntegrada {
     /**
      * Constructor vacio
      */
-    public GraficaIntegrada() {
-    }
+    public GraficaIntegrada() {}
 
     /**
      * Creacion de getter and setters
@@ -130,7 +131,4 @@ public class GraficaIntegrada {
         GraficaIntegrada graficaIntegrada = (GraficaIntegrada) o;
         return id == graficaIntegrada.id && Objects.equals(nombreGrafica, graficaIntegrada.nombreGrafica) && frecuenciaBasica == graficaIntegrada.frecuenciaBasica && frecuenciaMaxima == graficaIntegrada.frecuenciaMaxima && memoriaMaxima == graficaIntegrada.memoriaMaxima && Objects.equals(resolucion, graficaIntegrada.resolucion);
     }
-
-   
-
 }

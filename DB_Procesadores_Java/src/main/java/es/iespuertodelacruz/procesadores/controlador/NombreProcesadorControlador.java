@@ -48,105 +48,104 @@ public class NombreProcesadorControlador {
       }  
    }
 
- /** 
+   /** 
      * Metodo encargado de insertar
+     * 
      * @param nombreProcesador a insertar
      * @throws ControladoresDBException con un mensaje controlado
      * @throws PersistenciaException
      */
-
-    public void insertar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
+   public void insertar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
       validarNombreProcesador(nombreProcesador);
-          if (existe(nombreProcesador)) {
-             throw new ControladoresDBException("El nombreProcesador que se indica ya existe");
-          }
-         nombreProcesadorModelo.insertar(nombreProcesador); 
-       }  
+      if (existe(nombreProcesador)) {
+         throw new ControladoresDBException("El nombreProcesador que se indica ya existe");
+      }
+      nombreProcesadorModelo.insertar(nombreProcesador); 
+   }  
        
   /**
    * Metodo encargado de eliminar
+   * 
    * @param modeloProcesador a eliminar 
    * @throws ControladoresDBException con un mensaje controlado
    * @throws PersistenciaException
    */
-  
-      public void eliminar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
-     validarNombreProcesador(nombreProcesador);
-          if (!existe(nombreProcesador)) {
-             throw new ControladoresDBException(EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);
-          }
-          nombreProcesadorModelo.eliminar(nombreProcesador); 
+   public void eliminar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
+      validarNombreProcesador(nombreProcesador);
+      if (!existe(nombreProcesador)) {
+         throw new ControladoresDBException(EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);
       }
+      nombreProcesadorModelo.eliminar(nombreProcesador); 
+   }
       
   /**
    * Metodo encargado de realizar la eliminacion de modeloProcasador
+   * 
    * @param modeloProcesador del elemento a eliminar
    * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
    * @throws PersistenciaException 
    */   
-      public void eliminar(String modeloProcesador) throws ControladoresDBException, PersistenciaException {
-          NombreProcesador nombreProcesador;
-          nombreProcesador = buscar(modeloProcesador);
-          eliminar(nombreProcesador);
-       }
+   public void eliminar(String modeloProcesador) throws ControladoresDBException, PersistenciaException {
+      NombreProcesador nombreProcesador;
+      nombreProcesador = buscar(modeloProcesador);
+      eliminar(nombreProcesador);
+   }
   
-       /**
-        * Metodo encargado de buscar por el modeloProcesador de la clase
-        * @param modeloProcesador para localizar al nombreProcesador
-        * @return nombreProcesador a traves del modeloProcesador de la clase
-        * @throws PersistenciaException
-        */
-  
-      public NombreProcesador buscar(String modeloProcesador) throws PersistenciaException {
-          NombreProcesador nombreProcesador = null;
-          nombreProcesador = nombreProcesadorModelo.buscar(modeloProcesador);
-          return nombreProcesador;
-       }
+   /**
+   * Metodo encargado de buscar por el modeloProcesador de la clase
+   * 
+   * @param modeloProcesador para localizar al nombreProcesador
+   * @return nombreProcesador a traves del modeloProcesador de la clase
+   * @throws PersistenciaException
+   */
+   public NombreProcesador buscar(String modeloProcesador) throws PersistenciaException {
+      NombreProcesador nombreProcesador = null;
+      nombreProcesador = nombreProcesadorModelo.buscar(modeloProcesador);
+      return nombreProcesador;
+   }
   
   /**
    * Metodo encargado de realizar la modificacion de un tipo de nombreProcesador
+   * 
    * @param nombreProcesador modificar
    * @throws ControladoresDBException controlada en caso de error
    * @throws PersistenciaException
    */
-  
-      public void modificar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
-        
-          validarNombreProcesador(nombreProcesador);
-          if (!existe(nombreProcesador)) {
-             throw new ControladoresDBException(EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);
-          }
-          nombreProcesadorModelo.modificar(nombreProcesador);
-       }
+   public void modificar(NombreProcesador nombreProcesador) throws ControladoresDBException, PersistenciaException {
+      validarNombreProcesador(nombreProcesador);
+      if (!existe(nombreProcesador)) {
+         throw new ControladoresDBException(EL_NOMBRE_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);
+      }
+      nombreProcesadorModelo.modificar(nombreProcesador);
+   }
     
   /**
    * Funcion encargada de verificar si existe el nombreProcesador
+   * 
    * @param nombreProcesador a encontrar
    * @return true/false
    * @throws PersistenciaException error controlado
    */
-  
-       private boolean existe(NombreProcesador nombreProcesador) throws PersistenciaException {
-          boolean encontrada = false;
-          NombreProcesador nombreProcesadorEncontrada;
-     
-          nombreProcesadorEncontrada = buscar(nombreProcesador.getModeloProcesador());
-          if (nombreProcesadorEncontrada != null) {
-             encontrada = true;
-          }  
-          return encontrada;
-        }   
+   private boolean existe(NombreProcesador nombreProcesador) throws PersistenciaException {
+      boolean encontrada = false;
+      NombreProcesador nombreProcesadorEncontrada;
+      nombreProcesadorEncontrada = buscar(nombreProcesador.getModeloProcesador());
+      if (nombreProcesadorEncontrada != null) {
+         encontrada = true;
+      }  
+      return encontrada;
+   }   
 
-      /**
-      * Funcion que devuelve el listado completo
-      * 
-      * @return arraylist con los campos
-      * @throws PersistenciaException controlada
-      */
-      public ArrayList<NombreProcesador> buscarTodos() throws PersistenciaException {
-         return nombreProcesadorModelo.buscarTodos();
-      }
-  }
+   /**
+   * Funcion que devuelve el listado completo
+   * 
+   * @return arraylist con los campos
+   * @throws PersistenciaException controlada
+   */
+   public ArrayList<NombreProcesador> buscarTodos() throws PersistenciaException {
+      return nombreProcesadorModelo.buscarTodos();
+   }
+}
 
 
    

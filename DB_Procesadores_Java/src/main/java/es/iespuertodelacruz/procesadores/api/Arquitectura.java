@@ -26,7 +26,6 @@ public class Arquitectura {
     /**
      * Creación de un constructor con todos los atributos de las tablas
      */
-   
      public Arquitectura(int id, String versionArquitectura, String disenio, 
         String tecnologia, String estandar) {
         this.id = id;
@@ -52,9 +51,7 @@ public class Arquitectura {
     /**
      * Constructor vacio
      */
-    
-     public Arquitectura() {
-    }
+    public Arquitectura() {}
 
     /**
      * Creacion de getter and setters
@@ -107,10 +104,8 @@ public class Arquitectura {
             getDisenio() + DELIMITADOR +
             getTecnologia() + DELIMITADOR +
             getEstandar(); 
-}
+    }
     
-
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
