@@ -26,38 +26,33 @@ public class ZocaloControlador {
       zocaloModelo = new ZocaloModelo();
    }
 
-/**
- * 
- * @param Zocalo a validar
- * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
- */
+   /**
+    * 
+    * @param Zocalo a validar
+    * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+    */
+   public void validarZocalo(Zocalo zocalo) throws ControladoresDBException {
+      String mensaje = "";
 
-public void validarZocalo(Zocalo zocalo) throws ControladoresDBException {
-   String mensaje = "";
-
-   if (zocalo == null) {
-      mensaje = "Se esta validando un objeto nulo de zocalo";
-      throw new ControladoresDBException(mensaje);
-   } 
-  
-   if (zocalo.getId() < 0) {
-      mensaje = "La ID del zocalo no puede ser cero o menor que el, ";
-      }
-  
-   if (zocalo.getTipo() == null || zocalo.getTipo().isEmpty()) {
-      mensaje = "El tipo del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
+      if (zocalo == null) {
+         mensaje = "Se esta validando un objeto nulo de zocalo";
+         throw new ControladoresDBException(mensaje);
       } 
-   
-   if (zocalo.getTecnologia() == null || zocalo.getTecnologia().isEmpty()) {
-      mensaje = "La tecnologia del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
+      if (zocalo.getId() < 0) {
+         mensaje = "La ID del zocalo no puede ser cero o menor que el, ";
+      }
+      if (zocalo.getTipo() == null || zocalo.getTipo().isEmpty()) {
+         mensaje += "El tipo del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
+      } 
+      if (zocalo.getTecnologia() == null || zocalo.getTecnologia().isEmpty()) {
+         mensaje += "La tecnologia del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
       }  
-   
-   if (zocalo.getFechaLanzamiento() == null) {
-      mensaje = "La fecha de lanzamiento del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
+      if (zocalo.getFechaLanzamiento() == null) {
+         mensaje += "La fecha de lanzamiento del zocalo no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
       if (!mensaje.isEmpty()) {
          throw new ControladoresDBException(mensaje);
-         } 
+      } 
    }
 
    /**
