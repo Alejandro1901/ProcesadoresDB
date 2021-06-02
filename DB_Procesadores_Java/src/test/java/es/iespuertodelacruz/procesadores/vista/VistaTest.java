@@ -1,4 +1,4 @@
-/*
+
 
 package es.iespuertodelacruz.procesadores.vista;
 
@@ -6,11 +6,33 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.ByteArrayInputStream;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class VistaTest {
+    static AppVista appVista;
+    private ByteArrayInputStream testIn;
 
+    @BeforeAll
+    public static void setUp() {
+        appVista = new AppVista();
+    }
+
+    @Test
+    public void menuTest() {
+        String[] args = null;
+        testIn = new ByteArrayInputStream("3".getBytes());
+        System.setIn(testIn);
+        try {
+            AppVista.main(args);
+        } catch (Exception e) {
+            fail("Se ha producido un error moviendonos por los menus");
+        }
+    }
+}
+/*
     static AppVista appVista;
 
     @BeforeAll

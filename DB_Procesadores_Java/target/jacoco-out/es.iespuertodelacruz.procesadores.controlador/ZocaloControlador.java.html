@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ZocaloControlador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.controlador</a> &gt; <span class="el_source">ZocaloControlador.java</span></div><h1>ZocaloControlador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.controlador;
+
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.Zocalo;
+import es.iespuertodelacruz.procesadores.modelo.ZocaloModelo;
+
+public class ZocaloControlador {
+
+   /**
+    * Controlador de la clase ZocaloDBControlador
+    */
+
+   private static final String EL_ZOCALO_QUE_SE_INDICA_NO_EXISTE = &quot;El zocalo que se indica NO existe en nuestra base de datos&quot;;
+   ZocaloModelo zocaloModelo;
+
+   /**
+    * Controlador con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+<span class="fc" id="L25">   public ZocaloControlador() throws PersistenciaException {</span>
+<span class="fc" id="L26">      zocaloModelo = new ZocaloModelo();</span>
+<span class="fc" id="L27">   }</span>
+
+   /**
+    * 
+    * @param Zocalo a validar
+    * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+    */
+   public void validarZocalo(Zocalo zocalo) throws ControladoresDBException {
+<span class="fc" id="L35">      String mensaje = &quot;&quot;;</span>
+
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">      if (zocalo == null) {</span>
+<span class="nc" id="L38">         mensaje = &quot;Se esta validando un objeto nulo de zocalo&quot;;</span>
+<span class="nc" id="L39">         throw new ControladoresDBException(mensaje);</span>
+      } 
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">      if (zocalo.getId() &lt; 0) {</span>
+<span class="nc" id="L42">         mensaje = &quot;La ID del zocalo no puede ser cero o menor que el, &quot;;</span>
+      }
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">      if (zocalo.getTipo() == null || zocalo.getTipo().isEmpty()) {</span>
+<span class="nc" id="L45">         mensaje += &quot;El tipo del zocalo no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+      } 
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">      if (zocalo.getTecnologia() == null || zocalo.getTecnologia().isEmpty()) {</span>
+<span class="nc" id="L48">         mensaje += &quot;La tecnologia del zocalo no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+      }  
+<span class="pc bpc" id="L50" title="2 of 4 branches missed.">      if (zocalo.getFechaLanzamiento() == null || zocalo.getFechaLanzamiento().isEmpty()) {</span>
+<span class="nc" id="L51">         mensaje += &quot;La fecha de lanzamiento del zocalo no puede tener valores nulos y tiene que existir al menos un dato, &quot;;</span>
+      }
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">      if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L54">         throw new ControladoresDBException(mensaje);</span>
+      } 
+<span class="fc" id="L56">   }</span>
+
+   /**
+     * Metodo encargado de insertar
+     * @param zocalo a insertar
+     * @throws ControladoresDBException con un mensaje controlado
+     * @throws PersistenciaException
+     */
+   
+    public void insertar(Zocalo zocalo) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L66">      validarZocalo(zocalo);</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">          if (existe(zocalo)) {</span>
+<span class="fc" id="L68">             throw new ControladoresDBException(&quot;El zocalo que se indica ya existe&quot;);</span>
+          }
+<span class="fc" id="L70">          zocaloModelo.insertar(zocalo); </span>
+<span class="fc" id="L71">       }  </span>
+       
+  /**
+   * Metodo encargado de eliminar
+   * @param zocalo a eliminar 
+   * @throws ControladoresDBException con un mensaje controlado
+   * @throws PersistenciaException
+   */
+  
+      public void eliminar(Zocalo zocalo) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L81">     validarZocalo(zocalo);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">          if (!existe(zocalo)) {</span>
+<span class="nc" id="L83">             throw new ControladoresDBException(EL_ZOCALO_QUE_SE_INDICA_NO_EXISTE);</span>
+          }
+<span class="fc" id="L85">          zocaloModelo.eliminar(zocalo); </span>
+<span class="fc" id="L86">      }</span>
+      
+  /**
+   * Metodo encargado de realizar la eliminacion de un zocalo
+   * @param Id del elemento a eliminar
+   * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
+   * @throws PersistenciaException 
+   */   
+      public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+          Zocalo zocalo;
+<span class="fc" id="L96">          zocalo = buscar(id);</span>
+<span class="fc" id="L97">          eliminar(zocalo);</span>
+<span class="fc" id="L98">       }</span>
+  
+       /**
+        * Metodo encargado de buscar por la id de la clase
+        * @param id para localizar la zocalo
+        * @return arquitectura a traves del id de la clase
+        * @throws PersistenciaException
+        */
+  
+      public Zocalo buscar(int id) throws PersistenciaException {
+<span class="fc" id="L108">          Zocalo zocalo = null;</span>
+<span class="fc" id="L109">          zocalo = zocaloModelo.buscar(id);</span>
+<span class="fc" id="L110">          return zocalo;</span>
+       }
+  
+  /**
+   * Metodo encargado de realizar la modificacion de un tipo de zocalo
+   * @param zocalo a modificar
+   * @throws ControladoresDBException controlada en caso de error
+   * @throws PersistenciaException
+   */
+  
+      public void modificar(Zocalo zocalo) throws ControladoresDBException, PersistenciaException {
+        
+<span class="nc" id="L122">          validarZocalo(zocalo);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">          if (!existe(zocalo)) {</span>
+<span class="nc" id="L124">             throw new ControladoresDBException(EL_ZOCALO_QUE_SE_INDICA_NO_EXISTE);</span>
+          }
+<span class="nc" id="L126">          zocaloModelo.modificar(zocalo);</span>
+<span class="nc" id="L127">       }</span>
+    
+  /**
+   * Funcion encargada de verificar si existe el zocalo
+   * @param zocalo a encontrar
+   * @return true/false
+   * @throws PersistenciaException error controlado
+   */
+  
+       private boolean existe(Zocalo zocalo) throws PersistenciaException {
+<span class="fc" id="L137">          boolean encontrada = false;</span>
+          Zocalo zocaloEncontrada;
+     
+<span class="fc" id="L140">          zocaloEncontrada = buscar(zocalo.getId());</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">          if (zocaloEncontrada != null) {</span>
+<span class="fc" id="L142">             encontrada = true;</span>
+          }  
+<span class="fc" id="L144">          return encontrada;</span>
+        }
+
+   /**
+   * Funcion que devuelve el listado completo
+   * 
+   * @return arraylist con los campos
+   * @throws PersistenciaException controlada
+   */
+   public ArrayList&lt;Zocalo&gt; buscarTodos() throws PersistenciaException {
+<span class="fc" id="L154">      return zocaloModelo.buscarTodos();</span>
+   }
+  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

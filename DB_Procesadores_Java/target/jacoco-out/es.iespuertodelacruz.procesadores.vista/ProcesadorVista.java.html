@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcesadorVista.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.vista</a> &gt; <span class="el_source">ProcesadorVista.java</span></div><h1>ProcesadorVista.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.vista;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import es.iespuertodelacruz.procesadores.api.Procesador;
+import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
+import es.iespuertodelacruz.procesadores.controlador.ProcesadorControlador;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class ProcesadorVista {
+    public static ProcesadorControlador procesadorControlador;
+
+    /**
+     * Constructor con los controladores
+     * 
+     * @throws PersistenciaException controlada
+     */
+<span class="nc" id="L20">    public ProcesadorVista() throws PersistenciaException {</span>
+<span class="nc" id="L21">        procesadorControlador = new ProcesadorControlador();</span>
+<span class="nc" id="L22">    }</span>
+
+
+    /**
+     * Funcion que nos permite crear una procesador
+     * 
+     * @return objeto Procesador
+     */
+    private static Procesador crearProcesador() {
+<span class="nc" id="L31">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L32">        System.out.println(&quot;Escribe la id del procesador&quot;);</span>
+<span class="nc" id="L33">        int id = sn.nextInt();</span>
+<span class="nc" id="L34">        System.out.println(&quot;Escibe la id del fabricante del procesador&quot;);</span>
+<span class="nc" id="L35">        String codigoFabricante = sn.next();</span>
+<span class="nc" id="L36">        System.out.println(&quot;Escribe la id del tipo de socket donde se puede alojar el procesador&quot;);</span>
+<span class="nc" id="L37">        int idSocket = sn.nextInt();</span>
+<span class="nc" id="L38">        System.out.println(&quot;Escribe la id de la arquitectura del procesador&quot;);</span>
+<span class="nc" id="L39">        int idArquitectura = sn.nextInt();</span>
+<span class="nc" id="L40">        System.out.println(&quot;Escribe el modelo del procesador&quot;);</span>
+<span class="nc" id="L41">        String modelo = sn.next();</span>
+<span class="nc" id="L42">        System.out.println(&quot;Escribe la fecha de lanzamiento del procesador&quot;);</span>
+<span class="nc" id="L43">        String fechaLanzamiento = sn.next(); //Hay que validar este valor</span>
+<span class="nc" id="L44">        System.out.println(&quot;Escribe el numero de nucleos del procesador&quot;);</span>
+<span class="nc" id="L45">        int nucleos = sn.nextInt();</span>
+<span class="nc" id="L46">        System.out.println(&quot;Escribe el numero de hilos del procesador&quot;);</span>
+<span class="nc" id="L47">        int hilos = sn.nextInt();</span>
+<span class="nc" id="L48">        System.out.println(&quot;Escribe la frecuencia a la que va el procesador&quot;);</span>
+<span class="nc" id="L49">        float frecuencia = sn.nextFloat();</span>
+<span class="nc" id="L50">        System.out.println(&quot;¿Se puede hacer overclock al procesador? (True o false)&quot;);</span>
+<span class="nc" id="L51">        boolean overclock = sn.nextBoolean();</span>
+<span class="nc" id="L52">        System.out.println(&quot;Escribe el tdp del procesador&quot;);</span>
+<span class="nc" id="L53">        float tdp = sn.nextFloat();</span>
+<span class="nc" id="L54">        System.out.println(&quot;Escribe el precio del procesador&quot;);</span>
+<span class="nc" id="L55">        float precio = sn.nextFloat();</span>
+<span class="nc" id="L56">        System.out.println(&quot;Tiene grafica el procesador? (True o false)&quot;);</span>
+<span class="nc" id="L57">        boolean graficaPropia = sn.nextBoolean();</span>
+<span class="nc" id="L58">        sn.close();</span>
+<span class="nc" id="L59">        return new Procesador(id, codigoFabricante, idSocket, idArquitectura, modelo, fechaLanzamiento, nucleos, hilos, frecuencia, overclock, tdp, precio, graficaPropia);</span>
+    }
+
+    /**
+     * Funcion que nos permite crear la clave primaria de la tabla
+     * 
+     * @return clave primaria
+     */
+    private static int crearClave() {
+<span class="nc" id="L68">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L69">        int id = sn.nextInt();</span>
+<span class="nc" id="L70">        return id;</span>
+    }
+
+    /**
+     * Metodo que nos permite insertar en la BBDD
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void insertar() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L80">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L81">        Procesador procesador = crearProcesador();</span>
+<span class="nc" id="L82">        procesadorControlador.insertar(procesador);</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Metodo que nos permite modificar un campo de la BBDD
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void modificar() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L92">        Procesador procesador = crearProcesador();</span>
+<span class="nc" id="L93">        procesadorControlador.modificar(procesador);</span>
+<span class="nc" id="L94">    }</span>
+
+    /**
+     * Metodo que nos permite eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar() throws ControladoresDBException, PersistenciaException {
+<span class="nc" id="L103">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L104">        int id = sn.nextInt();</span>
+<span class="nc" id="L105">        procesadorControlador.eliminar(id);</span>
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * Metodo que nos permite buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void buscar() throws PersistenciaException {
+<span class="nc" id="L114">        int id = crearClave();</span>
+<span class="nc" id="L115">        Procesador procesador = procesadorControlador.buscar(id);</span>
+<span class="nc" id="L116">        procesador.toString();</span>
+<span class="nc" id="L117">    }</span>
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+<span class="nc" id="L125">        ArrayList&lt;Procesador&gt; lista = procesadorControlador.buscarTodos();</span>
+<span class="nc" id="L126">        lista.toString();</span>
+<span class="nc" id="L127">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
