@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.NombreProcesador;
@@ -114,6 +115,7 @@ public class NombreProcesadorVista {
      * @throws PersistenciaException controlada
      */
     public void listar() throws PersistenciaException {
-        nombreProcesadorControlador.buscarTodos();
+        ArrayList<NombreProcesador> lista = nombreProcesadorControlador.buscarTodos();
+        lista.toString();
     }
 }

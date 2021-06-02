@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.Fabricante;
@@ -110,6 +111,7 @@ public class FabricanteVista {
      * @throws PersistenciaException controlada
      */
     public void listar() throws PersistenciaException {
-        fabricanteControlador.buscarTodos();
+        ArrayList<Fabricante> lista = fabricanteControlador.buscarTodos();
+        lista.toString();
     }
 }

@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.Zocalo;
@@ -101,6 +102,7 @@ public class ZocaloVista {
      * @throws PersistenciaException controlada
      */
     public void listar() throws PersistenciaException {
-        zocaloControlador.buscarTodos();
+        ArrayList<Zocalo> lista = zocaloControlador.buscarTodos();
+        lista.toString();
     }
 }

@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.PlacaBase;
@@ -99,6 +100,7 @@ public class PlacaBaseVista {
      * @throws PersistenciaException controlada
      */
     public void listar() throws PersistenciaException {
-        placaBaseControlador.buscarTodos();
+        ArrayList<PlacaBase> lista = placaBaseControlador.buscarTodos();
+        lista.toString();
     }
 }

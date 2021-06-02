@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.GraficaIntegrada;
@@ -106,6 +107,7 @@ public class GraficaIntegradaVista {
      * @throws PersistenciaException controlada
      */
     public void listar() throws PersistenciaException {
-        graficaIntegradaControlador.buscarTodos();
+        ArrayList<GraficaIntegrada> lista = graficaIntegradaControlador.buscarTodos();
+        lista.toString();
     }
 }
