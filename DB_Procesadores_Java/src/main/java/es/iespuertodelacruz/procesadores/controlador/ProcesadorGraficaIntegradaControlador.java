@@ -26,7 +26,6 @@ public class ProcesadorGraficaIntegradaControlador {
     * @param procesadorGraficaIntegrada a validar
     * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
     */
-   
    public void validarProcesadorGraficaIntegrada(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException {
       String mensaje = "";
       
@@ -45,7 +44,7 @@ public class ProcesadorGraficaIntegradaControlador {
       }
    }
 
-/**
+   /**
     * Metodo encargado de insertar
     * 
     * @param procesadorGraficaIntegrada a insertar
@@ -68,7 +67,6 @@ public class ProcesadorGraficaIntegradaControlador {
     * @throws ControladoresDBException con un mensaje controlado
     * @throws PersistenciaException
     */
-
    public void eliminar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException, PersistenciaException {
       validarProcesadorGraficaIntegrada(procesadorGraficaIntegrada);
       if (!existe(procesadorGraficaIntegrada)) {
@@ -97,7 +95,6 @@ public class ProcesadorGraficaIntegradaControlador {
     * @return procesadorGraficaIntegrada a traves del idprocesador de la clase
     * @throws PersistenciaException
     */
-
    public ProcesadorGraficaIntegrada buscar(int idProcesador) throws PersistenciaException {
       ProcesadorGraficaIntegrada procesadorGraficaIntegrada = null;
       procesadorGraficaIntegrada = procesadorGraficaIntegradaModelo.buscar(idProcesador);
@@ -111,9 +108,7 @@ public class ProcesadorGraficaIntegradaControlador {
     * @throws ControladoresDBException controlada en caso de error
     * @throws PersistenciaException
     */
-
    public void modificar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException, PersistenciaException {
-
       validarProcesadorGraficaIntegrada(procesadorGraficaIntegrada);
       if (!existe(procesadorGraficaIntegrada)) {
          throw new ControladoresDBException(EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);
@@ -128,7 +123,6 @@ public class ProcesadorGraficaIntegradaControlador {
     * @return true/false
     * @throws PersistenciaException error controlado
     */
-
    private boolean existe(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
       boolean encontrada = false;
       ProcesadorGraficaIntegrada procesadorGraficaIntegradaEncontrada;

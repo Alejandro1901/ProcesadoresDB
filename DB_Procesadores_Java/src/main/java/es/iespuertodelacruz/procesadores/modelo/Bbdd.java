@@ -3,19 +3,10 @@ package es.iespuertodelacruz.procesadores.modelo;
 import java.sql.*;
 import java.util.ArrayList;
 
-import es.iespuertodelacruz.procesadores.api.*;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 import es.iespuertodelacruz.procesadores.fichero.Fichero;
 
 public class Bbdd {
-
-    private static final String PUNTO_Y_COMA = ";";
-    private static final int CERO = 0;
-    private static final String STRING_VACIO = "";
-    private static final String SQL_FIN_COMILLA_SIMPLE = "';";
-    private static final String SQL_FIN_PARENTESIS = "');";
-    private static final String SQL_VALUES = "VALUES ('";
-    private static final String SQL_COMA = "', '";
 
     private String tabla;
     private String clave;
@@ -23,15 +14,6 @@ public class Bbdd {
     private String url;
     private String usuario;
     private String password;
-
-    private static final String ARQUITECTURA = "arquitectura";
-    private static final String FABRICANTE = "fabricante";
-    private static final String GRAFICA_INTEGRADA = "grafica_integrada";
-    private static final String NOMBRE_PROCESADOR = "nombre_procesador";
-    private static final String PLACA_BASE = "placa_base";
-    private static final String PROCESADOR = "procesador";
-    private static final String PROCESADOR_GRAFICA_INTEGRADA = "procesador_grafica_integrada";
-    private static final String ZOCALO = "zocalo";
 
     /**
      * Constructor con todos los parametros
@@ -185,6 +167,5 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new PersistenciaException("Se ha producido un error cerrando la coneccion", exception);
         }
-
     }
 }
