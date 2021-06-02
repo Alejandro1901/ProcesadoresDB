@@ -30,49 +30,39 @@ public class FabricanteControlador {
 public void validarFabricante(Fabricante fabricante) throws ControladoresDBException {
     String mensaje = "";
 
-if (fabricante == null) {
-    mensaje = "Se esta validando un objeto nulo de Procesadores";
-    throw new ControladoresDBException(mensaje);
+    if (fabricante == null) {
+        mensaje = "Se esta validando un objeto nulo de Procesadores";
+        throw new ControladoresDBException(mensaje);
     }
-    
-if (fabricante.getCodigo() == null || fabricante.getCodigo().isEmpty()) {
-    mensaje = "El Codigo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getCodigo() == null || fabricante.getCodigo().isEmpty()) {
+        mensaje = "El Codigo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
-     
-if (fabricante.getCodigoPostal() == null || fabricante.getCodigoPostal().isEmpty()) {
-    mensaje = "El CodigoPostal del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getCodigoPostal() == null || fabricante.getCodigoPostal().isEmpty()) {
+        mensaje += "El CodigoPostal del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
-
-if (fabricante.getNombre() == null || fabricante.getNombre().isEmpty()) {
-    mensaje = "El nombre del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getNombre() == null || fabricante.getNombre().isEmpty()) {
+        mensaje += "El nombre del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
-
-if (fabricante.getNumero() < 0) {
-    mensaje = "El numero del fabricante no puede ser cero o menor que el, ";
+    if (fabricante.getNumero() < 0) {
+        mensaje += "El numero del fabricante no puede ser cero o menor que el, ";
     }
-
-if (fabricante.getPais() == null || fabricante.getPais().isEmpty()) {
-    mensaje = "El pais del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getPais() == null || fabricante.getPais().isEmpty()) {
+        mensaje += "El pais del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }  
-
-if (fabricante.getCalle() == null || fabricante.getCalle().isEmpty()) {
-    mensaje = "La calle del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getCalle() == null || fabricante.getCalle().isEmpty()) {
+        mensaje = "La calle del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
-
-if (fabricante.getTelefono() == null || fabricante.getTelefono().isEmpty()) {
-    mensaje = "El telefono del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getTelefono() == null || fabricante.getTelefono().isEmpty()) {
+        mensaje += "El telefono del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
-    
-if (fabricante.getCorreo() == null || fabricante.getCorreo().isEmpty()) {
-    mensaje = "El correo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getCorreo() == null || fabricante.getCorreo().isEmpty()) {
+        mensaje += "El correo del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }
-
-if (fabricante.getWeb() == null || fabricante.getWeb().isEmpty()) {
-    mensaje = "La web del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
+    if (fabricante.getWeb() == null || fabricante.getWeb().isEmpty()) {
+        mensaje += "La web del fabricante no puede tener valores nulos y tiene que existir al menos un dato, ";
     }   
-
-if (!mensaje.isEmpty()) {
-    throw new ControladoresDBException(mensaje);
+    if (!mensaje.isEmpty()) {
+        throw new ControladoresDBException(mensaje);
     }
   }
 

@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.*;
@@ -95,5 +96,15 @@ public class ArquitecturaVista {
         int id = crearClave();
         Arquitectura arquitectura = arquitecturaControlador.buscar(id);
         arquitectura.toString();
+    }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        ArrayList<Arquitectura> lista = arquitecturaControlador.buscarTodos();
+        lista.toString();
     }
 }

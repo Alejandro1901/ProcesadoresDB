@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
@@ -91,5 +92,15 @@ public class ProcesadorGraficaIntegradaVista {
         int id = crearClave();
         ProcesadorGraficaIntegrada procesadorGraficaIntegrada = procesadorGraficaIntegradaControlador.buscar(id);
         procesadorGraficaIntegrada.toString();
+    }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        ArrayList<ProcesadorGraficaIntegrada> lista = procesadorGraficaIntegradaControlador.buscarTodos();
+        lista.toString();
     }
 }

@@ -35,32 +35,29 @@ public class ArquitecturaControlador {
    public void validarArquitectura(Arquitectura arquitectura) throws ControladoresDBException {
        String mensaje = "";
 
-    if (arquitectura == null) {
-        mensaje = "Se esta validando un objeto nulo de Procesadores";
-        throw new ControladoresDBException(mensaje);
+        if (arquitectura == null) {
+            mensaje = "Se esta validando un objeto nulo de Procesadores";
+            throw new ControladoresDBException(mensaje);
         }  
       
-    if (arquitectura.getId() < 0) {
-        mensaje = "El ID de arquitectura no puede ser cero o menor que el, ";
+        if (arquitectura.getId() < 0) {
+            mensaje = "El ID de arquitectura no puede ser cero o menor que el, ";
         }
-
-    if (arquitectura.getVersionArquitectura() == null || arquitectura.getVersionArquitectura().isEmpty()) {
-        mensaje = "La version_arquitectura de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
+        if (arquitectura.getVersionArquitectura() == null || arquitectura.getVersionArquitectura().isEmpty()) {
+            mensaje += "La version_arquitectura de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
         } 
 
-    if (arquitectura.getDisenio() == null || arquitectura.getDisenio().isEmpty()) {
-        mensaje = "El diseño de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
+        if (arquitectura.getDisenio() == null || arquitectura.getDisenio().isEmpty()) {
+            mensaje += "El diseño de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
         } 
-        
-    if (arquitectura.getTecnologia() == null || arquitectura.getTecnologia().isEmpty()) {
-        mensaje = "La tecnologia de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
+        if (arquitectura.getTecnologia() == null || arquitectura.getTecnologia().isEmpty()) {
+            mensaje += "La tecnologia de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
         } 
-
-    if (arquitectura.getEstandar() == null || arquitectura.getEstandar().isEmpty()) {
-        mensaje = "El estandar de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
+        if (arquitectura.getEstandar() == null || arquitectura.getEstandar().isEmpty()) {
+            mensaje += "El estandar de la arquitectura no puede tener valores nulos y tiene que existir al menos un dato, ";
         } 
-    if (!mensaje.isEmpty()) {
-        throw new ControladoresDBException(mensaje);
+        if (!mensaje.isEmpty()) {
+            throw new ControladoresDBException(mensaje);
         }   
     }
 

@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.Fabricante;
@@ -102,5 +103,15 @@ public class FabricanteVista {
         String codigo = crearClave();
         Fabricante fabricante = fabricanteControlador.buscar(codigo);
         fabricante.toString();
+    }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        ArrayList<Fabricante> lista = fabricanteControlador.buscarTodos();
+        lista.toString();
     }
 }

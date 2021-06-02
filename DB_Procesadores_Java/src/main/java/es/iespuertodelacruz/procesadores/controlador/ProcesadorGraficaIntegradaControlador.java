@@ -34,18 +34,15 @@ public class ProcesadorGraficaIntegradaControlador {
          mensaje = "Se esta validando un objeto nulo de ProcesadorGraficaIntegrada";
          throw new ControladoresDBException(mensaje);
       }
-      
       if (procesadorGraficaIntegrada.getIdProcesador() < 0) {
          mensaje = "El IdProcesador de ProcesadorGraficaIntegrada no puede ser cero o menor que el, ";
       }
-
       if (procesadorGraficaIntegrada.getIdGraficaIntegrada() < 0) {
-         mensaje = "La IdGraficaIntegrada de ProcesadorGraficaIntegrada no puede ser cero o menor que el, ";
+         mensaje += "La IdGraficaIntegrada de ProcesadorGraficaIntegrada no puede ser cero o menor que el, ";
       }
       if (!mensaje.isEmpty()) {
          throw new ControladoresDBException(mensaje);
       }
-
    }
 
 /**

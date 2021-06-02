@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.Procesador;
@@ -113,5 +114,15 @@ public class ProcesadorVista {
         int id = crearClave();
         Procesador procesador = procesadorControlador.buscar(id);
         procesador.toString();
+    }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        ArrayList<Procesador> lista = procesadorControlador.buscarTodos();
+        lista.toString();
     }
 }

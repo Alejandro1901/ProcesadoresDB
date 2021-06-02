@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.procesadores.controlador;
 
+import java.util.ArrayList;
+
 import es.iespuertodelacruz.procesadores.api.Procesador;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
@@ -36,49 +38,38 @@ public class ProcesadorControlador {
          mensaje = "Se esta validando un objeto nulo de Procesadores";
          throw new ControladoresDBException(mensaje);
       }
-
       if (procesador.getId() < 0) {
          mensaje = "El ID del procesador no puede ser cero o menor que el, ";
       }
-
       if (procesador.getCodigoFabricante() == null || procesador.getCodigoFabricante().isEmpty()) {
-         mensaje = "El CodigoFabricante del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
+         mensaje += "El CodigoFabricante del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
-
       if (procesador.getIdSocket() < 0) {
-         mensaje = "El IDSocket del procesador no puede ser cero o menor que el, ";
+         mensaje += "El IDSocket del procesador no puede ser cero o menor que el, ";
       }
-
       if (procesador.getIdArquitectura() < 0) {
-         mensaje = "El ID del procesador no puede ser cero o menor que el,";
+         mensaje += "El ID del procesador no puede ser cero o menor que el,";
       }
-
       if (procesador.getModelo() == null || procesador.getModelo().isEmpty()) {
-         mensaje = "El modelo del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
+         mensaje += "El modelo del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
-
-      if (procesador.getFechaLanzamiento() == null) {
-         mensaje = "El CodigoFabricante del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
+      if (procesador.getFechaLanzamiento() == null || procesador.getFechaLanzamiento().isEmpty()) {
+         mensaje += "El CodigoFabricante del procesador no puede tener valores nulos y tiene que existir al menos un dato, ";
       }
-
       if (procesador.getNucleos() < 0) {
-         mensaje = "Los nucleos del procesador no puede ser cero o menor que el, ";
+         mensaje += "Los nucleos del procesador no puede ser cero o menor que el, ";
       }
-
       if (procesador.getHilos() < 0) {
-         mensaje = "Los hilos del procesador no puede ser cero o menor que el, ";
+         mensaje += "Los hilos del procesador no puede ser cero o menor que el, ";
       }
-
       if (procesador.getFrecuencia() < 0) {
-         mensaje = "La frecuencia del procesador no puede ser cero o menor que el, ";
+         mensaje += "La frecuencia del procesador no puede ser cero o menor que el, ";
       }
-
       if (procesador.getTdp() < 0) {
-         mensaje = "Los tdp del procesador no puede ser cero o menor que el, ";
+         mensaje += "Los tdp del procesador no puede ser cero o menor que el, ";
       }
-
       if (procesador.getPrecio() < 0) {
-         mensaje = "Los precios del procesador no puede ser cero o menor que el. ";
+         mensaje += "Los precios del procesador no puede ser cero o menor que el. ";
       }
       if (!mensaje.isEmpty()) {
          throw new ControladoresDBException(mensaje);

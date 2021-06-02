@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.Zocalo;
@@ -93,5 +94,15 @@ public class ZocaloVista {
         int id = crearClave();
         Zocalo zocalo = zocaloControlador.buscar(id);
         zocalo.toString();
+    }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        ArrayList<Zocalo> lista = zocaloControlador.buscarTodos();
+        lista.toString();
     }
 }

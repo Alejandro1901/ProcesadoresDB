@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.procesadores.vista;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.procesadores.api.PlacaBase;
@@ -91,5 +92,15 @@ public class PlacaBaseVista {
         int id = crearClave();
         PlacaBase placaBase = placaBaseControlador.buscar(id);
         placaBase.toString();
+    }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        ArrayList<PlacaBase> lista = placaBaseControlador.buscarTodos();
+        lista.toString();
     }
 }
