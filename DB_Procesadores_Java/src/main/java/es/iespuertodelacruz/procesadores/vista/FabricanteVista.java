@@ -103,4 +103,13 @@ public class FabricanteVista {
         Fabricante fabricante = fabricanteControlador.buscar(codigo);
         fabricante.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        fabricanteControlador.buscarTodos();
+    }
 }

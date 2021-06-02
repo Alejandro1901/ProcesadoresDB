@@ -99,4 +99,13 @@ public class GraficaIntegradaVista {
         GraficaIntegrada graficaIntegrada = graficaIntegradaControlador.buscar(id);
         graficaIntegrada.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        graficaIntegradaControlador.buscarTodos();
+    }
 }

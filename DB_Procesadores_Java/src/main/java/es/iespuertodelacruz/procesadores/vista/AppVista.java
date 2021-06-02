@@ -3,6 +3,7 @@ package es.iespuertodelacruz.procesadores.vista;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import es.iespuertodelacruz.procesadores.api.Zocalo;
 import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
 import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
@@ -475,7 +476,7 @@ public class AppVista {
         }
     }
 
-    private static void menuListar() {
+    private static void menuListar() throws PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -499,23 +500,45 @@ public class AppVista {
                 switch (opcion) {
                     case 1:
                         System.out.println("Has seleccionado listar una Arquitectura");
+                        ArquitecturaVista arquitecturaVista = new ArquitecturaVista();
+                        arquitecturaVista.listar();
                         break;
                     case 2:
                         System.out.println("Has seleccionado listar un Fabricante");
+                        FabricanteVista fabricanteVista = new FabricanteVista();
+                        fabricanteVista.listar();
                         break;
                     case 3:
                         System.out.println("Has seleccionado listar una Grafica integrada");
+                        GraficaIntegradaVista graficaIntegradaVista = new GraficaIntegradaVista();
+                        graficaIntegradaVista.listar();
                         break;
                     case 4:
                         System.out.println("Has seleccionado listar un Procesador");
+                        ProcesadorVista procesadorVista = new ProcesadorVista();
+                        procesadorVista.listar();
                         break;
                     case 5:
                         System.out.println("Has seleccionado listar una Placa Base");
+                        PlacaBaseVista placaBaseVista = new PlacaBaseVista();
+                        placaBaseVista.listar();
                         break;
                     case 6:
                         System.out.println("Has seleccionado listar un Zocalo");
+                        ZocaloVista zocaloVista = new ZocaloVista();
+                        zocaloVista.listar();
                         break;
                     case 7:
+                        System.out.println("Has seleccionado buscar una fila de NombreProcesador");
+                        NombreProcesadorVista nombreProcesadorVista = new NombreProcesadorVista();
+                        nombreProcesadorVista.listar();
+                        break;
+                    case 8:
+                        System.out.println("Has seleccionado buscar una fila de ProcesadorGraficaIntegrada");
+                        ProcesadorGraficaIntegradaVista procesadorGraficaIntegradaVista = new ProcesadorGraficaIntegradaVista();
+                        procesadorGraficaIntegradaVista.listar();
+                        break;
+                    case 9:
                         salir = true;
                         break;
                     default:

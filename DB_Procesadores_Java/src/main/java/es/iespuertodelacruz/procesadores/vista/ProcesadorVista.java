@@ -114,4 +114,13 @@ public class ProcesadorVista {
         Procesador procesador = procesadorControlador.buscar(id);
         procesador.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        procesadorControlador.buscarTodos();
+    }
 }

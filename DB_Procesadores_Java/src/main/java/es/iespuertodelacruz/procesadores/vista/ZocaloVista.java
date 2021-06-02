@@ -94,4 +94,13 @@ public class ZocaloVista {
         Zocalo zocalo = zocaloControlador.buscar(id);
         zocalo.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        zocaloControlador.buscarTodos();
+    }
 }

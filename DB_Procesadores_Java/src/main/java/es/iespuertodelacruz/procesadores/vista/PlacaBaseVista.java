@@ -92,4 +92,13 @@ public class PlacaBaseVista {
         PlacaBase placaBase = placaBaseControlador.buscar(id);
         placaBase.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        placaBaseControlador.buscarTodos();
+    }
 }

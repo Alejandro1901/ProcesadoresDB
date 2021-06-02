@@ -96,4 +96,13 @@ public class ArquitecturaVista {
         Arquitectura arquitectura = arquitecturaControlador.buscar(id);
         arquitectura.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        arquitecturaControlador.buscarTodos();
+    }
 }

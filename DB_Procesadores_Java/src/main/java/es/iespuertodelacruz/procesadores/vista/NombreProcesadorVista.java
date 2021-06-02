@@ -107,4 +107,13 @@ public class NombreProcesadorVista {
         NombreProcesador nombreProcesador = nombreProcesadorControlador.buscar(modelo);
         nombreProcesador.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        nombreProcesadorControlador.buscarTodos();
+    }
 }

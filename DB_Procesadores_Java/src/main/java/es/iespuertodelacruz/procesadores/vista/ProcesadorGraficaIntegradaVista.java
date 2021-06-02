@@ -92,4 +92,13 @@ public class ProcesadorGraficaIntegradaVista {
         ProcesadorGraficaIntegrada procesadorGraficaIntegrada = procesadorGraficaIntegradaControlador.buscar(id);
         procesadorGraficaIntegrada.toString();
     }
+
+    /**
+     * Metodo que nos permite listar la tabla
+     * 
+     * @throws PersistenciaException controlada
+     */
+    public void listar() throws PersistenciaException {
+        procesadorGraficaIntegradaControlador.buscarTodos();
+    }
 }
