@@ -55,14 +55,13 @@ public class PlacaBaseControlador {
     * @throws ControladoresDBException con un mensaje controlado
     * @throws PersistenciaException
     */
-   
-    public void insertar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
-<span class="fc" id="L60">      validarPlacaBase(placaBase);</span>
-<span class="pc bpc" id="L61" title="1 of 2 branches missed.">          if (existe(placaBase)) {</span>
-<span class="nc" id="L62">             throw new ControladoresDBException(&quot;La placaBase que se indica ya existe&quot;);</span>
-          }
-<span class="fc" id="L64">          placaBaseModelo.insertar(placaBase); </span>
-<span class="fc" id="L65">       }  </span>
+   public void insertar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L59">      validarPlacaBase(placaBase);</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">      if (existe(placaBase)) {</span>
+<span class="nc" id="L61">         throw new ControladoresDBException(&quot;La placaBase que se indica ya existe&quot;);</span>
+      }
+<span class="fc" id="L63">      placaBaseModelo.insertar(placaBase); </span>
+<span class="fc" id="L64">   }  </span>
        
   /**
    * Metodo encargado de eliminar
@@ -72,12 +71,12 @@ public class PlacaBaseControlador {
    */
   
       public void eliminar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
-<span class="fc" id="L75">     validarPlacaBase(placaBase);</span>
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">          if (!existe(placaBase)) {</span>
-<span class="nc" id="L77">             throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);</span>
+<span class="fc" id="L74">     validarPlacaBase(placaBase);</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">          if (!existe(placaBase)) {</span>
+<span class="nc" id="L76">             throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);</span>
           }
-<span class="fc" id="L79">          placaBaseModelo.eliminar(placaBase); </span>
-<span class="fc" id="L80">      }</span>
+<span class="fc" id="L78">          placaBaseModelo.eliminar(placaBase); </span>
+<span class="fc" id="L79">      }</span>
       
   /**
    * Metodo encargado de realizar la eliminacion de una placaBase
@@ -87,9 +86,9 @@ public class PlacaBaseControlador {
    */   
       public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
           PlacaBase placaBase;
-<span class="fc" id="L90">          placaBase = buscar(id);</span>
-<span class="fc" id="L91">          eliminar(placaBase);</span>
-<span class="fc" id="L92">       }</span>
+<span class="fc" id="L89">          placaBase = buscar(id);</span>
+<span class="fc" id="L90">          eliminar(placaBase);</span>
+<span class="fc" id="L91">       }</span>
   
        /**
         * Metodo encargado de buscar por la id de la clase
@@ -99,9 +98,9 @@ public class PlacaBaseControlador {
         */
   
       public PlacaBase buscar(int id) throws PersistenciaException {
-<span class="fc" id="L102">          PlacaBase placaBase = null;</span>
-<span class="fc" id="L103">          placaBase = placaBaseModelo.buscar(id);</span>
-<span class="fc" id="L104">          return placaBase;</span>
+<span class="fc" id="L101">          PlacaBase placaBase = null;</span>
+<span class="fc" id="L102">          placaBase = placaBaseModelo.buscar(id);</span>
+<span class="fc" id="L103">          return placaBase;</span>
        }
   
   /**
@@ -113,12 +112,12 @@ public class PlacaBaseControlador {
   
       public void modificar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
         
-<span class="fc" id="L116">          validarPlacaBase(placaBase);</span>
-<span class="pc bpc" id="L117" title="1 of 2 branches missed.">          if (!existe(placaBase)) {</span>
-<span class="nc" id="L118">             throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);</span>
+<span class="fc" id="L115">          validarPlacaBase(placaBase);</span>
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">          if (!existe(placaBase)) {</span>
+<span class="nc" id="L117">             throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);</span>
           }
-<span class="fc" id="L120">          placaBaseModelo.modificar(placaBase);</span>
-<span class="fc" id="L121">       }</span>
+<span class="fc" id="L119">          placaBaseModelo.modificar(placaBase);</span>
+<span class="fc" id="L120">       }</span>
     
   /**
    * Funcion encargada de verificar si existe la placaBase
@@ -128,14 +127,14 @@ public class PlacaBaseControlador {
    */
   
        private boolean existe(PlacaBase placaBase) throws PersistenciaException {
-<span class="fc" id="L131">          boolean encontrada = false;</span>
+<span class="fc" id="L130">          boolean encontrada = false;</span>
           PlacaBase placaBaseEncontrada;
      
-<span class="fc" id="L134">          placaBaseEncontrada = buscar(placaBase.getId());</span>
-<span class="fc bfc" id="L135" title="All 2 branches covered.">          if (placaBaseEncontrada != null) {</span>
-<span class="fc" id="L136">             encontrada = true;</span>
+<span class="fc" id="L133">          placaBaseEncontrada = buscar(placaBase.getId());</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">          if (placaBaseEncontrada != null) {</span>
+<span class="fc" id="L135">             encontrada = true;</span>
           }  
-<span class="fc" id="L138">          return encontrada;</span>
+<span class="fc" id="L137">          return encontrada;</span>
         }   
 
    /**
@@ -145,7 +144,7 @@ public class PlacaBaseControlador {
    * @throws PersistenciaException controlada
    */
    public ArrayList&lt;PlacaBase&gt; buscarTodos() throws PersistenciaException {
-<span class="fc" id="L148">      return placaBaseModelo.buscarTodos();</span>
+<span class="fc" id="L147">      return placaBaseModelo.buscarTodos();</span>
    }
 }
    

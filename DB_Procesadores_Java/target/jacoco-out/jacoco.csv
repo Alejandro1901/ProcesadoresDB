@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,GraficaIntegradaControlador,22,170,6,22,5,44,6,17,0,9
-DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,ZocaloControlador,51,115,11,15,9,36,11,11,0,9
 DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,FabricanteControlador,22,217,12,34,5,50,12,20,0,9
+DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,ZocaloControlador,51,115,11,15,9,36,11,11,0,9
 DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,ProcesadorGraficaIntegradaControlador,22,108,4,12,5,36,4,13,0,9
 DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,ProcesadorControlador,22,234,7,33,5,54,7,22,0,9
 DB_Procesadores_Java,es.iespuertodelacruz.procesadores.controlador,NombreProcesadorControlador,22,128,6,16,5,38,6,14,0,9
