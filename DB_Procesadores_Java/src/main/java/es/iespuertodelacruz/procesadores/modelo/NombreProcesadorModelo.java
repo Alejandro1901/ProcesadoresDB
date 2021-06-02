@@ -9,9 +9,6 @@ import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
 
 public class NombreProcesadorModelo {
 
-    private static final String PUNTO_Y_COMA = ";";
-    private static final int CERO = 0;
-    private static final String STRING_VACIO = "";
     private static final String SQL_FIN_COMILLA_SIMPLE = "';";
     private static final String SQL_FIN_PARENTESIS = "');";
     private static final String SQL_VALUES = "VALUES ('";

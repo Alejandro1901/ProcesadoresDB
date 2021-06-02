@@ -326,6 +326,12 @@ public class AppVista {
         }
     }
 
+    /**
+     * Submenu para eliminar
+     * 
+     * @throws ControladoresDBException controlada
+     * @throws PersistenciaException controlada
+     */
     private static void menuEliminar() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
@@ -401,6 +407,11 @@ public class AppVista {
         }
     }
 
+    /**
+     * Submenu para buscar
+     * 
+     * @throws PersistenciaException controlada
+     */
     private static void menuBuscar() throws PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
@@ -476,6 +487,11 @@ public class AppVista {
         }
     }
 
+    /**
+     * Submenu para listar
+     * 
+     * @throws PersistenciaException controlada
+     */
     private static void menuListar() throws PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;

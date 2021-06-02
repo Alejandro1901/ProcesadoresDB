@@ -9,10 +9,6 @@ import es.iespuertodelacruz.procesadores.modelo.ProcesadorModelo;
 
 public class ProcesadorControlador {
 
-   /**
-    * Controlador de la clase ProcesadoresDBControlador
-    */
-
    private static final String EL_PROCESADOR_QUE_SE_INDICA_NO_EXISTE = "El procesador que se indicada NO existe en nuestra base de datos";
    ProcesadorModelo procesadorModelo;
 
@@ -27,6 +23,7 @@ public class ProcesadorControlador {
    }
 
    /**
+    * Metodo que nos permite validar un procesador
     * 
     * @param procesadores a validar
     * @throws ProcesadoresDBException con el mensaje descriptivo de lo que sucede
@@ -83,7 +80,6 @@ public class ProcesadorControlador {
     * @throws ControladoresDBException con un mensaje controlado
     * @throws PersistenciaException
     */
-
    public void insertar(Procesador procesador) throws ControladoresDBException, PersistenciaException {
       validarProcesador(procesador);
       if (existe(procesador)) {
@@ -99,7 +95,6 @@ public class ProcesadorControlador {
     * @throws ControladoresDBException con un mensaje controlado
     * @throws PersistenciaException
     */
-
    public void eliminar(Procesador procesador) throws ControladoresDBException, PersistenciaException {
       validarProcesador(procesador);
       if (!existe(procesador)) {
@@ -112,9 +107,8 @@ public class ProcesadorControlador {
     * Metodo encargado de realizar la eliminacion de un procesador
     * 
     * @param id del elemento a eliminar
-    * @throws ControladoresDBException del elemento a eliminarcontrolada con el
-    *     error
-    * @throws PersistenciaException
+    * @throws ControladoresDBException controlada
+    * @throws PersistenciaException controlada
     */
    public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
       Procesador procesador;
@@ -129,7 +123,6 @@ public class ProcesadorControlador {
     * @return procesador a traves del id de la clase
     * @throws PersistenciaException
     */
-
    public Procesador buscar(int id) throws PersistenciaException {
       Procesador procesador = null;
       procesador = procesadorModelo.buscar(id);
@@ -143,9 +136,7 @@ public class ProcesadorControlador {
     * @throws ControladoresDBException controlada en caso de error
     * @throws PersistenciaException
     */
-
    public void modificar(Procesador procesador) throws ControladoresDBException, PersistenciaException {
-
       validarProcesador(procesador);
       if (!existe(procesador)) {
          throw new ControladoresDBException(EL_PROCESADOR_QUE_SE_INDICA_NO_EXISTE);
@@ -160,7 +151,6 @@ public class ProcesadorControlador {
     * @return true/false
     * @throws PersistenciaException error controlado
     */
-
    private boolean existe(Procesador procesador) throws PersistenciaException {
       boolean encontrada = false;
       Procesador procesadorEncontrada;

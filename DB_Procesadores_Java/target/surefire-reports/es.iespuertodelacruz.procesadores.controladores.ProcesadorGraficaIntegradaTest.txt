@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertodelacruz.procesadores.controladores.ProcesadorGraficaIntegradaTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.244 s - in es.iespuertodelacruz.procesadores.controladores.ProcesadorGraficaIntegradaTest
+=======
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.06 s - in es.iespuertodelacruz.procesadores.controladores.ProcesadorGraficaIntegradaTest
+>>>>>>> 61a3bb76c5a1a92acc738f66fc0bdf0c7451656a

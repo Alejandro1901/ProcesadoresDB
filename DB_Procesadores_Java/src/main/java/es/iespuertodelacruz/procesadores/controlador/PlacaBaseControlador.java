@@ -51,6 +51,7 @@ public class PlacaBaseControlador {
 
    /**
     * Metodo encargado de insertar
+    *
     * @param placaBase a insertar
     * @throws ControladoresDBException con un mensaje controlado
     * @throws PersistenciaException
@@ -65,59 +66,59 @@ public class PlacaBaseControlador {
        
   /**
    * Metodo encargado de eliminar
+   * 
    * @param placaBase a eliminar 
    * @throws ControladoresDBException con un mensaje controlado
    * @throws PersistenciaException
    */
-  
-      public void eliminar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
-     validarPlacaBase(placaBase);
-          if (!existe(placaBase)) {
-             throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);
-          }
-          placaBaseModelo.eliminar(placaBase); 
+   public void eliminar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+      validarPlacaBase(placaBase);
+      if (!existe(placaBase)) {
+         throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);
       }
+      placaBaseModelo.eliminar(placaBase); 
+   }
       
   /**
    * Metodo encargado de realizar la eliminacion de una placaBase
+   * 
    * @param id del elemento a eliminar
    * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
    * @throws PersistenciaException 
    */   
-      public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
-          PlacaBase placaBase;
-          placaBase = buscar(id);
-          eliminar(placaBase);
-       }
+   public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+      PlacaBase placaBase;
+      placaBase = buscar(id);
+      eliminar(placaBase);
+   }
   
-       /**
-        * Metodo encargado de buscar por la id de la clase
-        * @param id para localizar la placaBase
-        * @return placaBase a traves del id de la clase
-        * @throws PersistenciaException
-        */
-  
-      public PlacaBase buscar(int id) throws PersistenciaException {
-          PlacaBase placaBase = null;
-          placaBase = placaBaseModelo.buscar(id);
-          return placaBase;
-       }
-  
+   /**
+   * Metodo encargado de buscar por la id de la clase
+   *
+   * @param id para localizar la placaBase
+   * @return placaBase a traves del id de la clase
+   * @throws PersistenciaException
+   */
+   public PlacaBase buscar(int id) throws PersistenciaException {
+      PlacaBase placaBase = null;
+      placaBase = placaBaseModelo.buscar(id);
+      return placaBase;
+   }
+
   /**
    * Metodo encargado de realizar la modificacion de un tipo de placaBase
+   * 
    * @param placaBase a modificar
    * @throws ControladoresDBException controlada en caso de error
    * @throws PersistenciaException
    */
-  
-      public void modificar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
-        
-          validarPlacaBase(placaBase);
-          if (!existe(placaBase)) {
-             throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);
-          }
-          placaBaseModelo.modificar(placaBase);
-       }
+   public void modificar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+      validarPlacaBase(placaBase);
+      if (!existe(placaBase)) {
+         throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);
+      }
+      placaBaseModelo.modificar(placaBase);
+   }
     
   /**
    * Funcion encargada de verificar si existe la placaBase
@@ -125,17 +126,15 @@ public class PlacaBaseControlador {
    * @return true/false
    * @throws PersistenciaException error controlado
    */
-  
-       private boolean existe(PlacaBase placaBase) throws PersistenciaException {
-          boolean encontrada = false;
-          PlacaBase placaBaseEncontrada;
-     
-          placaBaseEncontrada = buscar(placaBase.getId());
-          if (placaBaseEncontrada != null) {
-             encontrada = true;
-          }  
-          return encontrada;
-        }   
+   private boolean existe(PlacaBase placaBase) throws PersistenciaException {
+      boolean encontrada = false;
+      PlacaBase placaBaseEncontrada;
+      placaBaseEncontrada = buscar(placaBase.getId());
+      if (placaBaseEncontrada != null) {
+         encontrada = true;
+      }  
+      return encontrada;
+   }   
 
    /**
    * Funcion que devuelve el listado completo

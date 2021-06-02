@@ -51,24 +51,36 @@ public class PlacaBaseControlador {
 
    /**
     * Metodo encargado de insertar
+    *
     * @param placaBase a insertar
     * @throws ControladoresDBException con un mensaje controlado
     * @throws PersistenciaException
     */
    public void insertar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+<<<<<<< HEAD
 <span class="fc" id="L59">      validarPlacaBase(placaBase);</span>
 <span class="pc bpc" id="L60" title="1 of 2 branches missed.">      if (existe(placaBase)) {</span>
 <span class="nc" id="L61">         throw new ControladoresDBException(&quot;La placaBase que se indica ya existe&quot;);</span>
       }
 <span class="fc" id="L63">      placaBaseModelo.insertar(placaBase); </span>
 <span class="fc" id="L64">   }  </span>
+=======
+<span class="fc" id="L60">      validarPlacaBase(placaBase);</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">      if (existe(placaBase)) {</span>
+<span class="nc" id="L62">         throw new ControladoresDBException(&quot;La placaBase que se indica ya existe&quot;);</span>
+      }
+<span class="fc" id="L64">      placaBaseModelo.insertar(placaBase); </span>
+<span class="fc" id="L65">   }  </span>
+>>>>>>> 61a3bb76c5a1a92acc738f66fc0bdf0c7451656a
        
   /**
    * Metodo encargado de eliminar
+   * 
    * @param placaBase a eliminar 
    * @throws ControladoresDBException con un mensaje controlado
    * @throws PersistenciaException
    */
+<<<<<<< HEAD
   
       public void eliminar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
 <span class="fc" id="L74">     validarPlacaBase(placaBase);</span>
@@ -77,13 +89,24 @@ public class PlacaBaseControlador {
           }
 <span class="fc" id="L78">          placaBaseModelo.eliminar(placaBase); </span>
 <span class="fc" id="L79">      }</span>
+=======
+   public void eliminar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L75">      validarPlacaBase(placaBase);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">      if (!existe(placaBase)) {</span>
+<span class="nc" id="L77">         throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);</span>
+      }
+<span class="fc" id="L79">      placaBaseModelo.eliminar(placaBase); </span>
+<span class="fc" id="L80">   }</span>
+>>>>>>> 61a3bb76c5a1a92acc738f66fc0bdf0c7451656a
       
   /**
    * Metodo encargado de realizar la eliminacion de una placaBase
+   * 
    * @param id del elemento a eliminar
    * @throws ControladoresDBException del elemento a eliminarcontrolada con el error
    * @throws PersistenciaException 
    */   
+<<<<<<< HEAD
       public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
           PlacaBase placaBase;
 <span class="fc" id="L89">          placaBase = buscar(id);</span>
@@ -102,13 +125,35 @@ public class PlacaBaseControlador {
 <span class="fc" id="L102">          placaBase = placaBaseModelo.buscar(id);</span>
 <span class="fc" id="L103">          return placaBase;</span>
        }
+=======
+   public void eliminar(int id) throws ControladoresDBException, PersistenciaException {
+      PlacaBase placaBase;
+<span class="fc" id="L91">      placaBase = buscar(id);</span>
+<span class="fc" id="L92">      eliminar(placaBase);</span>
+<span class="fc" id="L93">   }</span>
+>>>>>>> 61a3bb76c5a1a92acc738f66fc0bdf0c7451656a
   
+   /**
+   * Metodo encargado de buscar por la id de la clase
+   *
+   * @param id para localizar la placaBase
+   * @return placaBase a traves del id de la clase
+   * @throws PersistenciaException
+   */
+   public PlacaBase buscar(int id) throws PersistenciaException {
+<span class="fc" id="L103">      PlacaBase placaBase = null;</span>
+<span class="fc" id="L104">      placaBase = placaBaseModelo.buscar(id);</span>
+<span class="fc" id="L105">      return placaBase;</span>
+   }
+
   /**
    * Metodo encargado de realizar la modificacion de un tipo de placaBase
+   * 
    * @param placaBase a modificar
    * @throws ControladoresDBException controlada en caso de error
    * @throws PersistenciaException
    */
+<<<<<<< HEAD
   
       public void modificar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
         
@@ -118,6 +163,15 @@ public class PlacaBaseControlador {
           }
 <span class="fc" id="L119">          placaBaseModelo.modificar(placaBase);</span>
 <span class="fc" id="L120">       }</span>
+=======
+   public void modificar(PlacaBase placaBase) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L116">      validarPlacaBase(placaBase);</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">      if (!existe(placaBase)) {</span>
+<span class="nc" id="L118">         throw new ControladoresDBException(LA_PLACA_BASE_QUE_SE_INDICA_NO_EXISTE);</span>
+      }
+<span class="fc" id="L120">      placaBaseModelo.modificar(placaBase);</span>
+<span class="fc" id="L121">   }</span>
+>>>>>>> 61a3bb76c5a1a92acc738f66fc0bdf0c7451656a
     
   /**
    * Funcion encargada de verificar si existe la placaBase
