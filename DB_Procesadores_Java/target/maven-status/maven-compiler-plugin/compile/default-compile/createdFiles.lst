@@ -1,9 +1,9 @@
 es/iespuertodelacruz/procesadores/modelo/PlacaBaseModelo.class
 es/iespuertodelacruz/procesadores/api/Procesador.class
 es/iespuertodelacruz/procesadores/modelo/Bbdd.class
-es/iespuertodelacruz/procesadores/fichero/Fichero.class
 es/iespuertodelacruz/procesadores/api/NombreProcesador.class
 es/iespuertodelacruz/procesadores/vista/FabricanteVista.class
+es/iespuertodelacruz/procesadores/fichero/Fichero.class
 es/iespuertodelacruz/procesadores/api/PlacaBase.class
 es/iespuertodelacruz/procesadores/vista/ProcesadorVista.class
 es/iespuertodelacruz/procesadores/excepcion/PersistenciaException.class

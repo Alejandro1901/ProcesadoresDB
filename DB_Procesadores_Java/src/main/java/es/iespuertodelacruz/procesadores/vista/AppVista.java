@@ -69,7 +69,7 @@ public class AppVista {
      * @throws PersistenciaException controlada
      * @throws ControladoresDBException controlada
      */
-    private static void menuAdmin() throws ControladoresDBException, PersistenciaException {
+    static void menuAdmin() throws ControladoresDBException, PersistenciaException {
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
