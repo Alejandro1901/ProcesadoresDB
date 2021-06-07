@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fabricante.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.api</a> &gt; <span class="el_source">Fabricante.java</span></div><h1>Fabricante.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.api;
+
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.StringTokenizer;
+
+public class Fabricante {
+
+    private static final String DELIMITADOR = &quot;'&quot;;
+
+    String codigo;
+    String codigoPostal;
+    String nombre;
+    int numero;
+    String pais;
+    String calle;
+    String telefono;
+    String correo;
+    String web;
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param codigo       del fabricante
+     * @param codigoPostal del fabricante
+     * @param nombre       del fabricante
+     * @param calle        del fabricante, donde esta situado la fabrica
+     * @param numero       de la fabrica
+     * @param pais         donde se fabrican los procesadores
+     * @param telefono     del fabricante
+     * @param correo       del fabricante
+     * @param web          del fabricante
+     */
+<span class="fc" id="L34">    public Fabricante(String codigo, String codigoPostal, String nombre, int numero, String pais, String calle, String telefono, String correo, String web) {</span>
+<span class="fc" id="L35">        this.codigo = codigo;</span>
+<span class="fc" id="L36">        this.codigoPostal = codigoPostal;</span>
+<span class="fc" id="L37">        this.nombre = nombre;</span>
+<span class="fc" id="L38">        this.numero = numero;</span>
+<span class="fc" id="L39">        this.pais = pais;</span>
+<span class="fc" id="L40">        this.calle = calle;</span>
+<span class="fc" id="L41">        this.telefono = telefono;</span>
+<span class="fc" id="L42">        this.correo = correo;</span>
+<span class="fc" id="L43">        this.web = web;</span>
+<span class="fc" id="L44">    }</span>
+
+<span class="fc" id="L46">    public Fabricante(String cadena) {</span>
+<span class="fc" id="L47">        ArrayList&lt;Object&gt; elementos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L48">        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        while (tokenizer.hasMoreElements()) {</span>
+<span class="fc" id="L50">            elementos.add(tokenizer.nextToken());</span>
+        }
+<span class="fc" id="L52">        this.codigo = (String) elementos.get(0);</span>
+<span class="fc" id="L53">        this.codigoPostal = (String) elementos.get(1);</span>
+<span class="fc" id="L54">        this.nombre = (String) elementos.get(2);</span>
+<span class="fc" id="L55">        this.numero = Integer.parseInt((String) elementos.get(3));</span>
+<span class="fc" id="L56">        this.pais = (String) elementos.get(4);</span>
+<span class="fc" id="L57">        this.calle = (String) elementos.get(5);</span>
+<span class="fc" id="L58">        this.telefono = (String) elementos.get(6);</span>
+<span class="fc" id="L59">        this.correo = (String) elementos.get(7);</span>
+<span class="fc" id="L60">        this.web = (String) elementos.get(8);</span>
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * Constructor vacio
+     */
+<span class="fc" id="L66">    public Fabricante() {}</span>
+
+    /**
+     * Creacion de getter and setters
+     */
+
+    public String getCodigo() {
+<span class="fc" id="L73">        return this.codigo;</span>
+    }
+
+    public void setCodigo(String codigo) {
+<span class="fc" id="L77">        this.codigo = codigo;</span>
+<span class="fc" id="L78">    }</span>
+
+    public String getCodigoPostal() {
+<span class="fc" id="L81">        return this.codigoPostal;</span>
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+<span class="fc" id="L85">        this.codigoPostal = codigoPostal;</span>
+<span class="fc" id="L86">    }</span>
+
+    public String getNombre() {
+<span class="fc" id="L89">        return this.nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L93">        this.nombre = nombre;</span>
+<span class="fc" id="L94">    }</span>
+
+    public int getNumero() {
+<span class="fc" id="L97">        return this.numero;</span>
+    }
+
+    public void setNumero(int numero) {
+<span class="fc" id="L101">        this.numero = numero;</span>
+<span class="fc" id="L102">    }</span>
+
+    public String getPais() {
+<span class="fc" id="L105">        return this.pais;</span>
+    }
+
+    public void setPais(String pais) {
+<span class="fc" id="L109">        this.pais = pais;</span>
+<span class="fc" id="L110">    }</span>
+
+    public String getCalle() {
+<span class="fc" id="L113">        return this.calle;</span>
+    }
+
+    public void setCalle(String calle) {
+<span class="fc" id="L117">        this.calle = calle;</span>
+<span class="fc" id="L118">    }</span>
+
+    public String getTelefono() {
+<span class="fc" id="L121">        return this.telefono;</span>
+    }
+
+    public void setTelefono(String telefono) {
+<span class="fc" id="L125">        this.telefono = telefono;</span>
+<span class="fc" id="L126">    }</span>
+
+    public String getCorreo() {
+<span class="fc" id="L129">        return this.correo;</span>
+    }
+
+    public void setCorreo(String correo) {
+<span class="fc" id="L133">        this.correo = correo;</span>
+<span class="fc" id="L134">    }</span>
+
+    public String getWeb() {
+<span class="fc" id="L137">        return this.web;</span>
+    }
+
+    public void setWeb(String web) {
+<span class="fc" id="L141">        this.web = web;</span>
+<span class="fc" id="L142">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="fc" id="L146">        return getCodigo() + DELIMITADOR + getCodigoPostal() + DELIMITADOR + getNombre() + DELIMITADOR + getNumero()</span>
+<span class="fc" id="L147">                + DELIMITADOR + getPais() + DELIMITADOR + getCalle() + DELIMITADOR + getTelefono() + DELIMITADOR</span>
+<span class="fc" id="L148">                + getCorreo() + DELIMITADOR + getWeb();</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L154">            return true;</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">        if (!(o instanceof Fabricante)) {</span>
+<span class="nc" id="L156">            return false;</span>
+        }
+<span class="fc" id="L158">        Fabricante fabricante = (Fabricante) o;</span>
+<span class="pc bpc" id="L159" title="7 of 18 branches missed.">        return Objects.equals(codigo, fabricante.codigo) &amp;&amp; Objects.equals(codigoPostal, fabricante.codigoPostal) &amp;&amp; Objects.equals(nombre, fabricante.nombre) &amp;&amp; numero == fabricante.numero &amp;&amp; Objects.equals(pais, fabricante.pais) &amp;&amp; Objects.equals(calle, fabricante.calle) &amp;&amp; Objects.equals(telefono, fabricante.telefono) &amp;&amp; Objects.equals(correo, fabricante.correo) &amp;&amp; Objects.equals(web, fabricante.web);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
