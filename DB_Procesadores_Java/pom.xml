@@ -7,6 +7,7 @@
   <groupId>es.iespuertodelacruz.procesadores</groupId>
   <artifactId>DB_Procesadores_Java</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
   <name>DB_Procesadores_Java</name>
   <!-- FIXME change it to the project's website -->

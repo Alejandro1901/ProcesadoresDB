@@ -1,15 +1,18 @@
 es/iespuertodelacruz/procesadores/api/ArquitecturaTest.class
 es/iespuertodelacruz/procesadores/api/PlacaBaseTest.class
-es/iespuertodelacruz/procesadores/api/FabricanteTest.class
-<<<<<<< HEAD
-=======
-es/iespuertodelacruz/procesadores/controladores/NombreProcesadorControladorTest.class
 es/iespuertodelacruz/procesadores/fichero/FicheroTest.class
->>>>>>> 07eb8b8559c2da133858ca4bbbc1689e4eaad3e8
+es/iespuertodelacruz/procesadores/api/FabricanteTest.class
+es/iespuertodelacruz/procesadores/controladores/NombreProcesadorControladorTest.class
 es/iespuertodelacruz/procesadores/api/ProcesadorGraficaIntegradaTest.class
 es/iespuertodelacruz/procesadores/controladores/ArquitecturaControladorTest.class
 es/iespuertodelacruz/procesadores/api/ProcesadorTest.class
 es/iespuertodelacruz/procesadores/api/ZocaloTest.class
 es/iespuertodelacruz/procesadores/controladores/FabricanteControladorTest.class
+es/iespuertodelacruz/procesadores/controladores/PlacaBaseControladorTest.class
+es/iespuertodelacruz/procesadores/controladores/ProcesadorGraficaIntegradaTest.class
 es/iespuertodelacruz/procesadores/api/GraficaIntegradaTest.class
+es/iespuertodelacruz/procesadores/controladores/ZocaloControladorTest.class
 es/iespuertodelacruz/procesadores/api/NombreProcesadorTest.class
+es/iespuertodelacruz/procesadores/vista/VistaTest.class
+es/iespuertodelacruz/procesadores/controladores/GraficaIntegradaControladorTest.class
+es/iespuertodelacruz/procesadores/controladores/ProcesadorControladorTest.class

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertodelacruz.procesadores.controladores.NombreProcesadorControladorTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.14 s - in es.iespuertodelacruz.procesadores.controladores.NombreProcesadorControladorTest
-=======
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.565 s - in es.iespuertodelacruz.procesadores.controladores.NombreProcesadorControladorTest
->>>>>>> 07eb8b8559c2da133858ca4bbbc1689e4eaad3e8
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 s - in es.iespuertodelacruz.procesadores.controladores.NombreProcesadorControladorTest

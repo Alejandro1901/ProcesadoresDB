@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ZocaloModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.modelo</a> &gt; <span class="el_source">ZocaloModelo.java</span></div><h1>ZocaloModelo.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.modelo;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.Zocalo;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+
+public class ZocaloModelo {
+
+    private static final String SQL_FIN_COMILLA_SIMPLE = &quot;';&quot;;
+    private static final String SQL_FIN_PARENTESIS = &quot;');&quot;;
+    private static final String SQL_VALUES = &quot;VALUES ('&quot;;
+    private static final String SQL_COMA = &quot;', '&quot;;
+    
+    MySqlBbdd persistencia;
+
+    private static final String TABLA = &quot;zocalo&quot;;
+    private static final String CLAVE_PRIMARIA = &quot;id&quot;;
+
+    /**
+     * Constructor con la persistencia
+     * 
+     * @param persistencia elegida
+     * @throws PersistenciaException
+     */
+<span class="fc" id="L28">    public ZocaloModelo() throws PersistenciaException {</span>
+<span class="fc" id="L29">        persistencia = new MySqlBbdd(TABLA, CLAVE_PRIMARIA, null, null);</span>
+<span class="fc" id="L30">    }</span>
+    
+    /**
+     * Metodo que inserta una zocalo
+     * 
+     * @param zocalo a insertar
+     * @throws PersistenciaException controlada
+     */
+    public void insertar(Zocalo zocalo) throws PersistenciaException {
+<span class="fc" id="L39">        String sql = &quot;INSERT INTO zocalo (id, tipo, tecnologia, fecha_lanzamiento) &quot; + SQL_VALUES </span>
+<span class="fc" id="L40">        + zocalo.getId() + SQL_COMA </span>
+<span class="fc" id="L41">        + zocalo.getTipo() + SQL_COMA </span>
+<span class="fc" id="L42">        + zocalo.getTecnologia() + SQL_COMA</span>
+<span class="fc" id="L43">        + zocalo.getFechaLanzamiento() + SQL_FIN_PARENTESIS;</span>
+<span class="fc" id="L44">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Metodo que elimina una zocalo
+     * 
+     * @param zocalo a eliminar
+     * @throws PersistenciaException controlada
+     */
+    public void eliminar(Zocalo zocalo) throws PersistenciaException {
+<span class="fc" id="L54">        String sql = &quot;DELETE FROM zocalo WHERE id = '&quot; + zocalo.getId() + SQL_FIN_COMILLA_SIMPLE;</span>
+<span class="fc" id="L55">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Metodo que modifica una zocalo
+     * 
+     * @param zocalo a modificar
+     * @throws PersistenciaException controlada
+     */
+    public void modificar(Zocalo zocalo) throws PersistenciaException {
+<span class="fc" id="L65">        String sql = &quot;UPDATE zocalo SET&quot;</span>
+<span class="fc" id="L66">                + &quot; tipo = '&quot; + zocalo.getTipo()</span>
+<span class="fc" id="L67">                + &quot;', tecnologia = '&quot; + zocalo.getTecnologia()</span>
+<span class="fc" id="L68">                + &quot;', fecha_lanzamiento = '&quot; + zocalo.getFechaLanzamiento()</span>
+<span class="fc" id="L69">                + &quot;' WHERE id = '&quot; + zocalo.getId() + &quot;';&quot;;</span>
+<span class="fc" id="L70">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L71">    }</span>
+
+    /**
+     * Funcion que busca una zocalo en la bbdd
+     * 
+     * @param clave de la zocalo
+     * @return zocalo encontrada
+     * @throws PersistenciaException controlada
+     */
+    public Zocalo buscar(int clave) throws PersistenciaException {
+<span class="fc" id="L81">        Zocalo procesadorEncontrada = null;</span>
+<span class="fc" id="L82">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE_PRIMARIA + &quot;='&quot; + clave + &quot;'&quot;;</span>
+        ResultSet resultSet;
+<span class="fc" id="L84">        ArrayList&lt;Zocalo&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L86">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc" id="L87">            lista = buscar(resultSet);</span>
+<span class="nc" id="L88">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L89">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="fc" id="L91">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (!lista.isEmpty()) {</span>
+<span class="fc" id="L95">            procesadorEncontrada = lista.get(0);</span>
+        }
+<span class="fc" id="L97">        return procesadorEncontrada;</span>
+    }
+
+    /**
+     * Funcion encargada de transformar un ResultSet en una lista de resultados
+     * 
+     * @param resultSet de entrada
+     * @return lista de zocalo
+     * @throws PersistenciaException controlada
+     */
+    private ArrayList&lt;Zocalo&gt; buscar(ResultSet resultSet) throws PersistenciaException {
+<span class="fc" id="L108">        ArrayList&lt;Zocalo&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc bfc" id="L110" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L111">                int id = resultSet.getInt(&quot;id&quot;);</span>
+<span class="fc" id="L112">                String tipo = resultSet.getString(&quot;tipo&quot;);</span>
+<span class="fc" id="L113">                String tecnologia = resultSet.getString(&quot;tecnologia&quot;);</span>
+<span class="fc" id="L114">                String fechaLanzamiento = resultSet.getString(&quot;fecha_lanzamiento&quot;);</span>
+<span class="fc" id="L115">                Zocalo zocalo = new Zocalo(id, tipo, tecnologia, fechaLanzamiento);</span>
+<span class="fc" id="L116">                lista.add(zocalo);</span>
+<span class="fc" id="L117">            }</span>
+<span class="nc" id="L118">        } catch (SQLException e) {</span>
+<span class="nc" id="L119">            throw new PersistenciaException(&quot;Se ha producido un error realizando la transformacion a Zocalo&quot;, e);</span>
+        } finally {
+<span class="fc" id="L121">            persistencia.closeConecction(null, null, resultSet);</span>
+        }
+<span class="fc" id="L123">        return lista;</span>
+    }
+
+
+    /**
+     * Funcion encargada de buscar todas los zocalo de la bbdd
+     * 
+     * @return arraylist de zocalo
+     * @throws PersistenciaException controlada
+     */
+    public ArrayList&lt;Zocalo&gt; buscarTodos() throws PersistenciaException {
+<span class="fc" id="L134">        String sql = &quot;SELECT * FROM &quot; + TABLA;</span>
+        ResultSet resultSet;
+<span class="fc" id="L136">        ArrayList&lt;Zocalo&gt; lista = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L138">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc" id="L139">            lista = buscar(resultSet);</span>
+<span class="nc" id="L140">        } catch (PersistenciaException e) {</span>
+<span class="nc" id="L141">            throw new PersistenciaException(&quot;Se ha producido un error realizando la consulta&quot;, e);</span>
+        } finally {
+<span class="fc" id="L143">            persistencia.closeConecction(persistencia.getConnection(), null, null);</span>
+        }
+<span class="fc" id="L145">        return lista;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

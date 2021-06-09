@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcesadorGraficaIntegradaControlador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.controlador</a> &gt; <span class="el_source">ProcesadorGraficaIntegradaControlador.java</span></div><h1>ProcesadorGraficaIntegradaControlador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.controlador;
+
+import java.util.ArrayList;
+
+import es.iespuertodelacruz.procesadores.api.ProcesadorGraficaIntegrada;
+import es.iespuertodelacruz.procesadores.excepcion.ControladoresDBException;
+import es.iespuertodelacruz.procesadores.excepcion.PersistenciaException;
+import es.iespuertodelacruz.procesadores.modelo.ProcesadorGraficaIntegradaModelo;
+
+public class ProcesadorGraficaIntegradaControlador {
+
+   private static final String EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE = &quot;El ProcesadorGraficaIntegrada que se indica NO existe en nuestra base de datos&quot;;
+   ProcesadorGraficaIntegradaModelo procesadorGraficaIntegradaModelo;
+
+   /**
+    * Controlador con el modelo 
+    *
+    * @throws PersistenciaException controlada
+    */
+<span class="fc" id="L20">   public ProcesadorGraficaIntegradaControlador() throws PersistenciaException {</span>
+<span class="fc" id="L21">      procesadorGraficaIntegradaModelo = new ProcesadorGraficaIntegradaModelo();</span>
+<span class="fc" id="L22">   }</span>
+   
+   /**
+    * 
+    * @param procesadorGraficaIntegrada a validar
+    * @throws ControladoresDBException con el mensaje descriptivo de lo que sucede
+    */
+   public void validarProcesadorGraficaIntegrada(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException {
+<span class="fc" id="L30">      String mensaje = &quot;&quot;;</span>
+      
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">      if (procesadorGraficaIntegrada == null) {</span>
+<span class="nc" id="L33">         mensaje = &quot;Se esta validando un objeto nulo de ProcesadorGraficaIntegrada&quot;;</span>
+<span class="nc" id="L34">         throw new ControladoresDBException(mensaje);</span>
+      }
+<span class="fc bfc" id="L36" title="All 2 branches covered.">      if (procesadorGraficaIntegrada.getIdProcesador() &lt; 0) {</span>
+<span class="fc" id="L37">         mensaje = &quot;El IdProcesador de ProcesadorGraficaIntegrada no puede ser cero o menor que el, &quot;;</span>
+      }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">      if (procesadorGraficaIntegrada.getIdGraficaIntegrada() &lt; 0) {</span>
+<span class="fc" id="L40">         mensaje += &quot;La IdGraficaIntegrada de ProcesadorGraficaIntegrada no puede ser cero o menor que el, &quot;;</span>
+      }
+<span class="fc bfc" id="L42" title="All 2 branches covered.">      if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L43">         throw new ControladoresDBException(mensaje);</span>
+      }
+<span class="fc" id="L45">   }</span>
+
+   /**
+    * Metodo encargado de insertar
+    * 
+    * @param procesadorGraficaIntegrada a insertar
+    * @throws ControladoresDBException con un mensaje controlado
+    * @throws PersistenciaException
+    */
+
+    public void insertar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L56">      validarProcesadorGraficaIntegrada(procesadorGraficaIntegrada);</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">      if (existe(procesadorGraficaIntegrada)) {</span>
+<span class="nc" id="L58">         throw new ControladoresDBException(&quot;El procesadorGraficaIntegrada que se indica ya existe&quot;);</span>
+      }
+<span class="fc" id="L60">      procesadorGraficaIntegradaModelo.insertar(procesadorGraficaIntegrada);</span>
+<span class="fc" id="L61">   }</span>
+
+   /**
+    * Metodo encargado de eliminar
+    * 
+    * @param procesadorGraficaIntegrada a eliminar
+    * @throws ControladoresDBException con un mensaje controlado
+    * @throws PersistenciaException
+    */
+   public void eliminar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L71">      validarProcesadorGraficaIntegrada(procesadorGraficaIntegrada);</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">      if (!existe(procesadorGraficaIntegrada)) {</span>
+<span class="nc" id="L73">         throw new ControladoresDBException(EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);</span>
+      }
+<span class="fc" id="L75">      procesadorGraficaIntegradaModelo.eliminar(procesadorGraficaIntegrada);</span>
+<span class="fc" id="L76">   }</span>
+
+   /**
+    * Metodo encargado de realizar la eliminacion de un procesadorGraficaIntegrada
+    * 
+    * @param idprocesador del elemento a eliminar
+    * @throws ControladoresDBException del elemento a eliminarcontrolada con el error                         
+    * @throws PersistenciaException
+    */
+   public void eliminar(int idprocesador) throws ControladoresDBException, PersistenciaException {
+      ProcesadorGraficaIntegrada procesadorGraficaIntegrada;
+<span class="fc" id="L87">      procesadorGraficaIntegrada = buscar(idprocesador);</span>
+<span class="fc" id="L88">      eliminar(procesadorGraficaIntegrada);</span>
+<span class="fc" id="L89">   }</span>
+
+   /**
+    * Metodo encargado de buscar por la idprocesador de la clase
+    * 
+    * @param idprocesador para localizar el procesadorGraficaIntegrada
+    * @return procesadorGraficaIntegrada a traves del idprocesador de la clase
+    * @throws PersistenciaException
+    */
+   public ProcesadorGraficaIntegrada buscar(int idProcesador) throws PersistenciaException {
+<span class="fc" id="L99">      ProcesadorGraficaIntegrada procesadorGraficaIntegrada = null;</span>
+<span class="fc" id="L100">      procesadorGraficaIntegrada = procesadorGraficaIntegradaModelo.buscar(idProcesador);</span>
+<span class="fc" id="L101">      return procesadorGraficaIntegrada;</span>
+   }
+
+   /**
+    * Metodo encargado de realizar la modificacion de un tipo de procesadorGraficaIntegrada
+    * 
+    * @param procesadorGraficaIntegrada a modificar
+    * @throws ControladoresDBException controlada en caso de error
+    * @throws PersistenciaException
+    */
+   public void modificar(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws ControladoresDBException, PersistenciaException {
+<span class="fc" id="L112">      validarProcesadorGraficaIntegrada(procesadorGraficaIntegrada);</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">      if (!existe(procesadorGraficaIntegrada)) {</span>
+<span class="nc" id="L114">         throw new ControladoresDBException(EL_PROCESADOR_GRAFICA_INTEGRADA_QUE_SE_INDICA_NO_EXISTE);</span>
+      }
+<span class="fc" id="L116">      procesadorGraficaIntegradaModelo.modificar(procesadorGraficaIntegrada);</span>
+<span class="fc" id="L117">   }</span>
+
+   /**
+    * Funcion encargada de verificar si existe la procesadorGraficaIntegrada
+    * 
+    * @param procesadorGraficaIntegrada a encontrar
+    * @return true/false
+    * @throws PersistenciaException error controlado
+    */
+   private boolean existe(ProcesadorGraficaIntegrada procesadorGraficaIntegrada) throws PersistenciaException {
+<span class="fc" id="L127">      boolean encontrada = false;</span>
+      ProcesadorGraficaIntegrada procesadorGraficaIntegradaEncontrada;
+
+<span class="fc" id="L130">      procesadorGraficaIntegradaEncontrada = buscar(procesadorGraficaIntegrada.getIdProcesador());</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">      if (procesadorGraficaIntegradaEncontrada != null) {</span>
+<span class="fc" id="L132">         encontrada = true;</span>
+      }
+<span class="fc" id="L134">      return encontrada;</span>
+   }
+
+   /**
+   * Funcion que devuelve el listado completo
+   * 
+   * @return arraylist con los campos
+   * @throws PersistenciaException controlada
+   */
+   public ArrayList&lt;ProcesadorGraficaIntegrada&gt; buscarTodos() throws PersistenciaException {
+<span class="fc" id="L144">      return procesadorGraficaIntegradaModelo.buscarTodos();</span>
+   }
+}
+
+
+   
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest
-=======
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest
->>>>>>> 07eb8b8559c2da133858ca4bbbc1689e4eaad3e8
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in es.iespuertodelacruz.procesadores.api.GraficaIntegradaTest
