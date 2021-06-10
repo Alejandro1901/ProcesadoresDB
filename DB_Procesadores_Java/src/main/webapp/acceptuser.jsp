@@ -3,9 +3,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        <title>Pagina de verificacion de usuario</title>
-    </head>
+       <%@ include file = "includes/header.jsp" %>
     <body>
         <h1>Verificacion Usuario</h1>
 
@@ -16,22 +15,89 @@
           
         
         Información del usuario<br/>
-        <p>Usuario : <jsp:getProperty name="validarUsuario" property="usuario"/></p>
-        <p>Contraseña : <jsp:getProperty name="validarUsuario" property="password"/></p>
+        <p><b>Usuario :</b> <jsp:getProperty name="validarUsuario" property="usuario"/></p>
+        <p><b>Contraseña :</b> <jsp:getProperty name="validarUsuario" property="password"/></p>
           
         <% validarUsuario.validate(); %> 
 
         <h3>Que accion desea realizar:</h3>
 
-        <button>Insertar</button>
-        <br>
-        <button>Modificar</button>
-        <br>
-        <button>Eliminar</button>
-        <br>
-        <button>Buscar</button>
-        <br>
-        <button>Listar</button>
+		<ul class="none">
+			<li>Arquitectura
+				<ul class="square">
+				  <li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+				  <li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+				  <li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+				  <li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+				  <li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>Fabricante
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>Grafica Integrada
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>Nombre Procesador
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>PlacaBase
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>Procesador - Grafica Integrada
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>Procesador
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+            <li>Zocalo
+				<ul class="square">
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Insertar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Modificar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Eliminar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Buscar</button></form></li>
+					<li><form method="GET" action="insertarArquitectura.jsp"><button>Listar</button></form></li>
+				</ul>
+			</li>
+		</ul>
     </body>
+    <footer>
+        <%@ include file = "includes/footer.jsp" %>
 </html>
 
