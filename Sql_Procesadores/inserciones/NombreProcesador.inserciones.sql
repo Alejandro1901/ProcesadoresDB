@@ -1,4 +1,4 @@
---Tabla Procesadores
+-- Tabla Procesadores
 
 -- INTEL
 
@@ -14,7 +14,7 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10
   -- 9 gen
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9900","Core i9",9);
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9900K","Core i9",9);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9880H","Core i9",9);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9900KF","Core i9",9);
 
 -- Familia Core i7
   -- 11 gen
@@ -26,9 +26,9 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10700K","Core i7",10);
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("10700F","Core i7",10);
   -- 9 gen
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9700K ","Core i7",9);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9700F ","Core i7",9);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9700 ","Core i7",9);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9700K","Core i7",9);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9700F","Core i7",9);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("9700","Core i7",9);
 
 -- Familia Core i5
   -- 11 gen
@@ -78,7 +78,7 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("59
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("5900X","Ryzen 9",5);
   -- Serie 3000
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("3900X","Ryzen 9",3);
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("5950X","Ryzen 9",3);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("3950X","Ryzen 9",3);
 
 -- Familia Ryzen 7
   -- Serie 5000
@@ -87,10 +87,10 @@ INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("58
   -- Serie 3000
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("3800X","Ryzen 7",3);
   -- Serie 2000
-INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("2700X ","Ryzen 7",2);
+INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("2700X","Ryzen 7",2);
 
 -- Familia Ryzen 5
-  --Serie 5000
+  -- Serie 5000
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("5600X","Ryzen 5",5);
   -- Serie 3000
 INSERT INTO nombre_procesador (modelo_procesador,familia,generacion) VALUES ("3400G","Ryzen 5",3); -- Grafica integrada
