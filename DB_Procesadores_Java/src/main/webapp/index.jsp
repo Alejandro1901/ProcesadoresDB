@@ -5,14 +5,14 @@
         <title>Pagina de inicio</title>
         <%@ include file = "includes/header.jsp" %>
     <body>
-        <div id="inicio_sesion">
-            <h1>Inicio de sesion</h1>
-            <form method ="get" action="acceptuser.jsp">
-                Usuario : <input type="text" name="usuario"><br/><br/>
-                Contraseña : <input type="password" name ="password"><br/><br/>
-                    <input type ="submit" value="SUBMIT" class="boton">    
-            </form>
-        </div>
+        <nav>
+            <div>
+                <a href="./login.jsp">Iniciar sesion</a>
+            </div>
+            <div>
+                <a href="./login.jsp">Crear usuario</a>
+            </div>
+        </nav>
         <footer>
         <%@ include file = "includes/footer.jsp" %>
     </body>

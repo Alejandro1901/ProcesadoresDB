@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Procesador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.api</a> &gt; <span class="el_source">Procesador.java</span></div><h1>Procesador.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.api;
+
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.StringTokenizer;
+
+public class Procesador {
+
+    private static final String DELIMITADOR = &quot;'&quot;;
+
+    int id; //PK
+    String codigoFabricante; //FK
+    int idSocket; //FK
+    int idArquitectura; //FK
+    String modelo; //FK
+    String fechaLanzamiento;
+    int nucleos;
+    int hilos;
+    float frecuencia;
+    boolean overclock;
+    float tdp;
+    float precio;
+    boolean graficaPropia;
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param id del procesador
+     * @param codigoFabricante Foreignkey de la tabla fabricante
+     * @param idSocket Foreignkey de la tabla socket
+     * @param idArquitectura Foreiginkey de la tabla arquitectura
+     * @param modelo foreignkey de la tabla nombre_procesador
+     * @param fechaLanzamiento Cuando salio a la venta el procesador 
+     * @param nucleos el tamaño de nucleos del procesador 
+     * @param hilos a los que va el procesador
+     * @param frecuencia a la que va el procesador
+     * @param overclock si es posible overclock o no 
+     * @param tdp del procesador
+     * @param precio del procesador
+     * @param graficaPropia del procesador
+     */
+<span class="fc" id="L42">    public Procesador(int id, String codigoFabricante, int idSocket, int idArquitectura, String modelo, String fechaLanzamiento, int nucleos, int hilos, float frecuencia, boolean overclock, float tdp, float precio, boolean graficaPropia) {</span>
+<span class="fc" id="L43">        this.id = id;</span>
+<span class="fc" id="L44">        this.codigoFabricante = codigoFabricante;</span>
+<span class="fc" id="L45">        this.idSocket = idSocket;</span>
+<span class="fc" id="L46">        this.idArquitectura = idArquitectura;</span>
+<span class="fc" id="L47">        this.modelo = modelo;</span>
+<span class="fc" id="L48">        this.fechaLanzamiento = fechaLanzamiento;</span>
+<span class="fc" id="L49">        this.nucleos = nucleos;</span>
+<span class="fc" id="L50">        this.hilos = hilos;</span>
+<span class="fc" id="L51">        this.frecuencia = frecuencia;</span>
+<span class="fc" id="L52">        this.overclock = overclock;</span>
+<span class="fc" id="L53">        this.tdp = tdp;</span>
+<span class="fc" id="L54">        this.precio = precio;</span>
+<span class="fc" id="L55">        this.graficaPropia = graficaPropia;</span>
+<span class="fc" id="L56">    }</span>
+    
+    /**
+     * Constructor mediante cadena de texto
+     * 
+     * @param cadena con el procesador
+     */
+<span class="fc" id="L63">    public Procesador(String cadena) {</span>
+<span class="fc" id="L64">        ArrayList&lt;Object&gt; elementos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L65">        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        while (tokenizer.hasMoreElements()) {</span>
+<span class="fc" id="L67">            elementos.add(tokenizer.nextToken());</span>
+        }
+<span class="fc" id="L69">        this.id = Integer.parseInt((String) elementos.get(0));</span>
+<span class="fc" id="L70">        this.codigoFabricante = (String) elementos.get(1);</span>
+<span class="fc" id="L71">        this.idSocket = Integer.parseInt((String) elementos.get(2));</span>
+<span class="fc" id="L72">        this.idArquitectura = Integer.parseInt((String) elementos.get(3));</span>
+<span class="fc" id="L73">        this.modelo = (String) elementos.get(4);</span>
+<span class="fc" id="L74">        this.fechaLanzamiento = (String) elementos.get(5);</span>
+<span class="fc" id="L75">        this.nucleos = Integer.parseInt((String) elementos.get(6));</span>
+<span class="fc" id="L76">        this.hilos = Integer.parseInt((String) elementos.get(7));</span>
+<span class="fc" id="L77">        this.frecuencia = Float.parseFloat((String) elementos.get(8));</span>
+<span class="fc" id="L78">        this.overclock = Boolean.parseBoolean((String) elementos.get(9));</span>
+<span class="fc" id="L79">        this.tdp = Float.parseFloat((String) elementos.get(10));</span>
+<span class="fc" id="L80">        this.precio = Float.parseFloat((String) elementos.get(11));</span>
+<span class="fc" id="L81">        this.graficaPropia = Boolean.parseBoolean((String) elementos.get(12));</span>
+<span class="fc" id="L82">    }</span>
+
+    /**
+     * Constructor vacio
+     */
+<span class="fc" id="L87">    public Procesador() {}</span>
+
+    /**
+     * Creacion de getter and setters
+     */
+
+    public int getId() {
+<span class="fc" id="L94">        return this.id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L98">        this.id = id;</span>
+<span class="fc" id="L99">    }</span>
+
+    public String getCodigoFabricante() {
+<span class="fc" id="L102">        return this.codigoFabricante;</span>
+    }
+
+    public void setCodigoFabricante(String codigoFabricante) {
+<span class="fc" id="L106">        this.codigoFabricante = codigoFabricante;</span>
+<span class="fc" id="L107">    }</span>
+
+    public int getIdSocket() {
+<span class="fc" id="L110">        return this.idSocket;</span>
+    }
+
+    public void setIdSocket(int idSocket) {
+<span class="fc" id="L114">        this.idSocket = idSocket;</span>
+<span class="fc" id="L115">    }</span>
+
+    public int getIdArquitectura() {
+<span class="fc" id="L118">        return this.idArquitectura;</span>
+    }
+
+    public void setIdArquitectura(int idArquitectura) {
+<span class="fc" id="L122">        this.idArquitectura = idArquitectura;</span>
+<span class="fc" id="L123">    }</span>
+
+    public String getModelo() {
+<span class="fc" id="L126">        return this.modelo;</span>
+    }
+
+    public void setModelo(String modelo) {
+<span class="fc" id="L130">        this.modelo = modelo;</span>
+<span class="fc" id="L131">    }</span>
+
+    public String getFechaLanzamiento() {
+<span class="fc" id="L134">        return this.fechaLanzamiento;</span>
+    }
+
+    public void setFechaLanzamiento(String fechaLanzamiento) {
+<span class="fc" id="L138">        this.fechaLanzamiento = fechaLanzamiento;</span>
+<span class="fc" id="L139">    }</span>
+
+    public int getNucleos() {
+<span class="fc" id="L142">        return this.nucleos;</span>
+    }
+
+    public void setNucleos(int nucleos) {
+<span class="fc" id="L146">        this.nucleos = nucleos;</span>
+<span class="fc" id="L147">    }</span>
+
+    public int getHilos() {
+<span class="fc" id="L150">        return this.hilos;</span>
+    }
+
+    public void setHilos(int hilos) {
+<span class="fc" id="L154">        this.hilos = hilos;</span>
+<span class="fc" id="L155">    }</span>
+
+    public float getFrecuencia() {
+<span class="fc" id="L158">        return this.frecuencia;</span>
+    }
+
+    public void setFrecuencia(float frecuencia) {
+<span class="fc" id="L162">        this.frecuencia = frecuencia;</span>
+<span class="fc" id="L163">    }</span>
+
+    public boolean isOverclock() {
+<span class="nc" id="L166">        return this.overclock;</span>
+    }
+
+    public boolean getOverclock() {
+<span class="fc" id="L170">        return this.overclock;</span>
+    }
+
+    public void setOverclock(boolean overclock) {
+<span class="fc" id="L174">        this.overclock = overclock;</span>
+<span class="fc" id="L175">    }</span>
+
+    public float getTdp() {
+<span class="fc" id="L178">        return this.tdp;</span>
+    }
+
+    public void setTdp(float tdp) {
+<span class="fc" id="L182">        this.tdp = tdp;</span>
+<span class="fc" id="L183">    }</span>
+
+    public float getPrecio() {
+<span class="fc" id="L186">        return this.precio;</span>
+    }
+
+    public void setPrecio(float precio) {
+<span class="fc" id="L190">        this.precio = precio;</span>
+<span class="fc" id="L191">    }</span>
+
+    public boolean isGraficaPropia() {
+<span class="nc" id="L194">        return this.graficaPropia;</span>
+    }
+
+    public boolean getGraficaPropia() {
+<span class="fc" id="L198">        return this.graficaPropia;</span>
+    }
+
+    public void setGraficaPropia(boolean GraficaPropia) {
+<span class="fc" id="L202">        this.graficaPropia = GraficaPropia;</span>
+<span class="fc" id="L203">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L207">        return getId() + DELIMITADOR +</span>
+<span class="fc" id="L208">            getCodigoFabricante() + DELIMITADOR +</span>
+<span class="fc" id="L209">            getIdSocket() + DELIMITADOR +</span>
+<span class="fc" id="L210">            getIdArquitectura() + DELIMITADOR +</span>
+<span class="fc" id="L211">            getModelo() + DELIMITADOR +</span>
+<span class="fc" id="L212">            getFechaLanzamiento() + DELIMITADOR +</span>
+<span class="fc" id="L213">            getNucleos() + DELIMITADOR +</span>
+<span class="fc" id="L214">            getHilos() + DELIMITADOR +</span>
+<span class="fc" id="L215">            getFrecuencia() + DELIMITADOR +</span>
+<span class="fc" id="L216">            getOverclock() + DELIMITADOR +</span>
+<span class="fc" id="L217">            getTdp() + DELIMITADOR +</span>
+<span class="fc" id="L218">            getPrecio() + DELIMITADOR +</span>
+<span class="fc" id="L219">            getGraficaPropia();</span>
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L224" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L225">            return true;</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">        if (!(o instanceof Procesador)) {</span>
+<span class="nc" id="L227">            return false;</span>
+        }
+<span class="fc" id="L229">        Procesador procesador = (Procesador) o;</span>
+<span class="pc bpc" id="L230" title="12 of 26 branches missed.">        return id == procesador.id &amp;&amp; Objects.equals(codigoFabricante, procesador.codigoFabricante) &amp;&amp; idSocket == procesador.idSocket &amp;&amp; idArquitectura == procesador.idArquitectura &amp;&amp; Objects.equals(modelo, procesador.modelo) &amp;&amp; Objects.equals(fechaLanzamiento, procesador.fechaLanzamiento) &amp;&amp; nucleos == procesador.nucleos &amp;&amp; hilos == procesador.hilos &amp;&amp; frecuencia == procesador.frecuencia &amp;&amp; overclock == procesador.overclock &amp;&amp; tdp == procesador.tdp &amp;&amp; precio == procesador.precio &amp;&amp; graficaPropia == procesador.graficaPropia;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

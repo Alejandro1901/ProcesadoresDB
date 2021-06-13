@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcesadorGraficaIntegrada.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DB_Procesadores_Java</a> &gt; <a href="index.source.html" class="el_package">es.iespuertodelacruz.procesadores.api</a> &gt; <span class="el_source">ProcesadorGraficaIntegrada.java</span></div><h1>ProcesadorGraficaIntegrada.java</h1><pre class="source lang-java linenums">package es.iespuertodelacruz.procesadores.api;
+
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+public class ProcesadorGraficaIntegrada {
+
+    private static final String DELIMITADOR = &quot;'&quot;;
+
+    int idProcesador;
+    int idGraficaIntegrada;
+
+    /**
+     * Cosntructor con todos los parametros
+     * 
+     * @param idProcesador del procesador
+     * @param idGraficaIntegrada de la grafica integrada
+     */
+<span class="fc" id="L19">    public ProcesadorGraficaIntegrada(int idProcesador, int idGraficaIntegrada) {</span>
+<span class="fc" id="L20">        this.idProcesador = idProcesador;</span>
+<span class="fc" id="L21">        this.idGraficaIntegrada = idGraficaIntegrada;</span>
+<span class="fc" id="L22">    }</span>
+
+<span class="fc" id="L24">    public ProcesadorGraficaIntegrada (String cadena) {</span>
+<span class="fc" id="L25">        ArrayList&lt;Object&gt; elementos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        while (tokenizer.hasMoreElements()) {</span>
+<span class="fc" id="L28">            elementos.add(tokenizer.nextToken());</span>
+        }
+<span class="fc" id="L30">        this.idProcesador = Integer.parseInt((String) elementos.get(0));</span>
+<span class="fc" id="L31">        this.idGraficaIntegrada = Integer.parseInt((String) elementos.get(1));</span>
+<span class="fc" id="L32">    }</span>
+
+    /**
+     * Constructor vacio
+     */
+<span class="fc" id="L37">    public ProcesadorGraficaIntegrada() {}</span>
+
+     /**
+     * Creacion de getter and setters
+     */
+
+    public int getIdProcesador() {
+<span class="fc" id="L44">        return this.idProcesador;</span>
+    }
+
+    public void setIdProcesador(int idProcesador) {
+<span class="fc" id="L48">        this.idProcesador = idProcesador;</span>
+<span class="fc" id="L49">    }</span>
+
+    public int getIdGraficaIntegrada() {
+<span class="fc" id="L52">        return this.idGraficaIntegrada;</span>
+    }
+
+    public void setIdGraficaIntegrada(int idGraficaIntegrada) {
+<span class="fc" id="L56">        this.idGraficaIntegrada = idGraficaIntegrada;</span>
+<span class="fc" id="L57">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L61">        return getIdProcesador() + DELIMITADOR +</span>
+<span class="fc" id="L62">               getIdGraficaIntegrada();</span>
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L68">            return true;</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        if (!(o instanceof ProcesadorGraficaIntegrada)) {</span>
+<span class="nc" id="L70">            return false;</span>
+        }
+<span class="fc" id="L72">        ProcesadorGraficaIntegrada procesadorGraficaIntegrada = (ProcesadorGraficaIntegrada) o;</span>
+<span class="pc bpc" id="L73" title="1 of 4 branches missed.">        return idProcesador == procesadorGraficaIntegrada.idProcesador &amp;&amp; idGraficaIntegrada == procesadorGraficaIntegrada.idGraficaIntegrada;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
